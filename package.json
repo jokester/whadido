@@ -1,42 +1,54 @@
 {
-  "name": "node-typescript-boilerplate",
+  "name": "GitWhatdidIdo",
   "version": "0.1.0",
-  "description": "A starting point for node.js & TypeScript application",
-  "main": "index.js",
+  "description": "TODO",
+  "main": "app/electron-main.js",
   "scripts": {
-    "start": "node lib/index.js",
+    "start": "node_modules/.bin/electron .",
     "start:ts": "ts-node lib-ts/index.ts",
     "build": "tsc",
     "build:watch": "tsc --watch",
     "test:ts": "               mocha --reporter list --require ts-node/register lib-ts/_test_/**/*.ts || true",
-    "test": "npm run build; mocha --reporter list                               lib/_test_/**/*.js || true"
+    "test": "npm run build; mocha --reporter list                               lib/_test_/**/*.js || true",
+    "dev": "concurrently --kill-others -p '[{name}@{time}]' -n \"tsc,electron\" \"tsc --watch\" \"electron .\" || true"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/jokester/node-typescript-boilerplate.git"
+    "url": "git+https://github.com/jokester/GitWidget.git"
   },
   "keywords": [
     "nodejs",
     "TypeScript",
-    "boilerplate"
+    "git"
   ],
   "author": "Wang Guan <momocraft@gmail.com>",
   "license": "MIT",
   "private": true,
   "bugs": {
-    "url": "https://github.com/jokester/node-typescript-boilerplate/issues"
+    "url": "https://github.com/jokester/GitWidget/issues"
   },
   "engines": {
     "node": ">= 4.0.0"
   },
-  "homepage": "https://github.com/jokester/node-typescript-boilerplate#readme",
+  "homepage": "https://github.com/jokester/GitWidget#readme",
   "dependencies": {
-    "tslib": "^1.5.0"
+    "tslib": "^1.5.0",
+    "electron": "^1.4.8",
+    "react": "^15.4.1",
+    "react-dom": "^15.4.1",
+    "react-redux": "^4.4.6",
+    "redux": "^3.6.0"
   },
   "devDependencies": {
     "@types/chai": "^3.4.34",
     "@types/node": "^6.0.60",
+    "@types/react": "^0.14.50",
+    "@types/react-dom": "^0.14.19",
+    "@types/react-redux": "^4.4.33",
+    "@types/redux": "^3.6.31",
     "chai": "^3.5.0",
+    "concurrently": "^3.1.0",
+    "electron-rebuild": "^1.4.0",
     "mocha": "^3.2.0",
     "mocha-typescript": "^1.0.15",
     "ts-node": "^2.0.0",
