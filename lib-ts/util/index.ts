@@ -7,3 +7,5 @@ export { liftA2 } from './transforms';
 export function isTruthy(v: any) {
     return !!v;
 }
+
+export { DeepReadonly, deepFreeze, freeze } from './type';

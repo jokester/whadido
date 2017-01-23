@@ -1,6 +1,13 @@
 import { spawn, SpawnOptions } from 'child_process';
 import { chunkToLines } from '../util';
 
+/**
+ *
+ */
+
+/**
+ * Result after subprocess finished
+ */
 interface SubprocessResult {
     stderr: string[]
     stdout: string[]
@@ -8,10 +15,26 @@ interface SubprocessResult {
     signal: string
 }
 
+export async function swawnSubProc(command: string,
+    args?: string[],
+    options?: SpawnOptions) {
+
+    args = args || [];
+
+
+
+}
+
+class SubProc {
+
+}
+
 /**
  * spawn a subprocess and capture its stdout/stderr/return value
  * 
  * rejects if the subprocess could not be spawned
+ *
+ * TODO change this to a process class
  */
 export function spawnSubprocess(command: string,
     args?: string[],

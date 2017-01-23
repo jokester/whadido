@@ -2,19 +2,22 @@
  * (pure & sync) parsers for git raw format
  */
 import {
-    GitBranch, GitCommit, GitRefLog, GitHuman, GitTimestamp, GitHead, GitRef,
-    RefType, ObjType, MutableGitCommit
-} from './git-types';
-import { isTruthy } from '../util';
+    RefType, GitRef,
+    ObjType, GitObject,
+    GitCommit, GitCommitMutable,
+    GitRefLog, GitHuman, GitTimestamp,
+} from './rawtypes';
+import { isTruthy, deepFreeze, freeze } from '../util';
 
-export const PATTERNS = {
-    refnames: {
+export const PATTERNS = freeze({
+    refpath: freeze({
         local_head: /^HEAD$/,
         local_branch: /^refs\/heads\//,
         remote_branch: /^refs\/remotes\/[^\/]+\/(?!HEAD$)/,
         remote_head: /^refs\/remotes\/[^\/]+\/HEAD$/,
         tag: /^refs\/tags\//,
-    },
+        // all: /(head|\/)/i,
+    }),
 
     // line printed from 'git for-each-ref'
     ref_line: /^([0-9a-zA-Z]{40})\s+(commit|tag)\s+(.*)$/i,
@@ -28,10 +31,10 @@ export const PATTERNS = {
     //        name    mail
     author: /^(.*)\s+<(.+@.+)>$/,
 
-    head: {
+    head: freeze({
         //              dest
         refname: /^ref: (.*)$/,
-    },
+    }),
 
     commit_sha1: /^[0-9a-zA-Z]{40}$/,
 
@@ -41,12 +44,14 @@ export const PATTERNS = {
         author: /^author (.*)\s+(\d+\s+[+-]\d+)$/,
         committer: /^committer (.*)\s+(\d+\s+[+-]\d+)$/,
     }
-}
+});
+
 
 /**
  * parse date like '1480181019 +0500'
  */
 export function parseDate(dateStr: string): GitTimestamp {
+    const d = PATTERNS.date.exec;
     const matches = PATTERNS.date.exec(dateStr);
 
     if (!matches) {
@@ -132,18 +137,18 @@ export function parseRefList(ref_lines: string[]): UnknownGitRef[] {
         const refname = matched[3];
 
         if (dest_type === "commit"
-            && PATTERNS.refnames.remote_head.exec(refname)) {
+            && PATTERNS.refpath.remote_head.exec(refname)) {
             refs.push({ name: refname, type: RefType.HEAD, dest: dest_sha1 });
             continue;
         } else if (dest_type === "commit"
-            && PATTERNS.refnames.local_branch.exec(refname)) {
+            && PATTERNS.refpath.local_branch.exec(refname)) {
             refs.push({ name: refname, type: RefType.BRANCH, dest: dest_sha1 });
             continue;
         } else if (dest_type === "commit"
-            && PATTERNS.refnames.remote_branch.exec(refname)) {
+            && PATTERNS.refpath.remote_branch.exec(refname)) {
             refs.push({ name: refname, type: RefType.BRANCH, dest: dest_sha1 });
             continue;
-        } else if (PATTERNS.refnames.tag.exec(refname)) {
+        } else if (PATTERNS.refpath.tag.exec(refname)) {
             refs.push({ name: refname, type: RefType.TAG, dest: dest_sha1 });
             continue;
         }
@@ -158,11 +163,9 @@ export function parseRefList(ref_lines: string[]): UnknownGitRef[] {
  * parse raw commit (`git cat-file -p`)
  */
 export function parseRawCommit(sha1: string, lines: string[]): GitCommit {
-    lines = lines.slice();
-
-    const result: MutableGitCommit = {
+    const result: GitCommitMutable = {
         type: ObjType.COMMIT,
-        sha1,
+        sha1: "",
         author: null,
         author_at: null,
         committer: null,
@@ -171,9 +174,7 @@ export function parseRawCommit(sha1: string, lines: string[]): GitCommit {
         message: null
     };
 
-    while (lines.length) {
-        const l = lines.shift();
-
+    for (const l of lines) {
         const tree = l.match(PATTERNS.commit.tree);
         if (tree) {
             continue;

@@ -5,10 +5,10 @@ Monitor of your git branches and operations.
 ## Source
 
 ```
-src/git          git reader & watcher
-src/model        analyze
-src/ui
-src/util
+lib-ts/git          git reader & watcher
+lib-ts/model        analyze
+lib-ts/ui
+lib-ts/util
 
 ```
 

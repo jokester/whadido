@@ -7,6 +7,7 @@
     "start": "node_modules/.bin/electron .",
     "start:ts": "ts-node lib-ts/index.ts",
     "build": "tsc",
+    "rebuild": "rm -v lib/*.js lib/**/*.js && tsc",
     "build:watch": "tsc --watch",
     "test:ts": "               mocha --reporter list --require ts-node/register lib-ts/_test_/**/*.ts || true",
     "test": "npm run build; mocha --reporter list                               lib/_test_/**/*.js || true",

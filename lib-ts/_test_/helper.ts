@@ -17,8 +17,12 @@ function prettyJson(val: any) {
     return JSON.stringify(val, null, 4);
 }
 
-function genAbsPath(filename: string) {
+function genTmpPath(filename: string) {
     return path.join(__dirname, '..', '..', 'tmp', filename);
+}
+
+export function genTestPath(filename: string) {
+    return path.join(__dirname, '..', '..', 'test', filename);
 }
 
 export function logAsJSON(filename: string): (v: any) => Promise<void> {
@@ -26,7 +30,7 @@ export function logAsJSON(filename: string): (v: any) => Promise<void> {
 }
 
 export function writeLog(filename: string, transformer: (val: any) => string) {
-    return (v: string | Buffer) => writeFile(genAbsPath(filename), transformer(v));
+    return (v: string | Buffer) => writeFile(genTmpPath(filename), transformer(v));
 }
 
 export function logError(filename: string) {
@@ -36,4 +40,19 @@ export function logError(filename: string) {
         const message = err.toString ? err.toString() : ('' + err);
         return writeFile(abspath, message).then(() => { throw err })
     }
+}
+
+export function getMatchedIndex(pattern: RegExp, against: string[]): number[] {
+    const matched: number[] = [];
+    // return against.filter(s => s.match(pattern)).map(toIndex);
+    against.forEach((v, lineNo) => {
+        if (v.match(pattern)) {
+            matched.push(lineNo);
+        }
+    })
+    return matched;
+}
+
+export function countEq<T>(array: T[], value: T): number {
+    return array.filter(v => v === value).length;
 }

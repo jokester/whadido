@@ -1,6 +1,6 @@
 /**
  * Low level git operations.
- *
+ * 
  * @copyright Wang Guan
  */
 
@@ -15,32 +15,16 @@ import {
 } from './subprocess';
 
 import {
-    GitBranch, GitCommit, GitRefLog, GitHuman, GitTimestamp, GitHead, GitBareHead, GitRef,
-    GitObject, RefType, ObjType, GitTag,
-} from './git-types';
+    GitCommit, GitRefLog, GitHuman, GitTimestamp, GitRef,
+    GitObject, RefType, ObjType
+} from './rawtypes';
 
 import * as parser from './parser';
 
-const gitBinary = 'git';
-
 /**
- * find git repo (bare or not) from `start`
+ * @deprecated should be per-instance
  */
-export async function findGitRepo(start: string) {
-
-    // `git rev-parse --git-dir` prints  of $PWD
-
-    const status = await spawnSubprocess(gitBinary,
-        ["rev-parse", "--git-dir"],
-        { cwd: start }
-    ).then(rejectNonZeroReturn);
-
-    // return first line only if line 2 is empty
-    if (status.stdout.length === 2 && !status.stdout[1])
-        return status.stdout[0];
-
-    throw new Error(`findGitRepo: cannot find git repo for ${start}. got ${JSON.stringify(status.stdout)} from 'git rev-parse'`);
-}
+const gitBinary = 'git';
 
 /**
  * read reflog of a ref (branch or head)
@@ -54,7 +38,7 @@ export async function readReflog(repo: string, refname: string) {
 /**
  * read local or remote HEAD
  */
-export async function readHead(repo: string, refname: string): Promise<GitHead | GitBareHead> {
+export async function readHead(repo: string, refname: string): Promise<void> {
     const head_path = path.join(repo, refname);
     const head_lines = await readLines(head_path);
 
@@ -63,24 +47,24 @@ export async function readHead(repo: string, refname: string): Promise<GitHead |
     if (!l0)
         throw new Error(`readLocalHead: not recognized ${l0}`);
     else if (parser.isCommitSHA1(l0)) {
-        return new GitBareHead(refname, l0);
+        // return new Object(refname, l0);
     } else {
         const branch_name = parser.extractRef(l0);
-        return new GitHead(refname, branch_name);
+        // return new GitHead(refname, branch_name);
     }
 }
 
 /**
  * read a local or remote branch
  */
-function readBranch(repo: string, name: string): Promise<GitBranch> {
+function readBranch(repo: string, name: string): Promise<void> {
     return null;
 }
 
 /**
  *
  */
-function readTag(repo: string, name: string): Promise<GitTag> {
+function readTag(repo: string, name: string): Promise<void> {
     return null;
 }
 
@@ -115,7 +99,7 @@ export async function readRefs(repo: string) {
         .then(rejectNonZeroReturn);
     const refNames = parser.parseRefList(result.stdout);
 
-    const refs = [] as GitRef[];
+    const refs = [] as any[];
 
     for (const r of refNames) {
         if (r.type === RefType.TAG) {

@@ -1,29 +1,15 @@
 import { suite, test } from 'mocha-typescript';
 import { expect } from 'chai';
 
-import * as git_reader from '../git/reader';
-import * as git_parser from '../git/parser';
+import * as repo from '../git/repo';
+import * as reader from '../git/reader';
+import * as parser from '../git/parser';
 
 import { spawnSubprocess } from '../git/subprocess';
 
-import { logAsJSON, logError } from './helper';
+import { logAsJSON, logError, getMatchedIndex } from './helper';
 
-function count<T>(array: T[], value: T): number {
-    return array.filter(v => v === value).length;
-}
-
-function getMatchedIndex(pattern: RegExp, against: string[]): number[] {
-    const matched: number[] = [];
-    // return against.filter(s => s.match(pattern)).map(toIndex);
-    against.forEach((v, lineNo) => {
-        if (v.match(pattern)) {
-            matched.push(lineNo);
-        }
-    })
-    return matched;
-}
-
-@suite class SubProcess {
+@suite class TestSubProcess {
     @test true_returns_0() {
         return spawnSubprocess('true')
             .then(result => expect(result.exit).eq(0));
@@ -43,11 +29,66 @@ function getMatchedIndex(pattern: RegExp, against: string[]): number[] {
     }
 }
 
-@suite class GitParser {
+@suite class TestGitReader {
+
+    private findRepo = repo.findRepo(__dirname);
+
+    @test findGitRepo() {
+
+        return this.findRepo;
+    }
+
+    @test catFile() {
+        return this.findRepo
+            .then(repo => reader.catFile(repo, 'master'));
+    }
+
+    @test listRefs() {
+        return this.findRepo
+            .then(repo => reader.listRefs(repo))
+            .then(refs => {
+                expect(refs.length).eq(9);
+            })
+    }
+
+    @test readLocalHead() {
+        const log = 'readLocalHead.json';
+        return this.findRepo
+            .then(repo => reader.readHead(repo, "HEAD"))
+            .then(logAsJSON(log))
+            .catch(logError(log));
+    }
+
+    @test readRemoteHead_1() {
+        const log = 'readRemoteHead.json';
+        return this.findRepo
+            .then(repo => reader.readHead(repo, "refs/remotes/origin/HEAD"))
+            .then(logAsJSON(log))
+            .catch(logError(log));
+    }
+
+    @test readRemoteBranch() {
+        const log = 'readRemoteMaster.json';
+        return this.findRepo
+            .then(repo => reader.readHead(repo, "refs/remotes/origin/master"))
+            .then(logAsJSON(log))
+            .catch(logError(log));
+    }
+
+    @test readRefs() {
+        const log = 'readRefs.json';
+        return this.findRepo
+            .then(repo => reader.readRefs(repo))
+            .then(logAsJSON(log))
+            .catch(logError(log));
+    }
+}
+
+@suite class TestGitParser {
 
     @test refNamePatterns() {
 
-        const patterns = git_parser.PATTERNS;
+        const patterns = parser.PATTERNS;
 
         const lines = [
             "70f7812171ef7ec6bf599352e84aa57092cd412a commit refs/heads/master",
@@ -64,22 +105,22 @@ function getMatchedIndex(pattern: RegExp, against: string[]): number[] {
 
         const matched = lines.map(l => l.match(patterns.ref_line)[3]);
 
-        expect(getMatchedIndex(patterns.refnames.local_branch, matched))
+        expect(getMatchedIndex(patterns.refpath.local_branch, matched))
             .deep.eq([0, 1]);
 
-        expect(getMatchedIndex(patterns.refnames.remote_head, matched))
+        expect(getMatchedIndex(patterns.refpath.remote_head, matched))
             .deep.eq([2]);
 
-        expect(getMatchedIndex(patterns.refnames.remote_branch, matched))
+        expect(getMatchedIndex(patterns.refpath.remote_branch, matched))
             .deep.eq([3]);
 
-        expect(getMatchedIndex(patterns.refnames.tag, matched))
+        expect(getMatchedIndex(patterns.refpath.tag, matched))
             .deep.eq([4, 5]);
     }
 
     @test parseDate() {
         const timeStr = "1480181019 +0500";
-        const date = git_parser.parseDate(timeStr);
+        const date = parser.parseDate(timeStr);
 
         expect(date).deep.eq({
             utc_sec: 1480181019,
@@ -90,7 +131,7 @@ function getMatchedIndex(pattern: RegExp, against: string[]): number[] {
     @test parseAuthor1() {
         const authorStr = "Wang Guan <momocraft@gmail.com>";
 
-        expect(git_parser.parseAuthor(authorStr)).deep.eq({
+        expect(parser.parseAuthor(authorStr)).deep.eq({
             name: "Wang Guan",
             email: "momocraft@gmail.com"
         })
@@ -99,14 +140,14 @@ function getMatchedIndex(pattern: RegExp, against: string[]): number[] {
     @test parseAuthor2() {
         const authorStr = "Wang Guan <momocraftgmail.com>";
 
-        expect(git_parser.parseAuthor(authorStr)).deep.eq({
+        expect(parser.parseAuthor(authorStr)).deep.eq({
             name: authorStr,
             email: ""
         })
     }
 
     @test reflogPattern() {
-        const patterns = git_parser.PATTERNS;
+        const patterns = parser.PATTERNS;
 
         const reflogLine
             = '70f7812171ef7ec6bf599352e84aa57092cd412a faea5b6b1129ca7945199e4c78cc73f6cac471d6 Wang Guan <momocraft@gmail.com> 1480181019 +0900\tcommit: read refs';
@@ -114,7 +155,7 @@ function getMatchedIndex(pattern: RegExp, against: string[]): number[] {
 
         expect(match).ok;
 
-        expect(git_parser.parseReflog(reflogLine)).deep.eq({
+        expect(parser.parseReflog(reflogLine)).deep.eq({
             from: '70f7812171ef7ec6bf599352e84aa57092cd412a',
             to: 'faea5b6b1129ca7945199e4c78cc73f6cac471d6',
             at: {
@@ -140,7 +181,7 @@ function getMatchedIndex(pattern: RegExp, against: string[]): number[] {
             "Merge branch 'learning-3d'",
         ] as string[];
 
-        const parsed = git_parser.parseRawCommit("eeeqq", lines);
+        const parsed = parser.parseRawCommit("eeeqq", lines);
         expect(parsed).deep.eq({
             author: {
                 email: "momocraft@gmail.com",
@@ -179,7 +220,7 @@ function getMatchedIndex(pattern: RegExp, against: string[]): number[] {
             "Merge branch 'learning-3d'",
         ] as string[];
 
-        const parsed = git_parser.parseRawCommit("eeeqq", lines);
+        const parsed = parser.parseRawCommit("eeeqq", lines);
         expect(parsed).deep.eq({
             author: {
                 email: "momocraft@gmail.com",
@@ -205,59 +246,4 @@ function getMatchedIndex(pattern: RegExp, against: string[]): number[] {
             type: "Commit",
         });
     }
-}
-
-@suite class GitReader {
-
-    private findRepo = git_reader.findGitRepo(__dirname);
-
-    @test findGitRepo() {
-        return this.findRepo;
-    }
-
-    @test catFile() {
-        return this.findRepo
-            .then(repo => git_reader.catFile(repo, 'master'));
-    }
-
-    @test listRefs() {
-        return this.findRepo
-            .then(repo => git_reader.listRefs(repo))
-            .then(refs => {
-                expect(refs.length).eq(9);
-            })
-    }
-
-    @test readLocalHead() {
-        const log = 'readLocalHead.json';
-        return this.findRepo
-            .then(repo => git_reader.readHead(repo, "HEAD"))
-            .then(logAsJSON(log))
-            .catch(logError(log));
-    }
-
-    @test readRemoteHead_1() {
-        const log = 'readRemoteHead.json';
-        return this.findRepo
-            .then(repo => git_reader.readHead(repo, "refs/remotes/origin/HEAD"))
-            .then(logAsJSON(log))
-            .catch(logError(log));
-    }
-
-    @test readRemoteBranch() {
-        const log = 'readRemoteMaster.json';
-        return this.findRepo
-            .then(repo => git_reader.readHead(repo, "refs/remotes/origin/master"))
-            .then(logAsJSON(log))
-            .catch(logError(log));
-    }
-
-    @test readRefs() {
-        const log = 'readRefs.json';
-        return this.findRepo
-            .then(repo => git_reader.readRefs(repo))
-            .then(logAsJSON(log))
-            .catch(logError(log));
-    }
-
 }
