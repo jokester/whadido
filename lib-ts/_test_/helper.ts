@@ -1,6 +1,14 @@
 const fs = require('fs');
 const path = require('path');
 
+
+/**
+ *
+ *
+ * @param {string} absPath
+ * @param {string} content
+ * @returns {Promise<void>}
+ */
 function writeFile(absPath: string, content: string): Promise<void> {
     return new Promise<void>(function (fulfill, reject) {
         fs.writeFile(absPath, content, function (err: any) {

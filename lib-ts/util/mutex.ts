@@ -12,7 +12,7 @@
  * FIXME change params to (release, res) so as to remind caller
  */
 export interface ExclusiveTask<T> {
-    (res: T, release: () => void): void
+    (release: () => void, res: T): void
 }
 
 /**
@@ -45,7 +45,7 @@ export class MutexResource<T> {
     }
 
     /**
-     * Queue tasks with setImmediate (it's faster)
+     * Queue tasks with setImmediate (it's *much* faster)
      */
     private runQueue() {
         if (this.locked)
@@ -58,7 +58,6 @@ export class MutexResource<T> {
         let released = false;
 
         setImmediate(firstTask,
-            this.res,
             () => {
                 if (released)
                     throw new Error(`release() for this task have been called`);
@@ -67,11 +66,12 @@ export class MutexResource<T> {
 
                 if (this.taskQueue.length)
                     setImmediate(() => this.runQueue());
-            });
+            },
+            this.res);
     }
 
     /**
-     * Queue tasks with setTimeout (it's faster)
+     * Queue tasks with setTimeout (slower but available in browser)
      */
     private runQueueSlow() {
         if (this.locked)
@@ -86,7 +86,6 @@ export class MutexResource<T> {
         setTimeout(
             firstTask,
             0,
-            this.res,
             () => {
                 if (released)
                     throw new Error(`release() for this task have been called`);
@@ -94,7 +93,8 @@ export class MutexResource<T> {
                 released = true;
 
                 if (this.taskQueue.length)
-                    setImmediate(() => this.runQueueSlow());
-            });
+                    setTimeout(() => this.runQueueSlow());
+            },
+            this.res);
     };
 }

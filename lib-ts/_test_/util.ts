@@ -13,7 +13,7 @@ import { ExclusiveTask, MutexResource } from '../util/mutex';
 
         for (let i = 0; i < 1000; i++) {
             const current = i;
-            mutexRes.queue((s, release) => {
+            mutexRes.queue((release, s) => {
                 if (current % 2 === 0) {
                     release();
                 } else if (current % 3 === 0) {
@@ -28,7 +28,7 @@ import { ExclusiveTask, MutexResource } from '../util/mutex';
         }
 
         return new Promise<void>((resolve, reject) => {
-            mutexRes.queue((s, release) => {
+            mutexRes.queue((release, s) => {
                 expect(s).deep.eq([]);
                 release();
                 resolve();
