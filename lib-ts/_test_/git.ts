@@ -9,32 +9,45 @@ import { spawnSubprocess } from '../git/subprocess';
 
 import { logAsJSON, logError, getMatchedIndex } from './helper';
 
-@suite class TestSubProcess {
-    @test true_returns_0() {
+@suite
+class TestSubProcess {
+    @test
+    true_returns_0() {
         return spawnSubprocess('true')
             .then(result => expect(result.exit).eq(0));
     }
 
-    @test false_returns_1() {
+    @test
+    false_returns_1() {
         return spawnSubprocess('false')
             .then(result => expect(result.exit).eq(1));
     }
 
-    @test captures_stdout() {
+    @test
+    captures_stdout1() {
         return spawnSubprocess('/bin/echo', ['aa', 'bb'])
             .then(result => {
                 expect(result.exit).eq(0);
                 expect(result.stdout).to.deep.eq(['aa bb', '']);
             })
     }
+
+    @test
+    captures_stdout2() {
+        return spawnSubprocess('/bin/echo', ["-n", 'aa', 'bb'])
+            .then(result => {
+                expect(result.exit).eq(0);
+                expect(result.stdout).to.deep.eq(['aa bb']);
+            })
+    }
 }
 
-@suite class TestGitReader {
+@suite
+class TestGitReader {
 
     private findRepo = repo.findRepo(__dirname);
 
     @test findGitRepo() {
-
         return this.findRepo;
     }
 
@@ -84,9 +97,11 @@ import { logAsJSON, logError, getMatchedIndex } from './helper';
     }
 }
 
-@suite class TestGitParser {
+@suite
+class TestGitParser {
 
-    @test refNamePatterns() {
+    @test
+    refNamePatterns() {
 
         const patterns = parser.PATTERNS;
 
@@ -118,7 +133,8 @@ import { logAsJSON, logError, getMatchedIndex } from './helper';
             .deep.eq([4, 5]);
     }
 
-    @test parseDate() {
+    @test
+    parseDate() {
         const timeStr = "1480181019 +0500";
         const date = parser.parseDate(timeStr);
 
@@ -128,7 +144,8 @@ import { logAsJSON, logError, getMatchedIndex } from './helper';
         });
     }
 
-    @test parseAuthor1() {
+    @test
+    parseAuthor1() {
         const authorStr = "Wang Guan <momocraft@gmail.com>";
 
         expect(parser.parseAuthor(authorStr)).deep.eq({
@@ -137,7 +154,8 @@ import { logAsJSON, logError, getMatchedIndex } from './helper';
         })
     }
 
-    @test parseAuthor2() {
+    @test
+    parseAuthor2() {
         const authorStr = "Wang Guan <momocraftgmail.com>";
 
         expect(parser.parseAuthor(authorStr)).deep.eq({
@@ -146,7 +164,8 @@ import { logAsJSON, logError, getMatchedIndex } from './helper';
         })
     }
 
-    @test reflogPattern() {
+    @test
+    reflogPattern() {
         const patterns = parser.PATTERNS;
 
         const reflogLine
@@ -170,7 +189,9 @@ import { logAsJSON, logError, getMatchedIndex } from './helper';
         })
     }
 
-    @test parseRawCommit_mergeCommit() {
+    @test
+    parseRawCommit_mergeCommit() {
+        // a commit with 2 parants
         const lines = [
             "tree 2d0c2fb45fe59fa84bd8c940ef5cc7ea0a050074",
             "parent e878f7caaf971fd3f4808d66fb41a74ac9567d44",
@@ -211,7 +232,8 @@ import { logAsJSON, logError, getMatchedIndex } from './helper';
         });
     }
 
-    @test parseRawCommit_orphanCommit() {
+    @test
+    parseRawCommit_orphanCommit() {
         const lines = [
             "tree 2d0c2fb45fe59fa84bd8c940ef5cc7ea0a050074",
             "author Wang Guan <momocraft@gmail.com> 1479579845 +0500",

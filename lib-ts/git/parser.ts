@@ -163,18 +163,20 @@ export function parseRefList(ref_lines: string[]): UnknownGitRef[] {
  * parse raw commit (`git cat-file -p`)
  */
 export function parseRawCommit(sha1: string, lines: string[]): GitCommit {
+    lines = lines.slice();
     const result: GitCommitMutable = {
         type: ObjType.COMMIT,
-        sha1: "",
+        sha1: sha1,
         author: null,
         author_at: null,
         committer: null,
         commit_at: null,
         parent_sha1: [],
-        message: null
+        message: null,
     };
 
-    for (const l of lines) {
+    while (lines.length) {
+        const l = lines.shift();
         const tree = l.match(PATTERNS.commit.tree);
         if (tree) {
             continue;
