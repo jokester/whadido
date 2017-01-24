@@ -25,8 +25,26 @@ export async function swawnSubProc(command: string,
 
 }
 
+/**
+ * A wrapper for node's subprocess
+ */
 class SubProc {
 
+    constructor() {
+
+    }
+    private waiting: Promise<SubprocessResult>;
+
+    async pipeIn() {
+
+    }
+
+    async wait() {
+    }
+
+    async doWait() {
+
+    }
 }
 
 /**

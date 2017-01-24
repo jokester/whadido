@@ -46,7 +46,6 @@ export const PATTERNS = freeze({
     }
 });
 
-
 /**
  * parse date like '1480181019 +0500'
  */
