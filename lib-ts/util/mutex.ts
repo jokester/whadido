@@ -23,7 +23,7 @@ export class MutexResource<T> {
     private readonly res: T;
     private readonly taskQueue: ExclusiveTask<T>[] = [];
     private readonly setImmediateAvailable = (typeof setImmediate === "function");
-
+    private readonly nextTickAvailable = (typeof process === "object" && process.nextTick);
     /**
      * whether the resource is being occupied by a task
      */
@@ -97,4 +97,31 @@ export class MutexResource<T> {
             },
             this.res);
     };
+
+    /**
+     * run tasks with process.nextTick
+     * (not faster, so not using it)
+     */
+    private runQueueAlt() {
+        if (this.locked)
+            return;
+
+        this.locked = true;
+        const firstTask = this.taskQueue.shift();
+
+        /** whether release() for this task get called */
+        let released = false;
+
+        process.nextTick(firstTask,
+            () => {
+                if (released)
+                    throw new Error(`release() for this task have been called`);
+                this.locked = false;
+                released = true;
+
+                if (this.taskQueue.length)
+                    process.nextTick(() => this.runQueue());
+            },
+            this.res);
+    }
 }
