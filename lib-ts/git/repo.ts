@@ -2,6 +2,8 @@ import {
     spawnSubprocess, rejectNonZeroReturn
 } from './subprocess';
 
+import { readdir } from 'fs-promise';
+
 /**
  * (you should open repo with this)
  */
@@ -36,10 +38,13 @@ class GitRepo {
     /**
      * @param gitBinary string name of git binary, can be just "git"
      */
-    constructor(private repoRoot: string, private gitBinary: string) {
+    constructor(private readonly repoRoot: string,
+        private readonly gitBinary: string) {
+
     }
 
-    listRefs() {
+    async listRefs() {
+
 
     }
 

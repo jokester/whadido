@@ -47,16 +47,19 @@ class TestGitReader {
 
     private findRepo = repo.findRepo(__dirname);
 
-    @test findGitRepo() {
+    @test
+    findGitRepo() {
         return this.findRepo;
     }
 
-    @test catFile() {
+    @test
+    catFile() {
         return this.findRepo
             .then(repo => reader.catFile(repo, 'master'));
     }
 
-    @test listRefs() {
+    @test
+    listRefs() {
         return this.findRepo
             .then(repo => reader.listRefs(repo))
             .then(refs => {
@@ -64,7 +67,8 @@ class TestGitReader {
             })
     }
 
-    @test readLocalHead() {
+    @test
+    readLocalHead() {
         const log = 'readLocalHead.json';
         return this.findRepo
             .then(repo => reader.readHead(repo, "HEAD"))
@@ -72,7 +76,8 @@ class TestGitReader {
             .catch(logError(log));
     }
 
-    @test readRemoteHead_1() {
+    @test
+    readRemoteHead_1() {
         const log = 'readRemoteHead.json';
         return this.findRepo
             .then(repo => reader.readHead(repo, "refs/remotes/origin/HEAD"))
@@ -80,7 +85,8 @@ class TestGitReader {
             .catch(logError(log));
     }
 
-    @test readRemoteBranch() {
+    @test
+    readRemoteBranch() {
         const log = 'readRemoteMaster.json';
         return this.findRepo
             .then(repo => reader.readHead(repo, "refs/remotes/origin/master"))
@@ -88,7 +94,8 @@ class TestGitReader {
             .catch(logError(log));
     }
 
-    @test readRefs() {
+    @test
+    readRefs() {
         const log = 'readRefs.json';
         return this.findRepo
             .then(repo => reader.readRefs(repo))

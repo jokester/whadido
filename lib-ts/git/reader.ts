@@ -5,7 +5,6 @@
  */
 
 const path = require('path');
-const fs = require('fs');
 
 import * as errors from '../errors';
 import { readLines, isTruthy, liftA2 } from '../util';
