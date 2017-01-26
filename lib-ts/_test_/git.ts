@@ -299,3 +299,8 @@ cbe73c6c2d757565f074c95c27e2b2dadfd31428 refs/tags/WTF
         ]);
     }
 }
+
+@suite
+class TestGitRepo {
+
+}

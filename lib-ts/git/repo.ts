@@ -5,6 +5,7 @@ import {
 import { readFile } from 'fs-promise';
 import { join } from 'path';
 import { GitRef } from './rawtypes';
+import * as parser from './parser';
 
 /**
  * (you should open repo with this)
@@ -52,15 +53,8 @@ class GitRepo {
 
     private async readPackedRefs() {
         const filename = join(this.repoRoot, 'packed-refs');
-        try {
-            const lines = (await readFile(filename, { encoding: "utf-8" })).split("\n");
-            const result: GitRef[] = [];
-            
-
-
-        } catch (e) {
-
-        }
+        const lines = (await readFile(filename, { encoding: "utf-8" })).split("\n");
+        return parser.parsePackedRef(lines);
     }
 
     /**

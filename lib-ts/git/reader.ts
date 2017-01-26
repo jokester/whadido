@@ -151,7 +151,7 @@ export class GitReader {
      * - not found ("missing")
      * - not a tag or commit (e.g. blob/tree)
      */
-    catFile(whatever: string): Promise<string> {
+    catObject(whatever: string): Promise<string> {
         // NOTE git cat-file only prints *resolved*
         // e.g. a non-
         return Promise.resolve("");
