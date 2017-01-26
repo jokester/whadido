@@ -5,6 +5,7 @@ import * as repo from '../git/repo';
 import * as reader from '../git/reader';
 import * as parser from '../git/parser';
 
+import { join } from 'path';
 import { spawnSubprocess } from '../git/subprocess';
 
 import { logAsJSON, logError, getMatchedIndex } from './helper';
@@ -42,6 +43,14 @@ class TestSubProcess {
     }
 }
 
+
+/**
+ * test for reader.ts
+ *
+ * @deprecated
+ *
+ * @class TestGitReader
+ */
 @suite
 class TestGitReader {
 
@@ -303,4 +312,12 @@ cbe73c6c2d757565f074c95c27e2b2dadfd31428 refs/tags/WTF
 @suite
 class TestGitRepo {
 
+    @test
+    async findRepo() {
+        const path = join(__dirname, '..', '..', 'test', 'node-libtidy.git', 'hooks');
+        const foundRepo = await repo.findRepo(path);
+
+        const expected = join(__dirname, '..', '..', 'test', 'node-libtidy.git');
+        expect(foundRepo).to.eq(expected);
+    }
 }
