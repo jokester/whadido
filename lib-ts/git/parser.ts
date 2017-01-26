@@ -43,7 +43,10 @@ export const PATTERNS = freeze({
         parent: /^parent ([0-9a-zA-Z]{40})$/,
         author: /^author (.*)\s+(\d+\s+[+-]\d+)$/,
         committer: /^committer (.*)\s+(\d+\s+[+-]\d+)$/,
-    }
+    },
+
+    // $1: sha1 $2: refpath
+    packed_ref: /^([0-9a-zA-Z]{40}) (.*)$/,
 });
 
 /**
@@ -124,6 +127,8 @@ interface UnknownGitRef {
 
 /**
  * parse output of `git for-each-ref`
+ * @deprecated git for-each-ref derefs object
+ * FIXME remove this
  */
 export function parseRefList(ref_lines: string[]): UnknownGitRef[] {
     const refs: UnknownGitRef[] = [];
@@ -156,6 +161,36 @@ export function parseRefList(ref_lines: string[]): UnknownGitRef[] {
     }
 
     return refs;
+}
+
+/**
+ * 
+ * 
+ * @export
+ * @param {string} lines content of $GITDIR/packed-refs
+ * @returns {GitRef[]}
+ */
+export function parsePackedRef(lines: string[]): GitRef[] {
+    const found = [] as GitRef[];
+    for (const l of lines) {
+        const matched = PATTERNS.packed_ref.exec(l);
+        if (matched) {
+            const sha1 = matched[1];
+            const refpath = matched[2];
+
+            if (PATTERNS.refpath.tag.exec(refpath)) {
+                found.push({ dest: sha1, type: RefType.UNKNOWN_TAG, path: refpath });
+            } else if (PATTERNS.refpath.local_branch.exec(refpath)) {
+                found.push({ dest: sha1, type: RefType.BRANCH, path: refpath });
+            } else if (PATTERNS.refpath.remote_branch.exec(refpath)) {
+                found.push({ dest: sha1, type: RefType.BRANCH, path: refpath });
+            } else {
+                throw new Error(`parsePackedRef: refpath not recognized - ${refpath}`);
+            }
+        } // else ignore
+    }
+
+    return found;
 }
 
 /**

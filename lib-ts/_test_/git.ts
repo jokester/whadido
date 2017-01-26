@@ -275,4 +275,27 @@ class TestGitParser {
             type: "Commit",
         });
     }
+
+    @test
+    parsePackedRef() {
+        const lines = `# pack-refs with: peeled fully-peeled
+298ca5248eda588e2e18ccdbe9b4d8e8b7ceaeea refs/heads/master
+298ca5248eda588e2e18ccdbe9b4d8e8b7ceaeea refs/heads/moyu
+298ca5248eda588e2e18ccdbe9b4d8e8b7ceaeea refs/remotes/origin/master
+298ca5248eda588e2e18ccdbe9b4d8e8b7ceaeea refs/remotes/origin/moyu
+1940b1adca8f6633dfe9c4e73bb79b11e820af35 refs/tags/VVV
+cbe73c6c2d757565f074c95c27e2b2dadfd31428 refs/tags/WTF
+298ca5248eda588e2e18ccdbe9b4d8e8b7ceaeea refs/tags/あああ`.split("\n");
+
+        const parsed = parser.parsePackedRef(lines);
+        expect(parsed).deep.eq([
+            { "dest": "298ca5248eda588e2e18ccdbe9b4d8e8b7ceaeea", "path": "refs/heads/master", "type": "Branch", },
+            { "dest": "298ca5248eda588e2e18ccdbe9b4d8e8b7ceaeea", "path": "refs/heads/moyu", "type": "Branch", },
+            { "dest": "298ca5248eda588e2e18ccdbe9b4d8e8b7ceaeea", "path": "refs/remotes/origin/master", "type": "Branch", },
+            { "dest": "298ca5248eda588e2e18ccdbe9b4d8e8b7ceaeea", "path": "refs/remotes/origin/moyu", "type": "Branch", },
+            { "dest": "1940b1adca8f6633dfe9c4e73bb79b11e820af35", "path": "refs/tags/VVV", "type": "TAG OF UNKNOWN KIND", },
+            { "dest": "cbe73c6c2d757565f074c95c27e2b2dadfd31428", "path": "refs/tags/WTF", "type": "TAG OF UNKNOWN KIND", },
+            { "dest": "298ca5248eda588e2e18ccdbe9b4d8e8b7ceaeea", "path": "refs/tags/あああ", "type": "TAG OF UNKNOWN KIND", },
+        ]);
+    }
 }

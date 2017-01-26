@@ -2,7 +2,9 @@ import {
     spawnSubprocess, rejectNonZeroReturn
 } from './subprocess';
 
-import { readdir } from 'fs-promise';
+import { readFile } from 'fs-promise';
+import { join } from 'path';
+import { GitRef } from './rawtypes';
 
 /**
  * (you should open repo with this)
@@ -45,6 +47,26 @@ class GitRepo {
 
     async listRefs() {
 
+
+    }
+
+    private async readPackedRefs() {
+        const filename = join(this.repoRoot, 'packed-refs');
+        try {
+            const lines = (await readFile(filename, { encoding: "utf-8" })).split("\n");
+            const result: GitRef[] = [];
+            
+
+
+        } catch (e) {
+
+        }
+    }
+
+    /**
+     * Local 
+     */
+    private async readLocalHead() {
 
     }
 

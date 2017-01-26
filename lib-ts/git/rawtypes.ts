@@ -5,6 +5,9 @@
  */
 import { DeepReadonly } from '../util';
 
+/**
+ * SHA1: 160bits / 40chars
+ */
 type SHA1 = string
 
 interface ObjectMutable {
@@ -41,7 +44,8 @@ export type GitCommit = DeepReadonly<GitCommitMutable>
 /**
  * "path" to 
  * 
- * NOTE references can be stored without pack (.git/refs) or packed (.git/packed-refs)
+ * NOTE references can be stored without pack (.git/refs, .git/HEAD)
+ * or packed (.git/packed-refs)
  * 
  * local HEAD:          HEAD
  * local branch:        refs/heads/<branch>
@@ -56,6 +60,8 @@ type RefPath = string;
  * NOTE (GitRef & Obje)
  */
 export enum RefType {
+    // tags that are 
+    UNKNOWN_TAG = <any>"TAG OF UNKNOWN KIND",
     ATAG = <any>"Annotated tag",
     TAG = <any>"Tag",
     BRANCH = <any>"Branch",
