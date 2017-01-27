@@ -25,7 +25,7 @@ export async function findRepo(start: string, gitBinary = "git") {
     const status = await spawnSubprocess(gitBinary,
         ["rev-parse", "--git-dir"],
         { cwd: start }
-    ).then(rejectNonZeroReturn);
+    ).then(rejectNonZeroReturn); 
 
     // if line 2 is empty, return the first line
     if (status.stdout.length === 2 && !status.stdout[1])

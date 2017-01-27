@@ -7,7 +7,7 @@
 const path = require('path');
 
 import * as errors from '../errors';
-import { readLines, isTruthy, liftA2 } from '../util';
+import { readLines, isTruthy, liftA2, deprecate } from '../util';
 
 import {
     spawnSubprocess, rejectNonZeroReturn
@@ -30,8 +30,12 @@ const gitBinary = 'git';
  */
 export async function readReflog(repo: string, refname: string) {
     const reflog_path = path.join(repo, 'logs', refname);
-    const lines = await readLines(reflog_path);
-    return lines.filter(isTruthy).map(parser.parseReflog);
+    try {
+        const lines = await readLines(reflog_path);
+        return lines.filter(isTruthy).map(parser.parseReflog);
+    } catch (e) {
+        return [];
+    }
 }
 
 /**
@@ -86,8 +90,12 @@ function readObject(repo: string, sha1: string): Promise<string[]> {
 
 /**
  * list (non-recognized) references
+ * 
+ * @deprecated git for-each-ref resolves dependency on its own,
+ * while we want to handle that by own
  */
 export function listRefs(repo: string) {
+    deprecate();
     return spawnSubprocess(gitBinary, ['for-each-ref'], { cwd: repo })
         .then(rejectNonZeroReturn)
         .then(result => parser.parseRefList(result.stdout))
@@ -130,7 +138,7 @@ export function catFile(repo: string, ref: string) {
 export class GitReader {
 
     constructor(private repo: string) {
-
+        deprecate();
     }
 
     getCatfileProcess() {
