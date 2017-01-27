@@ -9,8 +9,8 @@
     "build": "tsc",
     "rebuild": "rm -v lib/*.js lib/**/*.js && tsc",
     "build:watch": "tsc --watch",
-    "test:ts": "            mocha --opts mocha-ts.opts",
-    "test": "npm run build; mocha --opts mocha-js.opts",
+    "test:ts": "    mocha --opts mocha-ts.opts || true",
+    "test": "tsc && mocha --opts mocha-js.opts || true",
     "dev": "concurrently --kill-others -p '[{name}@{time}]' -n \"tsc,electron\" \"tsc --watch\" \"electron .\" || true"
   },
   "repository": {
