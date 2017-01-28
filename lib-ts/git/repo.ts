@@ -2,7 +2,7 @@ import {
     spawnSubprocess, rejectNonZeroReturn
 } from './subprocess';
 
-import { readFile } from 'fs-promise';
+import { readFile, exists } from 'fs-promise';
 import { join } from 'path';
 import { GitRef } from './rawtypes';
 import * as parser from './parser';
@@ -17,7 +17,11 @@ export async function openRepo(start: string, gitBinary: string): Promise<GitRep
 
 /**
  * find git repo (bare or not) from directory `start`
- * @param start string
+ *
+ * @export
+ * @param {string} start the directory to start
+ * @param {string} [gitBinary="git"] binary of git
+ * @returns
  */
 export async function findRepo(start: string, gitBinary = "git") {
 
@@ -25,7 +29,7 @@ export async function findRepo(start: string, gitBinary = "git") {
     const status = await spawnSubprocess(gitBinary,
         ["rev-parse", "--git-dir"],
         { cwd: start }
-    ).then(rejectNonZeroReturn); 
+    ).then(rejectNonZeroReturn);
 
     // if line 2 is empty, return the first line
     if (status.stdout.length === 2 && !status.stdout[1])
@@ -47,12 +51,16 @@ class GitRepo {
     }
 
     async listRefs() {
+        const packed = await this.readPackedRefs();
 
-
+        return ([] as GitRef[])
+            .concat(packed);
     }
 
     private async readPackedRefs() {
         const filename = join(this.repoRoot, 'packed-refs');
+        if (!await exists(filename))
+            return [] as GitRef[];
         const lines = (await readFile(filename, { encoding: "utf-8" })).split("\n");
         return parser.parsePackedRef(lines);
     }
