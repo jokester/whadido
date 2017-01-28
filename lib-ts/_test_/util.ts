@@ -16,10 +16,10 @@ import { ExclusiveTask, MutexResource } from '../util/mutex';
             mutexRes.queue((release, s) => {
                 if (current % 2 === 0) {
                     release();
-                } else if (current % 3 === 0) {
-                    setTimeout(release);
                 } else if (current % 5 === 0) {
-                    // s.push(current);
+                    setImmediate(release);
+                } else if (current % 111 === 0) {
+                    s.push(current);
                     release();
                 } else {
                     release();
@@ -29,7 +29,7 @@ import { ExclusiveTask, MutexResource } from '../util/mutex';
 
         return new Promise<void>((resolve, reject) => {
             mutexRes.queue((release, s) => {
-                expect(s).deep.eq([]);
+                expect(s).deep.eq([111, 333, 777, 999]);
                 release();
                 resolve();
             });
