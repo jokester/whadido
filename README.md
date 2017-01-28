@@ -1,6 +1,10 @@
-# i-Reflog
+# Wadiedo
 
-Monitor of your git branches and operations.
+Visualize git repository and *your local operations*.
+
+(The name comes from *what did i do?* we ask on shiny Monday morning)
+
+## Demo
 
 ## Source
 
@@ -13,3 +17,8 @@ lib-ts/util
 ```
 
 Based on [node-typescript-boilerplate](https://github.com/jokester/node-typescript-boilerplate.git)
+
+
+## License
+
+MIT
