@@ -344,7 +344,6 @@ class TestGitRepo {
     async openTestRepo() {
         const path = join(__dirname, '..', '..', 'test', 'node-libtidy.git', 'hooks');
         const foundRepo = await repo.findRepo(path);
-        logger.info(`openTestRepo: foundRepo=${foundRepo}`);
         return repo.openRepo(foundRepo);
     }
 
@@ -423,5 +422,14 @@ class TestGitRepo {
                 path: "HEAD",
                 type: rawtypes.RefType.HEAD,
             });
+    }
+
+    @test
+    async findRefFiles() {
+        const refsRoot = join(__dirname, '..', '..', 'test', 'node-libtidy.git', 'refs');
+        const found = await repo.listRefFiles(refsRoot);
+        expect(found).deep.eq([
+            join(refsRoot, 'remotes', 'origin', 'HEAD')
+        ]);
     }
 }

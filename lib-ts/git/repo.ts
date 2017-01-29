@@ -1,17 +1,12 @@
+import { readFile, exists } from 'fs-promise';
+import { join } from 'path';
+import * as readdir from 'recursive-readdir';
+
+import { GitRef } from './rawtypes';
+import * as parser from './parser';
 import {
     spawnSubprocess, rejectNonZeroReturn
 } from './subprocess';
-
-import { readFile, exists } from 'fs-promise';
-import { join } from 'path';
-import { GitRef } from './rawtypes';
-import * as parser from './parser';
-
-const logger = console;
-
-/**
- * (you should open repo with this)
- */
 
 /**
  * open git repo
@@ -32,7 +27,7 @@ export function openRepo(repoRoot: string, gitBinary = "git"): GitRepo {
  * @export
  * @param {string} start the directory to start
  * @param {string} [gitBinary="git"] binary of git
- * @returns
+ * @returns absolute path of the repo
  */
 export async function findRepo(start: string, gitBinary = "git") {
 
@@ -50,6 +45,23 @@ export async function findRepo(start: string, gitBinary = "git") {
 }
 
 /**
+ * List (normally REPO/refs)
+ * 
+ * @export
+ * @returns {Promise<string[]>} absolute path of ref files
+ */
+export function listRefFiles(start: string): Promise<string[]> {
+    return new Promise<string[]>((fulfill, reject) => {
+        readdir(start, (err, files) => {
+            if (err)
+                reject(err);
+            else
+                fulfill(files);
+        });
+    });
+}
+
+/**
  *
  */
 class GitRepo {
@@ -58,11 +70,10 @@ class GitRepo {
      */
     constructor(private readonly repoRoot: string,
         private readonly gitBinary: string) {
-        logger.info(`GitRepo: repoRoot=${repoRoot}`);
     }
 
     /**
-     * list (top-level) refs
+     * list all (top-level, unresolved) refs
      * 
      * @returns {Promise<GitRef[]>} ref
      * 
@@ -75,10 +86,22 @@ class GitRepo {
             .concat(packed);
     }
 
-    private async readPackedRefs() {
+    /**
+     * Read packed refs
+     * 
+     * @private
+     * @returns {Promise<GitRef[]>} array of packed refs
+     * 
+     * @memberOf GitRepo
+     */
+    private async readPackedRefs(): Promise<GitRef[]> {
         const filename = join(this.repoRoot, 'packed-refs');
-        const lines = (await readFile(filename, { encoding: "utf-8" })).split("\n");
-        return parser.parsePackedRef(lines);
+        try {
+            const lines = (await readFile(filename, { encoding: "utf-8" })).split("\n");
+            return parser.parsePackedRef(lines);
+        } catch (e) {
+            return [] as GitRef[];
+        }
     }
 
     /**
@@ -89,6 +112,8 @@ class GitRepo {
         const lines = (await readFile(filename, { encoding: "utf-8" })).split("\n");
         return parser.parseHEAD(lines[0]);
     }
+
+
 
     watchRefs(callback: Function) {
 
