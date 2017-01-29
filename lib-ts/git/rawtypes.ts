@@ -60,7 +60,7 @@ type RefPath = string;
  * NOTE (GitRef & Obje)
  */
 export enum RefType {
-    // tags that are 
+    // tags that are not resolved. A tag may point to a commit (normal for )
     UNKNOWN_TAG = <any>"TAG OF UNKNOWN KIND",
     ATAG = <any>"Annotated tag",
     TAG = <any>"Tag",

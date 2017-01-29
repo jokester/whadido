@@ -7,11 +7,22 @@ import { join } from 'path';
 import { GitRef } from './rawtypes';
 import * as parser from './parser';
 
+const logger = console;
+
 /**
  * (you should open repo with this)
  */
-export async function openRepo(start: string, gitBinary: string): Promise<GitRepo> {
-    const repoRoot = await findRepo(start, gitBinary);
+
+/**
+ * open git repo
+ * 
+ * @export
+ * @param {string} repoRoot absolute path of root, returned by `findRepo`
+ * @param {string} [gitBinary="git"]
+ * @returns {Promise<GitRepo>}
+ */
+export function openRepo(repoRoot: string, gitBinary = "git"): GitRepo {
+    // const repoRoot = await findRepo(repoRoot, gitBinary);
     return new GitRepo(repoRoot, gitBinary);
 }
 
@@ -47,20 +58,24 @@ class GitRepo {
      */
     constructor(private readonly repoRoot: string,
         private readonly gitBinary: string) {
-
+        logger.info(`GitRepo: repoRoot=${repoRoot}`);
     }
 
-    async listRefs() {
+    /**
+     * list (top-level) refs
+     * 
+     * @returns {Promise<GitRef[]>} ref
+     * 
+     * @memberOf GitRepo
+     */
+    async listRefs(): Promise<GitRef[]> {
         const packed = await this.readPackedRefs();
-
         return ([] as GitRef[])
             .concat(packed);
     }
 
     private async readPackedRefs() {
         const filename = join(this.repoRoot, 'packed-refs');
-        if (!await exists(filename))
-            return [] as GitRef[];
         const lines = (await readFile(filename, { encoding: "utf-8" })).split("\n");
         return parser.parsePackedRef(lines);
     }

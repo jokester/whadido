@@ -2,7 +2,7 @@
 
 Visualize git repository and *your local operations*.
 
-(The name comes from *what did i do?* we ask on shiny Monday morning)
+(The name comes from *what did i do?* we ask on each shiny Monday morning)
 
 ## Demo
 

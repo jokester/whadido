@@ -1,6 +1,7 @@
 import { suite, test } from 'mocha-typescript';
 import { expect } from 'chai';
 
+import * as rawtypes from '../git/rawtypes';
 import * as repo from '../git/repo';
 import * as reader from '../git/reader';
 import * as parser from '../git/parser';
@@ -9,6 +10,8 @@ import { join } from 'path';
 import { spawnSubprocess } from '../git/subprocess';
 
 import { logAsJSON, logError, getMatchedIndex } from './helper';
+
+const logger = console;
 
 @suite
 class TestSubProcess {
@@ -312,6 +315,13 @@ cbe73c6c2d757565f074c95c27e2b2dadfd31428 refs/tags/WTF
 @suite
 class TestGitRepo {
 
+    async openTestRepo() {
+        const path = join(__dirname, '..', '..', 'test', 'node-libtidy.git', 'hooks');
+        const foundRepo = await repo.findRepo(path);
+        logger.info(`openTestRepo: foundRepo=${foundRepo}`);
+        return repo.openRepo(foundRepo);
+    }
+
     @test
     async findRepo() {
         const path = join(__dirname, '..', '..', 'test', 'node-libtidy.git', 'hooks');
@@ -319,5 +329,60 @@ class TestGitRepo {
 
         const expected = join(__dirname, '..', '..', 'test', 'node-libtidy.git');
         expect(foundRepo).to.eq(expected);
+    }
+
+    @test
+    async openRepo() {
+        const testRepo = await this.openTestRepo();
+    }
+
+    @test
+    async readPackedRefs() {
+        const testRespo = await this.openTestRepo();
+        const packedRefs = await (testRespo as any).readPackedRefs();
+        
+        expect(packedRefs).deep.eq([
+            {
+                dest: "414c5870b27970db0fa7762148adb89eb07f1fe0",
+                path: "refs/heads/master",
+                type: rawtypes.RefType.BRANCH,
+            },
+            {
+                dest: "414c5870b27970db0fa7762148adb89eb07f1fe0",
+                path: "refs/remotes/origin/master",
+                type: rawtypes.RefType.BRANCH,
+            },
+            {
+                dest: "49e49799d6625785708fc64b365ea0fae1c48ece",
+                path: "refs/tags/v0.1.0",
+                type: rawtypes.RefType.UNKNOWN_TAG,
+            },
+            {
+                dest: "915849a5d77a57ed389d93a638d5e329c6c565ae",
+                path: "refs/tags/v0.1.1",
+                type: rawtypes.RefType.UNKNOWN_TAG,
+            },
+            {
+                dest: "78c872a7676487dc430339031cf1a6d179ed4946",
+                path: "refs/tags/v0.2.0",
+                type: rawtypes.RefType.UNKNOWN_TAG,
+            },
+            {
+                dest: "3f8a54c3780f7c6db91dabd97b67fa77e75822b6",
+                path: "refs/tags/v0.3.0",
+                type: rawtypes.RefType.UNKNOWN_TAG,
+            },
+            {
+                dest: "aec08967c642f58651a414996c1e9368ff42baa9",
+                path: "refs/tags/v0.3.1",
+                type: rawtypes.RefType.UNKNOWN_TAG,
+            },
+            {
+                dest: "07fc5636f0359a857a5f9ecd583fcd56d6edb83b",
+                path: "refs/tags/v0.3.2",
+                type: rawtypes.RefType.UNKNOWN_TAG,
+            },
+
+        ]);
     }
 }
