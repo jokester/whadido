@@ -52,7 +52,7 @@ export async function readHead(repo: string, refname: string): Promise<void> {
     else if (parser.isCommitSHA1(l0)) {
         // return new Object(refname, l0);
     } else {
-        const branch_name = parser.extractRef(l0);
+        const branch_name = parser.parseHEAD(l0);
         // return new GitHead(refname, branch_name);
     }
 }

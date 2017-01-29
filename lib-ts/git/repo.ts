@@ -70,7 +70,8 @@ class GitRepo {
      */
     async listRefs(): Promise<GitRef[]> {
         const packed = await this.readPackedRefs();
-        return ([] as GitRef[])
+        const localHead = await this.readLocalHead();
+        return ([localHead])
             .concat(packed);
     }
 
@@ -83,8 +84,10 @@ class GitRepo {
     /**
      * Local 
      */
-    private async readLocalHead() {
-
+    private async readLocalHead(): Promise<GitRef> {
+        const filename = join(this.repoRoot, "HEAD");
+        const lines = (await readFile(filename, { encoding: "utf-8" })).split("\n");
+        return parser.parseHEAD(lines[0]);
     }
 
     watchRefs(callback: Function) {

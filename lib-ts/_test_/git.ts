@@ -340,7 +340,7 @@ class TestGitRepo {
     async readPackedRefs() {
         const testRespo = await this.openTestRepo();
         const packedRefs = await (testRespo as any).readPackedRefs();
-        
+
         expect(packedRefs).deep.eq([
             {
                 dest: "414c5870b27970db0fa7762148adb89eb07f1fe0",
@@ -384,5 +384,18 @@ class TestGitRepo {
             },
 
         ]);
+    }
+
+    @test
+    async readLocalHead() {
+        const testRespo = await this.openTestRepo();
+        const localHead = await (testRespo as any).readLocalHead();
+
+        expect(localHead).deep.eq(
+            {
+                dest: "refs/heads/master",
+                path: "HEAD",
+                type: rawtypes.RefType.HEAD,
+            });
     }
 }

@@ -73,13 +73,31 @@ export function isCommitSHA1(line: string) {
 }
 
 /**
- * extract refname from content of HEAD
+ * parse line in HEAD
+ * 
+ * @export
+ * @param {string} line line like `ref: refs/heads/master` OR `(SHA1)`
+ * @returns
  */
-export function extractRef(line: string) {
-    const match = line.match(PATTERNS.head.refname);
-    if (!match)
+export function parseHEAD(line: string): GitRef {
+    const match1 = line.match(PATTERNS.head.refname);
+    if (match1) {
+        // HEAD points to a branch
+        return {
+            type: RefType.HEAD,
+            path: "HEAD",
+            dest: match1[1]
+        }
+    } else if (line.match(PATTERNS.commit_sha1)) {
+        // 'bare' HEAD that points to a commit
+        return {
+            type: RefType.HEAD,
+            path: "HEAD",
+            dest: line
+        }
+    }
+    if (!match1)
         throw new Error(`extractRef: ref not found in ${line}`);
-    return match[1];
 }
 
 /**
