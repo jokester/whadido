@@ -184,6 +184,32 @@ class TestGitParser {
     }
 
     @test
+    parseHEAD1() {
+        const line = "ce95a0817d18df7c027df4334b19e5bc9980a995";
+        expect(parser.parseHEAD(line)).deep.eq({
+            type: rawtypes.RefType.HEAD,
+            dest: line,
+            path: "HEAD",
+        });
+    }
+
+    @test
+    parseHEAD2() {
+        const line = "ref: refs/heads/master";
+        expect(parser.parseHEAD(line)).deep.eq({
+            type: rawtypes.RefType.HEAD,
+            dest: "refs/heads/master",
+            path: "HEAD",
+        });
+    }
+
+    @test
+    parseHEAD3() {
+        const line = "ee";
+        expect(() => parser.parseHEAD(line)).to.throw();
+    }
+
+    @test
     reflogPattern() {
         const patterns = parser.PATTERNS;
 
