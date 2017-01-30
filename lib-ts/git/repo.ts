@@ -1,8 +1,8 @@
 import { readFile, exists } from 'fs-promise';
-import { join } from 'path';
+import { join, relative } from 'path';
 import * as readdir from 'recursive-readdir';
 
-import { GitRef } from './rawtypes';
+import { GitRef, RefType } from './rawtypes';
 import * as parser from './parser';
 import {
     spawnSubprocess, rejectNonZeroReturn
@@ -62,6 +62,16 @@ export function listRefFiles(start: string): Promise<string[]> {
 }
 
 /**
+ * read lines from a file
+ * 
+ * @param {string} filename
+ * @returns {Promise<string[]>}
+ */
+async function readLines(filename: string): Promise<string[]> {
+    return (await readFile(filename, { encoding: "utf-8" })).split("\n");
+}
+
+/**
  *
  */
 class GitRepo {
@@ -113,7 +123,44 @@ class GitRepo {
         return parser.parseHEAD(lines[0]);
     }
 
+    /**
+     * Read non-packed refs
+     * 
+     * @private
+     * @returns {Promise<GitRef[]>}
+     * 
+     * @memberOf GitRepo
+     */
+    private async readNonpackedRef(): Promise<GitRef[]> {
+        const PATTERNS = parser.PATTERNS;
+        const start = join(this.repoRoot, 'refs');
+        const refFiles = await listRefFiles(start);
+        const found = [] as GitRef[];
 
+        for (const f of refFiles) {
+            // relative path like `refs/heads/...`
+            const fRelative = relative(this.repoRoot, f);
+            const lines = await readLines(f);
+
+            if (PATTERNS.refpath.remote_head.exec(fRelative)) {
+                const p = parser.parseHEAD(lines[0], fRelative);
+                found.push(p);
+            } else if (PATTERNS.refpath.remote_branch.exec(fRelative)) {
+                const p = parser.parseBranch(lines[0], fRelative);
+                found.push(p);
+            } else if (PATTERNS.refpath.local_branch.exec(fRelative)) {
+                const p = parser.parseBranch(lines[0], fRelative);
+                found.push(p);
+            } else if (PATTERNS.refpath.tag.exec(fRelative)) {
+                const p = parser.parseTag(lines[0], fRelative);
+                found.push(p);
+            } else {
+                throw new Error(`failed to parse ref: '${fRelative}'`);
+            }
+        }
+
+        return found;
+    }
 
     watchRefs(callback: Function) {
 

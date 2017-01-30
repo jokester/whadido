@@ -46,7 +46,6 @@ class TestSubProcess {
     }
 }
 
-
 /**
  * test for reader.ts
  *
@@ -341,8 +340,16 @@ cbe73c6c2d757565f074c95c27e2b2dadfd31428 refs/tags/WTF
 @suite
 class TestGitRepo {
 
+    // a node-libtidy repo included for test
     async openTestRepo() {
         const path = join(__dirname, '..', '..', 'test', 'node-libtidy.git', 'hooks');
+        const foundRepo = await repo.findRepo(path);
+        return repo.openRepo(foundRepo);
+    }
+
+    // current repo to cover more cases
+    async openDevRepo() {
+        const path = join(__dirname, '..', '..', 'test');
         const foundRepo = await repo.findRepo(path);
         return repo.openRepo(foundRepo);
     }
@@ -431,5 +438,25 @@ class TestGitRepo {
         expect(found).deep.eq([
             join(refsRoot, 'remotes', 'origin', 'HEAD')
         ]);
+    }
+
+    @test
+    async readNonpackedRef() {
+        const testRepo = await this.openTestRepo();
+        const nonpacked = await (testRepo as any).readNonpackedRef();
+
+        expect(nonpacked).deep.eq([{
+            dest: "refs/remotes/origin/master",
+            path: "refs/remotes/origin/HEAD",
+            type: rawtypes.RefType.HEAD,
+        }]);
+    }
+
+    @test
+    async readNonpackedRef$$() {
+        const devRepo = await this.openDevRepo();
+        const nonpacked = await (devRepo as any).readNonpackedRef();
+
+        expect(nonpacked).deep.eq([]);
     }
 }

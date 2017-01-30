@@ -12,10 +12,10 @@ import { isTruthy, deepFreeze, freeze } from '../util';
 export const PATTERNS = freeze({
     refpath: freeze({
         local_head: /^HEAD$/,
-        local_branch: /^refs\/heads\//,
+        local_branch: /^refs\/heads\/(.*)$/,
         remote_branch: /^refs\/remotes\/[^\/]+\/(?!HEAD$)/,
         remote_head: /^refs\/remotes\/[^\/]+\/HEAD$/,
-        tag: /^refs\/tags\//,
+        tag: /^refs\/tags\/(.*)$/,
         // all: /(head|\/)/i,
     }),
 
@@ -79,25 +79,44 @@ export function isCommitSHA1(line: string) {
  * @param {string} line line like `ref: refs/heads/master` OR `(SHA1)`
  * @returns
  */
-export function parseHEAD(line: string): GitRef {
+export function parseHEAD(line: string, path = "HEAD"): GitRef {
     const match1 = line.match(PATTERNS.head.refname);
     if (match1) {
         // HEAD points to a branch
         return {
             type: RefType.HEAD,
-            path: "HEAD",
+            path: path,
             dest: match1[1]
         }
     } else if (line.match(PATTERNS.commit_sha1)) {
         // 'bare' HEAD that points to a commit
         return {
             type: RefType.HEAD,
-            path: "HEAD",
+            path: path,
             dest: line
         }
     }
-    if (!match1)
-        throw new Error(`extractRef: ref not found in ${line}`);
+    throw new Error(`parseHEAD: failed to parse ${line} / ${path}`);
+}
+
+export function parseBranch(line: string, path: string): GitRef {
+    if (line.match(PATTERNS.commit_sha1))
+        return {
+            type: RefType.BRANCH,
+            path: path,
+            dest: line
+        };
+    throw new Error(`parseBranch: failed to parse ${line} / ${path}`);
+}
+
+export function parseTag(line: string, path: string): GitRef {
+    if (line.match(PATTERNS.commit_sha1))
+        return {
+            type: RefType.UNKNOWN_TAG,
+            path: path,
+            dest: line
+        };
+    throw new Error(`parseTag: failed to parse ${line} / ${path}`);
 }
 
 /**
