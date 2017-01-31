@@ -83,7 +83,7 @@ async function readCommit(repo: string, sha1: string) {
 /**
  *
  */
-function readObject(repo: string, sha1: string): Promise<string[]> {
+export function readObject(repo: string, sha1: string, gitBinary: string): Promise<string[]> {
     return spawnSubprocess(gitBinary, ['cat-file', '-p', sha1])
         .then(rejectNonZeroReturn).then(result => result.stdout);
 }

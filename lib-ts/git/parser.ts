@@ -19,6 +19,12 @@ export const PATTERNS = freeze({
         // all: /(head|\/)/i,
     }),
 
+    raw_object: freeze({
+        missing: /missing$/,
+        metadata: /^([a-zA-Z0-9]{40}) (\w+) (\d+)$/,
+        //         ^sha1              type   size
+    }),
+
     // line printed from 'git for-each-ref'
     ref_line: /^([0-9a-zA-Z]{40})\s+(commit|tag)\s+(.*)$/i,
 
@@ -117,6 +123,22 @@ export function parseTag(line: string, path: string): GitRef {
             dest: line
         };
     throw new Error(`parseTag: failed to parse ${line} / ${path}`);
+}
+
+export function isRefSymDest(dest: string): boolean {
+    // NOTE I haven't a HEAD to appear as dest, so only testing branch
+    for (const p of [PATTERNS.refpath.local_branch, PATTERNS.refpath.remote_branch]) {
+        if (dest.match(dest))
+            return true;
+    }
+    return false;
+}
+
+/**
+ * Whether the dest points to a object (*not necesarily a commit)
+ */
+export function isRefObject(dest: string): boolean {
+    return !!dest.match(PATTERNS.commit_sha1);
 }
 
 /**
@@ -231,7 +253,7 @@ export function parsePackedRef(lines: string[]): GitRef[] {
 }
 
 /**
- * parse raw commit (`git cat-file -p`)
+ * parse raw commit (`git cat-file -p`, or lines 1+ of `git cat-file --batch`)
  */
 export function parseRawCommit(sha1: string, lines: string[]): GitCommit {
     lines = lines.slice();

@@ -1,4 +1,4 @@
-import { spawn, SpawnOptions } from 'child_process';
+import { spawn, SpawnOptions, ChildProcess } from 'child_process';
 import { chunkToLines } from '../util';
 
 /**
@@ -15,35 +15,61 @@ interface SubprocessResult {
     signal: string
 }
 
-export async function swawnSubProc(command: string,
+export function spawnChild(command: string,
     args?: string[],
     options?: SpawnOptions) {
 
     args = args || [];
 
+    return spawn(command, args, options);
+}
 
 
+/**
+ * 
+ * 
+ * @export
+ * @param {ChildProcess} child a *new* childprocess
+ */
+export function waitChild(child: ChildProcess) {
 }
 
 /**
  * A wrapper for node's subprocess
+ * 
+ * provides error detection, etc
+ * 
+ * (is this needed?)
  */
 class SubProc {
 
-    constructor() {
-
-    }
-    private waiting: Promise<SubprocessResult>;
-
-    async pipeIn() {
-
+    static spawn(cmd: string, args: string[], options: SpawnOptions): SubProc {
+        const proc = spawn(cmd, args, options);
+        return new this(proc);
     }
 
-    async wait() {
+    // finished: resolve with return value
+    // failed to spawn: reject
+    private finished: Promise<number>;
+
+    constructor(private readonly proc: ChildProcess) {
+        this.finished = new Promise<number>((fulfill, reject) => {
+
+        })
+    }
+
+    private result: Promise<SubprocessResult>;
+
+
+    wait() {
+        if (!this.result)
+            this.result = this.doWait();
+        return this.result;
     }
 
     async doWait() {
-
+        // TODO
+        return null;
     }
 }
 
