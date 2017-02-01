@@ -1,4 +1,4 @@
-import { suite, test } from 'mocha-typescript';
+import { suite, test, skip } from 'mocha-typescript';
 import { expect } from 'chai';
 
 import * as rawtypes from '../git/rawtypes';
@@ -70,6 +70,7 @@ class TestGitReader {
     }
 
     @test
+    @skip
     listRefs() {
         return this.findRepo
             .then(repo => reader.listRefs(repo))
@@ -106,6 +107,7 @@ class TestGitReader {
     }
 
     @test
+    @skip
     readRefs() {
         const log = 'readRefs.json';
         return this.findRepo
@@ -453,6 +455,7 @@ class TestGitRepo {
     }
 
     @test
+    @skip
     async readNonpackedRef$$() {
         const devRepo = await this.openDevRepo();
         const nonpacked = await (devRepo as any).readNonpackedRef();
