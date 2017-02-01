@@ -12,7 +12,7 @@
  * 
  * WARNING there may be marginal case when the key
  * conflicts with JS's builtin property names.
- * (uuid/guid/sha/md5 are safe for keys though)
+ * (uuid / sha / md5 should be always safe to use)
  * 
  * @export
  * @class SingleThreadedLRU
@@ -50,6 +50,7 @@ export class SingleThreadedLRU<T> {
      * @memberOf SingleThreadLRU
      */
     contain(key: string): boolean {
+        this.assertKey(key);
         return !!this.values.hasOwnProperty(key);
     }
 
@@ -62,6 +63,7 @@ export class SingleThreadedLRU<T> {
      * @memberOf SingleThreadedLRU
      */
     put(key: string, value: T) {
+        this.assertKey(key);
         if (!value)
             throw new Error(`falsy-value`);
         this.values[key] = value;
@@ -78,6 +80,7 @@ export class SingleThreadedLRU<T> {
      * @memberOf SingleThreadedLRU
      */
     get(key: string): T {
+        this.assertKey(key);
         const value = this.values[key];
         if (value)
             this.refreshKey(key);
@@ -121,6 +124,11 @@ export class SingleThreadedLRU<T> {
         return Object.keys(this.values).length;
     }
 
+    private assertKey(key: string) {
+        if (!key || Object.prototype.hasOwnProperty(key))
+            throw new Error(`Illegal key: ${JSON.stringify(key)}`);
+    }
+
     /**
      * Refresh a key when it get used
      */
@@ -134,7 +142,6 @@ export class SingleThreadedLRU<T> {
         if (this.recentKeys.length > this.capacity * 2)
             this.squeezeRecentKeys();
     }
-
 
     /**
      * Remove first ones from recent keys if they have other occurances
