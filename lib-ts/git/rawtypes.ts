@@ -20,6 +20,11 @@ interface ObjectMutable {
  */
 export type GitObject = Readonly<ObjectMutable>
 
+/**
+ * Object with raw data loaded
+ */
+export type GitObjectData = Readonly<ObjectMutable & { data: Buffer }>
+
 export enum ObjType {
     COMMIT = <any>"Commit",
     ATAG = <any>"Annotated tag",

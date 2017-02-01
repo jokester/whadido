@@ -5,6 +5,7 @@ import * as rawtypes from '../git/rawtypes';
 import * as repo from '../git/repo';
 import * as reader from '../git/reader';
 import * as parser from '../git/parser';
+import * as util from '../util';
 
 import { join } from 'path';
 import { spawnSubprocess } from '../git/subprocess';
@@ -476,10 +477,15 @@ class TestGitRepo {
     @test
     async readObjRaw2() {
         const testRepo = await this.openTestRepo();
-        const rawObj2 = await testRepo.readObjRaw("HEAD");
-        expect(rawObj2.length).eq(10);
-        // expect(rawObj2[0]).eq("414c5870b27970db0fa7762148adb89eb07f1fe0 commit 347");
-        expect(rawObj2[3]).eq("committer Martin von Gagern <Martin.vGagern@gmx.net> 1478766514 +0100");
-        expect(rawObj2[7]).eq("This line got into master by accident, as gulp support isn't ready yet.");
+        const rawObj = await testRepo.readObjRaw("HEAD");
+        const lines = util.chunkToLines(rawObj.data);
+
+        // metadata line: "414c5870b27970db0fa7762148adb89eb07f1fe0 commit 347"
+        expect(rawObj.type).eq(rawtypes.ObjType.COMMIT);
+        expect(rawObj.data.length).eq(347);
+        expect(rawObj.sha1).eq("414c5870b27970db0fa7762148adb89eb07f1fe0")
+        expect(lines.length).eq(9);
+        expect(lines[3]).eq("committer Martin von Gagern <Martin.vGagern@gmx.net> 1478766514 +0100");
+        expect(lines[7]).eq("This line got into master by accident, as gulp support isn't ready yet.");
     }
 }

@@ -4,7 +4,7 @@ import { spawn, ChildProcess } from 'child_process';
 import { readFile, exists } from 'fs-promise';
 import * as readdir from 'recursive-readdir';
 
-import { GitRef, RefType, GitObject, ObjType } from './rawtypes';
+import { GitRef, RefType, GitObject, ObjType, GitObjectData } from './rawtypes';
 import * as parser from './parser';
 import * as reader from './reader';
 import {
@@ -87,6 +87,8 @@ class ObjReader {
     private metadataSize = 0;
     private objSize = 0;
     private currentProgress = 0;
+    private objType: ObjType;
+    private objFullname: string;
 
     constructor(readonly name: string) { }
 
@@ -110,15 +112,27 @@ class ObjReader {
         return (this.currentProgress >= (this.objSize + this.metadataSize));
     }
 
-    getRawObj(): Buffer {
-        // Concatenate all buffers and remove metadata
-        const allBuffer = Buffer.concat(this.chunks, this.currentProgress);
-        return allBuffer.slice(this.metadataSize);
+    getObj(): GitObjectData {
+        return {
+            type: this.objType,
+            sha1: this.objFullname,
+            data: this.mergeBuffer()
+        };
     }
 
-    getParsedObj(): GitObject {
-        // TODO parse buffers
-        return null;
+    /**
+     * Get whole raw-object as a buffer
+     *
+     * (You should only call this after feed() returns true)
+     *
+     * @returns {Buffer}
+     *
+     * @memberOf ObjReader
+     */
+    private mergeBuffer(): Buffer {
+        // Concatenate all buffers and remove metadata
+        const allBuffer = Buffer.concat(this.chunks, this.currentProgress);
+        return allBuffer.slice(this.metadataSize, -1);
     }
 
     // Read metadata (obj type / size) from first buffer
@@ -139,13 +153,18 @@ class ObjReader {
         this.metadataSize = metadataLine.length + 1;
         // NOTE we can read objtype and its actual type here
         this.objSize = parseInt(matched[3]);
+        this.objFullname = matched[1];
+        this.objType = parser.ObjTypeMappings[matched[2]];
+        if (!this.objType) {
+            throw new Error(`object type not recognized: ${matched[2]}`);
+        }
     }
 }
 
 /**
  *
  */
-class GitRepo {
+export class GitRepo {
 
     private readonly catRawObj: MutexResource<ChildProcess>;
 
@@ -284,13 +303,22 @@ class GitRepo {
     }
 
     async readObject(sha1: string): Promise<GitObject> {
-        throw "TODO";
+        const rawObj = await this.readObjRaw(sha1);
+        return null;
     }
 
-    readObjRaw(sha1: string): Promise<string[]> {
+    /**
+     *
+     *
+     * @param {string} sha1
+     * @returns {Promise<ObjReader>}
+     *
+     * @memberOf GitRepo
+     */
+    async readObjRaw(sha1: string): Promise<GitObjectData> {
         const objReader = new ObjReader(sha1);
 
-        return new Promise<string[]>((fulfill, reject) => {
+        return new Promise<GitObjectData>((fulfill, reject) => {
             this.catRawObj.queue((release, child) => {
 
                 const finish = () => {
@@ -303,7 +331,7 @@ class GitRepo {
                         const finished = objReader.feed(chunk);
                         if (finished) {
                             finish();
-                            fulfill(chunkToLines(objReader.getRawObj()));
+                            fulfill(objReader.getObj());
                         }
                     } catch (e) {
                         reject(e);

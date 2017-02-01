@@ -9,6 +9,10 @@ import {
 } from './rawtypes';
 import { isTruthy, deepFreeze, freeze } from '../util';
 
+export const ObjTypeMappings = freeze({
+    commit: ObjType.COMMIT,
+} as { [type: string]: ObjType })
+
 export const PATTERNS = freeze({
     refpath: freeze({
         local_head: /^HEAD$/,
