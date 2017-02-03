@@ -3,7 +3,7 @@
  *
  * @copyright Wang Guan
  */
-import { DeepReadonly } from '../util';
+import { DeepReadonly, freeze } from '../util';
 
 /**
  * SHA1: 160bits / 40chars
@@ -20,12 +20,23 @@ interface ObjectMutable {
  */
 export type GitObject = Readonly<ObjectMutable>
 
+/**
+ * Object with raw data loaded
+ */
+export type GitObjectData = Readonly<ObjectMutable & { data: Buffer }>
+
 export enum ObjType {
     COMMIT = <any>"Commit",
     ATAG = <any>"Annotated tag",
     TREE = <any>"Tree",
     BLOB = <any>"Blob",
 }
+
+export const DetectObjType = freeze({
+    isCommit(obj: GitObject): obj is GitCommit {
+        return obj.type === ObjType.COMMIT;
+    }
+});
 
 /**
  * Commit is what we stop resolving ref(s) at

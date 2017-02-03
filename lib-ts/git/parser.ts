@@ -9,6 +9,10 @@ import {
 } from './rawtypes';
 import { isTruthy, deepFreeze, freeze } from '../util';
 
+export const ObjTypeMappings = freeze({
+    commit: ObjType.COMMIT,
+} as { [type: string]: ObjType })
+
 export const PATTERNS = freeze({
     refpath: freeze({
         local_head: /^HEAD$/,
@@ -186,7 +190,7 @@ interface UnknownGitRef {
 
 /**
  * parse output of `git for-each-ref`
- * @deprecated git for-each-ref derefs object
+ * @deprecated git for-each-ref derefs object automatically
  * FIXME remove this
  */
 export function parseRefList(ref_lines: string[]): UnknownGitRef[] {

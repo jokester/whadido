@@ -4,7 +4,7 @@ import { spawn, ChildProcess } from 'child_process';
 import { readFile, exists } from 'fs-promise';
 import * as readdir from 'recursive-readdir';
 
-import { GitRef, RefType, GitObject, ObjType } from './rawtypes';
+import { GitRef, RefType, GitObject, ObjType, GitObjectData } from './rawtypes';
 import * as parser from './parser';
 import * as reader from './reader';
 import {
@@ -80,9 +80,91 @@ type ResolvedRef = (GitRef | GitObject)[];
 type RefDict = { [refpath: string]: GitRef }
 
 /**
+ * Receive a series of chunks
+ */
+class ObjReader {
+    private readonly chunks: Buffer[] = [];
+    private metadataSize = 0;
+    private objSize = 0;
+    private currentProgress = 0;
+    private objType: ObjType;
+    private objFullname: string;
+
+    constructor(readonly name: string) { }
+
+    /**
+     * Feed a new buffer into ObjReader
+     *
+     * @param {Buffer} chunk a chunk emitted from stdout of `git cat-file --batch` object
+     * @returns {boolean} whether reading is complete
+     * @throws {Error} if the object cannot be found
+     *
+     * @memberOf ObjReader
+     */
+    feed(chunk: Buffer): boolean {
+        this.chunks.push(chunk);
+        this.currentProgress += chunk.length;
+
+        if (this.chunks.length === 1) {
+            this.readMetaData(chunk);
+        }
+
+        return (this.currentProgress >= (this.objSize + this.metadataSize));
+    }
+
+    getObj(): GitObjectData {
+        return {
+            type: this.objType,
+            sha1: this.objFullname,
+            data: this.mergeBuffer()
+        };
+    }
+
+    /**
+     * Get whole raw-object as a buffer
+     *
+     * (You should only call this after feed() returns true)
+     *
+     * @returns {Buffer}
+     *
+     * @memberOf ObjReader
+     */
+    private mergeBuffer(): Buffer {
+        // Concatenate all buffers and remove metadata
+        const allBuffer = Buffer.concat(this.chunks, this.currentProgress);
+        return allBuffer.slice(this.metadataSize, this.metadataSize + this.objSize);
+    }
+
+    // Read metadata (obj type / size) from first buffer
+    private readMetaData(firstChunk: Buffer) {
+        const metadataLine = chunkToLines(firstChunk)[0];
+        if (!metadataLine) {
+            throw new Error(`metadata not found`);
+        } else if (parser.PATTERNS.raw_object.missing.exec(metadataLine)) {
+            throw new Error(`object ${JSON.stringify(this.name)} is missing`);
+        }
+
+        const matched = parser.PATTERNS.raw_object.metadata.exec(metadataLine);
+        if (!matched) {
+            new Error(`metadata not recognized: ${JSON.stringify(metadataLine)}`);
+        }
+
+        // +1 for the \n of metadata line
+        this.metadataSize = metadataLine.length + 1;
+        // NOTE we can read objtype and its actual type here
+        this.objSize = parseInt(matched[3]);
+        this.objFullname = matched[1];
+        this.objType = parser.ObjTypeMappings[matched[2]];
+        if (!this.objType) {
+            throw new Error(`object type not recognized: ${matched[2]}`);
+        }
+    }
+}
+
+/**
  *
  */
-class GitRepo {
+export class GitRepo {
 
     private readonly catRawObj: MutexResource<ChildProcess>;
 
@@ -220,23 +302,36 @@ class GitRepo {
         return found;
     }
 
+    /**
+     * Read and parse git object
+     *
+     * @param {string} sha1
+     * @returns {Promise<GitObject>}
+     *
+     * @memberOf GitRepo
+     */
     async readObject(sha1: string): Promise<GitObject> {
-        throw "TODO";
+        const objRaw = await this.readObjRaw(sha1);
+        switch (objRaw.type) {
+            case ObjType.COMMIT:
+                return parser.parseRawCommit(objRaw.sha1, chunkToLines(objRaw.data));
+            default:
+                throw new Error(`objType not recognized: ${objRaw.type}`);
+        }
     }
 
-    readObjRaw(sha1: string): Promise<string[]> {
-        const PATTERNS = parser.PATTERNS;
+    /**
+     *
+     *
+     * @param {string} sha1
+     * @returns {Promise<ObjReader>}
+     *
+     * @memberOf GitRepo
+     */
+    async readObjRaw(sha1: string): Promise<GitObjectData> {
+        const objReader = new ObjReader(sha1);
 
-        const readProgress = {
-            // received by far
-            readLength: 0,
-            totalLength: 0,
-            // first buffer contains the metadata
-            buffers: [] as Buffer[],
-        }
-
-        // FIXME refactor readProgress and this s** to a buffer consumer/provider pattern
-        return new Promise<string[]>((fulfill, reject) => {
+        return new Promise<GitObjectData>((fulfill, reject) => {
             this.catRawObj.queue((release, child) => {
 
                 const finish = () => {
@@ -245,32 +340,15 @@ class GitRepo {
                 };
 
                 child.stdout.on('data', (chunk: Buffer) => {
-                    readProgress.buffers.push(chunk);
-
-                    // read first chunk as metadata
-                    if (!readProgress.totalLength) {
-                        let matched;
-                        const lines = chunkToLines(chunk);
-                        if (matched = PATTERNS.raw_object.missing.exec(lines[0])) {
-                            reject(new Error(`${sha1} missing`));
+                    try {
+                        const finished = objReader.feed(chunk);
+                        if (finished) {
                             finish();
-                        } else if (matched = PATTERNS.raw_object.metadata.exec(lines[0])) {
-                            readProgress.totalLength = parseInt(matched[3]);
-                        } else {
-                            reject(new Error(`metadata not recognized: ${JSON.stringify(lines)}`));
-                            finish();
+                            fulfill(objReader.getObj());
                         }
-                    } else {
-                        // if obj exists, 2nd chunk (if any) contains actual object
-                        readProgress.readLength += chunk.length;
-                        if (readProgress.readLength >= readProgress.totalLength) {
-                            let lines = [] as string[];
-                            for (let bufNo = 1; bufNo < readProgress.buffers.length; bufNo++) {
-                                lines = lines.concat(chunkToLines(readProgress.buffers[bufNo]));
-                            }
-                            fulfill(lines);
-                            finish();
-                        }
+                    } catch (e) {
+                        reject(e);
+                        finish();
                     }
                 });
 

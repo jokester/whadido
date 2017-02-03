@@ -5,6 +5,7 @@ import * as rawtypes from '../git/rawtypes';
 import * as repo from '../git/repo';
 import * as reader from '../git/reader';
 import * as parser from '../git/parser';
+import * as util from '../util';
 
 import { join } from 'path';
 import { spawnSubprocess } from '../git/subprocess';
@@ -467,19 +468,44 @@ class TestGitRepo {
     async readObjRaw1() {
         const testRepo = await this.openTestRepo();
 
-        await testRepo.readObjRaw("").then(
-            (val) => expect(true).eq(false, "it should reject"),
-            (err) => true
-        );
+        try {
+            await testRepo.readObjRaw("NOT");
+            throw "should not be here";
+        } catch (e) {
+            expect(e).instanceOf(Error);
+            expect(e.message).eq("object \"NOT\" is missing");
+        }
     }
 
     @test
     async readObjRaw2() {
         const testRepo = await this.openTestRepo();
-        const rawObj2 = await testRepo.readObjRaw("HEAD");
-        expect(rawObj2.length).eq(10);
-        // expect(rawObj2[0]).eq("414c5870b27970db0fa7762148adb89eb07f1fe0 commit 347");
-        expect(rawObj2[3]).eq("committer Martin von Gagern <Martin.vGagern@gmx.net> 1478766514 +0100");
-        expect(rawObj2[7]).eq("This line got into master by accident, as gulp support isn't ready yet.");
+        const rawObj = await testRepo.readObjRaw("HEAD");
+        const lines = util.chunkToLines(rawObj.data);
+
+        // metadata line: "414c5870b27970db0fa7762148adb89eb07f1fe0 commit 347"
+        expect(rawObj.type).eq(rawtypes.ObjType.COMMIT);
+        expect(rawObj.data.length).eq(347);
+        expect(rawObj.sha1).eq("414c5870b27970db0fa7762148adb89eb07f1fe0")
+        expect(lines.length).eq(9);
+        expect(lines[3]).eq("committer Martin von Gagern <Martin.vGagern@gmx.net> 1478766514 +0100");
+        expect(lines[7]).eq("This line got into master by accident, as gulp support isn't ready yet.");
+    }
+
+    @test
+    async readObj2() {
+        const testRepo = await this.openTestRepo();
+        const obj = await testRepo.readObject("931bbc96");
+
+        expect(obj.sha1).eq("931bbc96dc534e907479c0b82f0bf48598ad6b7c");
+
+        if (rawtypes.DetectObjType.isCommit(obj)) {
+            expect(obj.author).deep.eq({ name: "Martin von Gagern", email: "Martin.vGagern@gmx.net" });
+            expect(obj.parent_sha1).deep.eq(["0b017e41fc65a3c3193fd410d6d35274d7bb7f71"]);
+            expect(obj.commit_at).deep.eq({ tz: "+0200", "utc_sec": 1463522581 });
+        } else {
+            throw "not a commit";
+        }
+
     }
 }
