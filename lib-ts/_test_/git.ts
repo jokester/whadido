@@ -249,7 +249,7 @@ class TestGitParser {
             "Merge branch 'learning-3d'",
         ] as string[];
 
-        const parsed = parser.parseRawCommit("eeeqq", lines);
+        const parsed = parser.parseCommit("eeeqq", lines);
         expect(parsed).deep.eq({
             author: {
                 email: "momocraft@gmail.com",
@@ -289,7 +289,7 @@ class TestGitParser {
             "Merge branch 'learning-3d'",
         ] as string[];
 
-        const parsed = parser.parseRawCommit("eeeqq", lines);
+        const parsed = parser.parseCommit("eeeqq", lines);
         expect(parsed).deep.eq({
             author: {
                 email: "momocraft@gmail.com",
@@ -493,7 +493,7 @@ class TestGitRepo {
     }
 
     @test
-    async readObj2() {
+    async readCommitObj() {
         const testRepo = await this.openTestRepo();
         const obj = await testRepo.readObject("931bbc96");
 
@@ -506,6 +506,44 @@ class TestGitRepo {
         } else {
             throw "not a commit";
         }
+    }
 
+    @test
+    async readAtagObj() {
+        const testRepo = await this.openTestRepo();
+        const obj = await testRepo.readObject("07fc");
+
+        expect(obj.sha1).eq("07fc5636f0359a857a5f9ecd583fcd56d6edb83b");
+        expect(obj.type).eq(rawtypes.ObjType.ATAG);
+        if (rawtypes.DetectObjType.isAnnotatedTag(obj)) {
+            expect(obj.destType).eq(rawtypes.ObjType.COMMIT);
+            expect(obj.dest).eq("414c5870b27970db0fa7762148adb89eb07f1fe0");
+            expect(obj.tagger).deep.eq({ name: "Martin von Gagern", email: "Martin.vGagern@gmx.net" });
+            expect(obj.tagged_at).deep.eq({ tz: "+0100", "utc_sec": 1478766625 });
+            expect(obj.name).eq("v0.3.2");
+            expect(obj.message.length).eq(10);
+            expect(obj.message[0]).eq("Version 0.3.2");
+            expect(obj.message[2]).eq("* Fixed gulp import introduced in 0.3.1 by accident");
+            expect(obj.message[6]).eq("dFuDzQCeKXpBXRfcDBf9nKhPcVBoMoZgx1oAnRoeTCxkIsPhwSqiYgh3PpRYLpn1");
+            expect(obj.message[8]).eq("-----END PGP SIGNATURE-----");
+            expect(obj.message[9]).eq("");
+        } else {
+            throw "not an annotated tag";
+        }
+    }
+
+    @test
+    async readAllObjects() {
+        const testRepo = await this.openTestRepo();
+        // a list of all objects, generated with `git cat-file --batch-all-objects --batch-check`
+        const objectListFile = join(testRepo.repoRoot, "objects-list.txt");
+        const objectList = await util.readLines(objectListFile);
+        for (const l of objectList) {
+            const sha1 = l.slice(0, 40);
+            if (sha1) {
+                console.log("reading", sha1);
+                const obj = await testRepo.readObject(sha1);
+            }
+        }
     }
 }

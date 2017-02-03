@@ -35,6 +35,9 @@ export enum ObjType {
 export const DetectObjType = freeze({
     isCommit(obj: GitObject): obj is GitCommit {
         return obj.type === ObjType.COMMIT;
+    },
+    isAnnotatedTag(obj: GitObject): obj is GitATag {
+        return obj.type === ObjType.ATAG;
     }
 });
 
@@ -51,6 +54,17 @@ export interface GitCommitMutable extends ObjectMutable {
 }
 
 export type GitCommit = DeepReadonly<GitCommitMutable>
+
+export interface GitATagMutable extends ObjectMutable {
+    dest: SHA1
+    destType: ObjType
+    tagger: GitHuman
+    tagged_at: GitTimestamp
+    name: string
+    message: string[]
+}
+
+export type GitATag = Readonly<GitATagMutable>
 
 /**
  * "path" to 

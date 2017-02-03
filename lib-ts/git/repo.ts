@@ -102,6 +102,8 @@ class ObjReader {
      * @memberOf ObjReader
      */
     feed(chunk: Buffer): boolean {
+        if (chunk.byteLength === 1 && chunk[0] === 10)
+            return;
         this.chunks.push(chunk);
         this.currentProgress += chunk.length;
 
@@ -137,12 +139,16 @@ class ObjReader {
 
     // Read metadata (obj type / size) from first buffer
     private readMetaData(firstChunk: Buffer) {
-        const metadataLine = chunkToLines(firstChunk)[0];
+        const maybeMetadata = chunkToLines(firstChunk);
+        // first non-empty line
+        const metadataLine = maybeMetadata.find(l => !!l);
         if (!metadataLine) {
-            throw new Error(`metadata not found`);
+            throw new Error(`metadata not found: ${JSON.stringify(firstChunk)} / ${JSON.stringify(chunkToLines(firstChunk))}`);
         } else if (parser.PATTERNS.raw_object.missing.exec(metadataLine)) {
             throw new Error(`object ${JSON.stringify(this.name)} is missing`);
         }
+
+        // FIXME check whether sha1/name is ambigious (may happen in huge repo)
 
         const matched = parser.PATTERNS.raw_object.metadata.exec(metadataLine);
         if (!matched) {
@@ -171,12 +177,12 @@ export class GitRepo {
     /**
      * @param gitBinary string name of git binary, can be just "git"
      */
-    constructor(private readonly repoRoot: string,
-        private readonly gitBinary: string) {
+    constructor(readonly repoRoot: string,
+        readonly gitBinary: string) {
 
         this.catRawObj = new MutexResource(
             spawnChild(this.gitBinary,
-                ['cat-file', '--batch'], { cwd: this.repoRoot }));
+                ['cat-file', '--batch',], { cwd: this.repoRoot }));
     }
 
     /**
@@ -314,7 +320,12 @@ export class GitRepo {
         const objRaw = await this.readObjRaw(sha1);
         switch (objRaw.type) {
             case ObjType.COMMIT:
-                return parser.parseRawCommit(objRaw.sha1, chunkToLines(objRaw.data));
+                return parser.parseCommit(objRaw.sha1, chunkToLines(objRaw.data));
+            case ObjType.ATAG:
+                return parser.parseAnnotatedTag(objRaw.sha1, chunkToLines(objRaw.data));
+            case ObjType.BLOB:
+            case ObjType.TREE:
+                return { type: objRaw.type, sha1: sha1 };
             default:
                 throw new Error(`objType not recognized: ${objRaw.type}`);
         }

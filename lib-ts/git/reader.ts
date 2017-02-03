@@ -77,7 +77,7 @@ function readTag(repo: string, name: string): Promise<void> {
 async function readCommit(repo: string, sha1: string) {
     const result = await spawnSubprocess(gitBinary, ['cat-file', '-p', sha1])
         .then(rejectNonZeroReturn);
-    return parser.parseRawCommit(sha1, result.stdout);
+    return parser.parseCommit(sha1, result.stdout);
 }
 
 /**

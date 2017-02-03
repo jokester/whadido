@@ -6,11 +6,15 @@ import {
     ObjType, GitObject,
     GitCommit, GitCommitMutable,
     GitRefLog, GitHuman, GitTimestamp,
+    GitATag, GitATagMutable,
 } from './rawtypes';
 import { isTruthy, deepFreeze, freeze } from '../util';
 
 export const ObjTypeMappings = freeze({
     commit: ObjType.COMMIT,
+    tag: ObjType.ATAG,
+    blob: ObjType.BLOB,
+    tree: ObjType.TREE,
 } as { [type: string]: ObjType })
 
 export const PATTERNS = freeze({
@@ -48,12 +52,20 @@ export const PATTERNS = freeze({
 
     commit_sha1: /^[0-9a-zA-Z]{40}$/,
 
-    commit: {
+    commit: freeze({
         tree: /^tree [0-9a-zA-Z]{40}$/,
         parent: /^parent ([0-9a-zA-Z]{40})$/,
         author: /^author (.*)\s+(\d+\s+[+-]\d+)$/,
+        //               ^name+mail ^timestamp+timezone
         committer: /^committer (.*)\s+(\d+\s+[+-]\d+)$/,
-    },
+    }),
+
+    atag: freeze({
+        dest: /^object ([0-9a-zA-Z]{40})$/,
+        type: /^type (.*)$/,
+        tag: /^tag (.*)$/,
+        tagger: /^tagger (.*)\s+(\d+\s+[+-]\d+)$/,
+    }),
 
     // $1: sha1 $2: refpath
     packed_ref: /^([0-9a-zA-Z]{40}) (.*)$/,
@@ -259,7 +271,8 @@ export function parsePackedRef(lines: string[]): GitRef[] {
 /**
  * parse raw commit (`git cat-file -p`, or lines 1+ of `git cat-file --batch`)
  */
-export function parseRawCommit(sha1: string, lines: string[]): GitCommit {
+export function parseCommit(sha1: string, lines: string[]): GitCommit {
+    const origLines = lines;
     lines = lines.slice();
     const result: GitCommitMutable = {
         type: ObjType.COMMIT,
@@ -274,6 +287,8 @@ export function parseRawCommit(sha1: string, lines: string[]): GitCommit {
 
     while (lines.length) {
         const l = lines.shift();
+        if (!l)
+            continue;
         const tree = l.match(PATTERNS.commit.tree);
         if (tree) {
             continue;
@@ -300,8 +315,47 @@ export function parseRawCommit(sha1: string, lines: string[]): GitCommit {
             break;
         }
 
-        throw new Error(`parseRawCommit: line not recognized ${l}`);
+        throw new Error(`parseRawCommit(${sha1}): line not recognized ${l} in ${JSON.stringify(origLines)}`);
     }
 
     return result;
+}
+
+export function parseAnnotatedTag(sha1: string, lines: string[]): GitATag {
+    let dest: string,
+        destType: ObjType,
+        tagger: GitHuman,
+        tagged_at: GitTimestamp,
+        name: string,
+        message: string[];
+
+    const match_dest = PATTERNS.atag.dest.exec(lines[0]);
+    dest = match_dest[1];
+
+    const match_type = PATTERNS.atag.type.exec(lines[1]);
+    destType = ObjTypeMappings[match_type[1]];
+
+    const match_name = PATTERNS.atag.tag.exec(lines[2]);
+    name = match_name[1];
+
+    const match_tagger = PATTERNS.atag.tagger.exec(lines[3]);
+    tagger = parseAuthor(match_tagger[1]);
+    tagged_at = parseDate(match_tagger[2]);
+
+    message = lines.slice(5);
+
+    if (![match_dest, match_type, match_name, match_tagger,
+        dest, destType, tagged_at, name].every(v => !!v))
+        throw new Error(`parseAnnotatedTag: cannot recognize ${JSON.stringify(lines)}`);
+
+    return {
+        sha1: sha1,
+        type: ObjType.ATAG,
+        dest: dest,
+        destType: destType,
+        tagger: tagger,
+        tagged_at: tagged_at,
+        name: name,
+        message: message
+    }
 }
