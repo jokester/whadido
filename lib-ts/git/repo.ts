@@ -132,7 +132,7 @@ class ObjReader {
     private mergeBuffer(): Buffer {
         // Concatenate all buffers and remove metadata
         const allBuffer = Buffer.concat(this.chunks, this.currentProgress);
-        return allBuffer.slice(this.metadataSize, -1);
+        return allBuffer.slice(this.metadataSize, this.metadataSize + this.objSize);
     }
 
     // Read metadata (obj type / size) from first buffer
