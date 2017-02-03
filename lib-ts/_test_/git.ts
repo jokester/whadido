@@ -468,10 +468,13 @@ class TestGitRepo {
     async readObjRaw1() {
         const testRepo = await this.openTestRepo();
 
-        await testRepo.readObjRaw("").then(
-            (val) => expect(true).eq(false, "it should reject"),
-            (err) => true
-        );
+        try {
+            await testRepo.readObjRaw("NOT");
+            throw "should not be here";
+        } catch (e) {
+            expect(e).instanceOf(Error);
+            expect(e.message).eq("object \"NOT\" is missing");
+        }
     }
 
     @test
@@ -487,5 +490,22 @@ class TestGitRepo {
         expect(lines.length).eq(9);
         expect(lines[3]).eq("committer Martin von Gagern <Martin.vGagern@gmx.net> 1478766514 +0100");
         expect(lines[7]).eq("This line got into master by accident, as gulp support isn't ready yet.");
+    }
+
+    @test
+    async readObj2() {
+        const testRepo = await this.openTestRepo();
+        const obj = await testRepo.readObject("931bbc96");
+
+        expect(obj.sha1).eq("931bbc96dc534e907479c0b82f0bf48598ad6b7c");
+
+        if (rawtypes.DetectObjType.isCommit(obj)) {
+            expect(obj.author).deep.eq({ name: "Martin von Gagern", email: "Martin.vGagern@gmx.net" });
+            expect(obj.parent_sha1).deep.eq(["0b017e41fc65a3c3193fd410d6d35274d7bb7f71"]);
+            expect(obj.commit_at).deep.eq({ tz: "+0200", "utc_sec": 1463522581 });
+        } else {
+            throw "not a commit";
+        }
+
     }
 }

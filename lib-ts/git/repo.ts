@@ -141,7 +141,7 @@ class ObjReader {
         if (!metadataLine) {
             throw new Error(`metadata not found`);
         } else if (parser.PATTERNS.raw_object.missing.exec(metadataLine)) {
-            throw new Error(`object ${this.name} is missing`);
+            throw new Error(`object ${JSON.stringify(this.name)} is missing`);
         }
 
         const matched = parser.PATTERNS.raw_object.metadata.exec(metadataLine);
@@ -302,9 +302,22 @@ export class GitRepo {
         return found;
     }
 
+    /**
+     * Read and parse git object
+     *
+     * @param {string} sha1
+     * @returns {Promise<GitObject>}
+     *
+     * @memberOf GitRepo
+     */
     async readObject(sha1: string): Promise<GitObject> {
-        const rawObj = await this.readObjRaw(sha1);
-        return null;
+        const objRaw = await this.readObjRaw(sha1);
+        switch (objRaw.type) {
+            case ObjType.COMMIT:
+                return parser.parseRawCommit(objRaw.sha1, chunkToLines(objRaw.data));
+            default:
+                throw new Error(`objType not recognized: ${objRaw.type}`);
+        }
     }
 
     /**

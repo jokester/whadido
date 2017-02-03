@@ -190,7 +190,7 @@ interface UnknownGitRef {
 
 /**
  * parse output of `git for-each-ref`
- * @deprecated git for-each-ref derefs object
+ * @deprecated git for-each-ref derefs object automatically
  * FIXME remove this
  */
 export function parseRefList(ref_lines: string[]): UnknownGitRef[] {

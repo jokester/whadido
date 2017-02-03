@@ -3,7 +3,7 @@
  *
  * @copyright Wang Guan
  */
-import { DeepReadonly } from '../util';
+import { DeepReadonly, freeze } from '../util';
 
 /**
  * SHA1: 160bits / 40chars
@@ -31,6 +31,12 @@ export enum ObjType {
     TREE = <any>"Tree",
     BLOB = <any>"Blob",
 }
+
+export const DetectObjType = freeze({
+    isCommit(obj: GitObject): obj is GitCommit {
+        return obj.type === ObjType.COMMIT;
+    }
+});
 
 /**
  * Commit is what we stop resolving ref(s) at
