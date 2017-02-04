@@ -57,17 +57,15 @@ export class MutexResource<T> {
         /** whether release() for this task get called */
         let released = false;
 
-        setImmediate(firstTask,
-            () => {
-                if (released)
-                    throw new Error(`release() for this task have been called`);
-                this.locked = false;
-                released = true;
+        firstTask(() => {
+            if (released)
+                throw new Error(`release() for this task have been called`);
+            this.locked = false;
+            released = true;
 
-                if (this.taskQueue.length)
-                    setImmediate(() => this.runQueue());
-            },
-            this.res);
+            if (this.taskQueue.length)
+                setImmediate(() => this.runQueue());
+        }, this.res);
     }
 
     /**
