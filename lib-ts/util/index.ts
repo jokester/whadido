@@ -10,7 +10,7 @@ export function isTruthy(v: any) {
 
 export { DeepReadonly, deepFreeze, freeze } from './type';
 
-export { MutexResource } from './mutex';
+export { MutexResource, MutexResourcePool, ResourceHolder } from './mutex';
 
 export function deprecate() {
     throw new Error("Deprecated");

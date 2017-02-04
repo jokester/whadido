@@ -10,7 +10,10 @@ import * as reader from './reader';
 import {
     spawnSubprocess, rejectNonZeroReturn, spawnChild
 } from './subprocess';
-import { MutexResource, chunkToLines, deprecate, } from '../util';
+import {
+    MutexResource, MutexResourcePool, ResourceHolder,
+    chunkToLines, deprecate,
+} from '../util';
 
 /**
  * open git repo
@@ -173,7 +176,7 @@ class ObjReader {
  */
 export class GitRepo {
 
-    private readonly catRawObj: MutexResource<ChildProcess>;
+    private readonly catRawObj: ResourceHolder<ChildProcess>;
 
     /**
      * @param gitBinary string name of git binary, can be just "git"
@@ -181,9 +184,19 @@ export class GitRepo {
     constructor(readonly repoRoot: string,
         readonly gitBinary: string) {
 
-        this.catRawObj = new MutexResource(
-            spawnChild(this.gitBinary,
-                ['cat-file', '--batch',], { cwd: this.repoRoot }));
+        if (1) {
+            this.catRawObj = new MutexResource(
+                spawnChild(this.gitBinary,
+                    ['cat-file', '--batch',], { cwd: this.repoRoot }));
+        } else {
+            // almost always slower, not using pool for cat-file subprocess
+            const v: ChildProcess[] = [];
+            for (let c = 0; c < 5; c++) {
+                v.push(spawnChild(this.gitBinary,
+                    ['cat-file', '--batch',], { cwd: this.repoRoot }));
+            }
+            this.catRawObj = new MutexResourcePool(v);
+        }
     }
 
     /**

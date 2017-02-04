@@ -1,4 +1,4 @@
-import { suite, test, skip } from 'mocha-typescript';
+import { suite, test, skip, timeout } from 'mocha-typescript';
 import { expect } from 'chai';
 
 import * as rawtypes from '../git/rawtypes';
@@ -350,6 +350,13 @@ class TestGitRepo {
         return repo.openRepo(foundRepo);
     }
 
+    // TypeScript repo included for test
+    async openTestRepo2() {
+        const path = join(__dirname, '..', '..', 'test', 'TypeScript.git', 'hooks');
+        const foundRepo = await repo.findRepo(path);
+        return repo.openRepo(foundRepo);
+    }
+
     // current repo to cover more cases
     async openDevRepo() {
         const path = join(__dirname, '..', '..', 'test');
@@ -533,12 +540,28 @@ class TestGitRepo {
     }
 
     @test
-    async readAllObjects() {
+    async readAllObjects1() {
         const testRepo = await this.openTestRepo();
         // a list of all objects, generated with `git cat-file --batch-all-objects --batch-check`
         const objectListFile = join(testRepo.repoRoot, "objects-list.txt");
         const objectList = await util.readLines(objectListFile);
         for (const l of objectList) {
+            const sha1 = l.slice(0, 40);
+            if (sha1) {
+                const obj = await testRepo.readObject(sha1);
+            }
+        }
+    }
+
+    @test
+    @timeout(100e3)
+    @skip // this case requires a bare repo of TypeScript
+    async readAllObjects2() {
+        const testRepo = await this.openTestRepo2();
+        // a list of all objects, generated with `git cat-file --batch-all-objects --batch-check`
+        const objectListFile = join(testRepo.repoRoot, "objects-list.txt");
+        const objectList = await util.readLines(objectListFile);
+        for (const l of objectList.slice(0, 5000)) {
             const sha1 = l.slice(0, 40);
             if (sha1) {
                 const obj = await testRepo.readObject(sha1);

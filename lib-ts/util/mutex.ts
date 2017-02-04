@@ -15,11 +15,58 @@ export interface ExclusiveTask<T> {
     (release: () => void, res: T): void
 }
 
+export interface ResourceHolder<T> {
+    queue(task: ExclusiveTask<T>): void
+}
+
+export interface AdaptiveResPoolCallback<T> {
+    createRes(): T
+    disposeRes(res: T): void
+}
+
+export class AdaptiveResPool<T> {
+    constructor(private minRes: number, private maxRes: number, private readonly callback: AdaptiveResPoolCallback<T>) {
+
+    }
+}
+
+export class MutexResourcePool<T> implements ResourceHolder<T> {
+    private readonly resPool: MutexResource<T>[];
+    private readonly taskQueue: ExclusiveTask<T>[] = [];
+    private readonly setImmediateAvailable = (typeof setImmediate === "function");
+
+    constructor(resArray: T[]) {
+        this.resPool = resArray.map(r => new MutexResource(r));
+    }
+
+    queue(task: ExclusiveTask<T>) {
+        const r = this.resPool.shift();
+        if (r) {
+            r.queue((release, res) => {
+                task(() => {
+                    release();
+                    this.resPool.push(r);
+                    this.runQueue();
+                }, res);
+            })
+        } else {
+            this.taskQueue.push(task);
+        }
+    }
+
+    private runQueue() {
+        if (this.taskQueue.length) {
+            const t = this.taskQueue.shift();
+            this.queue(t);
+        }
+    }
+}
+
 /**
  * A resource manager that holds and schedules mu-exclusive task
  * 
  */
-export class MutexResource<T> {
+export class MutexResource<T> implements ResourceHolder<T> {
     private readonly res: T;
     private readonly taskQueue: ExclusiveTask<T>[] = [];
     private readonly setImmediateAvailable = (typeof setImmediate === "function");
