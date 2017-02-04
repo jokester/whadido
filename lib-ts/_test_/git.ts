@@ -541,7 +541,6 @@ class TestGitRepo {
         for (const l of objectList) {
             const sha1 = l.slice(0, 40);
             if (sha1) {
-                console.log("reading", sha1);
                 const obj = await testRepo.readObject(sha1);
             }
         }

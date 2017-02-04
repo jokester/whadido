@@ -115,10 +115,11 @@ class ObjReader {
     }
 
     getObj(): GitObjectData {
+
         return {
             type: this.objType,
             sha1: this.objFullname,
-            data: this.mergeBuffer()
+            data: (this.objType === ObjType.COMMIT || this.objType === ObjType.ATAG) ? this.mergeBuffer() : null,
         };
     }
 
