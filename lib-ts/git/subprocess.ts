@@ -1,37 +1,22 @@
-import { spawn, SpawnOptions, ChildProcess } from 'child_process';
+import { spawn, exec, execFile, SpawnOptions, ChildProcess } from 'child_process';
 import { chunkToLines } from '../util';
 
 /**
- *
+ * Captured output of subprocess
  */
+interface SubprocessOutput {
+    stderr: string[]
+    stdout: string[]
+}
 
 /**
  * Result after subprocess finished
  */
-interface SubprocessResult {
+interface SubprocessResult$ {
     stderr: string[]
     stdout: string[]
     exit: number
     signal: string
-}
-
-export function spawnChild(command: string,
-    args?: string[],
-    options?: SpawnOptions) {
-
-    args = args || [];
-
-    return spawn(command, args, options);
-}
-
-
-/**
- * 
- * 
- * @export
- * @param {ChildProcess} child a *new* childprocess
- */
-export function waitChild(child: ChildProcess) {
 }
 
 /**
@@ -39,7 +24,7 @@ export function waitChild(child: ChildProcess) {
  * 
  * provides error detection, etc
  * 
- * (is this needed?)
+ * (FIXME: is this ever needed?)
  */
 class SubProc {
 
@@ -58,7 +43,7 @@ class SubProc {
         })
     }
 
-    private result: Promise<SubprocessResult>;
+    private result: Promise<SubprocessResult$>;
 
 
     wait() {
@@ -80,40 +65,27 @@ class SubProc {
  *
  * TODO change this to a process class
  */
-export function spawnSubprocess(command: string,
+export function getSubprocessOutput(command: string,
     args?: string[],
     options?: SpawnOptions) {
 
     args = args || [];
 
-    return new Promise<SubprocessResult>((fulfill, reject) => {
-        const subprocess = spawn(command, args, options);
-
-        let stdout_lines = [] as string[];
-        let stderr_lines = [] as string[];
-
-        subprocess.on('error', reject);
-
-        subprocess.stderr.on('data', (chunk) => {
-            stderr_lines = stderr_lines.concat(chunkToLines(chunk));
+    return new Promise<SubprocessOutput>((fulfill, reject) => {
+        execFile(command, args, options, (err: Error, stdout: string, stderr: string) => {
+            if (err) {
+                reject(err);
+            } else {
+                fulfill({
+                    stdout: chunkToLines(stdout),
+                    stderr: chunkToLines(stderr),
+                });
+            }
         });
-
-        subprocess.stdout.on('data', (chunk) => {
-            stdout_lines = stdout_lines.concat(chunkToLines(chunk));
-        });
-
-        subprocess.on('exit', (code, signal) => {
-            fulfill({
-                stdout: stdout_lines,
-                stderr: stderr_lines,
-                exit: code,
-                signal: signal,
-            });
-        })
     });
 }
 
-export function rejectNonZeroReturn(result: SubprocessResult) {
+export function rejectNonZeroReturn(result: SubprocessResult$) {
     if (result.exit !== 0) {
         throw new Error(`subprocess returned non-zero: ${result.exit}`);
     }

@@ -8,7 +8,7 @@ import * as parser from '../git/parser';
 import * as util from '../util';
 
 import { join } from 'path';
-import { spawnSubprocess } from '../git/subprocess';
+import { getSubprocessOutput } from '../git/subprocess';
 
 import { logAsJSON, logError, getMatchedIndex } from './helper';
 
@@ -17,31 +17,34 @@ const logger = console;
 @suite
 class TestSubProcess {
     @test
-    true_returns_0() {
-        return spawnSubprocess('true')
-            .then(result => expect(result.exit).eq(0));
+    async true_returns_0() {
+        const result = await getSubprocessOutput('true');
+        expect(result.stderr).deep.eq([""]);
     }
 
     @test
-    false_returns_1() {
-        return spawnSubprocess('false')
-            .then(result => expect(result.exit).eq(1));
+    async false_returns_1() {
+        const err = "should not be this";
+        try {
+            await getSubprocessOutput('false');
+            throw err;
+        } catch (e) {
+            expect(e).not.eq(err);
+        }
     }
 
     @test
     captures_stdout1() {
-        return spawnSubprocess('/bin/echo', ['aa', 'bb'])
+        return getSubprocessOutput('/bin/echo', ['aa', 'bb'])
             .then(result => {
-                expect(result.exit).eq(0);
                 expect(result.stdout).to.deep.eq(['aa bb', '']);
             })
     }
 
     @test
     captures_stdout2() {
-        return spawnSubprocess('/bin/echo', ["-n", 'aa', 'bb'])
+        return getSubprocessOutput('/bin/echo', ["-n", 'aa', 'bb'])
             .then(result => {
-                expect(result.exit).eq(0);
                 expect(result.stdout).to.deep.eq(['aa bb']);
             })
     }
@@ -65,6 +68,7 @@ class TestGitReader {
     }
 
     @test
+    @skip
     catFile() {
         return this.findRepo
             .then(repo => reader.catFile(repo, 'master'));
