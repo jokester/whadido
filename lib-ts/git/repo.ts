@@ -8,7 +8,7 @@ import { GitRef, RefType, GitObject, ObjType, GitObjectData } from './rawtypes';
 import * as parser from './parser';
 import * as reader from './reader';
 import {
-    spawnSubprocess, rejectNonZeroReturn, spawnChild
+    getSubprocessOutput,
 } from './subprocess';
 import {
     MutexResource, MutexResourcePool, ResourceHolder,
@@ -38,16 +38,18 @@ export function openRepo(repoRoot: string, gitBinary = "git"): GitRepo {
 export async function findRepo(start: string, gitBinary = "git") {
 
     // `git rev-parse --git-dir` prints path of $PWD
-    const status = await spawnSubprocess(gitBinary,
+    const status = await getSubprocessOutput(gitBinary,
         ["rev-parse", "--git-dir"],
         { cwd: start }
-    ).then(rejectNonZeroReturn);
+    );
 
-    // if line 2 is empty, return the first line
-    if (status.stdout.length === 2 && !status.stdout[1])
-        return status.stdout[0];
+    // find first absolute path
+    for (const l of status.stdout) {
+        if (l.match(/^\//))
+            return l;
+    }
 
-    throw new Error(`findGitRepo: cannot find git repo for ${start}. got ${JSON.stringify(status.stdout)} from 'git rev-parse'`);
+    throw new Error(`findGitRepo: cannot find git repo for ${start}. got ${JSON.stringify(status)} from 'git rev-parse'`);
 }
 
 /**
@@ -186,13 +188,14 @@ export class GitRepo {
 
         if (1) {
             this.catRawObj = new MutexResource(
-                spawnChild(this.gitBinary,
+                spawn(this.gitBinary,
                     ['cat-file', '--batch',], { cwd: this.repoRoot }));
         } else {
-            // almost always slower, not using pool for cat-file subprocess
+            // not using pool for cat-file subprocess
+            // it's almost always slower (why?)
             const v: ChildProcess[] = [];
             for (let c = 0; c < 5; c++) {
-                v.push(spawnChild(this.gitBinary,
+                v.push(spawn(this.gitBinary,
                     ['cat-file', '--batch',], { cwd: this.repoRoot }));
             }
             this.catRawObj = new MutexResourcePool(v);

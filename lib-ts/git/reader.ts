@@ -10,7 +10,7 @@ import * as errors from '../errors';
 import { readLines, isTruthy, liftA2, deprecate } from '../util';
 
 import {
-    spawnSubprocess, rejectNonZeroReturn
+    getSubprocessOutput, rejectNonZeroReturn
 } from './subprocess';
 
 import {
@@ -75,7 +75,7 @@ function readTag(repo: string, name: string): Promise<void> {
  *
  */
 async function readCommit(repo: string, sha1: string) {
-    const result = await spawnSubprocess(gitBinary, ['cat-file', '-p', sha1])
+    const result = await getSubprocessOutput(gitBinary, ['cat-file', '-p', sha1])
         .then(rejectNonZeroReturn);
     return parser.parseCommit(sha1, result.stdout);
 }
@@ -84,7 +84,7 @@ async function readCommit(repo: string, sha1: string) {
  *
  */
 export function readObject(repo: string, sha1: string, gitBinary: string): Promise<string[]> {
-    return spawnSubprocess(gitBinary, ['cat-file', '-p', sha1])
+    return getSubprocessOutput(gitBinary, ['cat-file', '-p', sha1])
         .then(rejectNonZeroReturn).then(result => result.stdout);
 }
 
@@ -96,13 +96,13 @@ export function readObject(repo: string, sha1: string, gitBinary: string): Promi
  */
 export function listRefs(repo: string) {
     deprecate();
-    return spawnSubprocess(gitBinary, ['for-each-ref'], { cwd: repo })
+    return getSubprocessOutput(gitBinary, ['for-each-ref'], { cwd: repo })
         .then(rejectNonZeroReturn)
         .then(result => parser.parseRefList(result.stdout))
 }
 
 export async function readRefs(repo: string) {
-    const result = await spawnSubprocess(gitBinary, ['for-each-ref'], { cwd: repo })
+    const result = await getSubprocessOutput(gitBinary, ['for-each-ref'], { cwd: repo })
         .then(rejectNonZeroReturn);
     const refNames = parser.parseRefList(result.stdout);
 
@@ -123,7 +123,7 @@ export async function readRefs(repo: string) {
 
 export function catFile(repo: string, ref: string) {
 
-    const cat = spawnSubprocess(gitBinary,
+    const cat = getSubprocessOutput(gitBinary,
         [
             `--git-dir=${repo}`,
             'cat-file',
