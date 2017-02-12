@@ -47,6 +47,13 @@ export class ArrayM<T> {
     }
 
     /**
+     * filter: delegates to Array#filter
+     */
+    filter(predicate: (v: T, index?: number) => boolean): ArrayM<T> {
+        return new ArrayM(this.array.filter(predicate));
+    }
+
+    /**
      * unwraps ArrayM<T> and returns an array T[]
      */
     toArray() {

@@ -4,7 +4,7 @@ import { spawn, ChildProcess } from 'child_process';
 import { readFile, exists } from 'fs-promise';
 import * as readdir from 'recursive-readdir';
 
-import { GitRef, RefType, GitObject, ObjType, GitObjectData } from './rawtypes';
+import { GitRef, RefType, GitObject, ObjType, GitObjectData, DetectObjType, GitATag } from './rawtypes';
 import * as parser from './parser';
 import * as reader from './reader';
 import {
@@ -12,7 +12,7 @@ import {
 } from './subprocess';
 import {
     MutexResource, MutexResourcePool, ResourceHolder,
-    chunkToLines, deprecate,
+    chunkToLines, deprecate, ArrayM
 } from '../util';
 
 /**
@@ -231,8 +231,17 @@ export class GitRepo {
         return ([localHead]).concat(packed).concat(nonpacked);
     }
 
+    // return objects *includes* ref
+    async resolveRef$(ref: GitRef): Promise<ResolvedRef> {
+        throw new Error(`failed to resolve: ${JSON.stringify(ref)}`);
+    }
+
+    async resolveRefAtag(ref: GitObject) {
+
+    }
+
     /**
-     * Resolve ref until a non-ref object
+     * Resolve ref until a non-ref object is met
      * 
      * @param {GitRef} ref
      * @returns {Promise<ResolvedRef>} The array for resolved ref.
@@ -241,13 +250,26 @@ export class GitRepo {
      * @memberOf GitRepo
      */
     async resolveRef(ref: GitRef): Promise<ResolvedRef> {
-        if (parser.isRefSymDest(ref.dest)) {
+        if (parser.isDestBranch(ref.dest)) {
+            const resolved = [ref] as ResolvedRef;
             const next = await this.getRefByPath(ref.dest);
-            return ([ref] as any[]).concat(await this.resolveRef(next));
-        } else if (parser.isCommitSHA1) {
-            // const next = 
-        }
-        return []
+            return resolved.concat(await this.resolveRef(next));
+        } else if (parser.isSHA1(ref.dest)) {
+            const destObj = await this.readObject(ref.dest);
+            if (DetectObjType.isAnnotatedTag(destObj)) {
+                // reconstruct a GitRef from object
+                const destObjAsRef: GitRef = {
+                    type: RefType.ATAG,
+                    path: `refs/tags/${destObj.name}`,
+                    dest: destObj.dest
+                };
+                return ([destObj] as ResolvedRef).concat(await this.resolveRef(destObjAsRef));
+            } else {
+                const resolved = [ref] as ResolvedRef;
+                return resolved.concat([destObj]);
+            }
+        } else
+            throw new Error(`resolveRef: cannot resolve ref: ${JSON.stringify(ref)}`);
     }
 
     async getRefByPath(path: string): Promise<GitRef> {
@@ -271,7 +293,8 @@ export class GitRepo {
         const filename = join(this.repoRoot, 'packed-refs');
         try {
             const lines = (await readFile(filename, { encoding: "utf-8" })).split("\n");
-            return parser.parsePackedRef(lines);
+            const got = parser.parsePackedRef(lines);
+            return got;
         } catch (e) {
             return [] as GitRef[];
         }
@@ -284,6 +307,19 @@ export class GitRepo {
         const filename = join(this.repoRoot, "HEAD");
         const lines = (await readFile(filename, { encoding: "utf-8" })).split("\n");
         return parser.parseHEAD(lines[0]);
+    }
+
+    private async eliminateUnknownTag(refs: GitRef[]): Promise<GitRef[]> {
+        const result = [] as GitRef[];
+        for (const r of refs) {
+            if (r.type === RefType.UNKNOWN_TAG) {
+                if (parser.isRefObject(r.dest)) {
+                    const destObj = await this.readObject(r.dest);
+
+                }
+            } else result.push(r);
+        }
+        return result;
     }
 
     /**

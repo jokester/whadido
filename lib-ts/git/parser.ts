@@ -8,7 +8,7 @@ import {
     GitRefLog, GitHuman, GitTimestamp,
     GitATag, GitATagMutable,
 } from './rawtypes';
-import { isTruthy, deepFreeze, freeze } from '../util';
+import { isTruthy, deepFreeze, freeze, ArrayM } from '../util';
 
 export const ObjTypeMappings = freeze({
     commit: ObjType.COMMIT,
@@ -90,7 +90,7 @@ export function parseDate(dateStr: string): GitTimestamp {
     }
 }
 
-export function isCommitSHA1(line: string) {
+export function isSHA1(line: string) {
     return !!line.match(PATTERNS.commit_sha1);
 }
 
@@ -141,10 +141,13 @@ export function parseTag(line: string, path: string): GitRef {
     throw new Error(`parseTag: failed to parse ${line} / ${path}`);
 }
 
-export function isRefSymDest(dest: string): boolean {
-    // NOTE I haven't a HEAD to appear as dest, so only testing branch
+/**
+ * whether dest is another ref (symbol)
+ */
+export function isDestBranch(dest: string): boolean {
+    // NOTE I haven't seen a HEAD appear as dest, so only testing branch here
     for (const p of [PATTERNS.refpath.local_branch, PATTERNS.refpath.remote_branch]) {
-        if (dest.match(dest))
+        if (dest.match(p))
             return true;
     }
     return false;

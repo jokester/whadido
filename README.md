@@ -40,7 +40,7 @@ lib-ts/util
 lib-ts/_test_
 ```
 
-Based on my [typescript-boilerplate](https://github.com/jokester/typescript-boilerplate).
+Based on [typescript-boilerplate](https://github.com/jokester/typescript-boilerplate)
 
 ## License
 

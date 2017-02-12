@@ -49,7 +49,7 @@ export async function readHead(repo: string, refname: string): Promise<void> {
 
     if (!l0)
         throw new Error(`readLocalHead: not recognized ${l0}`);
-    else if (parser.isCommitSHA1(l0)) {
+    else if (parser.isSHA1(l0)) {
         // return new Object(refname, l0);
     } else {
         const branch_name = parser.parseHEAD(l0);

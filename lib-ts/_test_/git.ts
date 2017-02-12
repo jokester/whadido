@@ -450,7 +450,8 @@ class TestGitRepo {
         const refsRoot = join(__dirname, '..', '..', 'test', 'node-libtidy.git', 'refs');
         const found = await repo.listRefFiles(refsRoot);
         expect(found).deep.eq([
-            join(refsRoot, 'remotes', 'origin', 'HEAD')
+            join(refsRoot, 'tags', 't2'),
+            join(refsRoot, 'remotes', 'origin', 'HEAD'),
         ]);
     }
 
@@ -459,11 +460,18 @@ class TestGitRepo {
         const testRepo = await this.openTestRepo();
         const nonpacked = await (testRepo as any).readNonpackedRef();
 
-        expect(nonpacked).deep.eq([{
-            dest: "refs/remotes/origin/master",
-            path: "refs/remotes/origin/HEAD",
-            type: rawtypes.RefType.HEAD,
-        }]);
+        expect(nonpacked).deep.eq([
+            {
+                dest: "1fa95ee88a69f541f8c6b50bffe8bd4b131886c0",
+                path: "refs/tags/t2",
+                type: rawtypes.RefType.UNKNOWN_TAG,
+            },
+            {
+                dest: "refs/remotes/origin/master",
+                path: "refs/remotes/origin/HEAD",
+                type: rawtypes.RefType.HEAD,
+            }
+        ]);
     }
 
     @test
@@ -571,5 +579,31 @@ class TestGitRepo {
                 const obj = await testRepo.readObject(sha1);
             }
         }
+    }
+
+    @test
+    async resolveRef1() {
+        // Head -> Branch -> Commit
+        const repo = await this.openTestRepo();
+        const refs = await repo.listRefs();
+
+        const localHead = refs[0];
+        expect(localHead).deep.eq({ dest: "refs/heads/master", path: "HEAD", type: rawtypes.RefType.HEAD });
+        const resolved = await repo.resolveRef(localHead);
+        expect(resolved[0].type).eq(rawtypes.RefType.HEAD);
+        expect(resolved[1].type).eq(rawtypes.RefType.BRANCH);
+        expect(resolved[2].type).eq(rawtypes.ObjType.COMMIT);
+    }
+
+    @test
+    async resolveRef2() {
+        // ATAG -> ATAG -> Commit
+        const repo = await this.openTestRepo();
+        const refs = await repo.listRefs();
+
+        const nestedAtag = refs[9];
+        expect(nestedAtag.path).eq('refs/tags/t2');
+        const resolved2 = await repo.resolveRef(nestedAtag);
+        expect(resolved2).deep.eq([]);
     }
 }
