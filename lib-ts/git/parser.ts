@@ -1,5 +1,5 @@
 /**
- * (pure & sync) parsers for git raw format
+ * pure functions for git-specific formats
  */
 import {
     RefType, GitRef,
@@ -7,8 +7,9 @@ import {
     GitCommit, GitCommitMutable,
     GitRefLog, GitHuman, GitTimestamp,
     GitATag, GitATagMutable,
-} from './rawtypes';
+} from './types';
 import { isTruthy, deepFreeze, freeze, ArrayM } from '../util';
+
 
 export const ObjTypeMappings = freeze({
     commit: ObjType.COMMIT,

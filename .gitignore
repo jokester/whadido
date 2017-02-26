@@ -6,3 +6,4 @@ tmp
 npm-*.log
 *.map
 .vscode
+coverage/

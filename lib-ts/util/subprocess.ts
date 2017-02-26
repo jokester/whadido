@@ -52,7 +52,7 @@ class SubProc {
         return this.result;
     }
 
-    async doWait() {
+    async doWait(): Promise<null> {
         // TODO
         return null;
     }

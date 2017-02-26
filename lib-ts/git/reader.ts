@@ -4,39 +4,26 @@
  * @copyright Wang Guan
  */
 
-const path = require('path');
 
+
+import * as path from "path";
 import * as errors from '../errors';
 import { readLines, isTruthy, liftA2, deprecate } from '../util';
 
 import {
     getSubprocessOutput, rejectNonZeroReturn
-} from './subprocess';
+} from '../util/subprocess';
 
 import {
     GitCommit, GitRefLog, GitHuman, GitTimestamp, GitRef,
     GitObject, RefType, ObjType
-} from './rawtypes';
+} from './types';
 
 import * as parser from './parser';
 
-/**
- * @deprecated should be per-instance
- */
-const gitBinary = 'git';
+deprecate();
 
-/**
- * read reflog of a ref (branch or head)
- */
-export async function readReflog(repo: string, refname: string) {
-    const reflog_path = path.join(repo, 'logs', refname);
-    try {
-        const lines = await readLines(reflog_path);
-        return lines.filter(isTruthy).map(parser.parseReflog);
-    } catch (e) {
-        return [];
-    }
-}
+const gitBinary = "git";
 
 /**
  * read local or remote HEAD
@@ -48,7 +35,7 @@ export async function readHead(repo: string, refname: string): Promise<void> {
     const l0 = head_lines[0];
 
     if (!l0)
-        throw new Error(`readLocalHead: not recognized ${l0}`);
+        throw new Error(`readHead(): not recognized ${l0}`);
     else if (parser.isSHA1(l0)) {
         // return new Object(refname, l0);
     } else {
@@ -57,19 +44,6 @@ export async function readHead(repo: string, refname: string): Promise<void> {
     }
 }
 
-/**
- * read a local or remote branch
- */
-function readBranch(repo: string, name: string): Promise<void> {
-    return null;
-}
-
-/**
- *
- */
-function readTag(repo: string, name: string): Promise<void> {
-    return null;
-}
 
 /**
  *
@@ -101,39 +75,7 @@ export function listRefs(repo: string) {
         .then(result => parser.parseRefList(result.stdout))
 }
 
-export async function readRefs(repo: string) {
-    const result = await getSubprocessOutput(gitBinary, ['for-each-ref'], { cwd: repo })
-        .then(rejectNonZeroReturn);
-    const refNames = parser.parseRefList(result.stdout);
 
-    const refs = [] as any[];
-
-    for (const r of refNames) {
-        if (r.type === RefType.TAG) {
-            refs.push(await readTag(repo, r.name));
-        } else if (r.type === RefType.HEAD) {
-            refs.push(await readHead(repo, r.name));
-        } else if (r.type === RefType.BRANCH) {
-            refs.push(await readBranch(repo, r.name));
-        }
-    }
-
-    return refs;
-}
-
-export function catFile(repo: string, ref: string) {
-
-    const cat = getSubprocessOutput(gitBinary,
-        [
-            `--git-dir=${repo}`,
-            'cat-file',
-            '-p',
-            ref
-        ]
-    );
-
-    return cat.then(rejectNonZeroReturn).then(status => status.stdout);
-}
 
 export class GitReader {
 

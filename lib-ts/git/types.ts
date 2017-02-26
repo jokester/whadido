@@ -1,5 +1,5 @@
 /**
- * "raw" types that map to format of repository (which means references are not resolved)
+ * "raw" types that map to git protocol
  *
  * @copyright Wang Guan
  */
@@ -25,11 +25,11 @@ export type GitObject = Readonly<ObjectMutable>
  */
 export type GitObjectData = Readonly<ObjectMutable & { data: Buffer }>
 
-export enum ObjType {
-    COMMIT = <any>"Commit",
-    ATAG = <any>"Annotated tag",
-    TREE = <any>"Tree",
-    BLOB = <any>"Blob",
+export const enum ObjType {
+    COMMIT = 1,
+    ATAG,
+    TREE,
+    BLOB,
 }
 
 export const DetectObjType = freeze({
@@ -66,11 +66,15 @@ export interface GitATagMutable extends ObjectMutable {
 
 export type GitATag = Readonly<GitATagMutable>
 
+export type GitShallowTag = {
+
+}
+
 /**
- * "path" to 
+ * "path" of a git reference
  * 
- * NOTE references can be stored without pack (.git/refs, .git/HEAD)
- * or packed (.git/packed-refs)
+ * NOTE: references can be stored without pack (.git/refs, .git/HEAD)
+ * or packed (.git/packed-refs), a reader should look at all these places.
  * 
  * local HEAD:          HEAD
  * local branch:        refs/heads/<branch>
@@ -81,14 +85,14 @@ export type GitATag = Readonly<GitATagMutable>
 type RefPath = string;
 
 /**
- * "Ref": points to another
- * NOTE (GitRef & Obje)
+ * "Ref": git value that points to something else
+ * NOTE: ref itself may or may not be a git object
  */
 export enum RefType {
-    // tags that are not resolved. A tag may point to a commit (normal for )
+    // tags that are not resolved. A tag may point to a commit (normal) or any object
     UNKNOWN_TAG = <any>"TAG OF UNKNOWN KIND",
-    ATAG = <any>"Annotated tag",
-    TAG = <any>"Tag",
+    ATAG = <any>"Annotated Tag",
+    TAG = <any>"Shallow Tag",
     BRANCH = <any>"Branch",
     HEAD = <any>"HEAD",
 }
@@ -97,11 +101,21 @@ export enum RefType {
  * A reference can be HEAD / Branch / Tag / Annotated tag
  */
 export interface GitRef {
-    readonly type: RefType
     readonly path: RefPath
+
     /**
-     * SHA1 when it 
+     * NOTE: Annotated / Shallow tag cannot be deduced until the dest object is read
+     */
+    readonly type: RefType
+
+    /**
      * NOTE sha1 may not necessaryily be a commit, even for plain tag
+     *
+     * HEAD > dest=branch (RefPath)
+     * HEAD > dest=commit (SHA1)
+     * branch > dest=commit (SHA1)
+     * ShallowTag > dest=object (SHA1) (>real dest)
+     * dest=AnnoatedTag > object (SHA1)
      */
     readonly dest: SHA1 | RefPath
 }

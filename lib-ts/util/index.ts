@@ -12,6 +12,6 @@ export { DeepReadonly, deepFreeze, freeze } from './type';
 
 export { MutexResource, MutexResourcePool, ResourceHolder } from './mutex';
 
-export function deprecate() {
+export function deprecate(): never {
     throw new Error("Deprecated");
 }
