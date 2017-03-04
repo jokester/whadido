@@ -10,14 +10,21 @@ import { DeepReadonly, freeze } from '../util';
  */
 type SHA1 = string
 
-interface ObjectMutable {
-    type: ObjType
-    sha1: SHA1
+export const enum ObjType {
+    COMMIT = 1,
+    ATAG,
+    TREE,
+    BLOB,
 }
 
 /**
  * "Object": anything that have a SHA1 hash
  */
+export interface ObjectMutable {
+    type: ObjType
+    sha1: SHA1
+}
+
 export type GitObject = Readonly<ObjectMutable>
 
 /**
@@ -25,12 +32,6 @@ export type GitObject = Readonly<ObjectMutable>
  */
 export type GitObjectData = Readonly<ObjectMutable & { data: Buffer }>
 
-export const enum ObjType {
-    COMMIT = 1,
-    ATAG,
-    TREE,
-    BLOB,
-}
 
 export const DetectObjType = freeze({
     isCommit(obj: GitObject): obj is GitCommit {
@@ -120,6 +121,25 @@ export interface GitRef {
     readonly dest: SHA1 | RefPath
 }
 
+export interface GitHeadRef extends GitRef {
+    destBranch?: GitBranchRef;
+    destCommit?: SHA1;
+}
+
+export interface GitBranchRef extends GitRef {
+    destCommit: SHA1
+}
+
+export interface GitTagRef extends GitRef {
+    destObj: SHA1
+}
+
+export interface GitAtagRef extends GitRef {
+    destObj: SHA1
+    destType: ObjType
+    annotation: GitTagAnnotation
+}
+
 /**
  * A 'human' in git: author + email
  */
@@ -150,6 +170,16 @@ export interface GitRefLog {
 export interface GitTimestamp {
     readonly utc_sec: number
     readonly tz: string
+}
+
+/**
+ * GitTagAnnotation: only exists in *annotated* tag
+ */
+export interface GitTagAnnotation {
+    readonly sha1: SHA1
+    readonly by: GitHuman
+    readonly message: string[]
+    readonly at: GitTimestamp
 }
 
 module Unused {
@@ -185,27 +215,8 @@ module Unused {
     //     }
     // }
 
-    // /**
-    //  * GitTagAnnotation: only exists in *annotated* tag
-    //  */
-    // interface GitTagAnnotation {
-    //     readonly by: GitHuman,
-    //     readonly message: string[],
-    //     readonly at: GitTimestamp
-    // }
 
-    // /**
-    //  * 'Branch' ref: points to a commit
-    //  */
-    // export class GitBranch implements GitRef {
-    //     readonly type = RefType.BRANCH
-    //     readonly name: string
-    //     // type: commit
-    //     readonly dest: SHA1
-    //     constructor(dest: SHA1) {
-    //         this.dest = dest
-    //     }
-    // }
+
 
     // /**
     //  * HEAD that points to a branch

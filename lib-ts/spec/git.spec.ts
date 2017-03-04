@@ -250,8 +250,31 @@ describe("git reader", () => {
 
     let r: repo.GitRepo;
 
+    const expectedUnpackedRefs = [
+        {
+            dest: "414c5870b27970db0fa7762148adb89eb07f1fe0",
+            path: "refs/remotes/origin/HEAD",
+            type: "HEAD",
+        },
+        {
+            dest: "c12666ed52bcc733c9fec0316b71f5db847a404d",
+            path: "refs/tags/atag-to-blob",
+            type: "TAG OF UNKNOWN KIND",
+        },
+        {
+            dest: "12332089f2cda3c00311710af2b84d70d6d0f46c",
+            path: "refs/tags/shallow-tag",
+            type: "TAG OF UNKNOWN KIND"
+        },
+        {
+            dest: "1fa95ee88a69f541f8c6b50bffe8bd4b131886c0",
+            path: "refs/tags/t2",
+            type: "TAG OF UNKNOWN KIND",
+        },
+    ];
+
     beforeEach(async () => {
-        devRepo = await repo.openRepo(devRepoRoot) as repo.GitRepo;
+        devRepo = await repo.openRepo(devRepoRoot) as any as repo.GitRepo;
         r = await devRepo;
     });
 
@@ -333,81 +356,52 @@ describe("git reader", () => {
         const r = await devRepo;
         const unpackedRefs = await r.readUnpackedRefs();
 
-        expect(unpackedRefs).toEqual([
-            {
-                dest: "1fa95ee88a69f541f8c6b50bffe8bd4b131886c0",
-                path: "refs/tags/t2",
-                type: "TAG OF UNKNOWN KIND",
-            },
-            {
-                dest: "refs/remotes/origin/master",
-                path: "refs/remotes/origin/HEAD",
-                type: "HEAD",
-            }
-        ]);
+        expect(unpackedRefs).toEqual(expectedUnpackedRefs);
     });
 
     it("reads all refs", async () => {
         const r = await devRepo;
         const refs = await r.listRefs();
-        expect(refs.length).toEqual(/*local head*/1 + /*unpacked ref*/2 + /*packed ref*/8);
+        expect(refs.length).toEqual(/*local head*/1 + expectedUnpackedRefs.length + /*packed ref*/8);
     });
 
-    it("reads object", async () => {
-        const r = await devRepo;
+    it("reads object: commit", async () => {
+        const o = await r.readObject("931bbc96");
+        expect(o.type).toEqual(gittypes.ObjType.COMMIT);
 
-        const o = await r.readObject("f71ebe8741ed7866115a0e27cf4431067627ecd9");
+        expect(o.sha1).toEqual("931bbc96dc534e907479c0b82f0bf48598ad6b7c");
+
+        if (gittypes.DetectObjType.isCommit(o)) {
+            expect(o.author).toEqual({ name: "Martin von Gagern", email: "Martin.vGagern@gmx.net" });
+            expect(o.parent_sha1).toEqual(["0b017e41fc65a3c3193fd410d6d35274d7bb7f71"]);
+            expect(o.commit_at).toEqual({ tz: "+0200", "utc_sec": 1463522581 });
+        } else {
+            throw "not a commit";
+        }
     });
 
-    it("resolves ref: local HEAD", async () => {
-        const r = await devRepo;
-        const head = await r.getRefByPath("HEAD");
-
-        const resolved = await r.resolveRef(head);
-
-        expect(resolved.length).toEqual(3);
-        expect(resolved[0].type).toEqual(gittypes.RefType.HEAD);
-        expect(resolved[1].type).toEqual(gittypes.RefType.BRANCH);
-        expect(resolved[2].type).toEqual(gittypes.ObjType.COMMIT);
-    });
-
-    it("resolves ref: local branch", async () => {
-        const r = await devRepo;
-        const head = await r.getRefByPath("refs/heads/master");
-
-        const resolved = await r.resolveRef(head);
-
-        expect(resolved.length).toEqual(2);
-        expect(resolved[0].type).toEqual(gittypes.RefType.BRANCH);
-        expect(resolved[1].type).toEqual(gittypes.ObjType.COMMIT);
-    });
-
-    it("resolves ref: remote HEAD", async () => {
-        const r = await devRepo;
-        const head = await r.getRefByPath("refs/remotes/origin/HEAD");
-
-        const resolved = await r.resolveRef(head);
-
-        expect(resolved.length).toEqual(3);
-        expect(resolved[0].type).toEqual(gittypes.RefType.HEAD);
-        expect(resolved[1].type).toEqual(gittypes.RefType.BRANCH);
-        expect(resolved[2].type).toEqual(gittypes.ObjType.COMMIT);
-    });
-
-    it("resolves ref: remote branch", async () => {
-        const r = await devRepo;
-        const head = await r.getRefByPath("refs/remotes/origin/master");
-
-        const resolved = await r.resolveRef(head);
-
-        expect(resolved.length).toEqual(2);
-        expect(resolved[0].type).toEqual(gittypes.RefType.BRANCH);
-        expect(resolved[1].type).toEqual(gittypes.ObjType.COMMIT);
+    it("reads object: annotated tag", async () => {
+        const o = await r.readObject("07fc");
+        expect(o.sha1).toEqual("07fc5636f0359a857a5f9ecd583fcd56d6edb83b");
+        expect(o.type).toEqual(gittypes.ObjType.ATAG);
+        if (gittypes.DetectObjType.isAnnotatedTag(o)) {
+            expect(o.destType).toEqual(gittypes.ObjType.COMMIT);
+            expect(o.dest).toEqual("414c5870b27970db0fa7762148adb89eb07f1fe0");
+            expect(o.tagger).toEqual({ name: "Martin von Gagern", email: "Martin.vGagern@gmx.net" });
+            expect(o.tagged_at).toEqual({ tz: "+0100", "utc_sec": 1478766625 });
+            expect(o.name).toEqual("v0.3.2");
+            expect(o.message.length).toEqual(10);
+            expect(o.message[0]).toEqual("Version 0.3.2");
+            expect(o.message[2]).toEqual("* Fixed gulp import introduced in 0.3.1 by accident");
+            expect(o.message[6]).toEqual("dFuDzQCeKXpBXRfcDBf9nKhPcVBoMoZgx1oAnRoeTCxkIsPhwSqiYgh3PpRYLpn1");
+            expect(o.message[8]).toEqual("-----END PGP SIGNATURE-----");
+            expect(o.message[9]).toEqual("");
+        } else {
+            throw "not an annotated tag";
+        }
     });
 
     it("throws when obj sha1 not exist", async () => {
-        const r = await devRepo;
-
         try {
             await r.readObjRaw("NOT");
             throw "should not be here";
@@ -417,64 +411,60 @@ describe("git reader", () => {
         }
     });
 
-    it("reads obj", async () => {
-        const r = await devRepo;
+    it("resolves ref: local HEAD", async () => {
+        const head = await r.getRefByPath("HEAD");
 
+        const resolved = await r.resolveRef(head) as gittypes.GitHeadRef;
+
+        expect(resolved.type).toEqual(gittypes.RefType.HEAD);
+        expect(resolved.destBranch).toEqual("refs/heads/master");
     });
-    //     @test
-    //     async readObjRaw2() {
-    //         const testRepo = await this.openTestRepo();
-    //         const rawObj = await testRepo.readObjRaw("HEAD");
-    //         const lines = util.chunkToLines(rawObj.data);
 
-    //         // metadata line: "414c5870b27970db0fa7762148adb89eb07f1fe0 commit 347"
-    //         expect(rawObj.type).eq(gittypes.ObjType.COMMIT);
-    //         expect(rawObj.data.length).eq(347);
-    //         expect(rawObj.sha1).eq("414c5870b27970db0fa7762148adb89eb07f1fe0")
-    //         expect(lines.length).eq(9);
-    //         expect(lines[3]).eq("committer Martin von Gagern <Martin.vGagern@gmx.net> 1478766514 +0100");
-    //         expect(lines[7]).eq("This line got into master by accident, as gulp support isn't ready yet.");
-    //     }
+    it("resolves ref: local branch", async () => {
+        const head = await r.getRefByPath("refs/heads/master");
 
-    //     @test
-    //     async readCommitObj() {
-    //         const testRepo = await this.openTestRepo();
-    //         const obj = await testRepo.readObject("931bbc96");
+        const resolved = await r.resolveRef(head) as gittypes.GitBranchRef;
 
-    //         expect(obj.sha1).eq("931bbc96dc534e907479c0b82f0bf48598ad6b7c");
+        expect(resolved.type).toEqual(gittypes.RefType.BRANCH);
+        expect(resolved.destCommit).toEqual("414c5870b27970db0fa7762148adb89eb07f1fe0");
+    });
 
-    //         if (gittypes.DetectObjType.isCommit(obj)) {
-    //             expect(obj.author).deep.eq({ name: "Martin von Gagern", email: "Martin.vGagern@gmx.net" });
-    //             expect(obj.parent_sha1).deep.eq(["0b017e41fc65a3c3193fd410d6d35274d7bb7f71"]);
-    //             expect(obj.commit_at).deep.eq({ tz: "+0200", "utc_sec": 1463522581 });
-    //         } else {
-    //             throw "not a commit";
-    //         }
-    //     }
+    it("resolves ref: remote HEAD", async () => {
+        const head = await r.getRefByPath("refs/remotes/origin/HEAD");
 
-    //     @test
-    //     async readAtagObj() {
-    //         const testRepo = await this.openTestRepo();
-    //         const obj = await testRepo.readObject("07fc");
+        const resolved = await r.resolveRef(head) as gittypes.GitHeadRef;
 
-    //         expect(obj.sha1).eq("07fc5636f0359a857a5f9ecd583fcd56d6edb83b");
-    //         expect(obj.type).eq(gittypes.ObjType.ATAG);
-    //         if (gittypes.DetectObjType.isAnnotatedTag(obj)) {
-    //             expect(obj.destType).eq(gittypes.ObjType.COMMIT);
-    //             expect(obj.dest).eq("414c5870b27970db0fa7762148adb89eb07f1fe0");
-    //             expect(obj.tagger).deep.eq({ name: "Martin von Gagern", email: "Martin.vGagern@gmx.net" });
-    //             expect(obj.tagged_at).deep.eq({ tz: "+0100", "utc_sec": 1478766625 });
-    //             expect(obj.name).eq("v0.3.2");
-    //             expect(obj.message.length).eq(10);
-    //             expect(obj.message[0]).eq("Version 0.3.2");
-    //             expect(obj.message[2]).eq("* Fixed gulp import introduced in 0.3.1 by accident");
-    //             expect(obj.message[6]).eq("dFuDzQCeKXpBXRfcDBf9nKhPcVBoMoZgx1oAnRoeTCxkIsPhwSqiYgh3PpRYLpn1");
-    //             expect(obj.message[8]).eq("-----END PGP SIGNATURE-----");
-    //             expect(obj.message[9]).eq("");
-    //         } else {
-    //             throw "not an annotated tag";
-    //         }
-    //     }
+        expect(resolved.type).toEqual(gittypes.RefType.HEAD);
+        expect(resolved.destCommit).toEqual("414c5870b27970db0fa7762148adb89eb07f1fe0");
+    });
+
+    it("resolves ref: remote branch", async () => {
+        const head = await r.getRefByPath("refs/remotes/origin/master");
+
+        const resolved = await r.resolveRef(head) as gittypes.GitBranchRef;
+
+        expect(resolved.type).toEqual(gittypes.RefType.BRANCH);
+        expect(resolved.destCommit).toEqual("414c5870b27970db0fa7762148adb89eb07f1fe0");
+    });
+
+    it("resolves ref: shallow tag", async () => {
+        const tag = await r.getRefByPath("refs/tags/shallow-tag");
+        const resolved = await r.resolveRef(tag) as gittypes.GitTagRef;
+
+        expect(resolved.type).toEqual(gittypes.RefType.TAG);
+        expect(resolved.destObj).toEqual("12332089f2cda3c00311710af2b84d70d6d0f46c");
+    });
+
+    it("resolves ref: annotated tag", async () => {
+        const tag = await r.getRefByPath("refs/tags/v0.3.2");
+
+        const resolved = await r.resolveRef(tag) as gittypes.GitAtagRef;
+
+        expect(resolved.type).toEqual(gittypes.RefType.ATAG);
+        expect(resolved.destObj).toEqual("414c5870b27970db0fa7762148adb89eb07f1fe0");
+        expect(resolved.destType).toEqual(gittypes.ObjType.COMMIT);
+    });
+
 
     //     @test
     //     async readAllObjects1() {
@@ -507,20 +497,6 @@ describe("git reader", () => {
     //     }
 
     //     @test
-    //     async resolveRef1() {
-    //         // Head -> Branch -> Commit
-    //         const repo = await this.openTestRepo();
-    //         const refs = await repo.listRefs();
-
-    //         const localHead = refs[0];
-    //         expect(localHead).deep.eq({ dest: "refs/heads/master", path: "HEAD", type: gittypes.RefType.HEAD });
-    //         const resolved = await repo.resolveRef(localHead);
-    //         expect(resolved[0].type).eq(gittypes.RefType.HEAD);
-    //         expect(resolved[1].type).eq(gittypes.RefType.BRANCH);
-    //         expect(resolved[2].type).eq(gittypes.ObjType.COMMIT);
-    //     }
-
-    //     @test
     //     async resolveRef2() {
     //         // ATAG -> ATAG -> Commit
     //         const repo = await this.openTestRepo();
@@ -532,7 +508,6 @@ describe("git reader", () => {
     //         expect(resolved2).deep.eq([]);
     //     }
     // }
-
 });
 
 xdescribe("reader.ts", () => {
