@@ -4,7 +4,7 @@
   "description": "Analyze and visualize recent operations in local git repository.",
   "main": "index.js",
   "scripts": {
-    "start": "node_modules/.bin/electron .",
+    "start": "node lib/index.js",
     "start:ts": "ts-node lib-ts/index.ts",
     "build": "      rm -rf lib/* && tsc",
     "build:watch": "rm -rf lib/* && tsc --watch",
@@ -28,19 +28,19 @@
     "url": "https://github.com/jokester/whadido/issues"
   },
   "engines": {
-    "node": ">= 6.0.0"
+    "node": ">= 4.0.0"
   },
   "homepage": "https://github.com/jokester/whadido#readme",
   "dependencies": {
-    "fs-promise": "^2.0.3",
+    "@types/argparse": "^1.0.30",
+    "argparse": "^1.0.9",
     "recursive-readdir": "^2.2.1",
     "tslib": "^1.6.0"
   },
   "devDependencies": {
     "@types/chai": "^3.5.0",
-    "@types/fs-promise": "^1.0.1",
     "@types/jest": "^19.2.2",
-    "@types/node": "^7.0.22",
+    "@types/node": "^4.0.0",
     "chai": "^3.5.0",
     "jest": "^20.0.4",
     "ts-jest": "^20.0.4",

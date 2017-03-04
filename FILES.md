@@ -1,22 +1,10 @@
-```text
-lib-ts/git          git reader
-lib-ts/model        analyze
-lib-ts/ui
-lib-ts/util
-lib-ts/_test_
-```
+# Files
 
 ```text
-lib-ts/git
-- index.ts    facade
-- repo.ts     
-- command.ts  code 
-- types.ts    type in git objects / filesystem protocol
-lib-ts
-├── _test_
-│   ├── git.ts
-│   ├── helper.ts
-│   ├── test.ts
-│   ├── transformers.ts
-│   └── util.ts
+lib-ts/cli.ts       CLI entrypoint
+lib-ts/options.ts   CLI options parser
+lib-ts/git          git repo reader (in pure JS, no gyp module is required)
+lib-ts/model        analyze
+lib-ts/util
+lib-ts/test         test
 ```
