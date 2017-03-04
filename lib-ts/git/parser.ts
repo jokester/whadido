@@ -2,21 +2,16 @@
  * pure functions for git-specific formats
  */
 import {
-    RefType, GitRef,
-    ObjType, GitObject,
-    GitCommit, GitCommitMutable,
-    GitRefLog, GitHuman, GitTimestamp,
-    GitATag, GitATagMutable,
+    Obj, Ref, Timestamp, Human, RefLog
 } from './types';
 import { isTruthy, deepFreeze, freeze, ArrayM } from '../util';
 
-
 export const ObjTypeMappings = freeze({
-    commit: ObjType.COMMIT,
-    tag: ObjType.ATAG,
-    blob: ObjType.BLOB,
-    tree: ObjType.TREE,
-} as { [type: string]: ObjType })
+    commit: Obj.Type.COMMIT,
+    tag: Obj.Type.ATAG,
+    blob: Obj.Type.BLOB,
+    tree: Obj.Type.TREE,
+} as { [type: string]: Obj.Type })
 
 export const PATTERNS = freeze({
     refpath: freeze({
@@ -75,7 +70,7 @@ export const PATTERNS = freeze({
 /**
  * parse date like '1480181019 +0500'
  */
-export function parseDate(dateStr: string): GitTimestamp {
+export function parseDate(dateStr: string): Timestamp {
     const d = PATTERNS.date.exec;
     const matches = PATTERNS.date.exec(dateStr);
 
@@ -102,19 +97,19 @@ export function isSHA1(line: string) {
  * @param {string} line line like `ref: refs/heads/master` OR `(SHA1)`
  * @returns
  */
-export function parseHEAD(line: string, path = "HEAD"): GitRef {
+export function parseHEAD(line: string, path = "HEAD"): Ref.Head {
     const match1 = line.match(PATTERNS.head.refname);
     if (match1) {
         // HEAD points to a branch
         return {
-            type: RefType.HEAD,
+            type: Ref.Type.HEAD,
             path: path,
             dest: match1[1]
         }
     } else if (line.match(PATTERNS.commit_sha1)) {
         // 'bare' HEAD that points to a commit
         return {
-            type: RefType.HEAD,
+            type: Ref.Type.HEAD,
             path: path,
             dest: line
         }
@@ -122,20 +117,21 @@ export function parseHEAD(line: string, path = "HEAD"): GitRef {
     throw new Error(`parseHEAD: failed to parse ${line} / ${path}`);
 }
 
-export function parseBranch(line: string, path: string): GitRef {
+export function parseBranch(line: string, path: string): Ref.Branch {
     if (line.match(PATTERNS.commit_sha1))
         return {
-            type: RefType.BRANCH,
+            type: Ref.Type.BRANCH,
             path: path,
-            dest: line
+            dest: line,
+            destCommit: line,
         };
     throw new Error(`parseBranch: failed to parse ${line} / ${path}`);
 }
 
-export function parseTag(line: string, path: string): GitRef {
+export function parseTag(line: string, path: string): Ref.Unknown {
     if (line.match(PATTERNS.commit_sha1))
         return {
-            type: RefType.UNKNOWN_TAG,
+            type: Ref.Type.UNKNOWN_TAG,
             path: path,
             dest: line
         };
@@ -164,7 +160,7 @@ export function isRefObject(dest: string): boolean {
 /**
  * parse author like "Wang Guan <momocraft@gmail.com>"
  */
-export function parseAuthor(str: string): GitHuman {
+export function parseAuthor(str: string): Human {
     const match = PATTERNS.author.exec(str);
     if (match) {
         return {
@@ -182,7 +178,7 @@ export function parseAuthor(str: string): GitHuman {
 /**
  * parse one line in reflog (e.g. .git/logs/HEAD)
  */
-export function parseReflog(line: string): GitRefLog {
+export function parseReflog(line: string): RefLog {
     const matches = PATTERNS.reflog_line.exec(line);
 
     if (!matches) {
@@ -198,50 +194,6 @@ export function parseReflog(line: string): GitRefLog {
     }
 }
 
-interface UnknownGitRef {
-    readonly name: string
-    readonly type: RefType
-    readonly dest: string
-}
-
-/**
- * parse output of `git for-each-ref`
- * @deprecated git for-each-ref derefs object automatically
- * FIXME remove this
- */
-export function parseRefList(ref_lines: string[]): UnknownGitRef[] {
-    const refs: UnknownGitRef[] = [];
-    for (const line of ref_lines.filter(isTruthy)) {
-
-        const matched = line.match(PATTERNS.ref_line);
-
-        const dest_sha1 = matched[1];
-        const dest_type = matched[2];
-        const refname = matched[3];
-
-        if (dest_type === "commit"
-            && PATTERNS.refpath.remote_head.exec(refname)) {
-            refs.push({ name: refname, type: RefType.HEAD, dest: dest_sha1 });
-            continue;
-        } else if (dest_type === "commit"
-            && PATTERNS.refpath.local_branch.exec(refname)) {
-            refs.push({ name: refname, type: RefType.BRANCH, dest: dest_sha1 });
-            continue;
-        } else if (dest_type === "commit"
-            && PATTERNS.refpath.remote_branch.exec(refname)) {
-            refs.push({ name: refname, type: RefType.BRANCH, dest: dest_sha1 });
-            continue;
-        } else if (PATTERNS.refpath.tag.exec(refname)) {
-            refs.push({ name: refname, type: RefType.TAG, dest: dest_sha1 });
-            continue;
-        }
-
-        throw new Error(`parseRefList: line not recognized ${line}`);
-    }
-
-    return refs;
-}
-
 /**
  * 
  * 
@@ -249,8 +201,8 @@ export function parseRefList(ref_lines: string[]): UnknownGitRef[] {
  * @param {string} lines content of $GITDIR/packed-refs
  * @returns {GitRef[]}
  */
-export function parsePackedRef(lines: string[]): GitRef[] {
-    const found = [] as GitRef[];
+export function parsePackedRef(lines: string[]): Ref.Unknown[] {
+    const found = [] as Ref.Unknown[];
     for (const l of lines) {
         const matched = PATTERNS.packed_ref.exec(l);
         if (matched) {
@@ -258,11 +210,11 @@ export function parsePackedRef(lines: string[]): GitRef[] {
             const refpath = matched[2];
 
             if (PATTERNS.refpath.tag.exec(refpath)) {
-                found.push({ dest: sha1, type: RefType.UNKNOWN_TAG, path: refpath });
+                found.push({ dest: sha1, type: Ref.Type.UNKNOWN_TAG, path: refpath });
             } else if (PATTERNS.refpath.local_branch.exec(refpath)) {
-                found.push({ dest: sha1, type: RefType.BRANCH, path: refpath });
+                found.push({ dest: sha1, type: Ref.Type.BRANCH, path: refpath });
             } else if (PATTERNS.refpath.remote_branch.exec(refpath)) {
-                found.push({ dest: sha1, type: RefType.BRANCH, path: refpath });
+                found.push({ dest: sha1, type: Ref.Type.BRANCH, path: refpath });
             } else {
                 throw new Error(`parsePackedRef: refpath not recognized - ${refpath}`);
             }
@@ -275,11 +227,11 @@ export function parsePackedRef(lines: string[]): GitRef[] {
 /**
  * parse raw commit (`git cat-file -p`, or lines 1+ of `git cat-file --batch`)
  */
-export function parseCommit(sha1: string, lines: string[]): GitCommit {
+export function parseCommit(sha1: string, lines: string[]): Obj.Commit {
     const origLines = lines;
     lines = lines.slice();
-    const result: GitCommitMutable = {
-        type: ObjType.COMMIT,
+    const result = {
+        type: Obj.Type.COMMIT,
         sha1: sha1,
         author: null,
         author_at: null,
@@ -325,11 +277,11 @@ export function parseCommit(sha1: string, lines: string[]): GitCommit {
     return result;
 }
 
-export function parseAnnotatedTag(sha1: string, lines: string[]): GitATag {
+export function parseAnnotatedTag(sha1: string, lines: string[]): Obj.ATag {
     let dest: string,
-        destType: ObjType,
-        tagger: GitHuman,
-        tagged_at: GitTimestamp,
+        destType: Obj.Type,
+        tagger: Human,
+        tagged_at: Timestamp,
         name: string,
         message: string[];
 
@@ -354,7 +306,7 @@ export function parseAnnotatedTag(sha1: string, lines: string[]): GitATag {
 
     return {
         sha1: sha1,
-        type: ObjType.ATAG,
+        type: Obj.Type.ATAG,
         dest: dest,
         destType: destType,
         tagger: tagger,

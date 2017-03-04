@@ -3,9 +3,7 @@ import * as path from "path";
 // import { join, relative } from 'path';
 import { spawn, ChildProcess } from 'child_process';
 
-
-import { GitRef, RefType, GitObject, ObjType, GitObjectData, DetectObjType, GitATag } from './types';
-import * as Git from './types';
+import { Ref, Obj, Annotation, RefLog } from './types';
 import * as parser from './parser';
 import {
     MutexResource, MutexResourcePool, ResourceHolder,
@@ -17,7 +15,7 @@ import { getSubprocessOutput } from '../util/subprocess';
 export class GitRepoException extends Error { }
 
 
-function sortRefByPath(a: Git.GitRef, b: Git.GitRef) {
+function sortRefByPath(a: Ref.Unknown, b: Ref.Unknown) {
     if (a.path > b.path)
         return 1;
     else if (a.path < b.path)
@@ -64,7 +62,7 @@ export async function findRepo(start: string, gitBinary = "git") {
     throw new GitRepoException(`findGitRepo(): cannot find git repo for ${start}. got ${JSON.stringify(status)} from 'git rev-parse'`);
 }
 
-export type ResolvedRef = Git.GitRef[];
+export type ResolvedRef = Ref.Tag | Ref.Atag | Ref.Head | Ref.Branch;
 
 /**
  * Public interface for GitRepo
@@ -75,36 +73,24 @@ interface IGitRepo {
     // normally `.git`
     readonly repoRoot: string;
 
-    listRefs(): Promise<GitRef[]>;
+    listRefs(): Promise<Ref.Unknown[]>;
 
     /**
-     * resolve top-level ref for a (ref / object) chain
+     * resolve ref by 1 level
      */
-    resolveRef(refpath: Git.GitRef): Promise<Git.GitHeadRef | Git.GitBranchRef | Git.GitTagRef | Git.GitAtagRef>;
+    resolveRef(refpath: Ref.Unknown): Promise<ResolvedRef>;
 
+    /**
+     * walks from a ref, until a non-ref object is found
+     */
+    resolveTag(ref: Ref.Tag | Ref.Atag): Promise<Obj.Object>;
+
+    readObj(sha1: string): Promise<Obj.Object>;
     /**
      * read reflog of a specified ref
      */
-    // readReflog(refpath: string): Promise<Git.GitRefLog[]>;
+    readReflog(refpath: string): Promise<RefLog[]>;
 }
-
-namespace GitReader {
-
-    /**
-     * read reflog of a ref (branch or head)
-     */
-    export async function readReflog(repo: string, refpath: string) {
-        const reflog_path = path.join(repo, 'logs', refpath);
-        try {
-            const lines = await io.readLines(reflog_path);
-            return lines.filter(line => line).map(parser.parseReflog);
-        } catch (e) {
-            return [];
-        }
-    }
-
-}
-
 
 /**
  * Receive a series of chunks (from output of git cat-)
@@ -114,7 +100,7 @@ class ObjReader {
     private metadataSize = 0;
     private objSize = 0;
     private currentProgress = 0;
-    private objType: ObjType;
+    private objType: Obj.Type;
     private objFullname: string;
 
     constructor(readonly name: string) { }
@@ -140,12 +126,12 @@ class ObjReader {
         return (this.currentProgress >= (this.objSize + this.metadataSize));
     }
 
-    getObj(): GitObjectData {
+    getObj(): Obj.ObjectData {
 
         return {
             type: this.objType,
             sha1: this.objFullname,
-            data: (this.objType === ObjType.COMMIT || this.objType === ObjType.ATAG) ? this.mergeBuffer() : null,
+            data: (this.objType === Obj.Type.COMMIT || this.objType === Obj.Type.ATAG) ? this.mergeBuffer() : null,
         };
     }
 
@@ -244,12 +230,11 @@ export class GitRepo implements IGitRepo {
      * 
      * @memberOf GitRepo
      */
-    async listRefs(): Promise<GitRef[]> {
-        // FIXME: read in parallel?
-        const localHead = await this.readLocalHead();
-        const packed = await this.readPackedRefs();
-        const unpacked = await this.readUnpackedRefs();
-        return ([localHead]).concat(packed).concat(unpacked).sort(sortRefByPath);
+    async listRefs(): Promise<Ref.Unknown[]> {
+        const localHead = this.readLocalHead();
+        const packed = this.readPackedRefs();
+        const unpacked = this.readUnpackedRefs();
+        return ([await localHead]).concat(await packed).concat(await unpacked).sort(sortRefByPath);
     }
 
     /**
@@ -259,22 +244,21 @@ export class GitRepo implements IGitRepo {
      * 
      * @memberOf GitRepo
      */
-    async resolveRef(ref: GitRef): Promise<Git.GitHeadRef | Git.GitBranchRef | Git.GitTagRef | Git.GitAtagRef> {
+    async resolveRef(ref: Ref.Unknown): Promise<ResolvedRef> {
         switch (ref.type) {
-            case Git.RefType.HEAD:
+            case Ref.Type.HEAD:
                 return this.resolveRef$head(ref);
-            case Git.RefType.BRANCH:
+            case Ref.Type.BRANCH:
                 return this.resolveRef$branch(ref);
-            case Git.RefType.UNKNOWN_TAG:
+            case Ref.Type.UNKNOWN_TAG:
                 return this.resolveRef$unknown_tag(ref);
-            case Git.RefType.TAG:
-                return this.resolveRef$tag(ref);
+            // tag / atag is not supported
+            // user should resolve that by hand, with readObj()
         }
-
         throw new GitRepoException(`resolveRef: cannot resolve ref: ${JSON.stringify(ref)}`);
     }
 
-    async getRefByPath(path: string): Promise<GitRef> {
+    async getRefByPath(path: string): Promise<Ref.Unknown> {
         const refs = await this.listRefs();
         for (const r of refs) {
             if (r.path === path)
@@ -290,18 +274,18 @@ export class GitRepo implements IGitRepo {
      * reject if not recognized
      * @param ref
      */
-    async resolveRef$head(ref: Git.GitRef): Promise<Git.GitHeadRef> {
+    async resolveRef$head(ref: Ref.Unknown): Promise<Ref.Head> {
         if (parser.isSHA1(ref.dest)) {
             const destObj = await this.readObject(ref.dest);
-            if (destObj.type === Git.ObjType.COMMIT) {
-                const head: Git.GitHeadRef = Object.assign({}, ref, { destCommit: destObj.sha1 });
+            if (destObj.type === Obj.Type.COMMIT) {
+                const head: Ref.Head = Object.assign({}, ref, { destCommit: destObj.sha1 });
                 return head;
             }
         }
 
         if (parser.isDestBranch(ref.dest)) {
             const destBranch = await this.getRefByPath(ref.dest);
-            const head: Git.GitHeadRef = Object.assign({}, ref, { destBranch: ref.dest });
+            const head: Ref.Head = Object.assign({}, ref, { destBranch: ref.dest });
             return head;
         }
 
@@ -312,11 +296,11 @@ export class GitRepo implements IGitRepo {
      * Resolves a branch ref:
      * - branch > commit
      */
-    async resolveRef$branch(ref: Git.GitRef): Promise<Git.GitBranchRef> {
+    async resolveRef$branch(ref: Ref.Unknown): Promise<Ref.Branch> {
         if (parser.isSHA1(ref.dest)) {
             const commit = await this.readObject(ref.dest);
-            if (ref.type === Git.RefType.BRANCH && commit.type === Git.ObjType.COMMIT) {
-                const branch: Git.GitBranchRef = Object.assign({}, ref, { destCommit: commit.sha1 });
+            if (ref.type === Ref.Type.BRANCH && commit.type === Obj.Type.COMMIT) {
+                const branch: Ref.Branch = Object.assign({}, ref, { destCommit: commit.sha1 });
                 return branch;
             }
         }
@@ -329,23 +313,21 @@ export class GitRepo implements IGitRepo {
      * A non-annotated tag must point to a commit.
      * Technically a shallow tag can point to any object, we are not supporting this.
      *
-     * @param {Git.GitRef} ref
-     * @returns {Promise<ResolvedRef>}
+     * @param {Ref.Unknown} ref
+     * @returns {Promise<Ref.GitAtagRef | Ref.GitTagRef>}
      *
      * @memberof GitRepo
      */
-    async resolveRef$unknown_tag(ref: Git.GitRef): Promise<Git.GitAtagRef | Git.GitTagRef> {
+    async resolveRef$unknown_tag(ref: Ref.Unknown): Promise<Ref.Atag | Ref.Tag> {
         const destObj = await this.readObject(ref.dest);
 
-        // a shallow tag
-        if (destObj.type === Git.ObjType.COMMIT)
-            return this.resolveRef$tag(ref);
-
-        // a annotated tag
-        if (destObj.type === Git.ObjType.ATAG) {
+        if (destObj.type === Obj.Type.ATAG) {
+            // a annotated tag
             return this.resolveRef$atag(ref);
+        } else {
+            // a shallow tag
+            return this.resolveRef$tag(ref);
         }
-        throw new GitRepoException(`resolveRef$unknown_tag(): tag must point to a commit / atag object, got ${JSON.stringify(destObj)}`);
     }
 
     /**
@@ -357,31 +339,31 @@ export class GitRepo implements IGitRepo {
      *
      * @memberof GitRepo
      */
-    async resolveRef$tag(ref: Git.GitRef): Promise<Git.GitTagRef> {
+    async resolveRef$tag(ref: Ref.Unknown): Promise<Ref.Tag> {
         const destObj = await this.readObject(ref.dest);
-        const newRef: Git.GitTagRef = Object.assign({}, ref, { type: Git.RefType.TAG, destObj: ref.dest });
+        const newRef: Ref.Tag = Object.assign({}, ref, { type: Ref.Type.TAG, destObj: ref.dest });
         return newRef;
     }
 
-    async resolveRef$atag(ref: Git.GitRef): Promise<Git.GitAtagRef> {
+    async resolveRef$atag(ref: Ref.Unknown): Promise<Ref.Atag> {
         const atagObj = await this.readObject(ref.dest);
 
-        if (Git.DetectObjType.isAnnotatedTag(atagObj)) {
+        if (Obj.isAnnotatedTag(atagObj)) {
             const nextObj = await this.readObject(atagObj.dest);
 
-            const annoContent: Git.GitTagAnnotation = {
+            const annoContent: Annotation = {
                 sha1: atagObj.sha1,
                 by: atagObj.tagger,
                 message: atagObj.message,
                 at: atagObj.tagged_at,
             }
 
-            const annotatedRef: Git.GitAtagRef = {
+            const annotatedRef: Ref.Atag = {
                 dest: atagObj.sha1,
                 destObj: atagObj.dest,
                 destType: atagObj.destType,
                 path: ref.path,
-                type: Git.RefType.ATAG,
+                type: Ref.Type.ATAG,
                 annotation: annoContent,
             }
 
@@ -394,7 +376,7 @@ export class GitRepo implements IGitRepo {
     /**
      * Local
      */
-    async readLocalHead(): Promise<GitRef> {
+    async readLocalHead(): Promise<Ref.Head> {
         const filename = path.join(this.repoRoot, "HEAD");
         const lines = await io.readLines(filename);
         return parser.parseHEAD(lines[0]);
@@ -408,14 +390,14 @@ export class GitRepo implements IGitRepo {
      * @memberOf GitRepo
      *
      */
-    async readPackedRefs(): Promise<GitRef[]> {
+    async readPackedRefs(): Promise<Ref.Unknown[]> {
         const filename = path.join(this.repoRoot, 'packed-refs');
         try {
             const lines = await io.readLines(filename);
             const got = parser.parsePackedRef(lines);
             return got;
         } catch (e) {
-            return [] as GitRef[];
+            return [];
         }
     }
 
@@ -427,11 +409,11 @@ export class GitRepo implements IGitRepo {
      * 
      * @memberOf GitRepo
      */
-    async readUnpackedRefs(): Promise<GitRef[]> {
+    async readUnpackedRefs(): Promise<Ref.Unknown[]> {
         const PATTERNS = parser.PATTERNS;
         const start = path.join(this.repoRoot, 'refs');
         const refFiles = await io.recursiveReadDir(start);
-        const found = [] as GitRef[];
+        const found = [] as Ref.Unknown[];
 
         for (const f of refFiles) {
             // relative path like `refs/heads/...`
@@ -466,18 +448,22 @@ export class GitRepo implements IGitRepo {
      *
      * @memberOf GitRepo
      */
-    async readObject(sha1: string): Promise<GitObject> {
+    async readObject(sha1: string): Promise<Obj.Object> {
         const objRaw = await this.readObjRaw(sha1);
         switch (objRaw.type) {
-            case ObjType.COMMIT:
+            case Obj.Type.COMMIT:
                 return parser.parseCommit(objRaw.sha1, chunkToLines(objRaw.data));
-            case ObjType.ATAG:
+            case Obj.Type.ATAG:
                 return parser.parseAnnotatedTag(objRaw.sha1, chunkToLines(objRaw.data));
-            case ObjType.BLOB:
-            case ObjType.TREE:
+            case Obj.Type.BLOB:
+            case Obj.Type.TREE:
                 return { type: objRaw.type, sha1: sha1 };
         }
         throw new Error(`objType not recognized: ${objRaw.type}`);
+    }
+
+    readObj(sha1: string) {
+        return this.readObject(sha1);
     }
 
     /**
@@ -488,10 +474,10 @@ export class GitRepo implements IGitRepo {
      *
      * @memberOf GitRepo
      */
-    async readObjRaw(sha1: string): Promise<GitObjectData> {
+    async readObjRaw(sha1: string): Promise<Obj.ObjectData> {
         const objReader = new ObjReader(sha1);
 
-        return new Promise<GitObjectData>((fulfill, reject) => {
+        return new Promise<Obj.ObjectData>((fulfill, reject) => {
             this.catRawObj.queue((release, child) => {
 
                 const finish = () => {
@@ -520,5 +506,30 @@ export class GitRepo implements IGitRepo {
                 });
             });
         });
+    }
+
+    /**
+     * read reflog of a ref (branch or head)
+     */
+    async readReflog(refpath: string): Promise<RefLog[]> {
+        const reflog_path = path.join(this.repoRoot, 'logs', refpath);
+        try {
+            const lines = await io.readLines(reflog_path);
+            return lines.filter(line => !!line).map(parser.parseReflog);
+        } catch (e) {
+            return [];
+        }
+    }
+
+    async resolveTag(tag: Ref.Tag | Ref.Atag): Promise<Obj.Object> {
+        let sha1 = tag.destObj;
+        while(true) {
+            const obj = await this.readObj(sha1);
+            if (Obj.isAnnotatedTag(obj)) {
+                sha1 = obj.dest;
+            } else {
+                return obj;
+            }
+        }
     }
 }

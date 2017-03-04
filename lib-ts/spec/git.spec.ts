@@ -1,6 +1,5 @@
 import * as gittypes from '../git/types';
 import * as repo from '../git/repo';
-import * as reader from '../git/reader';
 import * as parser from '../git/parser';
 import * as util from '../util';
 
@@ -99,14 +98,14 @@ describe("parser.ts", () => {
     it("parsed a HEAD", () => {
         const line1 = "ce95a0817d18df7c027df4334b19e5bc9980a995";
         expect(parser.parseHEAD(line1)).toEqual({
-            type: gittypes.RefType.HEAD,
+            type: gittypes.Ref.Type.HEAD,
             dest: line1,
             path: "HEAD",
         });
 
         const line2 = "ref: refs/heads/master";
         expect(parser.parseHEAD(line2)).toEqual({
-            type: gittypes.RefType.HEAD,
+            type: gittypes.Ref.Type.HEAD,
             dest: "refs/heads/master",
             path: "HEAD",
         });
@@ -178,7 +177,7 @@ describe("parser.ts", () => {
                 "06af50718ab0dc34024b312fddbb95f565d5e194"
             ],
             sha1: "eeeqq",
-            type: gittypes.ObjType.COMMIT,
+            type: gittypes.Obj.Type.COMMIT,
         });
     });
 
@@ -214,7 +213,7 @@ describe("parser.ts", () => {
             ],
             parent_sha1: [],
             sha1: "eeeqq",
-            type: gittypes.ObjType.COMMIT,
+            type: gittypes.Obj.Type.COMMIT,
         });
     });
 
@@ -262,6 +261,11 @@ describe("git reader", () => {
             type: "TAG OF UNKNOWN KIND",
         },
         {
+            dest: "a6b2f7c5e7c57f8958954a910d83658bd06ce121",
+            path: "refs/tags/nested-atag",
+            type: "TAG OF UNKNOWN KIND"
+        },
+        {
             dest: "12332089f2cda3c00311710af2b84d70d6d0f46c",
             path: "refs/tags/shallow-tag",
             type: "TAG OF UNKNOWN KIND"
@@ -298,42 +302,42 @@ describe("git reader", () => {
             {
                 dest: "414c5870b27970db0fa7762148adb89eb07f1fe0",
                 path: "refs/heads/master",
-                type: gittypes.RefType.BRANCH,
+                type: gittypes.Ref.Type.BRANCH,
             },
             {
                 dest: "414c5870b27970db0fa7762148adb89eb07f1fe0",
                 path: "refs/remotes/origin/master",
-                type: gittypes.RefType.BRANCH,
+                type: gittypes.Ref.Type.BRANCH,
             },
             {
                 dest: "49e49799d6625785708fc64b365ea0fae1c48ece",
                 path: "refs/tags/v0.1.0",
-                type: gittypes.RefType.UNKNOWN_TAG,
+                type: gittypes.Ref.Type.UNKNOWN_TAG,
             },
             {
                 dest: "915849a5d77a57ed389d93a638d5e329c6c565ae",
                 path: "refs/tags/v0.1.1",
-                type: gittypes.RefType.UNKNOWN_TAG,
+                type: gittypes.Ref.Type.UNKNOWN_TAG,
             },
             {
                 dest: "78c872a7676487dc430339031cf1a6d179ed4946",
                 path: "refs/tags/v0.2.0",
-                type: gittypes.RefType.UNKNOWN_TAG,
+                type: gittypes.Ref.Type.UNKNOWN_TAG,
             },
             {
                 dest: "3f8a54c3780f7c6db91dabd97b67fa77e75822b6",
                 path: "refs/tags/v0.3.0",
-                type: gittypes.RefType.UNKNOWN_TAG,
+                type: gittypes.Ref.Type.UNKNOWN_TAG,
             },
             {
                 dest: "aec08967c642f58651a414996c1e9368ff42baa9",
                 path: "refs/tags/v0.3.1",
-                type: gittypes.RefType.UNKNOWN_TAG,
+                type: gittypes.Ref.Type.UNKNOWN_TAG,
             },
             {
                 dest: "07fc5636f0359a857a5f9ecd583fcd56d6edb83b",
                 path: "refs/tags/v0.3.2",
-                type: gittypes.RefType.UNKNOWN_TAG,
+                type: gittypes.Ref.Type.UNKNOWN_TAG,
             },
 
         ]);
@@ -348,7 +352,7 @@ describe("git reader", () => {
             {
                 dest: "refs/heads/master",
                 path: "HEAD",
-                type: gittypes.RefType.HEAD,
+                type: gittypes.Ref.Type.HEAD,
             });
     });
 
@@ -367,11 +371,11 @@ describe("git reader", () => {
 
     it("reads object: commit", async () => {
         const o = await r.readObject("931bbc96");
-        expect(o.type).toEqual(gittypes.ObjType.COMMIT);
+        expect(o.type).toEqual(gittypes.Obj.Type.COMMIT);
 
         expect(o.sha1).toEqual("931bbc96dc534e907479c0b82f0bf48598ad6b7c");
 
-        if (gittypes.DetectObjType.isCommit(o)) {
+        if (gittypes.Obj.isCommit(o)) {
             expect(o.author).toEqual({ name: "Martin von Gagern", email: "Martin.vGagern@gmx.net" });
             expect(o.parent_sha1).toEqual(["0b017e41fc65a3c3193fd410d6d35274d7bb7f71"]);
             expect(o.commit_at).toEqual({ tz: "+0200", "utc_sec": 1463522581 });
@@ -383,9 +387,9 @@ describe("git reader", () => {
     it("reads object: annotated tag", async () => {
         const o = await r.readObject("07fc");
         expect(o.sha1).toEqual("07fc5636f0359a857a5f9ecd583fcd56d6edb83b");
-        expect(o.type).toEqual(gittypes.ObjType.ATAG);
-        if (gittypes.DetectObjType.isAnnotatedTag(o)) {
-            expect(o.destType).toEqual(gittypes.ObjType.COMMIT);
+        expect(o.type).toEqual(gittypes.Obj.Type.ATAG);
+        if (gittypes.Obj.isAnnotatedTag(o)) {
+            expect(o.destType).toEqual(gittypes.Obj.Type.COMMIT);
             expect(o.dest).toEqual("414c5870b27970db0fa7762148adb89eb07f1fe0");
             expect(o.tagger).toEqual({ name: "Martin von Gagern", email: "Martin.vGagern@gmx.net" });
             expect(o.tagged_at).toEqual({ tz: "+0100", "utc_sec": 1478766625 });
@@ -414,57 +418,113 @@ describe("git reader", () => {
     it("resolves ref: local HEAD", async () => {
         const head = await r.getRefByPath("HEAD");
 
-        const resolved = await r.resolveRef(head) as gittypes.GitHeadRef;
+        const resolved = await r.resolveRef(head) as gittypes.Ref.Head;
 
-        expect(resolved.type).toEqual(gittypes.RefType.HEAD);
+        expect(resolved.type).toEqual(gittypes.Ref.Type.HEAD);
         expect(resolved.destBranch).toEqual("refs/heads/master");
     });
 
     it("resolves ref: local branch", async () => {
         const head = await r.getRefByPath("refs/heads/master");
 
-        const resolved = await r.resolveRef(head) as gittypes.GitBranchRef;
+        const resolved = await r.resolveRef(head) as gittypes.Ref.Branch;
 
-        expect(resolved.type).toEqual(gittypes.RefType.BRANCH);
+        expect(resolved.type).toEqual(gittypes.Ref.Type.BRANCH);
         expect(resolved.destCommit).toEqual("414c5870b27970db0fa7762148adb89eb07f1fe0");
     });
 
     it("resolves ref: remote HEAD", async () => {
         const head = await r.getRefByPath("refs/remotes/origin/HEAD");
 
-        const resolved = await r.resolveRef(head) as gittypes.GitHeadRef;
+        const resolved = await r.resolveRef(head) as gittypes.Ref.Head;
 
-        expect(resolved.type).toEqual(gittypes.RefType.HEAD);
+        expect(resolved.type).toEqual(gittypes.Ref.Type.HEAD);
         expect(resolved.destCommit).toEqual("414c5870b27970db0fa7762148adb89eb07f1fe0");
     });
 
     it("resolves ref: remote branch", async () => {
         const head = await r.getRefByPath("refs/remotes/origin/master");
 
-        const resolved = await r.resolveRef(head) as gittypes.GitBranchRef;
+        const resolved = await r.resolveRef(head) as gittypes.Ref.Branch
 
-        expect(resolved.type).toEqual(gittypes.RefType.BRANCH);
+        expect(resolved.type).toEqual(gittypes.Ref.Type.BRANCH);
         expect(resolved.destCommit).toEqual("414c5870b27970db0fa7762148adb89eb07f1fe0");
     });
 
     it("resolves ref: shallow tag", async () => {
         const tag = await r.getRefByPath("refs/tags/shallow-tag");
-        const resolved = await r.resolveRef(tag) as gittypes.GitTagRef;
+        const resolved = await r.resolveRef(tag) as gittypes.Ref.Tag;
 
-        expect(resolved.type).toEqual(gittypes.RefType.TAG);
+        expect(resolved.type).toEqual(gittypes.Ref.Type.TAG);
         expect(resolved.destObj).toEqual("12332089f2cda3c00311710af2b84d70d6d0f46c");
     });
 
     it("resolves ref: annotated tag", async () => {
         const tag = await r.getRefByPath("refs/tags/v0.3.2");
 
-        const resolved = await r.resolveRef(tag) as gittypes.GitAtagRef;
+        const resolved = await r.resolveRef(tag) as gittypes.Ref.Atag;
 
-        expect(resolved.type).toEqual(gittypes.RefType.ATAG);
+        expect(resolved.type).toEqual(gittypes.Ref.Type.ATAG);
         expect(resolved.destObj).toEqual("414c5870b27970db0fa7762148adb89eb07f1fe0");
-        expect(resolved.destType).toEqual(gittypes.ObjType.COMMIT);
+        expect(resolved.destType).toEqual(gittypes.Obj.Type.COMMIT);
     });
 
+    it("reads reflog: HEAD", async () => {
+        const reflog = await r.readReflog("HEAD");
+        expect(reflog).toEqual([
+            {
+                "at": { "tz": "+0900", "utc_sec": 1485178383 },
+                "by": { "email": "momocraft@gmail.com", "name": "Wang Guan" },
+                "desc": "clone: from https://github.com/gagern/node-libtidy.git",
+                "from": "0000000000000000000000000000000000000000", "to": "414c5870b27970db0fa7762148adb89eb07f1fe0"
+            }]);
+    });
+
+    it("reads reflog: non-exist", async () => {
+        const reflog = await r.readReflog('empty');
+        expect(reflog.length).toEqual(0);
+    });
+
+    it("resolves annotated tag to commit", async () => {
+        const ref = await r.getRefByPath("refs/tags/v0.3.2") as gittypes.Ref.Unknown;
+        const tag = await r.resolveRef(ref) as gittypes.Ref.Tag;
+        expect(tag.destObj).toEqual('414c5870b27970db0fa7762148adb89eb07f1fe0');
+
+        const last = await r.resolveTag(tag);
+        expect(last.type).toEqual(gittypes.Obj.Type.COMMIT);
+        expect(last.sha1).toEqual('414c5870b27970db0fa7762148adb89eb07f1fe0');
+    });
+
+    it("resolves (nested) annotated tag to commit", async () => {
+        const ref = await r.getRefByPath("refs/tags/nested-atag") as gittypes.Ref.Unknown;
+        const tag = await r.resolveRef(ref) as gittypes.Ref.Tag;
+        expect(tag.destObj).toEqual('1fa95ee88a69f541f8c6b50bffe8bd4b131886c0');
+
+        const last = await r.resolveTag(tag);
+        expect(last.type).toEqual(gittypes.Obj.Type.COMMIT);
+        expect(last.sha1).toEqual('12332089f2cda3c00311710af2b84d70d6d0f46c');
+    });
+
+
+    it("resolves annotated tag to blob", async () => {
+        const ref = await r.getRefByPath("refs/tags/atag-to-blob") as gittypes.Ref.Unknown;
+        const tag = await r.resolveRef(ref) as gittypes.Ref.Tag;
+        expect(tag.destObj).toEqual('0e25bed4707ad850bde6b7dc6ea94c30714c087b');
+
+        const last = await r.resolveTag(tag);
+        expect(last.type).toEqual(gittypes.Obj.Type.BLOB);
+        expect(last.sha1).toEqual('0e25bed4707ad850bde6b7dc6ea94c30714c087b');
+    });
+
+    it("resolved shallow-tag to commit", async () => {
+        const ref = await r.getRefByPath("refs/tags/shallow-tag") as gittypes.Ref.Unknown;
+        const tag = await r.resolveRef(ref) as gittypes.Ref.Tag;
+        expect(tag.destObj).toEqual('12332089f2cda3c00311710af2b84d70d6d0f46c');
+
+        const last = await r.resolveTag(tag);
+        expect(last.type).toEqual(gittypes.Obj.Type.COMMIT);
+        expect(last.sha1).toEqual('12332089f2cda3c00311710af2b84d70d6d0f46c');
+    });
 
     //     @test
     //     async readAllObjects1() {
