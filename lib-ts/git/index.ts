@@ -3,4 +3,4 @@
  * not using node-bindings: they are too huge and inconvient w/ electron
  */
 
-export { openRepo } from './repo'
+export { findRepo, openRepo, GitRepo } from './repo'

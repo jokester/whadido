@@ -245,9 +245,9 @@ describe("git reader", () => {
     // a node-libtidy repo included for test
     const devRepoRoot = path.join(__dirname, '..', '..', 'test', 'node-libtidy.git');
     const devRepoStart = repo.findRepo(path.join(devRepoRoot, "hooks"));
-    let devRepo: repo.GitRepo;
+    let devRepo: repo.GitRepoImpl;
 
-    let r: repo.GitRepo;
+    let r: repo.GitRepoImpl;
 
     const expectedUnpackedRefs = [
         {
@@ -278,7 +278,7 @@ describe("git reader", () => {
     ];
 
     beforeEach(async () => {
-        devRepo = await repo.openRepo(devRepoRoot) as any as repo.GitRepo;
+        devRepo = await repo.openRepo(devRepoRoot) as any as repo.GitRepoImpl;
         r = await devRepo;
     });
 

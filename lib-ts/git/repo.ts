@@ -32,9 +32,9 @@ function sortRefByPath(a: Ref.Unknown, b: Ref.Unknown) {
  * @param {string} [gitBinary="git"]
  * @returns {Promise<GitRepo>}
  */
-export async function openRepo(start: string, gitBinary = "git"): Promise<IGitRepo> {
+export async function openRepo(start: string, gitBinary = "git"): Promise<GitRepo> {
     const repoRoot = await findRepo(start, gitBinary);
-    return new GitRepo(repoRoot, gitBinary);
+    return new GitRepoImpl(repoRoot, gitBinary);
 }
 
 /**
@@ -69,7 +69,7 @@ export type ResolvedRef = Ref.Tag | Ref.Atag | Ref.Head | Ref.Branch;
  *
  * @interface IGitRepo
  */
-interface IGitRepo {
+export interface GitRepo {
     // normally `.git`
     readonly repoRoot: string;
 
@@ -183,7 +183,7 @@ class ObjReader {
 /**
  *
  */
-export class GitRepo implements IGitRepo {
+export class GitRepoImpl implements GitRepo {
 
     private readonly catRawObj: ResourceHolder<ChildProcess>;
 
