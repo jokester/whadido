@@ -2,60 +2,75 @@
   "name": "whadido",
   "version": "0.1.0",
   "description": "Analyze and visualize recent operations in local git repository.",
-  "main": "app/electron-main.js",
+  "main": "index.js",
   "scripts": {
     "start": "node_modules/.bin/electron .",
     "start:ts": "ts-node lib-ts/index.ts",
-    "build": "tsc",
-    "rebuild": "rm -v lib/*.js lib/**/*.js && tsc",
-    "build:watch": "tsc --watch",
-    "test:ts": "    mocha --opts mocha-ts.opts || true",
-    "test": "tsc && mocha --opts mocha-js.opts || true",
-    "dev": "concurrently --kill-others -p '[{name}@{time}]' -n \"tsc,electron\" \"tsc --watch\" \"electron .\" || true"
+    "build": "      rm -rf lib/* && tsc",
+    "build:watch": "rm -rf lib/* && tsc --watch",
+    "test": "         npm run build && jest --forceExit",
+    "test:coverage": "npm run build && jest --forceExit --coverage",
+    "test:watch": "   npm run build && jest --forceExit --watch",
+    "tslint": "tslint -c tslint.json ts-lib/**/*.ts"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/jokester/GitWidget.git"
+    "url": "git+https://github.com/jokester/whadido.git"
   },
   "keywords": [
-    "nodejs",
-    "TypeScript",
+    "visualization",
     "git"
   ],
   "author": "Wang Guan <momocraft@gmail.com>",
   "license": "MIT",
   "private": true,
   "bugs": {
-    "url": "https://github.com/jokester/GitWidget/issues"
+    "url": "https://github.com/jokester/whadido/issues"
   },
   "engines": {
     "node": ">= 6.0.0"
   },
-  "homepage": "https://github.com/jokester/GitWidget#readme",
+  "homepage": "https://github.com/jokester/whadido#readme",
   "dependencies": {
-    "electron": "^1.4.8",
-    "fs-promise": "^1.0.0",
-    "react": "^15.4.1",
-    "react-dom": "^15.4.1",
-    "react-redux": "^4.4.6",
-    "recursive-readdir": "^1.2.1",
-    "redux": "^3.6.0",
-    "tslib": "^1.5.0"
+    "fs-promise": "^2.0.3",
+    "recursive-readdir": "^2.2.1",
+    "tslib": "^1.6.0"
   },
   "devDependencies": {
-    "@types/chai": "^3.4.34",
+    "@types/chai": "^3.5.0",
     "@types/fs-promise": "^1.0.1",
-    "@types/node": "^6.0.60",
-    "@types/react": "^0.14.50",
-    "@types/react-dom": "^0.14.19",
-    "@types/react-redux": "^4.4.33",
-    "@types/recursive-readdir": "^1.2.28",
-    "@types/redux": "^3.6.31",
+    "@types/jest": "^19.2.2",
+    "@types/node": "^7.0.22",
     "chai": "^3.5.0",
-    "concurrently": "^3.1.0",
-    "mocha": "^3.2.0",
-    "mocha-typescript": "^1.0.15",
-    "ts-node": "^2.0.0",
-    "typescript": "^2.1.5"
+    "jest": "^20.0.4",
+    "ts-jest": "^20.0.4",
+    "ts-node": "^3.0.2",
+    "tslint": "^5.1.0",
+    "typescript": "^2.3.0"
+  },
+  "jest": {
+    "transform": {
+      ".(ts|tsx)": "<rootDir>/node_modules/ts-jest/preprocessor.js"
+    },
+    "roots": [
+      "lib-ts",
+      "lib"
+    ],
+    "testMatch": [
+      "**/*\\.(spec|test)\\.(ts|js|tsx|jsx)"
+    ],
+    "moduleFileExtensions": [
+      "ts",
+      "tsx",
+      "js",
+      "jsx"
+    ],
+    "mapCoverage": true,
+    "coverageReporters": [
+      "json",
+      "lcov",
+      "text",
+      "html"
+    ]
   }
 }

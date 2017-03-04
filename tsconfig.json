@@ -1,7 +1,7 @@
 {
     "compilerOptions": {
         "target": "es6",
-        "noImplicitAny": true,
+        "noImplicitAny": false,
         "experimentalDecorators": true,
         "outDir": "lib",
         "rootDir": "lib-ts",

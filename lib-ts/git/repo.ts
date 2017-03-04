@@ -1,19 +1,28 @@
-import { join, relative } from 'path';
+import * as path from "path";
+
+// import { join, relative } from 'path';
 import { spawn, ChildProcess } from 'child_process';
 
-import { readFile, exists } from 'fs-promise';
-import * as readdir from 'recursive-readdir';
-
-import { GitRef, RefType, GitObject, ObjType, GitObjectData } from './rawtypes';
+import { Ref, Obj, Annotation, RefLog } from './types';
 import * as parser from './parser';
-import * as reader from './reader';
-import {
-    getSubprocessOutput,
-} from './subprocess';
 import {
     MutexResource, MutexResourcePool, ResourceHolder,
-    chunkToLines, deprecate,
+    chunkToLines, deprecate, ArrayM
 } from '../util';
+import * as io from '../util/io';
+import { getSubprocessOutput } from '../util/subprocess';
+
+export class GitRepoException extends Error { }
+
+
+function sortRefByPath(a: Ref.Unknown, b: Ref.Unknown) {
+    if (a.path > b.path)
+        return 1;
+    else if (a.path < b.path)
+        return -1;
+    return 0;
+};
+
 
 /**
  * open git repo
@@ -23,7 +32,8 @@ import {
  * @param {string} [gitBinary="git"]
  * @returns {Promise<GitRepo>}
  */
-export function openRepo(repoRoot: string, gitBinary = "git"): GitRepo {
+export async function openRepo(start: string, gitBinary = "git"): Promise<IGitRepo> {
+    const repoRoot = await findRepo(start, gitBinary);
     return new GitRepo(repoRoot, gitBinary);
 }
 
@@ -39,7 +49,7 @@ export async function findRepo(start: string, gitBinary = "git") {
 
     // `git rev-parse --git-dir` prints path of $PWD
     const status = await getSubprocessOutput(gitBinary,
-        ["rev-parse", "--git-dir"],
+        ["rev-parse", "--absolute-git-dir"],
         { cwd: start }
     );
 
@@ -49,50 +59,48 @@ export async function findRepo(start: string, gitBinary = "git") {
             return l;
     }
 
-    throw new Error(`findGitRepo: cannot find git repo for ${start}. got ${JSON.stringify(status)} from 'git rev-parse'`);
+    throw new GitRepoException(`findGitRepo(): cannot find git repo for ${start}. got ${JSON.stringify(status)} from 'git rev-parse'`);
 }
 
+export type ResolvedRef = Ref.Tag | Ref.Atag | Ref.Head | Ref.Branch;
+
 /**
- * List (normally REPO/refs)
- * 
- * @export
- * @returns {Promise<string[]>} absolute path of ref files
+ * Public interface for GitRepo
+ *
+ * @interface IGitRepo
  */
-export function listRefFiles(start: string): Promise<string[]> {
-    return new Promise<string[]>((fulfill, reject) => {
-        readdir(start, (err, files) => {
-            if (err)
-                reject(err);
-            else
-                fulfill(files);
-        });
-    });
+interface IGitRepo {
+    // normally `.git`
+    readonly repoRoot: string;
+
+    listRefs(): Promise<Ref.Unknown[]>;
+
+    /**
+     * resolve ref by 1 level
+     */
+    resolveRef(refpath: Ref.Unknown): Promise<ResolvedRef>;
+
+    /**
+     * walks from a ref, until a non-ref object is found
+     */
+    resolveTag(ref: Ref.Tag | Ref.Atag): Promise<Obj.Object>;
+
+    readObj(sha1: string): Promise<Obj.Object>;
+    /**
+     * read reflog of a specified ref
+     */
+    readReflog(refpath: string): Promise<RefLog[]>;
 }
 
 /**
- * read lines from a file
- * 
- * @param {string} filename
- * @returns {Promise<string[]>}
- */
-async function readLines(filename: string): Promise<string[]> {
-    return (await readFile(filename, { encoding: "utf-8" })).split("\n");
-}
-
-type ResolvedRef = (GitRef | GitObject)[];
-
-// refs indexed by name
-type RefDict = { [refpath: string]: GitRef }
-
-/**
- * Receive a series of chunks
+ * Receive a series of chunks (from output of git cat-)
  */
 class ObjReader {
     private readonly chunks: Buffer[] = [];
     private metadataSize = 0;
     private objSize = 0;
     private currentProgress = 0;
-    private objType: ObjType;
+    private objType: Obj.Type;
     private objFullname: string;
 
     constructor(readonly name: string) { }
@@ -102,7 +110,6 @@ class ObjReader {
      *
      * @param {Buffer} chunk a chunk emitted from stdout of `git cat-file --batch` object
      * @returns {boolean} whether reading is complete
-     * @throws {Error} if the object cannot be found
      *
      * @memberOf ObjReader
      */
@@ -119,12 +126,12 @@ class ObjReader {
         return (this.currentProgress >= (this.objSize + this.metadataSize));
     }
 
-    getObj(): GitObjectData {
+    getObj(): Obj.ObjectData {
 
         return {
             type: this.objType,
             sha1: this.objFullname,
-            data: (this.objType === ObjType.COMMIT || this.objType === ObjType.ATAG) ? this.mergeBuffer() : null,
+            data: (this.objType === Obj.Type.COMMIT || this.objType === Obj.Type.ATAG) ? this.mergeBuffer() : null,
         };
     }
 
@@ -149,16 +156,16 @@ class ObjReader {
         // first non-empty line
         const metadataLine = maybeMetadata.find(l => !!l);
         if (!metadataLine) {
-            throw new Error(`metadata not found: ${JSON.stringify(firstChunk)} / ${JSON.stringify(chunkToLines(firstChunk))}`);
+            throw new GitRepoException(`metadata not found: ${JSON.stringify(firstChunk)} / ${JSON.stringify(chunkToLines(firstChunk))}`);
         } else if (parser.PATTERNS.raw_object.missing.exec(metadataLine)) {
-            throw new Error(`object ${JSON.stringify(this.name)} is missing`);
+            throw new GitRepoException(`object ${JSON.stringify(this.name)} is missing`);
         }
 
-        // FIXME check whether sha1/name is ambigious (may happen in huge repo)
+        // FIXME: maybe we should check whether sha1/name is ambigious (may happen in huge repo)
 
         const matched = parser.PATTERNS.raw_object.metadata.exec(metadataLine);
         if (!matched) {
-            new Error(`metadata not recognized: ${JSON.stringify(metadataLine)}`);
+            new GitRepoException(`metadata not recognized: ${JSON.stringify(metadataLine)}`);
         }
 
         // +1 for the \n of metadata line
@@ -168,7 +175,7 @@ class ObjReader {
         this.objFullname = matched[1];
         this.objType = parser.ObjTypeMappings[matched[2]];
         if (!this.objType) {
-            throw new Error(`object type not recognized: ${matched[2]}`);
+            throw new GitRepoException(`object type not recognized: '${matched[2]}'`);
         }
     }
 }
@@ -176,7 +183,7 @@ class ObjReader {
 /**
  *
  */
-export class GitRepo {
+export class GitRepo implements IGitRepo {
 
     private readonly catRawObj: ResourceHolder<ChildProcess>;
 
@@ -213,7 +220,7 @@ export class GitRepo {
         this.catRawObj.queue((release, proc) => {
             proc.kill();
             release();
-        })
+        });
     }
 
     /**
@@ -223,67 +230,175 @@ export class GitRepo {
      * 
      * @memberOf GitRepo
      */
-    async listRefs(): Promise<GitRef[]> {
-        // FIXME can fewer await improve performance?
-        const packed = await this.readPackedRefs();
-        const nonpacked = await this.readNonpackedRef();
-        const localHead = await this.readLocalHead();
-        return ([localHead]).concat(packed).concat(nonpacked);
+    async listRefs(): Promise<Ref.Unknown[]> {
+        const localHead = this.readLocalHead();
+        const packed = this.readPackedRefs();
+        const unpacked = this.readUnpackedRefs();
+        return ([await localHead]).concat(await packed).concat(await unpacked).sort(sortRefByPath);
     }
 
     /**
-     * Resolve ref until a non-ref object
+     * Resolve ref by 1 level
      * 
      * @param {GitRef} ref
-     * @returns {Promise<ResolvedRef>} The array for resolved ref.
-     * The last object in array will be a non-ref object (e.g. commit/tree/blob)
      * 
      * @memberOf GitRepo
      */
-    async resolveRef(ref: GitRef): Promise<ResolvedRef> {
-        if (parser.isRefSymDest(ref.dest)) {
-            const next = await this.getRefByPath(ref.dest);
-            return ([ref] as any[]).concat(await this.resolveRef(next));
-        } else if (parser.isCommitSHA1) {
-            // const next = 
+    async resolveRef(ref: Ref.Unknown): Promise<ResolvedRef> {
+        switch (ref.type) {
+            case Ref.Type.HEAD:
+                return this.resolveRef$head(ref);
+            case Ref.Type.BRANCH:
+                return this.resolveRef$branch(ref);
+            case Ref.Type.UNKNOWN_TAG:
+                return this.resolveRef$unknown_tag(ref);
+            // tag / atag is not supported
+            // user should resolve that by hand, with readObj()
         }
-        return []
+        throw new GitRepoException(`resolveRef: cannot resolve ref: ${JSON.stringify(ref)}`);
     }
 
-    async getRefByPath(path: string): Promise<GitRef> {
+    async getRefByPath(path: string): Promise<Ref.Unknown> {
         const refs = await this.listRefs();
         for (const r of refs) {
             if (r.path === path)
                 return r;
         }
-        throw new Error(`getRefByPath: failed to found refs for ${path}. Had ${JSON.stringify(refs)}`);
+        throw new GitRepoException(`getRefByPath: failed to found refs for ${path}. Had ${JSON.stringify(refs)}`);
+    }
+
+    /**
+     * Resolves a HEAD ref:
+     * - head > branch > commit
+     * - head > commit
+     * reject if not recognized
+     * @param ref
+     */
+    async resolveRef$head(ref: Ref.Unknown): Promise<Ref.Head> {
+        if (parser.isSHA1(ref.dest)) {
+            const destObj = await this.readObject(ref.dest);
+            if (destObj.type === Obj.Type.COMMIT) {
+                const head: Ref.Head = Object.assign({}, ref, { destCommit: destObj.sha1 });
+                return head;
+            }
+        }
+
+        if (parser.isDestBranch(ref.dest)) {
+            const destBranch = await this.getRefByPath(ref.dest);
+            const head: Ref.Head = Object.assign({}, ref, { destBranch: ref.dest });
+            return head;
+        }
+
+        throw new Error(`resolveRef$head: HEAD not recognized: ${JSON.stringify(ref)}`);
+    }
+
+    /**
+     * Resolves a branch ref:
+     * - branch > commit
+     */
+    async resolveRef$branch(ref: Ref.Unknown): Promise<Ref.Branch> {
+        if (parser.isSHA1(ref.dest)) {
+            const commit = await this.readObject(ref.dest);
+            if (ref.type === Ref.Type.BRANCH && commit.type === Obj.Type.COMMIT) {
+                const branch: Ref.Branch = Object.assign({}, ref, { destCommit: commit.sha1 });
+                return branch;
+            }
+        }
+
+        throw new Error(`resolveRef$branch: branch not recognized: ${JSON.stringify(ref)}`);
+    }
+
+
+    /**
+     * A non-annotated tag must point to a commit.
+     * Technically a shallow tag can point to any object, we are not supporting this.
+     *
+     * @param {Ref.Unknown} ref
+     * @returns {Promise<Ref.GitAtagRef | Ref.GitTagRef>}
+     *
+     * @memberof GitRepo
+     */
+    async resolveRef$unknown_tag(ref: Ref.Unknown): Promise<Ref.Atag | Ref.Tag> {
+        const destObj = await this.readObject(ref.dest);
+
+        if (destObj.type === Obj.Type.ATAG) {
+            // a annotated tag
+            return this.resolveRef$atag(ref);
+        } else {
+            // a shallow tag
+            return this.resolveRef$tag(ref);
+        }
+    }
+
+    /**
+     * A non-annotated tag must point to a commit.
+     * Technically a shallow tag can point to any object, we are not supporting this.
+     *
+     * @param {Git.GitRef} ref
+     * @returns {Promise<Git.GitTagRef>}
+     *
+     * @memberof GitRepo
+     */
+    async resolveRef$tag(ref: Ref.Unknown): Promise<Ref.Tag> {
+        const destObj = await this.readObject(ref.dest);
+        const newRef: Ref.Tag = Object.assign({}, ref, { type: Ref.Type.TAG, destObj: ref.dest });
+        return newRef;
+    }
+
+    async resolveRef$atag(ref: Ref.Unknown): Promise<Ref.Atag> {
+        const atagObj = await this.readObject(ref.dest);
+
+        if (Obj.isAnnotatedTag(atagObj)) {
+            const nextObj = await this.readObject(atagObj.dest);
+
+            const annoContent: Annotation = {
+                sha1: atagObj.sha1,
+                by: atagObj.tagger,
+                message: atagObj.message,
+                at: atagObj.tagged_at,
+            }
+
+            const annotatedRef: Ref.Atag = {
+                dest: atagObj.sha1,
+                destObj: atagObj.dest,
+                destType: atagObj.destType,
+                path: ref.path,
+                type: Ref.Type.ATAG,
+                annotation: annoContent,
+            }
+
+            return annotatedRef;
+        }
+
+        throw new GitRepoException("resolveRef$atag(): destObj is not atag");
+    }
+
+    /**
+     * Local
+     */
+    async readLocalHead(): Promise<Ref.Head> {
+        const filename = path.join(this.repoRoot, "HEAD");
+        const lines = await io.readLines(filename);
+        return parser.parseHEAD(lines[0]);
     }
 
     /**
      * Read packed refs
      * 
-     * @private
      * @returns {Promise<GitRef[]>} array of packed refs
      * 
      * @memberOf GitRepo
+     *
      */
-    private async readPackedRefs(): Promise<GitRef[]> {
-        const filename = join(this.repoRoot, 'packed-refs');
+    async readPackedRefs(): Promise<Ref.Unknown[]> {
+        const filename = path.join(this.repoRoot, 'packed-refs');
         try {
-            const lines = (await readFile(filename, { encoding: "utf-8" })).split("\n");
-            return parser.parsePackedRef(lines);
+            const lines = await io.readLines(filename);
+            const got = parser.parsePackedRef(lines);
+            return got;
         } catch (e) {
-            return [] as GitRef[];
+            return [];
         }
-    }
-
-    /**
-     * Local 
-     */
-    private async readLocalHead(): Promise<GitRef> {
-        const filename = join(this.repoRoot, "HEAD");
-        const lines = (await readFile(filename, { encoding: "utf-8" })).split("\n");
-        return parser.parseHEAD(lines[0]);
     }
 
     /**
@@ -294,16 +409,16 @@ export class GitRepo {
      * 
      * @memberOf GitRepo
      */
-    private async readNonpackedRef(): Promise<GitRef[]> {
+    async readUnpackedRefs(): Promise<Ref.Unknown[]> {
         const PATTERNS = parser.PATTERNS;
-        const start = join(this.repoRoot, 'refs');
-        const refFiles = await listRefFiles(start);
-        const found = [] as GitRef[];
+        const start = path.join(this.repoRoot, 'refs');
+        const refFiles = await io.recursiveReadDir(start);
+        const found = [] as Ref.Unknown[];
 
         for (const f of refFiles) {
             // relative path like `refs/heads/...`
-            const fRelative = relative(this.repoRoot, f);
-            const lines = await readLines(f);
+            const fRelative = path.relative(this.repoRoot, f);
+            const lines = await io.readLines(f);
 
             if (PATTERNS.refpath.remote_head.exec(fRelative)) {
                 const p = parser.parseHEAD(lines[0], fRelative);
@@ -318,11 +433,11 @@ export class GitRepo {
                 const p = parser.parseTag(lines[0], fRelative);
                 found.push(p);
             } else {
-                throw new Error(`failed to parse ref: '${fRelative}'`);
+                throw new Error(`failed to parse ref file: '${fRelative}'`);
             }
         }
 
-        return found;
+        return found.sort(sortRefByPath);
     }
 
     /**
@@ -333,19 +448,22 @@ export class GitRepo {
      *
      * @memberOf GitRepo
      */
-    async readObject(sha1: string): Promise<GitObject> {
+    async readObject(sha1: string): Promise<Obj.Object> {
         const objRaw = await this.readObjRaw(sha1);
         switch (objRaw.type) {
-            case ObjType.COMMIT:
+            case Obj.Type.COMMIT:
                 return parser.parseCommit(objRaw.sha1, chunkToLines(objRaw.data));
-            case ObjType.ATAG:
+            case Obj.Type.ATAG:
                 return parser.parseAnnotatedTag(objRaw.sha1, chunkToLines(objRaw.data));
-            case ObjType.BLOB:
-            case ObjType.TREE:
+            case Obj.Type.BLOB:
+            case Obj.Type.TREE:
                 return { type: objRaw.type, sha1: sha1 };
-            default:
-                throw new Error(`objType not recognized: ${objRaw.type}`);
         }
+        throw new Error(`objType not recognized: ${objRaw.type}`);
+    }
+
+    readObj(sha1: string) {
+        return this.readObject(sha1);
     }
 
     /**
@@ -356,10 +474,10 @@ export class GitRepo {
      *
      * @memberOf GitRepo
      */
-    async readObjRaw(sha1: string): Promise<GitObjectData> {
+    async readObjRaw(sha1: string): Promise<Obj.ObjectData> {
         const objReader = new ObjReader(sha1);
 
-        return new Promise<GitObjectData>((fulfill, reject) => {
+        return new Promise<Obj.ObjectData>((fulfill, reject) => {
             this.catRawObj.queue((release, child) => {
 
                 const finish = () => {
@@ -390,7 +508,28 @@ export class GitRepo {
         });
     }
 
-    watchRefs(callback: Function) {
+    /**
+     * read reflog of a ref (branch or head)
+     */
+    async readReflog(refpath: string): Promise<RefLog[]> {
+        const reflog_path = path.join(this.repoRoot, 'logs', refpath);
+        try {
+            const lines = await io.readLines(reflog_path);
+            return lines.filter(line => !!line).map(parser.parseReflog);
+        } catch (e) {
+            return [];
+        }
+    }
 
+    async resolveTag(tag: Ref.Tag | Ref.Atag): Promise<Obj.Object> {
+        let sha1 = tag.destObj;
+        while(true) {
+            const obj = await this.readObj(sha1);
+            if (Obj.isAnnotatedTag(obj)) {
+                sha1 = obj.dest;
+            } else {
+                return obj;
+            }
+        }
     }
 }

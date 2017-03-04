@@ -1,8 +1,8 @@
 # whadido
 
-Analyze and visualize recent operations in a local git repository.
+Recover recent operations in a git repository.
 
-Have you been asking *what did i do?* on a shiny Monday morning? If so, whadido is made for you.
+Have you been asking yourself *what did i do?* on a shiny Monday morning? If so, whadido is made for you.
 
 > What did I do?
 > What are you doing?
@@ -18,7 +18,7 @@ Have you been asking *what did i do?* on a shiny Monday morning? If so, whadido 
 
 ## How does it work?
 
-*whadido* recovers what happened by analyzing reflogs and branches / tags / commits.
+*whadido* analyze recovers what happened by analyzing reflogs and branches / tags / commits.
 
 (It only reads from local file and make no modification, don't be nervous.)
 
@@ -30,17 +30,11 @@ $ npm install -g whadido
 
 ## Development
 
-Contribution is always welcome :)
+Issues / PRs are always welcome :) .
 
-```
-lib-ts/git          git reader
-lib-ts/model        analyze
-lib-ts/ui
-lib-ts/util
-lib-ts/_test_
-```
+See `FILES.md` for code structure.
 
-Based on my [typescript-boilerplate](https://github.com/jokester/typescript-boilerplate).
+Based on [typescript-boilerplate](https://github.com/jokester/typescript-boilerplate)
 
 ## License
 
