@@ -157,16 +157,24 @@ export class MutexResource<T> implements ResourceHolder<T> {
         /** whether release() for this task get called */
         let released = false;
 
-        process.nextTick(firstTask,
-            () => {
-                if (released)
-                    throw new Error(`release() for this task have been called`);
-                this.locked = false;
-                released = true;
+        const release = () => {
+            if (released)
+                throw new Error(`release() for this task have been called`);
+            this.locked = false;
+            released = true;
 
-                if (this.taskQueue.length)
-                    process.nextTick(() => this.runQueue());
-            },
-            this.res);
+            if (this.taskQueue.length)
+                process.nextTick(() => this.runQueue());
+        };
+
+        process.nextTick(
+            () => {
+                try {
+                    firstTask(release, this.res);
+                } finally {
+                    if (!released)
+                        release();
+                }
+            });
     }
 }
