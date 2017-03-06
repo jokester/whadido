@@ -10,8 +10,9 @@ import { DeepReadonly, freeze } from '../util';
  */
 type SHA1 = string
 
-
-
+/**
+ * "Object": anything that have a SHA1 hash
+ */
 export namespace Obj {
     export const enum Type {
         COMMIT = 1,
@@ -20,9 +21,6 @@ export namespace Obj {
         BLOB,
     }
 
-    /**
-     * "Object": anything that have a SHA1 hash
-     */
     interface ObjectMutable {
         type: Type
         sha1: SHA1
@@ -34,7 +32,6 @@ export namespace Obj {
      * Object with raw data loaded
      */
     export type ObjectData = Readonly<ObjectMutable & { data: Buffer }>
-
 
     interface CommitMutable extends ObjectMutable {
         author: Human
@@ -65,7 +62,6 @@ export namespace Obj {
     export function isAnnotatedTag(obj: Object): obj is ATag {
         return obj.type === Type.ATAG;
     }
-
 }
 
 export namespace Ref {
@@ -181,76 +177,4 @@ export interface Annotation {
     readonly by: Human
     readonly message: string[]
     readonly at: Timestamp
-}
-
-module Unused {
-
-    // /**
-    //  * GitTag: a plain (non-annotated) tag
-    //  *
-    //  * NOTE technically a plain tag can point to a non-commit object
-    //  */
-    // export interface GitTag<T extends GitRef<any> | GitObject> extends GitRef<T> {
-    //     readonly type: RefType
-    //     readonly name: string
-
-    //     /**
-    //      * NOTE "dest" can actually be ANY git object, not limited to commit.
-    //      * This holds for even plain (non-annotated) tag
-    //      */
-    //     readonly dest: T;
-    // }
-
-    // /**
-    //  * Annotated tag (`git tag -a`)
-    //  * NOTE "dest" field of a annotated tag is actually an object for the object itself
-    //  */
-    // export class GitAnnotatedTag extends GitTag {
-    //     /**
-    //      * annotation: only exists in annotated tag
-    //      */
-    //     readonly annotation?: GitTagAnnotation
-    //     constructor(name: string, dest: SHA1, annotation: GitTagAnnotation) {
-    //         super(name, dest);
-    //         this.annotation = annotation;
-    //     }
-    // }
-
-
-
-
-    // /**
-    //  * HEAD that points to a branch
-    //  */
-    // export interface GitHead implements GitRef {
-    //     readonly type = RefType.HEAD
-    //     readonly name: string
-
-    //     /**
-    //      * dest: a commit or a branch
-    //      */
-    //     readonly dest: string
-    // constructor(name: string, dest_name: string) {
-    //     this.name = name;
-    //     this.dest = dest_name;
-    // }
-    // }
-
-    // /**
-    //  * 'Bare' head: points to a commit instead of branch
-    //  */
-    // export class GitBareHead implements GitRef {
-    //     readonly type = RefType.HEAD
-    //     readonly name: string
-    //     /**
-    //      * dest_commit: sha1 for commit
-    //      */
-    //     readonly dest_commit: SHA1
-    //     constructor(name: string, dest_commit: SHA1) {
-    //         this.name = name;
-    //         this.dest_commit = dest_commit;
-    //     }
-    // }
-
-
 }
