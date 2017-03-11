@@ -1,8 +1,8 @@
-import { expect } from 'chai';
+import { expect } from "chai";
 
-import { ExclusiveTask, MutexResource } from '../util/mutex';
-import { SingleThreadedLRU } from '../util/lru';
-import { } from '../util/type';
+import { ExclusiveTask, MutexResource } from "../util/mutex";
+import { SingleThreadedLRU } from "../util/lru";
+import { } from "../util/type";
 
 describe("", () => {
     it("provides mutex", () => {

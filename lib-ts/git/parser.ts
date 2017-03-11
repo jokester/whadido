@@ -3,15 +3,15 @@
  */
 import {
     Obj, Ref, Timestamp, Human, RefLog
-} from './types';
-import { isTruthy, deepFreeze, freeze, ArrayM } from '../util';
+} from "./types";
+import { isTruthy, deepFreeze, freeze, ArrayM } from "../util";
 
 export const ObjTypeMappings = freeze({
     commit: Obj.Type.COMMIT,
     tag: Obj.Type.ATAG,
     blob: Obj.Type.BLOB,
     tree: Obj.Type.TREE,
-} as { [type: string]: Obj.Type })
+} as { [type: string]: Obj.Type });
 
 export const PATTERNS = freeze({
     refpath: freeze({
@@ -83,7 +83,7 @@ export function parseDate(dateStr: string): Timestamp {
     return {
         utc_sec: timestamp,
         tz: timezone
-    }
+    };
 }
 
 export function isSHA1(line: string) {
@@ -92,7 +92,7 @@ export function isSHA1(line: string) {
 
 /**
  * parse line in HEAD
- * 
+ *
  * @export
  * @param {string} line line like `ref: refs/heads/master` OR `(SHA1)`
  * @returns
@@ -105,14 +105,14 @@ export function parseHEAD(line: string, path = "HEAD"): Ref.Head {
             type: Ref.Type.HEAD,
             path: path,
             dest: match1[1]
-        }
+        };
     } else if (line.match(PATTERNS.commit_sha1)) {
         // 'bare' HEAD that points to a commit
         return {
             type: Ref.Type.HEAD,
             path: path,
             dest: line
-        }
+        };
     }
     throw new Error(`parseHEAD: failed to parse ${line} / ${path}`);
 }
@@ -166,12 +166,12 @@ export function parseAuthor(str: string): Human {
         return {
             name: match[1],
             email: match[2]
-        }
+        };
     } else {
         return {
             name: str,
-            email: ''
-        }
+            email: ""
+        };
     }
 }
 
@@ -191,12 +191,12 @@ export function parseReflog(line: string): RefLog {
         by: parseAuthor(matches[3]),
         at: parseDate(matches[4]),
         desc: matches[5]
-    }
+    };
 }
 
 /**
- * 
- * 
+ *
+ *
  * @export
  * @param {string} lines content of $GITDIR/packed-refs
  * @returns {GitRef[]}
@@ -313,5 +313,5 @@ export function parseAnnotatedTag(sha1: string, lines: string[]): Obj.ATag {
         tagged_at: tagged_at,
         name: name,
         message: message
-    }
+    };
 }

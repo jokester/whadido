@@ -1,29 +1,29 @@
-import { spawn, exec, execFile, SpawnOptions, ChildProcess } from 'child_process';
-import { chunkToLines } from '../util';
+import { spawn, exec, execFile, SpawnOptions, ChildProcess } from "child_process";
+import { chunkToLines } from "../util";
 
 /**
  * Captured output of subprocess
  */
 interface SubprocessOutput {
-    stderr: string[]
-    stdout: string[]
+    stderr: string[];
+    stdout: string[];
 }
 
 /**
  * Result after subprocess finished
  */
 interface SubprocessResult$ {
-    stderr: string[]
-    stdout: string[]
-    exit: number
-    signal: string
+    stderr: string[];
+    stdout: string[];
+    exit: number;
+    signal: string;
 }
 
 /**
  * A wrapper for node's subprocess
- * 
+ *
  * provides error detection, etc
- * 
+ *
  * (FIXME: is this ever needed?)
  */
 class SubProc {
@@ -40,7 +40,7 @@ class SubProc {
     constructor(private readonly proc: ChildProcess) {
         this.finished = new Promise<number>((fulfill, reject) => {
 
-        })
+        });
     }
 
     private result: Promise<SubprocessResult$>;
@@ -60,7 +60,7 @@ class SubProc {
 
 /**
  * spawn a subprocess and capture its stdout/stderr/return value
- * 
+ *
  * rejects if the subprocess could not be spawned
  *
  * TODO change this to a process class

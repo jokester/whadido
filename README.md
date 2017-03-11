@@ -18,9 +18,12 @@ Have you been asking yourself *what did i do?* on a shiny Monday morning? If so,
 
 ## How does it work?
 
-*whadido* analyze recovers what happened by analyzing reflogs and branches / tags / commits.
+*whadido* recovers what happened to repository by analyzing reflogs of HEAD / branches / tags / commits.
 
-(It only reads from local file and make no modification, don't be nervous.)
+## Requirements
+
+- `git` binary in `$PATH`
+- `node.js` v4 or newer (GYP is not required)
 
 ## Install
 
@@ -48,27 +51,36 @@ $ whadido .
 [2017-01-01 (3 days ago)] push branch <> to <origin>
 [2017-01-01 (3 days ago)] created 3 commits in <branch>
 
-
 ```
 
-## Help
+## Help `whadido` to recognize more operations
 
-In case whadido fails to analyze your operations, you can dump your local reflogs with `whadido --dump`, and create a GitHub issue or mail me in private.
+`whadido` uses a hand-crafted heuristics to recover operations from reflogs, which can be incomplete or incorrect.
 
-NOTE: even though this dump does not include content of commits, you are still advised to check before showing it to anyone else.
+If it fails, please consider dump your local data with `whadido --dump > dump.json`,
+and create a GitHub issue or [mail me](mailto:me@jokester.io?subject=whadido-dump) in private.
 
-Content of a dump:
+WARNING: this dump may contain potentially sensitive data.
+Please check its content before showing it to anyone else.
 
-- name of branches / tags / remote repository (not URLs of them)
-- timestamp of commit / checkout / push / fetch
-- log message of commits created by you
-- your email
+A dump *may* include:
+
+- *name* of branches / tags / remote repository
+- *sha1* of related commits
+- *timestamp* of commit / checkout / push / fetch
+- *log message* of commits created by you
+- *name and email* of git commiters
+
+A dump *does not* include:
+
+- *content* of commits, work tree and index
+- *URL* and *path* of repository
 
 ## Development
 
 Issues / PRs are always welcome :) .
 
-See `FILES.md` for code structure.
+See `FILES.md` for code structure, and `ANALYZER.md` for recover heuristics.
 
 Based on [typescript-boilerplate](https://github.com/jokester/typescript-boilerplate)
 

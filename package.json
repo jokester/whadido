@@ -11,7 +11,8 @@
     "test": "         npm run build && jest --forceExit",
     "test:coverage": "npm run build && jest --forceExit --coverage",
     "test:watch": "   npm run build && jest --forceExit --watch",
-    "tslint": "tslint -c tslint.json ts-lib/**/*.ts"
+    "tslint": "tslint -c tslint.json lib-ts/**/*.ts",
+    "tslint:fix": "tslint -c tslint.json --fix lib-ts/**/*.ts"
   },
   "repository": {
     "type": "git",

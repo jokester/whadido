@@ -1,10 +1,10 @@
-import * as fs from 'fs';
-import { Promisify } from './transforms';
-import * as $readdir from 'recursive-readdir';
+import * as fs from "fs";
+import { Promisify } from "./transforms";
+import * as $readdir from "recursive-readdir";
 
 /**
  * read lines from a (UTF-8 text) file
- * 
+ *
  * @param {string} filename
  * @returns {Promise<string[]>}
  */
@@ -40,3 +40,5 @@ export const mkdtemp = Promisify.toPromise1(fs.mkdtemp);
 export const rmdir = Promisify.toPromise1v(fs.rmdir);
 // NOTE 'rename' (and POSIX 'rename' syscall) is limited to same filesystem.
 export const rename = Promisify.toPromise2v(fs.rename);
+
+export const writeFile = Promisify.toPromise2v(fs.writeFile);

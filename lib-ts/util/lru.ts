@@ -9,11 +9,11 @@
  * NOTE all methods are "thread-safe",
  * i.e. they do no use timeout/promise/async,await,
  *      and will not run before/after function calls.
- * 
+ *
  * WARNING there may be marginal case when the key
  * conflicts with JS's builtin property names.
  * (uuid / sha / md5 should be always safe to use)
- * 
+ *
  * @export
  * @class SingleThreadedLRU
  * @template T {type} type of cached values, must be non-falsy
@@ -43,10 +43,10 @@ export class SingleThreadedLRU<T> {
     /**
      * Query if key exists in cache
      * (not mutating state in any way)
-     * 
+     *
      * @param {string} key
      * @returns {boolean} it exists
-     * 
+     *
      * @memberOf SingleThreadLRU
      */
     contain(key: string): boolean {
@@ -115,9 +115,9 @@ export class SingleThreadedLRU<T> {
 
     /**
      * Current size of values
-     * 
-     * @returns {number} recently used 
-     * 
+     *
+     * @returns {number} recently used
+     *
      * @memberOf SingleThreadedLRU
      */
     currentSize(): number {

@@ -1,6 +1,7 @@
 /**
  * A lightweight git repo reader
- * not using node-bindings: they are too huge and inconvient w/ electron
+ * not using node-bindings: they are too huge.
  */
 
-export { findRepo, openRepo, GitRepo } from './repo'
+export { findRepo, openRepo, GitRepo, ResolvedRef } from "./repo";
+export { Ref, Obj, RefLog, Annotation, Human, Timestamp } from "./types";
