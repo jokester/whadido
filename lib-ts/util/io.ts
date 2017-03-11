@@ -40,3 +40,5 @@ export const mkdtemp = Promisify.toPromise1(fs.mkdtemp);
 export const rmdir = Promisify.toPromise1v(fs.rmdir);
 // NOTE 'rename' (and POSIX 'rename' syscall) is limited to same filesystem.
 export const rename = Promisify.toPromise2v(fs.rename);
+
+export const writeFile = Promisify.toPromise2v(fs.writeFile);
