@@ -1,10 +1,10 @@
-import * as fs from 'fs';
-import { Promisify } from './transforms';
-import * as $readdir from 'recursive-readdir';
+import * as fs from "fs";
+import { Promisify } from "./transforms";
+import * as $readdir from "recursive-readdir";
 
 /**
  * read lines from a (UTF-8 text) file
- * 
+ *
  * @param {string} filename
  * @returns {Promise<string[]>}
  */

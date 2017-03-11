@@ -1,16 +1,16 @@
 import * as path from "path";
 
 // import { join, relative } from 'path';
-import { spawn, ChildProcess } from 'child_process';
+import { spawn, ChildProcess } from "child_process";
 
-import { Ref, Obj, Annotation, RefLog } from './types';
-import * as parser from './parser';
+import { Ref, Obj, Annotation, RefLog } from "./types";
+import * as parser from "./parser";
 import {
     MutexResource, MutexResourcePool, ResourceHolder,
     chunkToLines, deprecate, ArrayM
-} from '../util';
-import * as io from '../util/io';
-import { getSubprocessOutput } from '../util/subprocess';
+} from "../util";
+import * as io from "../util/io";
+import { getSubprocessOutput } from "../util/subprocess";
 
 export class GitRepoException extends Error { }
 
@@ -21,12 +21,12 @@ function sortRefByPath(a: Ref.Unknown, b: Ref.Unknown) {
     else if (a.path < b.path)
         return -1;
     return 0;
-};
+}
 
 
 /**
  * open git repo
- * 
+ *
  * @export
  * @param {string} repoRoot absolute path of root, returned by `findRepo`
  * @param {string} [gitBinary="git"]
@@ -196,14 +196,14 @@ export class GitRepoImpl implements GitRepo {
         if (1) {
             this.catRawObj = new MutexResource(
                 spawn(this.gitBinary,
-                    ['cat-file', '--batch',], { cwd: this.repoRoot }));
+                    ["cat-file", "--batch", ], { cwd: this.repoRoot }));
         } else {
             // not using pool for cat-file subprocess
             // it's almost always slower (why?)
             const v: ChildProcess[] = [];
             for (let c = 0; c < 5; c++) {
                 v.push(spawn(this.gitBinary,
-                    ['cat-file', '--batch',], { cwd: this.repoRoot }));
+                    ["cat-file", "--batch", ], { cwd: this.repoRoot }));
             }
             this.catRawObj = new MutexResourcePool(v);
         }
@@ -211,9 +211,9 @@ export class GitRepoImpl implements GitRepo {
 
     /**
      * Free all resources
-     * 
+     *
      * FIXME we may be able to replace this with a adaptive subprocess pool?
-     * 
+     *
      * @memberOf GitRepo
      */
     dispose() {
@@ -225,9 +225,9 @@ export class GitRepoImpl implements GitRepo {
 
     /**
      * list and refresh all (top-level, unresolved) refs
-     * 
+     *
      * @returns {Promise<GitRef[]>} ref
-     * 
+     *
      * @memberOf GitRepo
      */
     async listRefs(): Promise<Ref.Unknown[]> {
@@ -239,9 +239,9 @@ export class GitRepoImpl implements GitRepo {
 
     /**
      * Resolve ref by 1 level
-     * 
+     *
      * @param {GitRef} ref
-     * 
+     *
      * @memberOf GitRepo
      */
     async resolveRef(ref: Ref.Unknown): Promise<ResolvedRef> {
@@ -356,7 +356,7 @@ export class GitRepoImpl implements GitRepo {
                 by: atagObj.tagger,
                 message: atagObj.message,
                 at: atagObj.tagged_at,
-            }
+            };
 
             const annotatedRef: Ref.Atag = {
                 dest: atagObj.sha1,
@@ -365,7 +365,7 @@ export class GitRepoImpl implements GitRepo {
                 path: ref.path,
                 type: Ref.Type.ATAG,
                 annotation: annoContent,
-            }
+            };
 
             return annotatedRef;
         }
@@ -384,14 +384,14 @@ export class GitRepoImpl implements GitRepo {
 
     /**
      * Read packed refs
-     * 
+     *
      * @returns {Promise<GitRef[]>} array of packed refs
-     * 
+     *
      * @memberOf GitRepo
      *
      */
     async readPackedRefs(): Promise<Ref.Unknown[]> {
-        const filename = path.join(this.repoRoot, 'packed-refs');
+        const filename = path.join(this.repoRoot, "packed-refs");
         try {
             const lines = await io.readLines(filename);
             const got = parser.parsePackedRef(lines);
@@ -403,15 +403,15 @@ export class GitRepoImpl implements GitRepo {
 
     /**
      * Read non-packed refs
-     * 
+     *
      * @private
      * @returns {Promise<GitRef[]>}
-     * 
+     *
      * @memberOf GitRepo
      */
     async readUnpackedRefs(): Promise<Ref.Unknown[]> {
         const PATTERNS = parser.PATTERNS;
-        const start = path.join(this.repoRoot, 'refs');
+        const start = path.join(this.repoRoot, "refs");
         const refFiles = await io.recursiveReadDir(start);
         const found = [] as Ref.Unknown[];
 
@@ -487,7 +487,7 @@ export class GitRepoImpl implements GitRepo {
                     release();
                 };
 
-                child.stdout.on('data', (chunk: Buffer) => {
+                child.stdout.on("data", (chunk: Buffer) => {
                     try {
                         const finished = objReader.feed(chunk);
                         if (finished) {
@@ -514,7 +514,7 @@ export class GitRepoImpl implements GitRepo {
      * read reflog of a ref (branch or head)
      */
     async readReflog(refpath: string): Promise<RefLog[]> {
-        const reflog_path = path.join(this.repoRoot, 'logs', refpath);
+        const reflog_path = path.join(this.repoRoot, "logs", refpath);
         try {
             const lines = await io.readLines(reflog_path);
             return lines.filter(line => !!line).map(parser.parseReflog);
@@ -525,7 +525,7 @@ export class GitRepoImpl implements GitRepo {
 
     async resolveTag(tag: Ref.Tag | Ref.Atag): Promise<Obj.Object> {
         let sha1 = tag.destObj;
-        while(true) {
+        while (true) {
             const obj = await this.readObj(sha1);
             if (Obj.isAnnotatedTag(obj)) {
                 sha1 = obj.dest;

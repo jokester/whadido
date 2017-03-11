@@ -1,5 +1,5 @@
-const fs = require('fs');
-const path = require('path');
+const fs = require("fs");
+const path = require("path");
 
 /**
  *
@@ -25,11 +25,11 @@ function prettyJson(val: any) {
 }
 
 function genTmpPath(filename: string) {
-    return path.join(__dirname, '..', '..', 'tmp', filename);
+    return path.join(__dirname, "..", "..", "tmp", filename);
 }
 
 export function genTestPath(filename: string) {
-    return path.join(__dirname, '..', '..', 'test', filename);
+    return path.join(__dirname, "..", "..", "test", filename);
 }
 
 export function logAsJSON(filename: string): (v: any) => Promise<void> {
@@ -41,12 +41,12 @@ export function writeLog(filename: string, transformer: (val: any) => string) {
 }
 
 export function logError(filename: string) {
-    const abspath = path.join(__dirname, '..', '..', 'tmp', filename);
+    const abspath = path.join(__dirname, "..", "..", "tmp", filename);
     // after successful write, throw again
     return (err: any) => {
-        const message = err.toString ? err.toString() : ('' + err);
-        return writeFile(abspath, message).then(() => { throw err })
-    }
+        const message = err.toString ? err.toString() : ("" + err);
+        return writeFile(abspath, message).then(() => { throw err; });
+    };
 }
 
 export function getMatchedIndex(pattern: RegExp, against: string[]): number[] {
@@ -56,7 +56,7 @@ export function getMatchedIndex(pattern: RegExp, against: string[]): number[] {
         if (v.match(pattern)) {
             matched.push(lineNo);
         }
-    })
+    });
     return matched;
 }
 

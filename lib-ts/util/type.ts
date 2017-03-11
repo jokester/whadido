@@ -3,7 +3,7 @@ export type DeepReadonly<T> = {
 };
 
 export function deepFreeze<T>(v: T) {
-    return v as any as DeepReadonly<T>
+    return v as any as DeepReadonly<T>;
 }
 
 export function freeze<T>(v: T) {
@@ -13,4 +13,4 @@ export function freeze<T>(v: T) {
 // NOT working. I wanted a type that 'exposes' private properties / methods
 export type Exposed<T, V extends keyof T> = {
     [P in (V & keyof T)]: T[P]
-}
+};

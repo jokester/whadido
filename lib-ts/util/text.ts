@@ -1,4 +1,4 @@
-const fs = require('fs');
+const fs = require("fs");
 
 export function chunkToLines(chunk: string | Buffer) {
     return chunk.toString().split(/\r\n|\r|\n/);
@@ -11,7 +11,7 @@ export function readFile(filename: string): Promise<string> {
                 reject(err);
             else
                 resolve(content);
-        })
+        });
     });
 }
 

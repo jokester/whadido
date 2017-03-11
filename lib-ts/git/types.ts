@@ -3,12 +3,12 @@
  *
  * @copyright Wang Guan
  */
-import { DeepReadonly, freeze } from '../util';
+import { DeepReadonly, freeze } from "../util";
 
 /**
  * SHA1: 160bits / 40chars
  */
-type SHA1 = string
+type SHA1 = string;
 
 /**
  * "Object": anything that have a SHA1 hash
@@ -22,38 +22,38 @@ export namespace Obj {
     }
 
     interface ObjectMutable {
-        type: Type
-        sha1: SHA1
+        type: Type;
+        sha1: SHA1;
     }
 
-    export type Object = Readonly<ObjectMutable>
+    export type Object = Readonly<ObjectMutable>;
 
     /**
      * Object with raw data loaded
      */
-    export type ObjectData = Readonly<ObjectMutable & { data: Buffer }>
+    export type ObjectData = Readonly<ObjectMutable & { data: Buffer }>;
 
     interface CommitMutable extends ObjectMutable {
-        author: Human
-        author_at: Timestamp
-        committer: Human
-        commit_at: Timestamp
-        parent_sha1: SHA1[]
-        message: string[]
+        author: Human;
+        author_at: Timestamp;
+        committer: Human;
+        commit_at: Timestamp;
+        parent_sha1: SHA1[];
+        message: string[];
     }
 
-    export type Commit = DeepReadonly<CommitMutable>
+    export type Commit = DeepReadonly<CommitMutable>;
 
     interface ATagMutable extends ObjectMutable {
-        dest: SHA1
-        destType: Type
-        tagger: Human
-        tagged_at: Timestamp
-        name: string
-        message: string[]
+        dest: SHA1;
+        destType: Type;
+        tagger: Human;
+        tagged_at: Timestamp;
+        name: string;
+        message: string[];
     }
 
-    export type ATag = Readonly<ATagMutable>
+    export type ATag = Readonly<ATagMutable>;
 
     export function isCommit(obj: Object): obj is Commit {
         return obj.type === Type.COMMIT;
@@ -96,12 +96,12 @@ export namespace Ref {
      * A reference can be HEAD / Branch / Tag / Annotated tag
      */
     interface Base {
-        readonly path: RefPath
+        readonly path: RefPath;
 
         /**
          * NOTE: Annotated / Shallow tag cannot be deduced until the dest object is read
          */
-        readonly type: Type
+        readonly type: Type;
 
         /**
          * NOTE sha1 may not necessaryily be a commit, even for plain tag
@@ -112,7 +112,7 @@ export namespace Ref {
          * ShallowTag > dest=object (SHA1) (>real dest)
          * dest=AnnoatedTag > object (SHA1)
          */
-        readonly dest: SHA1 | RefPath
+        readonly dest: SHA1 | RefPath;
     }
 
     export interface Unknown extends Base { }
@@ -123,17 +123,17 @@ export namespace Ref {
     }
 
     export interface Branch extends Base {
-        destCommit: SHA1
+        destCommit: SHA1;
     }
 
     export interface Tag extends Base {
-        destObj: SHA1
+        destObj: SHA1;
     }
 
     export interface Atag extends Base {
-        destObj: SHA1
-        destType: Obj.Type
-        annotation: Annotation
+        destObj: SHA1;
+        destType: Obj.Type;
+        annotation: Annotation;
     }
 }
 
@@ -141,8 +141,8 @@ export namespace Ref {
  * A 'human' in git: author + email
  */
 export interface Human {
-    readonly name: string
-    readonly email: string
+    readonly name: string;
+    readonly email: string;
 }
 
 /**
@@ -151,11 +151,11 @@ export interface Human {
  * (reflog only exists for 'mutable' ref, i.e. branch / HEAD)
  */
 export interface RefLog {
-    readonly from: SHA1
-    readonly to: SHA1
-    readonly by: Human
-    readonly at: Timestamp
-    readonly desc: string
+    readonly from: SHA1;
+    readonly to: SHA1;
+    readonly by: Human;
+    readonly at: Timestamp;
+    readonly desc: string;
 }
 
 /**
@@ -165,16 +165,16 @@ export interface RefLog {
  * UI may choose to format with moment.js
  */
 export interface Timestamp {
-    readonly utc_sec: number
-    readonly tz: string
+    readonly utc_sec: number;
+    readonly tz: string;
 }
 
 /**
  * GitTagAnnotation: only exists in *annotated* tag
  */
 export interface Annotation {
-    readonly sha1: SHA1
-    readonly by: Human
-    readonly message: string[]
-    readonly at: Timestamp
+    readonly sha1: SHA1;
+    readonly by: Human;
+    readonly message: string[];
+    readonly at: Timestamp;
 }

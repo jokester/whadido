@@ -1,7 +1,7 @@
 import {
     GitRepo, ResolvedRef,
     Ref, Obj, Human, Timestamp, RefLog,
-} from '../git';
+} from "../git";
 
 export interface RefDump {
     path: string;

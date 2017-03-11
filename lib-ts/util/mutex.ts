@@ -1,6 +1,6 @@
 /**
  * A task that uses resource of type T exclusively
- * 
+ *
  * NOTE:
  *
  * 1. A task *must* call release() *once* after it no longer requires the res.
@@ -12,16 +12,16 @@
  * FIXME change params to (release, res) so as to remind caller
  */
 export interface ExclusiveTask<T> {
-    (release: () => void, res: T): void
+    (release: () => void, res: T): void;
 }
 
 export interface ResourceHolder<T> {
-    queue(task: ExclusiveTask<T>): void
+    queue(task: ExclusiveTask<T>): void;
 }
 
 export interface AdaptiveResPoolCallback<T> {
-    createRes(): T
-    disposeRes(res: T): void
+    createRes(): T;
+    disposeRes(res: T): void;
 }
 
 export class AdaptiveResPool<T> {
@@ -48,7 +48,7 @@ export class MutexResourcePool<T> implements ResourceHolder<T> {
                     this.resPool.push(r);
                     this.runQueue();
                 }, res);
-            })
+            });
         } else {
             this.taskQueue.push(task);
         }
@@ -64,7 +64,7 @@ export class MutexResourcePool<T> implements ResourceHolder<T> {
 
 /**
  * A resource manager that holds and schedules mu-exclusive task
- * 
+ *
  */
 export class MutexResource<T> implements ResourceHolder<T> {
     private readonly res: T;
@@ -141,7 +141,7 @@ export class MutexResource<T> implements ResourceHolder<T> {
                     setTimeout(() => this.runQueueSlow());
             },
             this.res);
-    };
+    }
 
     /**
      * run tasks with process.nextTick

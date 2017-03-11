@@ -34,7 +34,7 @@ export class ArrayM<T> {
         this.array.forEach((v, i) => {
             const r = action(v, i, this.array);
             result = result.concat(r);
-        })
+        });
 
         return new ArrayM(result);
     }

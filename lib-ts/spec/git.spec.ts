@@ -1,23 +1,23 @@
-import * as gittypes from '../git/types';
-import * as repo from '../git/repo';
-import * as parser from '../git/parser';
-import * as util from '../util';
+import * as gittypes from "../git/types";
+import * as repo from "../git/repo";
+import * as parser from "../git/parser";
+import * as util from "../util";
 
-import * as path from 'path';
-import { getSubprocessOutput } from '../util/subprocess';
+import * as path from "path";
+import { getSubprocessOutput } from "../util/subprocess";
 
-import { logAsJSON, logError, getMatchedIndex } from './helper';
+import { logAsJSON, logError, getMatchedIndex } from "./helper";
 
 const logger = console;
 
 describe("getSubprocessOutput", () => {
     it("captures exit value of process", async () => {
-        const result1 = await getSubprocessOutput('true');
+        const result1 = await getSubprocessOutput("true");
         expect(result1.stderr).toEqual([""]);
 
         let err: any;
         try {
-            await getSubprocessOutput('false');
+            await getSubprocessOutput("false");
         } catch (e) {
             err = e;
         }
@@ -26,12 +26,12 @@ describe("getSubprocessOutput", () => {
     });
 
     it("captures stdout", async () => {
-        const result = await getSubprocessOutput('/bin/echo', ['aa', 'bb']);
-        expect(result.stdout).toEqual(['aa bb', '']);
+        const result = await getSubprocessOutput("/bin/echo", ["aa", "bb"]);
+        expect(result.stdout).toEqual(["aa bb", ""]);
 
-        const result2 = await getSubprocessOutput('/bin/echo', ["-n", 'aa', 'bb']);
-        expect(result2.stdout).toEqual(['aa bb']);
-    })
+        const result2 = await getSubprocessOutput("/bin/echo", ["-n", "aa", "bb"]);
+        expect(result2.stdout).toEqual(["aa bb"]);
+    });
 });
 
 describe("parser.ts", () => {
@@ -48,7 +48,7 @@ describe("parser.ts", () => {
             "1022a187d2cb5614c49733987a8b04bc8b747115 tag    refs/tags/tag5"
         ];
 
-        expect(getMatchedIndex(/a/, ['a', 'b', 'a b a'])).toEqual([0, 2]);
+        expect(getMatchedIndex(/a/, ["a", "b", "a b a"])).toEqual([0, 2]);
 
         expect(getMatchedIndex(patterns.ref_line, lines)).toEqual([0, 1, 2, 3, 4, 5]);
 
@@ -73,7 +73,7 @@ describe("parser.ts", () => {
         ).toEqual(
             {
                 utc_sec: 1480181019,
-                tz: '+0500'
+                tz: "+0500"
             });
     });
 
@@ -118,14 +118,14 @@ describe("parser.ts", () => {
         const patterns = parser.PATTERNS;
 
         const reflogLine
-            = '70f7812171ef7ec6bf599352e84aa57092cd412a faea5b6b1129ca7945199e4c78cc73f6cac471d6 Wang Guan <momocraft@gmail.com> 1480181019 +0900\tcommit: read refs';
+            = "70f7812171ef7ec6bf599352e84aa57092cd412a faea5b6b1129ca7945199e4c78cc73f6cac471d6 Wang Guan <momocraft@gmail.com> 1480181019 +0900\tcommit: read refs";
         const match = patterns.reflog_line.exec(reflogLine);
 
         expect(match).toBeTruthy();
 
         expect(parser.parseReflog(reflogLine)).toEqual({
-            from: '70f7812171ef7ec6bf599352e84aa57092cd412a',
-            to: 'faea5b6b1129ca7945199e4c78cc73f6cac471d6',
+            from: "70f7812171ef7ec6bf599352e84aa57092cd412a",
+            to: "faea5b6b1129ca7945199e4c78cc73f6cac471d6",
             at: {
                 utc_sec: 1480181019,
                 tz: "+0900",
@@ -134,8 +134,8 @@ describe("parser.ts", () => {
                 name: "Wang Guan",
                 email: "momocraft@gmail.com"
             },
-            desc: 'commit: read refs',
-        })
+            desc: "commit: read refs",
+        });
 
     });
 
@@ -243,7 +243,7 @@ describe("parser.ts", () => {
 describe("git reader", () => {
 
     // a node-libtidy repo included for test
-    const devRepoRoot = path.join(__dirname, '..', '..', 'test', 'node-libtidy.git');
+    const devRepoRoot = path.join(__dirname, "..", "..", "test", "node-libtidy.git");
     const devRepoStart = repo.findRepo(path.join(devRepoRoot, "hooks"));
     let devRepo: repo.GitRepoImpl;
 
@@ -445,7 +445,7 @@ describe("git reader", () => {
     it("resolves ref: remote branch", async () => {
         const head = await r.getRefByPath("refs/remotes/origin/master");
 
-        const resolved = await r.resolveRef(head) as gittypes.Ref.Branch
+        const resolved = await r.resolveRef(head) as gittypes.Ref.Branch;
 
         expect(resolved.type).toEqual(gittypes.Ref.Type.BRANCH);
         expect(resolved.destCommit).toEqual("414c5870b27970db0fa7762148adb89eb07f1fe0");
@@ -481,49 +481,49 @@ describe("git reader", () => {
     });
 
     it("reads reflog: non-exist", async () => {
-        const reflog = await r.readReflog('empty');
+        const reflog = await r.readReflog("empty");
         expect(reflog.length).toEqual(0);
     });
 
     it("resolves annotated tag to commit", async () => {
         const ref = await r.getRefByPath("refs/tags/v0.3.2") as gittypes.Ref.Unknown;
         const tag = await r.resolveRef(ref) as gittypes.Ref.Tag;
-        expect(tag.destObj).toEqual('414c5870b27970db0fa7762148adb89eb07f1fe0');
+        expect(tag.destObj).toEqual("414c5870b27970db0fa7762148adb89eb07f1fe0");
 
         const last = await r.resolveTag(tag);
         expect(last.type).toEqual(gittypes.Obj.Type.COMMIT);
-        expect(last.sha1).toEqual('414c5870b27970db0fa7762148adb89eb07f1fe0');
+        expect(last.sha1).toEqual("414c5870b27970db0fa7762148adb89eb07f1fe0");
     });
 
     it("resolves (nested) annotated tag to commit", async () => {
         const ref = await r.getRefByPath("refs/tags/nested-atag") as gittypes.Ref.Unknown;
         const tag = await r.resolveRef(ref) as gittypes.Ref.Tag;
-        expect(tag.destObj).toEqual('1fa95ee88a69f541f8c6b50bffe8bd4b131886c0');
+        expect(tag.destObj).toEqual("1fa95ee88a69f541f8c6b50bffe8bd4b131886c0");
 
         const last = await r.resolveTag(tag);
         expect(last.type).toEqual(gittypes.Obj.Type.COMMIT);
-        expect(last.sha1).toEqual('12332089f2cda3c00311710af2b84d70d6d0f46c');
+        expect(last.sha1).toEqual("12332089f2cda3c00311710af2b84d70d6d0f46c");
     });
 
 
     it("resolves annotated tag to blob", async () => {
         const ref = await r.getRefByPath("refs/tags/atag-to-blob") as gittypes.Ref.Unknown;
         const tag = await r.resolveRef(ref) as gittypes.Ref.Tag;
-        expect(tag.destObj).toEqual('0e25bed4707ad850bde6b7dc6ea94c30714c087b');
+        expect(tag.destObj).toEqual("0e25bed4707ad850bde6b7dc6ea94c30714c087b");
 
         const last = await r.resolveTag(tag);
         expect(last.type).toEqual(gittypes.Obj.Type.BLOB);
-        expect(last.sha1).toEqual('0e25bed4707ad850bde6b7dc6ea94c30714c087b');
+        expect(last.sha1).toEqual("0e25bed4707ad850bde6b7dc6ea94c30714c087b");
     });
 
     it("resolved shallow-tag to commit", async () => {
         const ref = await r.getRefByPath("refs/tags/shallow-tag") as gittypes.Ref.Unknown;
         const tag = await r.resolveRef(ref) as gittypes.Ref.Tag;
-        expect(tag.destObj).toEqual('12332089f2cda3c00311710af2b84d70d6d0f46c');
+        expect(tag.destObj).toEqual("12332089f2cda3c00311710af2b84d70d6d0f46c");
 
         const last = await r.resolveTag(tag);
         expect(last.type).toEqual(gittypes.Obj.Type.COMMIT);
-        expect(last.sha1).toEqual('12332089f2cda3c00311710af2b84d70d6d0f46c');
+        expect(last.sha1).toEqual("12332089f2cda3c00311710af2b84d70d6d0f46c");
     });
 
     //     @test
@@ -584,7 +584,7 @@ xdescribe("reader.ts", () => {
 // @suite
 // class TestGitReader {
 
-//     private 
+//     private
 
 //     @test
 //     @skip

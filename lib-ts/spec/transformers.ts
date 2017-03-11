@@ -1,6 +1,6 @@
-import { expect } from 'chai';
+import { expect } from "chai";
 
-import { liftA2 } from '../util/transforms';
+import { liftA2 } from "../util/transforms";
 
 describe("liftA2", () => {
     it("lifts a sync function to promise", async (done) => {
@@ -8,5 +8,5 @@ describe("liftA2", () => {
         const sum = await liftedPlus(3, Promise.resolve(5));
         expect(sum).eq(8);
         done();
-    })
+    });
 });
