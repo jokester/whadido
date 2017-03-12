@@ -13,10 +13,6 @@ interface PreviewProps {
 
 export class ReflogPreview extends preact.Component<PreviewProps, {}> {
 
-    constructor() {
-        super();
-    }
-
     render() {
         return <p>{this.props.reflogDump}</p>;
     }
