@@ -17,3 +17,15 @@ export class ReflogPreview extends preact.Component<PreviewProps, {}> {
         return <p>{this.props.reflogDump}</p>;
     }
 }
+
+interface ReflowColumnProps {
+    refPath: string;
+    rows: {
+        y: number;
+        reflog: RefLog
+    }[]
+}
+
+class ReflowColumn {
+
+}
