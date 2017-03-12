@@ -1,7 +1,23 @@
 import * as preact from 'preact';
 
-export class ReflogPreview extends preact.Component {
+import {
+    GitRepo, ResolvedRef,
+    Ref, Obj, Human, Timestamp, RefLog,
+} from "../git";
+
+import { RefDump } from '../analyze';
+
+interface PreviewProps {
+    reflogDump: RefDump;
+}
+
+export class ReflogPreview extends preact.Component<PreviewProps, {}> {
+
+    constructor() {
+        super();
+    }
+
     render() {
-        return <p>hey</p>;
+        return <p>{this.props.reflogDump}</p>;
     }
 }

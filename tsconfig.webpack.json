@@ -6,17 +6,19 @@
     },
     "compilerOptions": {
         "target": "es6",
-        "noImplicitAny": true,
+        "noImplicitAny": false,
         "experimentalDecorators": true,
-        "sourceMap": false,
+        "sourceMap": true,
         "moduleResolution": "node",
         "listEmittedFiles": false,
         "emitDecoratorMetadata": true,
-        "jsx": "react",
         "pretty": true,
         "module": "es6",
         "jsxFactory": "preact.h",
-        "importHelpers": true
+        "importHelpers": true,
+        "alwaysStrict": true,
+        "strictNullChecks": false,
+        "jsx": "react"
     },
     "exclude": [
         "node_modules"

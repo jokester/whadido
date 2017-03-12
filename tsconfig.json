@@ -11,6 +11,7 @@
         "emitDecoratorMetadata": true,
         "pretty": true,
         "module": "commonjs",
+        "jsxFactory": "preact.h",
         "importHelpers": true,
         "alwaysStrict": true,
         "strictNullChecks": false,
