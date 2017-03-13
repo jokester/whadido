@@ -16,7 +16,7 @@ type HMRModule = typeof module & {
 
 const container = document.getElementById("reflog-preview");
 
-class App extends preact.Component<{}, { refdump: RefDump }> {
+class App extends preact.Component<{}, { refdump: RefDump[] }> {
     render() {
         if (this.state.refdump) {
             return <ReflogPreview reflogDump={this.state.refdump} />;

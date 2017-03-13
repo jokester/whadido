@@ -8,17 +8,24 @@ import {
 import { RefDump } from "../analyze";
 
 interface PreviewProps {
-    reflogDump: RefDump;
+    reflogDump: RefDump[];
 }
 
 export class ReflogPreview extends preact.Component<PreviewProps, {}> {
 
-    render() {
+    render(props: PreviewProps) {
 
+        let timestamps: number[] = [];
+        for (const r of props.reflogDump) {
+            for (const f of r.reflog) {
+                timestamps.push(f.at.utc_sec);
+            }
+        }
+        timestamps = timestamps.sort().filter((v, index, all) => v !== all[index - 1]);
+        const refs = props.reflogDump.map(dump => <p>{dump.path}</p>);
 
-
-
-        return <p>{this.props.reflogDump}</p>;
+        return <div>{timestamps.map(t => <p>{t}</p>)}</div>;
+        // return <div>{refs}</div>;
     }
 }
 
