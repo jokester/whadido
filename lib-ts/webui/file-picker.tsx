@@ -1,4 +1,4 @@
-import * as preact from 'preact';
+import * as preact from "preact";
 
 interface FilePickerProps {
     onTextRead?(text: string): void;
@@ -14,15 +14,16 @@ export class FilePicker extends preact.Component<FilePickerProps, {}> {
     handleChange(ev: Event) {
         const input = ev.target as HTMLInputElement;
         const file0 = input.files[0] as File;
-        if (file0 && this.props.onTextRead) {
+        const { onTextRead } = this.props;
+        if (file0 && onTextRead) {
             const reader = new FileReader();
-            reader.addEventListener('load', (loaded) => {
-                this.props.onTextRead(reader.result);
+            reader.addEventListener("load", (loaded) => {
+                onTextRead(reader.result);
             });
             reader.readAsText(file0, "utf8");
         }
     }
     render() {
-        return <input type="file" onChange={this.handleChange} />
+        return <input type="file" onChange={this.handleChange} />;
     }
 }

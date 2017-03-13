@@ -11,8 +11,8 @@
     "test": "         npm run build && jest --forceExit",
     "test:coverage": "npm run build && jest --forceExit --coverage",
     "test:watch": "   npm run build && jest --forceExit --watch",
-    "tslint": "tslint -c tslint.json lib-ts/**/*.ts",
-    "tslint:fix": "tslint -c tslint.json --fix lib-ts/**/*.ts",
+    "tslint": "    tslint -c tslint.json       lib-ts/**/*.ts lib-ts/**/*.tsx",
+    "tslint:fix": "tslint -c tslint.json --fix lib-ts/**/*.ts lib-ts/**/*.tsx",
     "webpack": "          webpack  --watch   --config webpack/dev.js",
     "webpack-devserver": "webpack-dev-server --config webpack/dev.js  --hot"
   },

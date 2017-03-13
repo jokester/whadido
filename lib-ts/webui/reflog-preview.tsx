@@ -1,11 +1,11 @@
-import * as preact from 'preact';
+import * as preact from "preact";
 
 import {
     GitRepo, ResolvedRef,
     Ref, Obj, Human, Timestamp, RefLog,
 } from "../git";
 
-import { RefDump } from '../analyze';
+import { RefDump } from "../analyze";
 
 interface PreviewProps {
     reflogDump: RefDump;
@@ -14,16 +14,21 @@ interface PreviewProps {
 export class ReflogPreview extends preact.Component<PreviewProps, {}> {
 
     render() {
+
+
+
+
         return <p>{this.props.reflogDump}</p>;
     }
 }
 
 interface ReflowColumnProps {
     refPath: string;
+    timestamps: Date[];
     rows: {
-        y: number;
-        reflog: RefLog
-    }[]
+        timestampIndex: number;
+        reflog: RefLog;
+    }[];
 }
 
 class ReflowColumn {

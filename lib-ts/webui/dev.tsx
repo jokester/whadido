@@ -1,8 +1,8 @@
-import * as preact from 'preact';
+import * as preact from "preact";
 
-import { RefDump } from '../analyze';
-import { ReflogPreview } from './reflog-preview';
-import { FilePicker } from './file-picker';
+import { RefDump } from "../analyze";
+import { ReflogPreview } from "./reflog-preview";
+import { FilePicker } from "./file-picker";
 
 declare const $$webpack_dev: boolean;
 
@@ -12,17 +12,17 @@ type HMRModule = typeof module & {
             callback: (updatedDependencies: any[]) => void): void
         accept(moduleName: string, callback: () => void): void
     }
-}
+};
 
 const container = document.getElementById("reflog-preview");
 
 class App extends preact.Component<{}, { refdump: RefDump }> {
     render() {
         if (this.state.refdump) {
-            return <ReflogPreview reflogDump={this.state.refdump} />
+            return <ReflogPreview reflogDump={this.state.refdump} />;
         } else {
             return <FilePicker
-                onTextRead={(text) => { this.setState({ refdump: JSON.parse(text) }) }} />
+                onTextRead={(text) => { this.setState({ refdump: JSON.parse(text) }); }} />;
         }
     }
 }
