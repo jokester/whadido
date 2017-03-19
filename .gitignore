@@ -7,3 +7,4 @@ npm-*.log
 *.map
 .vscode
 coverage/
+webui-dev/
