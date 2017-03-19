@@ -66,6 +66,6 @@ export class ReflogPreview extends preact.Component<PreviewProps, {}> {
                     props.reflogDump.map(dump => this.reflogRow(dump.path, timestamps, dump.reflog))
                 }
             </div>
-        )
+        );
     }
 }

@@ -1,8 +1,9 @@
 import { ArgumentParser } from "argparse";
 
 export interface ParsedOptions {
-    path: string
-    dump: string
+    path: string;
+    dump: string;
+    verbose: boolean;
 }
 
 export function createParser() {
@@ -13,7 +14,7 @@ export function createParser() {
     });
 
     parser.addArgument(
-        ['path'],
+        ["path"],
         {
             metavar: "PATH",
             defaultValue: process.cwd(),
@@ -25,13 +26,22 @@ export function createParser() {
     parser.addArgument(
         ["--dump"],
         {
-            defaultValue: true,
+            defaultValue: false,
             action: "storeTrue",
             dest: "dump",
-            help: `dump refs and reflogs of repo. Most for development use.`,
+            help: `Dump refs and reflogs to a timestamp-named JSON file. Most for development use.`,
         }
+    );
 
-    )
+    parser.addArgument(
+        ["--verbose"],
+        {
+            defaultValue: false,
+            action: "storeTrue",
+            dest: "verbose",
+            help: `Enable verbose log. Most for development use.`,
+        }
+    );
 
     return parser as {
         parseArgs(): ParsedOptions

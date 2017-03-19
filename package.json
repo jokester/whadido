@@ -11,8 +11,8 @@
     "test": "         npm run build && jest --forceExit",
     "test:coverage": "npm run build && jest --forceExit --coverage",
     "test:watch": "   npm run build && jest --forceExit --watch",
-    "tslint": "    tslint -c tslint.json       lib-ts/**/*.ts lib-ts/**/*.tsx",
-    "tslint:fix": "tslint -c tslint.json --fix lib-ts/**/*.ts lib-ts/**/*.tsx",
+    "tslint": "    tslint -c tslint.json       'lib-ts/**/*.ts?(x)'",
+    "tslint:fix": "tslint -c tslint.json --fix 'lib-ts/**/*.ts?(x)'",
     "webpack": "          webpack  --watch   --config webpack/dev.js",
     "webpack-devserver": "webpack-dev-server --config webpack/dev.js  --hot"
   },
@@ -37,6 +37,7 @@
   "dependencies": {
     "@types/lodash": "^4.14.64",
     "argparse": "^1.0.9",
+    "immutable": "4.0.0-rc2",
     "lodash": "^4.17.4",
     "recursive-readdir": "^2.2.1",
     "tslib": "^1.7.1"

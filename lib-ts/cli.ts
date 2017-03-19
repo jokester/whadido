@@ -1,44 +1,52 @@
-import * as path from 'path';
+import * as path from "path";
 
-import { createParser, ParsedOptions } from './options';
-import { openRepo, findRepo, GitRepo } from './git';
-import { writeFile } from './util/io';
-import { dumpRef } from './analyze';
+import { createParser, ParsedOptions } from "./options";
+import { openRepo, findRepo, GitRepo } from "./git";
+import { writeFile } from "./util/io";
+import * as log from "./util/logger";
+import { dumpRefs, analyzeDump } from "./analyze";
 
-function exit() {
-    process.exit(0);
-}
+let logger = log.logger_silent;
 
 /**
  * captures top-level exception and show friendly message
  * @param error top-level exception
  */
 function showError(error: Error) {
-    if (error.message.match('Not a git repository')) {
-        console.error('Repository not found');
+    if (error.message.match("Not a git repository")) {
+        return "Repository not found";
+    } else if (error.message) {
+        return error.message;
     } else {
-        console.error(error);
+        return error;
     }
-    process.exit(1);
 }
 
 export async function main() {
     const options = createParser().parseArgs();
+    if (options.verbose)
+        logger = log.logger_normal;
 
     try {
-        await dump(options);
-        exit();
+        logger.i(`Trying to locate repository from ${options.path}`);
+        const repo = await openRepo(options.path);
+        logger.i(`Found repository at ${repo.repoRoot}`);
+
+        if (options.dump)
+            await dump(options, repo);
+        else
+            await showReflog(repo);
+
+        process.exit(0);
     } catch (e) {
-        showError(e);
+        console.error(showError(e));
+        process.exit(1);
     }
 }
 
-async function dump(options: ParsedOptions) {
-    let repo: GitRepo;
+async function dump(options: ParsedOptions, repo: GitRepo) {
 
-    repo = await openRepo(options.path);
-
-    const dump = await dumpRef(repo);
+    const dump = await dumpRefs(repo);
 
     const dumpJSON = JSON.stringify(dump, undefined, 4);
 
@@ -63,6 +71,29 @@ async function dump(options: ParsedOptions) {
         console.error(`error dumping reflogs to ${dumpFilename}`);
         throw e;
     }
+}
+
+async function showReflog(repo: GitRepo) {
+    logger.v(JSON.stringify(await repo.listRefs()));
+
+    const refDump = await dumpRefs(repo);
+    logger.v(JSON.stringify(refDump));
+
+    const analyzed = analyzeDump(refDump)[0];
+
+    if (!analyzed) {
+        throw new Error("Failed to parse reflogs");
+    }
+
+    console.log(analyzed);
+
+    const sortedOperations = analyzed.output.sort((op1, op2) => op1.end.utc_sec - op2.end.utc_sec);
+
+    for (const op of sortedOperations) {
+        console.info(op.toString());
+    }
+
+    logger.i("sorted operations", JSON.stringify(sortedOperations));
 }
 
 if (require.main === module) {

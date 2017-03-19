@@ -6,15 +6,21 @@
   <title>whadido - preview components</title>
 
   <style>
-    .reflog-cell {
-      display: inline-block;
-      width: 160px;
-      height: 5em;
-      overflow-y: scroll;
+
+    .reflog-preview {
+      display: table;
     }
 
     .reflog-row {
-      overflow-x: scroll;
+      display: table-row;
+    }
+
+    .reflog-cell {
+      outline: 1px pink solid;
+      display: table-cell;
+      width: 160px;
+      height: 5em;
+      overflow-y: scroll;
     }
   </style>
 </head>

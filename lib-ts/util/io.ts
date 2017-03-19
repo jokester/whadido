@@ -1,4 +1,6 @@
 import * as fs from "fs";
+import * as path from "path";
+
 import { Promisify } from "./transforms";
 import * as $readdir from "recursive-readdir";
 
@@ -27,6 +29,9 @@ export function recursiveReadDir(dir: string) {
     });
 }
 
+export function fromTest(...fragments: string[]) {
+    return path.join(__dirname, "..", "..", "test", ...fragments);
+}
 
 export const readDir = Promisify.toPromise1(fs.readdir);
 export const readFile = Promisify.toPromise1(fs.readFile);

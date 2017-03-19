@@ -9,7 +9,9 @@ export interface RefDump {
     reflog: RefLog[];
 }
 
-export async function dumpRef(repo: GitRepo) {
+export { analyzeDump } from "./reflog";
+
+export async function dumpRefs(repo: GitRepo) {
     const refs = await repo.listRefs();
 
     const dump = [] as RefDump[];
@@ -24,25 +26,4 @@ export async function dumpRef(repo: GitRepo) {
     }
 
     return dump;
-}
-
-export class Analyzer {
-    constructor(private repo: GitRepo) {
-
-    }
-
-    async analyze(): Promise<void> {
-
-    }
-
-    async readRef(): Promise<ReflogEntry[]> {
-        return [];
-    }
-}
-
-interface ReflogEntry {
-    timestamp: number;
-    refPath: string;
-    fromSHA1: string;
-    toSHA1: string;
 }

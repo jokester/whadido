@@ -1,4 +1,5 @@
 import * as path from "path";
+import * as lodash from "lodash";
 
 // import { join, relative } from 'path';
 import { spawn, ChildProcess } from "child_process";
@@ -196,14 +197,14 @@ export class GitRepoImpl implements GitRepo {
         if (1) {
             this.catRawObj = new MutexResource(
                 spawn(this.gitBinary,
-                    ["cat-file", "--batch", ], { cwd: this.repoRoot }));
+                    ["cat-file", "--batch",], { cwd: this.repoRoot }));
         } else {
             // not using pool for cat-file subprocess
             // it's almost always slower (why?)
             const v: ChildProcess[] = [];
             for (let c = 0; c < 5; c++) {
                 v.push(spawn(this.gitBinary,
-                    ["cat-file", "--batch", ], { cwd: this.repoRoot }));
+                    ["cat-file", "--batch",], { cwd: this.repoRoot }));
             }
             this.catRawObj = new MutexResourcePool(v);
         }
@@ -234,7 +235,10 @@ export class GitRepoImpl implements GitRepo {
         const localHead = this.readLocalHead();
         const packed = this.readPackedRefs();
         const unpacked = this.readUnpackedRefs();
-        return ([await localHead]).concat(await packed).concat(await unpacked).sort(sortRefByPath);
+        // when a ref exists in both unpacked and packed, unpacked version takes precedencse
+        const concated: Ref.Unknown[] = ([await localHead]).concat(await unpacked).concat(await packed);
+
+        return lodash.uniqBy(concated, "path");
     }
 
     /**
