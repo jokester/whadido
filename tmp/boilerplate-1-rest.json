@@ -1,0 +1,230 @@
+[
+    {
+        "path": "HEAD",
+        "ref": {
+            "type": "HEAD",
+            "path": "HEAD",
+            "dest": "refs/heads/text-parser",
+            "destBranch": "refs/heads/text-parser"
+        },
+        "reflog": [
+            {
+                "from": "0000000000000000000000000000000000000000",
+                "to": "7ddcd4664ae12e2e0c6ecefba93140703d7070e8",
+                "by": {
+                    "name": "Wang Guan",
+                    "email": "momocraft@gmail.com"
+                },
+                "at": {
+                    "utc_sec": 1482571348,
+                    "tz": "+0900"
+                },
+                "desc": "clone: from caroline:/git/node-typescript-boilerplate"
+            }
+        ]
+    },
+    {
+        "path": "refs/remotes/GLaDOS/webpack-preact",
+        "ref": {
+            "type": "Branch",
+            "path": "refs/remotes/GLaDOS/webpack-preact",
+            "dest": "45cd3a73cbe4509aff73b0b8af5c42fc5985b764",
+            "destCommit": "45cd3a73cbe4509aff73b0b8af5c42fc5985b764"
+        },
+        "reflog": []
+    },
+    {
+        "path": "refs/heads/webpack",
+        "ref": {
+            "type": "Branch",
+            "path": "refs/heads/webpack",
+            "dest": "017cf40cdd748801520439f797f94d7c9a77e890",
+            "destCommit": "017cf40cdd748801520439f797f94d7c9a77e890"
+        },
+        "reflog": []
+    },
+    {
+        "path": "refs/remotes/origin/demo-mocha-ts-watch",
+        "ref": {
+            "type": "Branch",
+            "path": "refs/remotes/origin/demo-mocha-ts-watch",
+            "dest": "16899fc828f225138213b22354e86413dd0331a5",
+            "destCommit": "16899fc828f225138213b22354e86413dd0331a5"
+        },
+        "reflog": []
+    },
+    {
+        "path": "refs/remotes/origin/webpack-preact",
+        "ref": {
+            "type": "Branch",
+            "path": "refs/remotes/origin/webpack-preact",
+            "dest": "45cd3a73cbe4509aff73b0b8af5c42fc5985b764",
+            "destCommit": "45cd3a73cbe4509aff73b0b8af5c42fc5985b764"
+        },
+        "reflog": []
+    },
+    {
+        "path": "refs/remotes/origin/webpack-react",
+        "ref": {
+            "type": "Branch",
+            "path": "refs/remotes/origin/webpack-react",
+            "dest": "5b956147c433eb4a7852d62c498066f6aa16142b",
+            "destCommit": "5b956147c433eb4a7852d62c498066f6aa16142b"
+        },
+        "reflog": []
+    },
+    {
+        "path": "refs/remotes/GLaDOS/demo-tsloader",
+        "ref": {
+            "type": "Branch",
+            "path": "refs/remotes/GLaDOS/demo-tsloader",
+            "dest": "2697eafde7640926c05abb7e8272135dc9e73e66",
+            "destCommit": "2697eafde7640926c05abb7e8272135dc9e73e66"
+        },
+        "reflog": []
+    },
+    {
+        "path": "refs/remotes/GLaDOS/text-parser",
+        "ref": {
+            "type": "Branch",
+            "path": "refs/remotes/GLaDOS/text-parser",
+            "dest": "6b5b1df81e7ad9ee69b0049d11f9b45f1ec5320f",
+            "destCommit": "6b5b1df81e7ad9ee69b0049d11f9b45f1ec5320f"
+        },
+        "reflog": []
+    },
+    {
+        "path": "refs/heads/master",
+        "ref": {
+            "type": "Branch",
+            "path": "refs/heads/master",
+            "dest": "0fcf719d93b45deaeba0f0a22b64aab70ab0b25f",
+            "destCommit": "0fcf719d93b45deaeba0f0a22b64aab70ab0b25f"
+        },
+        "reflog": [
+            {
+                "from": "0000000000000000000000000000000000000000",
+                "to": "7ddcd4664ae12e2e0c6ecefba93140703d7070e8",
+                "by": {
+                    "name": "Wang Guan",
+                    "email": "momocraft@gmail.com"
+                },
+                "at": {
+                    "utc_sec": 1482571348,
+                    "tz": "+0900"
+                },
+                "desc": "clone: from caroline:/git/node-typescript-boilerplate"
+            }
+        ]
+    },
+    {
+        "path": "refs/remotes/GLaDOS/webpack-react",
+        "ref": {
+            "type": "Branch",
+            "path": "refs/remotes/GLaDOS/webpack-react",
+            "dest": "5b956147c433eb4a7852d62c498066f6aa16142b",
+            "destCommit": "5b956147c433eb4a7852d62c498066f6aa16142b"
+        },
+        "reflog": []
+    },
+    {
+        "path": "refs/heads/heroku",
+        "ref": {
+            "type": "Branch",
+            "path": "refs/heads/heroku",
+            "dest": "122871a669e6002c772caec0f00f75582e1ce75d",
+            "destCommit": "122871a669e6002c772caec0f00f75582e1ce75d"
+        },
+        "reflog": []
+    },
+    {
+        "path": "refs/heads/demo-mocha-ts-watch",
+        "ref": {
+            "type": "Branch",
+            "path": "refs/heads/demo-mocha-ts-watch",
+            "dest": "16899fc828f225138213b22354e86413dd0331a5",
+            "destCommit": "16899fc828f225138213b22354e86413dd0331a5"
+        },
+        "reflog": []
+    },
+    {
+        "path": "refs/heads/text-parser",
+        "ref": {
+            "type": "Branch",
+            "path": "refs/heads/text-parser",
+            "dest": "86d6cdefda215668cc4a34b6834e345998fa80ba",
+            "destCommit": "86d6cdefda215668cc4a34b6834e345998fa80ba"
+        },
+        "reflog": []
+    },
+    {
+        "path": "refs/remotes/GLaDOS/master",
+        "ref": {
+            "type": "Branch",
+            "path": "refs/remotes/GLaDOS/master",
+            "dest": "0fcf719d93b45deaeba0f0a22b64aab70ab0b25f",
+            "destCommit": "0fcf719d93b45deaeba0f0a22b64aab70ab0b25f"
+        },
+        "reflog": []
+    },
+    {
+        "path": "refs/heads/webpack-react",
+        "ref": {
+            "type": "Branch",
+            "path": "refs/heads/webpack-react",
+            "dest": "fe76ee1a013d8b0af9b2e5fa2e078c91969cdab4",
+            "destCommit": "fe76ee1a013d8b0af9b2e5fa2e078c91969cdab4"
+        },
+        "reflog": []
+    },
+    {
+        "path": "refs/remotes/origin/webpack",
+        "ref": {
+            "type": "Branch",
+            "path": "refs/remotes/origin/webpack",
+            "dest": "017cf40cdd748801520439f797f94d7c9a77e890",
+            "destCommit": "017cf40cdd748801520439f797f94d7c9a77e890"
+        },
+        "reflog": []
+    },
+    {
+        "path": "refs/remotes/GLaDOS/heroku",
+        "ref": {
+            "type": "Branch",
+            "path": "refs/remotes/GLaDOS/heroku",
+            "dest": "122871a669e6002c772caec0f00f75582e1ce75d",
+            "destCommit": "122871a669e6002c772caec0f00f75582e1ce75d"
+        },
+        "reflog": []
+    },
+    {
+        "path": "refs/heads/webpack-preact",
+        "ref": {
+            "type": "Branch",
+            "path": "refs/heads/webpack-preact",
+            "dest": "a8c3a6f19776f786441134a374bf338c44c55142",
+            "destCommit": "a8c3a6f19776f786441134a374bf338c44c55142"
+        },
+        "reflog": []
+    },
+    {
+        "path": "refs/remotes/origin/master",
+        "ref": {
+            "type": "Branch",
+            "path": "refs/remotes/origin/master",
+            "dest": "0fcf719d93b45deaeba0f0a22b64aab70ab0b25f",
+            "destCommit": "0fcf719d93b45deaeba0f0a22b64aab70ab0b25f"
+        },
+        "reflog": []
+    },
+    {
+        "path": "refs/remotes/origin/heroku",
+        "ref": {
+            "type": "Branch",
+            "path": "refs/remotes/origin/heroku",
+            "dest": "122871a669e6002c772caec0f00f75582e1ce75d",
+            "destCommit": "122871a669e6002c772caec0f00f75582e1ce75d"
+        },
+        "reflog": []
+    }
+]

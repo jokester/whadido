@@ -42,12 +42,12 @@ export const word = bind<string, string[], string>(
     reiterate(filter(getChar, isLetter)),
     _ => unit<string, string>(_.join("")));
 
-export const num: Parser<string, number> = bind(
+export const num: Parser<string, number> = bind<string, string[], number>(
     reiterate(digit), (digits) => digits.length ? unit<string, number>(parseInt(digits.join(""))) : zero);
 
 export const beforeWhitespace: <A>(m: Parser<string, A>) => typeof m = <A>(m: Parser<string, A>) => {
-    return bind(m, m1 => rest => /* lookahead: return m1 only if rest is empty or starts with whitespace */
-        /^[ \r\n\t]|^$/.exec(rest) ? unit(m1)(rest) : zero(rest));
+    return bind(m, (m1: A) => (rest: string) => /* lookahead: return m1 only if rest is empty or starts with whitespace */
+        /^[ \r\n\t]|^$/.exec(rest) ? unit<string, A>(m1)(rest) : zero<string, any>(rest));
 };
 
 export const spaceDelimted = <A>(m: Parser<string, A>) => beforeWhitespace(skipWhitespace(m));

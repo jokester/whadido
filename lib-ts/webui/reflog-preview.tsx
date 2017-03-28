@@ -39,7 +39,7 @@ export class ReflogPreview extends preact.Component<PreviewProps, {}> {
             <div class="reflog-row" >
                 <p>refpath = {refpath}</p>
                 {timestamps.map(t => this.reflogCell(t, reflogs))}
-                (END)
+                <p>refpath = {refpath}</p>
             </div>
         );
     }
@@ -51,7 +51,20 @@ export class ReflogPreview extends preact.Component<PreviewProps, {}> {
         const selected = reflogs.filter(r => r.at.utc_sec === timestamp);
         return (
             <div className="reflog-cell">
-                {selected.length ? JSON.stringify(selected) : ""}
+                {selected.map(this.reflogItem)}
+            </div>
+        );
+    }
+
+    reflogItem(reflog: RefLog) {
+        return (
+            <div className="reflog-item">
+                <p className="reflog-time">{new Date(reflog.at.utc_sec * 1e3).toISOString()}</p>
+                <p className="reflog-time">{JSON.stringify(reflog.at)}</p>
+                <p className="reflog-sha1" alt={reflog.from}>{reflog.from}</p>
+                ↓
+                <p className="reflog-sha1">{reflog.to}</p>
+                <p className="reflog-message">{reflog.desc}</p>
             </div>
         );
     }
@@ -63,7 +76,9 @@ export class ReflogPreview extends preact.Component<PreviewProps, {}> {
         return (
             <div className="reflog-preview" >
                 {
-                    props.reflogDump.map(dump => this.reflogRow(dump.path, timestamps, dump.reflog))
+                    props.reflogDump
+                        .filter(r => r.reflog.length)
+                        .map(dump => this.reflogRow(dump.path, timestamps, dump.reflog))
                 }
             </div>
         );

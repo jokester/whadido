@@ -19,8 +19,12 @@ export const unit: <S, A>(a: A) => Parser<S, A> = <S, A>(a: A) => {
     return (input: S) => ([{ output: a, rest: input }] as ParserReturn<S, A>);
 };
 
+interface IZero {
+    <S, A>(input: S): ParserReturn<S, A>;
+}
+
 // zero :: M a
-export const zero: Parser<any, any> = (input) => [];
+export const zero: IZero = (input) => [];
 
 // bind: M a -> (a -> M b) -> M b
 export const bind = <S, A, B>(m: Parser<S, A>, k: (a: A) => Parser<S, B>) => {
@@ -104,18 +108,11 @@ export const skip = <S, A, B>(m1: Parser<S, A>, m2: Parser<S, B>) => {
     return bind(reiterate(m1), _ => m2);
 };
 
-// biased :: M a -> M a -> M a
-export const biased$ = <S, A>(m1: Parser<S, A>, m2: Parser<S, A>) => {
-    return <Parser<S, A>>((input: S) => {
-        const r1 = m1(input);
-        return r1.length ? r1 : m2(input);
-    });
-};
-
 // biasedM :: [M a] -> M a
 export const biased = <S, A>(...ms: Parser<S, A>[]) => {
     return <Parser<S, A>>((input: S) => {
         for (const m of ms) {
+            if (!m) continue;
             const r = m(input);
             if (r.length) return r;
         }
@@ -123,17 +120,17 @@ export const biased = <S, A>(...ms: Parser<S, A>[]) => {
     });
 };
 
-export const seq2 = <S, A, B, C>(p1: Parser<S, A>, p2: Parser<S, B>, then: (a: A, b: B) => C) => {
+export const seq2 = <S, A, B, C>(p1: Parser<S, A>, p2: Parser<S, B>, then: (a: A, b: B) => Parser<S, C>) => {
     return bind<S, A, C>(p1,
         a => bind<S, B, C>(p2,
-            b => unit<S, C>(then(a, b))));
+            b => then(a, b)));
 };
 
-export const seq3 = <S, A, B, C, D>(p1: Parser<S, A>, p2: Parser<S, B>, p3: Parser<S, C>, then: (a: A, b: B, c: C) => D) => {
+export const seq3 = <S, A, B, C, D>(p1: Parser<S, A>, p2: Parser<S, B>, p3: Parser<S, C>, then: (a: A, b: B, c: C) => Parser<S, D>) => {
     return bind<S, A, D>(p1,
         a => bind<S, B, D>(p2,
             b => bind<S, C, D>(p3,
-                c => unit<S, D>(then(a, b, c)))));
+                c => then(a, b, c))));
 };
 
 export const lookAhead = <S, A>(predicate: (inp: S) => boolean, p: Parser<S, A>) => {

@@ -43,7 +43,7 @@ const str = seq3(
     skipWhitespace(charLit("\"")),
     reiterate(filter(getChar, c => c !== "\"")),
     charLit("\""),
-    (a, b, c) => ({ raw: b.join(""), type: TokenType.str })
+    (a, b, c) => unit({ raw: b.join(""), type: TokenType.str })
 );
 
 const eof = bind(skipWhitespace($eof), _ => unit<string, Token>({ type: TokenType.eof, raw: "" }));
@@ -59,5 +59,5 @@ export const token = seq2(
         str,
     )),
     eof,
-    (tokens, _) => tokens);
+    (tokens, _) => /* FIXME: */zero);
 

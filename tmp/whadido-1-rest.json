@@ -1112,201 +1112,28 @@
                     "tz": "+0900"
                 },
                 "desc": "merge moyu: Fast-forward"
-            },
-            {
-                "from": "c569c689b3954bd9137803b98e62009c2b8b1a5e",
-                "to": "c569c689b3954bd9137803b98e62009c2b8b1a5e",
-                "by": {
-                    "name": "Wang Guan",
-                    "email": "momocraft@gmail.com"
-                },
-                "at": {
-                    "utc_sec": 1488627417,
-                    "tz": "+0900"
-                },
-                "desc": "checkout: moving from read-ref to moyu"
-            },
-            {
-                "from": "c569c689b3954bd9137803b98e62009c2b8b1a5e",
-                "to": "a14ff26b3a1da1b7ef951b646496b146fffb8970",
-                "by": {
-                    "name": "Wang Guan",
-                    "email": "momocraft@gmail.com"
-                },
-                "at": {
-                    "utc_sec": 1488627417,
-                    "tz": "+0900"
-                },
-                "desc": "checkout: moving from moyu to master"
-            },
-            {
-                "from": "a14ff26b3a1da1b7ef951b646496b146fffb8970",
-                "to": "fa4594b9c25ab8427a0b19ca0e182beb50c01817",
-                "by": {
-                    "name": "Wang Guan",
-                    "email": "momocraft@gmail.com"
-                },
-                "at": {
-                    "utc_sec": 1488627417,
-                    "tz": "+0900"
-                },
-                "desc": "merge read-ref: Merge made by the 'recursive' strategy."
-            },
-            {
-                "from": "fa4594b9c25ab8427a0b19ca0e182beb50c01817",
-                "to": "fa4594b9c25ab8427a0b19ca0e182beb50c01817",
-                "by": {
-                    "name": "Wang Guan",
-                    "email": "momocraft@gmail.com"
-                },
-                "at": {
-                    "utc_sec": 1488120403,
-                    "tz": "+0900"
-                },
-                "desc": "checkout: moving from master to cli-entrypoint"
-            },
-            {
-                "from": "fa4594b9c25ab8427a0b19ca0e182beb50c01817",
-                "to": "a68236c488b2db52625fe6410a61efa7d7cd0f68",
-                "by": {
-                    "name": "Wang Guan",
-                    "email": "momocraft@gmail.com"
-                },
-                "at": {
-                    "utc_sec": 1488628216,
-                    "tz": "+0900"
-                },
-                "desc": "commit: install argparse"
-            },
-            {
-                "from": "a68236c488b2db52625fe6410a61efa7d7cd0f68",
-                "to": "75bf3ff94a85ec600f10bef7fc4f81fcb5300ec5",
-                "by": {
-                    "name": "Wang Guan",
-                    "email": "momocraft@gmail.com"
-                },
-                "at": {
-                    "utc_sec": 1488633455,
-                    "tz": "+0900"
-                },
-                "desc": "commit: A cli entrypoint"
-            },
-            {
-                "from": "75bf3ff94a85ec600f10bef7fc4f81fcb5300ec5",
-                "to": "237f54d8729f9304532d6b2eade43e05a069190e",
-                "by": {
-                    "name": "Wang Guan",
-                    "email": "momocraft@gmail.com"
-                },
-                "at": {
-                    "utc_sec": 1488634190,
-                    "tz": "+0900"
-                },
-                "desc": "commit: comment"
-            },
-            {
-                "from": "237f54d8729f9304532d6b2eade43e05a069190e",
-                "to": "fa4594b9c25ab8427a0b19ca0e182beb50c01817",
-                "by": {
-                    "name": "Wang Guan",
-                    "email": "momocraft@gmail.com"
-                },
-                "at": {
-                    "utc_sec": 1495986654,
-                    "tz": "+0900"
-                },
-                "desc": "checkout: moving from cli-entrypoint to master"
-            },
-            {
-                "from": "fa4594b9c25ab8427a0b19ca0e182beb50c01817",
-                "to": "4a46ec94b78460277b0f8e6f5646257dedf4c9a9",
-                "by": {
-                    "name": "Wang Guan",
-                    "email": "momocraft@gmail.com"
-                },
-                "at": {
-                    "utc_sec": 1488642657,
-                    "tz": "+0900"
-                },
-                "desc": "merge cli-entrypoint: Merge made by the 'recursive' strategy."
-            },
-            {
-                "from": "4a46ec94b78460277b0f8e6f5646257dedf4c9a9",
-                "to": "a0f345a1cea6f8df066082d6112df2f64256531e",
-                "by": {
-                    "name": "Wang Guan",
-                    "email": "momocraft@gmail.com"
-                },
-                "at": {
-                    "utc_sec": 1496646408,
-                    "tz": "+0900"
-                },
-                "desc": "merge origin/master: Fast-forward"
             }
         ]
     },
     {
-        "path": "refs/heads/cli-entrypoint",
+        "path": "refs/remotes/origin/parse-reflog",
         "ref": {
             "type": "Branch",
-            "path": "refs/heads/cli-entrypoint",
-            "dest": "237f54d8729f9304532d6b2eade43e05a069190e",
-            "destCommit": "237f54d8729f9304532d6b2eade43e05a069190e"
+            "path": "refs/remotes/origin/parse-reflog",
+            "dest": "fb7b41bd326bf5ed970b7c3ccd74b70456bc10cc",
+            "destCommit": "fb7b41bd326bf5ed970b7c3ccd74b70456bc10cc"
         },
-        "reflog": [
-            {
-                "from": "0000000000000000000000000000000000000000",
-                "to": "fa4594b9c25ab8427a0b19ca0e182beb50c01817",
-                "by": {
-                    "name": "Wang Guan",
-                    "email": "momocraft@gmail.com"
-                },
-                "at": {
-                    "utc_sec": 1488120403,
-                    "tz": "+0900"
-                },
-                "desc": "branch: Created from HEAD"
-            },
-            {
-                "from": "fa4594b9c25ab8427a0b19ca0e182beb50c01817",
-                "to": "a68236c488b2db52625fe6410a61efa7d7cd0f68",
-                "by": {
-                    "name": "Wang Guan",
-                    "email": "momocraft@gmail.com"
-                },
-                "at": {
-                    "utc_sec": 1488628216,
-                    "tz": "+0900"
-                },
-                "desc": "commit: install argparse"
-            },
-            {
-                "from": "a68236c488b2db52625fe6410a61efa7d7cd0f68",
-                "to": "75bf3ff94a85ec600f10bef7fc4f81fcb5300ec5",
-                "by": {
-                    "name": "Wang Guan",
-                    "email": "momocraft@gmail.com"
-                },
-                "at": {
-                    "utc_sec": 1488633455,
-                    "tz": "+0900"
-                },
-                "desc": "commit: A cli entrypoint"
-            },
-            {
-                "from": "75bf3ff94a85ec600f10bef7fc4f81fcb5300ec5",
-                "to": "237f54d8729f9304532d6b2eade43e05a069190e",
-                "by": {
-                    "name": "Wang Guan",
-                    "email": "momocraft@gmail.com"
-                },
-                "at": {
-                    "utc_sec": 1488634190,
-                    "tz": "+0900"
-                },
-                "desc": "commit: comment"
-            }
-        ]
+        "reflog": []
+    },
+    {
+        "path": "refs/remotes/origin/analyze-reflog",
+        "ref": {
+            "type": "Branch",
+            "path": "refs/remotes/origin/analyze-reflog",
+            "dest": "346fbef348715b9d0aef721a96bb969e33125fbb",
+            "destCommit": "346fbef348715b9d0aef721a96bb969e33125fbb"
+        },
+        "reflog": []
     },
     {
         "path": "refs/heads/master",
@@ -1394,45 +1221,6 @@
                     "tz": "+0900"
                 },
                 "desc": "merge origin/master: Fast-forward"
-            },
-            {
-                "from": "a14ff26b3a1da1b7ef951b646496b146fffb8970",
-                "to": "fa4594b9c25ab8427a0b19ca0e182beb50c01817",
-                "by": {
-                    "name": "Wang Guan",
-                    "email": "momocraft@gmail.com"
-                },
-                "at": {
-                    "utc_sec": 1488627417,
-                    "tz": "+0900"
-                },
-                "desc": "merge read-ref: Merge made by the 'recursive' strategy."
-            },
-            {
-                "from": "fa4594b9c25ab8427a0b19ca0e182beb50c01817",
-                "to": "4a46ec94b78460277b0f8e6f5646257dedf4c9a9",
-                "by": {
-                    "name": "Wang Guan",
-                    "email": "momocraft@gmail.com"
-                },
-                "at": {
-                    "utc_sec": 1488642657,
-                    "tz": "+0900"
-                },
-                "desc": "merge cli-entrypoint: Merge made by the 'recursive' strategy."
-            },
-            {
-                "from": "4a46ec94b78460277b0f8e6f5646257dedf4c9a9",
-                "to": "a0f345a1cea6f8df066082d6112df2f64256531e",
-                "by": {
-                    "name": "Wang Guan",
-                    "email": "momocraft@gmail.com"
-                },
-                "at": {
-                    "utc_sec": 1496646408,
-                    "tz": "+0900"
-                },
-                "desc": "merge origin/master: Fast-forward"
             }
         ]
     },
@@ -1444,310 +1232,17 @@
             "dest": "346fbef348715b9d0aef721a96bb969e33125fbb",
             "destCommit": "346fbef348715b9d0aef721a96bb969e33125fbb"
         },
-        "reflog": [
-            {
-                "from": "0000000000000000000000000000000000000000",
-                "to": "346fbef348715b9d0aef721a96bb969e33125fbb",
-                "by": {
-                    "name": "Wang Guan",
-                    "email": "momocraft@gmail.com"
-                },
-                "at": {
-                    "utc_sec": 1496646364,
-                    "tz": "+0900"
-                },
-                "desc": "fetch --append github: storing head"
-            }
-        ]
+        "reflog": []
     },
     {
-        "path": "refs/remotes/github/master",
+        "path": "refs/heads/cli-entrypoint",
         "ref": {
             "type": "Branch",
-            "path": "refs/remotes/github/master",
-            "dest": "28a66bbb8d31c1c44926c8f7b04d03ecb358ad99",
-            "destCommit": "28a66bbb8d31c1c44926c8f7b04d03ecb358ad99"
+            "path": "refs/heads/cli-entrypoint",
+            "dest": "237f54d8729f9304532d6b2eade43e05a069190e",
+            "destCommit": "237f54d8729f9304532d6b2eade43e05a069190e"
         },
-        "reflog": [
-            {
-                "from": "0000000000000000000000000000000000000000",
-                "to": "fa4594b9c25ab8427a0b19ca0e182beb50c01817",
-                "by": {
-                    "name": "Wang Guan",
-                    "email": "momocraft@gmail.com"
-                },
-                "at": {
-                    "utc_sec": 1488120403,
-                    "tz": "+0900"
-                },
-                "desc": "update by push"
-            },
-            {
-                "from": "fa4594b9c25ab8427a0b19ca0e182beb50c01817",
-                "to": "4a46ec94b78460277b0f8e6f5646257dedf4c9a9",
-                "by": {
-                    "name": "Wang Guan",
-                    "email": "momocraft@gmail.com"
-                },
-                "at": {
-                    "utc_sec": 1495987817,
-                    "tz": "+0900"
-                },
-                "desc": "update by push"
-            },
-            {
-                "from": "4a46ec94b78460277b0f8e6f5646257dedf4c9a9",
-                "to": "28a66bbb8d31c1c44926c8f7b04d03ecb358ad99",
-                "by": {
-                    "name": "Wang Guan",
-                    "email": "momocraft@gmail.com"
-                },
-                "at": {
-                    "utc_sec": 1496646364,
-                    "tz": "+0900"
-                },
-                "desc": "fetch --append github: fast-forward"
-            }
-        ]
-    },
-    {
-        "path": "refs/remotes/origin/analyze-reflog",
-        "ref": {
-            "type": "Branch",
-            "path": "refs/remotes/origin/analyze-reflog",
-            "dest": "346fbef348715b9d0aef721a96bb969e33125fbb",
-            "destCommit": "346fbef348715b9d0aef721a96bb969e33125fbb"
-        },
-        "reflog": [
-            {
-                "from": "0000000000000000000000000000000000000000",
-                "to": "346fbef348715b9d0aef721a96bb969e33125fbb",
-                "by": {
-                    "name": "Wang Guan",
-                    "email": "momocraft@gmail.com"
-                },
-                "at": {
-                    "utc_sec": 1496474948,
-                    "tz": "+0900"
-                },
-                "desc": "fetch: storing head"
-            }
-        ]
-    },
-    {
-        "path": "refs/remotes/origin/master",
-        "ref": {
-            "type": "Branch",
-            "path": "refs/remotes/origin/master",
-            "dest": "a0f345a1cea6f8df066082d6112df2f64256531e",
-            "destCommit": "a0f345a1cea6f8df066082d6112df2f64256531e"
-        },
-        "reflog": [
-            {
-                "from": "0000000000000000000000000000000000000000",
-                "to": "1940b1adca8f6633dfe9c4e73bb79b11e820af35",
-                "by": {
-                    "name": "Wang Guan",
-                    "email": "momocraft@gmail.com"
-                },
-                "at": {
-                    "utc_sec": 1485077533,
-                    "tz": "+0900"
-                },
-                "desc": "fetch --append origin: storing head"
-            },
-            {
-                "from": "1940b1adca8f6633dfe9c4e73bb79b11e820af35",
-                "to": "fa7915e3c3fc829a8632bd8cd7c0f05a56b71cc7",
-                "by": {
-                    "name": "Wang Guan",
-                    "email": "momocraft@gmail.com"
-                },
-                "at": {
-                    "utc_sec": 1485181175,
-                    "tz": "+0900"
-                },
-                "desc": "fetch: fast-forward"
-            },
-            {
-                "from": "fa7915e3c3fc829a8632bd8cd7c0f05a56b71cc7",
-                "to": "7a28b4d55f61082e6bd0f421006aa37406ace474",
-                "by": {
-                    "name": "Wang Guan",
-                    "email": "momocraft@gmail.com"
-                },
-                "at": {
-                    "utc_sec": 1485267882,
-                    "tz": "+0900"
-                },
-                "desc": "update by push"
-            },
-            {
-                "from": "7a28b4d55f61082e6bd0f421006aa37406ace474",
-                "to": "4982a8e5c7eef86be6b53c3a3ba36b42ac7321f6",
-                "by": {
-                    "name": "Wang Guan",
-                    "email": "momocraft@gmail.com"
-                },
-                "at": {
-                    "utc_sec": 1485320720,
-                    "tz": "+0900"
-                },
-                "desc": "fetch --append origin: fast-forward"
-            },
-            {
-                "from": "4982a8e5c7eef86be6b53c3a3ba36b42ac7321f6",
-                "to": "298ca5248eda588e2e18ccdbe9b4d8e8b7ceaeea",
-                "by": {
-                    "name": "Wang Guan",
-                    "email": "momocraft@gmail.com"
-                },
-                "at": {
-                    "utc_sec": 1485429481,
-                    "tz": "+0900"
-                },
-                "desc": "fetch --append origin: fast-forward"
-            },
-            {
-                "from": "298ca5248eda588e2e18ccdbe9b4d8e8b7ceaeea",
-                "to": "f15bfd86a61ae0b04a41060482ec66e608bbb845",
-                "by": {
-                    "name": "Wang Guan",
-                    "email": "momocraft@gmail.com"
-                },
-                "at": {
-                    "utc_sec": 1486315053,
-                    "tz": "+0900"
-                },
-                "desc": "fetch --append origin: fast-forward"
-            },
-            {
-                "from": "f15bfd86a61ae0b04a41060482ec66e608bbb845",
-                "to": "5b28685009c7148f848803c1eb0aef3c159929a1",
-                "by": {
-                    "name": "Wang Guan",
-                    "email": "momocraft@gmail.com"
-                },
-                "at": {
-                    "utc_sec": 1486465873,
-                    "tz": "+0900"
-                },
-                "desc": "fetch: fast-forward"
-            },
-            {
-                "from": "5b28685009c7148f848803c1eb0aef3c159929a1",
-                "to": "a14ff26b3a1da1b7ef951b646496b146fffb8970",
-                "by": {
-                    "name": "Wang Guan",
-                    "email": "momocraft@gmail.com"
-                },
-                "at": {
-                    "utc_sec": 1491710185,
-                    "tz": "+0900"
-                },
-                "desc": "fetch --append --prune origin: fast-forward"
-            },
-            {
-                "from": "a14ff26b3a1da1b7ef951b646496b146fffb8970",
-                "to": "fa4594b9c25ab8427a0b19ca0e182beb50c01817",
-                "by": {
-                    "name": "Wang Guan",
-                    "email": "momocraft@gmail.com"
-                },
-                "at": {
-                    "utc_sec": 1488120403,
-                    "tz": "+0900"
-                },
-                "desc": "update by push"
-            },
-            {
-                "from": "fa4594b9c25ab8427a0b19ca0e182beb50c01817",
-                "to": "4a46ec94b78460277b0f8e6f5646257dedf4c9a9",
-                "by": {
-                    "name": "Wang Guan",
-                    "email": "momocraft@gmail.com"
-                },
-                "at": {
-                    "utc_sec": 1488642657,
-                    "tz": "+0900"
-                },
-                "desc": "update by push"
-            },
-            {
-                "from": "4a46ec94b78460277b0f8e6f5646257dedf4c9a9",
-                "to": "28a66bbb8d31c1c44926c8f7b04d03ecb358ad99",
-                "by": {
-                    "name": "Wang Guan",
-                    "email": "momocraft@gmail.com"
-                },
-                "at": {
-                    "utc_sec": 1496474948,
-                    "tz": "+0900"
-                },
-                "desc": "fetch: fast-forward"
-            },
-            {
-                "from": "28a66bbb8d31c1c44926c8f7b04d03ecb358ad99",
-                "to": "a0f345a1cea6f8df066082d6112df2f64256531e",
-                "by": {
-                    "name": "Wang Guan",
-                    "email": "momocraft@gmail.com"
-                },
-                "at": {
-                    "utc_sec": 1496646404,
-                    "tz": "+0900"
-                },
-                "desc": "fetch origin: fast-forward"
-            }
-        ]
-    },
-    {
-        "path": "refs/remotes/origin/parse-reflog",
-        "ref": {
-            "type": "Branch",
-            "path": "refs/remotes/origin/parse-reflog",
-            "dest": "fb7b41bd326bf5ed970b7c3ccd74b70456bc10cc",
-            "destCommit": "fb7b41bd326bf5ed970b7c3ccd74b70456bc10cc"
-        },
-        "reflog": [
-            {
-                "from": "0000000000000000000000000000000000000000",
-                "to": "fb7b41bd326bf5ed970b7c3ccd74b70456bc10cc",
-                "by": {
-                    "name": "Wang Guan",
-                    "email": "momocraft@gmail.com"
-                },
-                "at": {
-                    "utc_sec": 1496646404,
-                    "tz": "+0900"
-                },
-                "desc": "fetch origin: storing head"
-            }
-        ]
-    },
-    {
-        "path": "refs/remotes/origin/try/improve-read-performance-1",
-        "ref": {
-            "type": "Branch",
-            "path": "refs/remotes/origin/try/improve-read-performance-1",
-            "dest": "2b6d1650dc6e680a82d580d2168b41565ae6b268",
-            "destCommit": "2b6d1650dc6e680a82d580d2168b41565ae6b268"
-        },
-        "reflog": [
-            {
-                "from": "0000000000000000000000000000000000000000",
-                "to": "2b6d1650dc6e680a82d580d2168b41565ae6b268",
-                "by": {
-                    "name": "Wang Guan",
-                    "email": "momocraft@gmail.com"
-                },
-                "at": {
-                    "utc_sec": 1486315053,
-                    "tz": "+0900"
-                },
-                "desc": "fetch --append origin: storing head"
-            }
-        ]
+        "reflog": []
     },
     {
         "path": "refs/remotes/origin/vis-reflog",
@@ -1757,20 +1252,36 @@
             "dest": "23b605e8bacc6e0b59947cbfc4ce4e158bc325be",
             "destCommit": "23b605e8bacc6e0b59947cbfc4ce4e158bc325be"
         },
-        "reflog": [
-            {
-                "from": "0000000000000000000000000000000000000000",
-                "to": "23b605e8bacc6e0b59947cbfc4ce4e158bc325be",
-                "by": {
-                    "name": "Wang Guan",
-                    "email": "momocraft@gmail.com"
-                },
-                "at": {
-                    "utc_sec": 1496474948,
-                    "tz": "+0900"
-                },
-                "desc": "fetch: storing head"
-            }
-        ]
+        "reflog": []
+    },
+    {
+        "path": "refs/remotes/origin/master",
+        "ref": {
+            "type": "Branch",
+            "path": "refs/remotes/origin/master",
+            "dest": "a0f345a1cea6f8df066082d6112df2f64256531e",
+            "destCommit": "a0f345a1cea6f8df066082d6112df2f64256531e"
+        },
+        "reflog": []
+    },
+    {
+        "path": "refs/remotes/github/master",
+        "ref": {
+            "type": "Branch",
+            "path": "refs/remotes/github/master",
+            "dest": "28a66bbb8d31c1c44926c8f7b04d03ecb358ad99",
+            "destCommit": "28a66bbb8d31c1c44926c8f7b04d03ecb358ad99"
+        },
+        "reflog": []
+    },
+    {
+        "path": "refs/remotes/origin/try/improve-read-performance-1",
+        "ref": {
+            "type": "Branch",
+            "path": "refs/remotes/origin/try/improve-read-performance-1",
+            "dest": "2b6d1650dc6e680a82d580d2168b41565ae6b268",
+            "destCommit": "2b6d1650dc6e680a82d580d2168b41565ae6b268"
+        },
+        "reflog": []
     }
 ]

@@ -33,6 +33,10 @@ export function fromTest(...fragments: string[]) {
     return path.join(__dirname, "..", "..", "test", ...fragments);
 }
 
+export function fromTmp(...fragments: string[]) {
+    return path.join(__dirname, "..", "..", "tmp", ...fragments);
+}
+
 export const readDir = Promisify.toPromise1(fs.readdir);
 export const readFile = Promisify.toPromise1(fs.readFile);
 export const readText = Promisify

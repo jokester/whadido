@@ -45,13 +45,10 @@ export const ExpParser = skipWhitespace(seq3(
     charLit("("),
     AtomParser,
     skipWhitespace(charLit(")")),
-    (a, b, c) => b));
+    (a, b, c) => unit<string, AtomExpr>(b)));
 
 export const DivParser = seq3(
     AtomParser,
     stringLit("/"),
     AtomParser,
-    (a, b, c) => <DivExpr>({ type: TypeDiv, nom: a, deno: c }));
-
-
-
+    (a, b, c) => unit<string, DivExpr>({ type: TypeDiv, nom: a, deno: c }));
