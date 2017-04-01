@@ -125,6 +125,4 @@ describe("text.ts", () => {
         expect(text.seq2(text.word, text.num, (w, n) => combinator.unit(`w=${w}/n=${n}`))("www 123"))
             .toEqual([]);
     });
-
-
 });

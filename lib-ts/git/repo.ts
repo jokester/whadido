@@ -197,14 +197,14 @@ export class GitRepoImpl implements GitRepo {
         if (1) {
             this.catRawObj = new MutexResource(
                 spawn(this.gitBinary,
-                    ["cat-file", "--batch",], { cwd: this.repoRoot }));
+                    ["cat-file", "--batch", ], { cwd: this.repoRoot }));
         } else {
             // not using pool for cat-file subprocess
             // it's almost always slower (why?)
             const v: ChildProcess[] = [];
             for (let c = 0; c < 5; c++) {
                 v.push(spawn(this.gitBinary,
-                    ["cat-file", "--batch",], { cwd: this.repoRoot }));
+                    ["cat-file", "--batch", ], { cwd: this.repoRoot }));
             }
             this.catRawObj = new MutexResourcePool(v);
         }
