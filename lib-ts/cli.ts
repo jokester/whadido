@@ -9,7 +9,7 @@ function raise(error: Error) {
     if (error.message.match('Not a git repository')) {
         console.error('Repository not found');
     } else {
-        console.error(raise);
+        console.error(error);
     }
     process.exit(1);
 }

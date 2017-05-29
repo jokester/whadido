@@ -432,6 +432,8 @@ export class GitRepoImpl implements GitRepo {
             } else if (PATTERNS.refpath.tag.exec(fRelative)) {
                 const p = parser.parseTag(lines[0], fRelative);
                 found.push(p);
+            } else if (fRelative === "refs/stash") {
+                /* ignore stash TODO: support stash */
             } else {
                 throw new Error(`failed to parse ref file: '${fRelative}'`);
             }
