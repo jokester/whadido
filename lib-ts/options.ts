@@ -14,12 +14,12 @@ export function createParser() {
     });
 
     parser.addArgument(
-        ["path"],
+        ["-r", "--repo"],
         {
-            metavar: "PATH",
+            metavar: "REPO_PATH",
             defaultValue: process.cwd(),
             help: "Root of repository or somewhere inside it. Defaults to $PWD",
-            required: false,
+            dest: "path",
         }
     );
 

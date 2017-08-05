@@ -78,14 +78,18 @@ async function showReflog(repo: GitRepo) {
     const numReflogs = countReflog(initState);
     logger.debug(JSON.stringify(refDump));
 
-    const result0 = topParser(initState)[0];
+    const results = topParser(initState);
+    const result0 = results[0];
 
     if (!result0) {
         throw new Error("Failed to parse reflogs");
+    } else if (results.length > 1) {
+        logger.warn("ambiguities in parsing");
     }
 
     for (const op of result0.output) {
-        console.info(op.toString());
+        // TODO: custom renderer
+        logger.info(op.toString());
     }
 
     const remained = countReflog(result0.rest);
