@@ -10,7 +10,7 @@ export function createParser() {
     const parser = new ArgumentParser({
         version: require("../package.json").version,
         addHelp: true,
-        description: "whadido: Analyze recent operations in local git repository"
+        description: require("../package.json").description,
     });
 
     parser.addArgument(
