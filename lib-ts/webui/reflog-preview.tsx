@@ -18,7 +18,7 @@ export class ReflogPreview extends preact.Component<PreviewProps, {}> {
         const timestamps = lodash.flatten(
             dumps.map(d => d.reflog.map(f => f.at.utc_sec)));
 
-        return lodash.uniq(timestamps).sort();
+        return lodash.uniq(timestamps);
     }
 
     /**
@@ -61,9 +61,9 @@ export class ReflogPreview extends preact.Component<PreviewProps, {}> {
             <div className="reflog-item">
                 <p className="reflog-time">{new Date(reflog.at.utc_sec * 1e3).toISOString()}</p>
                 <p className="reflog-time">{JSON.stringify(reflog.at)}</p>
-                <p className="reflog-sha1" alt={reflog.from}>{reflog.from}</p>
+                <p className="reflog-sha1" alt={reflog.from}>{reflog.from.slice(0, 6)}</p>
                 ↓
-                <p className="reflog-sha1">{reflog.to}</p>
+                <p className="reflog-sha1">{reflog.to.slice(0, 6)}</p>
                 <p className="reflog-message">{reflog.desc}</p>
             </div>
         );

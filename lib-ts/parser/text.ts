@@ -47,7 +47,7 @@ export const num: Parser<string, number> = bind<string, string[], number>(
 
 export const beforeWhitespace: <A>(m: Parser<string, A>) => typeof m = <A>(m: Parser<string, A>) => {
     return bind(m, (m1: A) => (rest: string) => /* lookahead: return m1 only if rest is empty or starts with whitespace */
-        /^[ \r\n\t]|^$/.exec(rest) ? unit<string, A>(m1)(rest) : zero<string, any>(rest));
+        /^[ \r\n\t]|^$/.exec(rest) ? unit<string, A>(m1)(rest) : zero(rest));
 };
 
 export const spaceDelimted = <A>(m: Parser<string, A>) => beforeWhitespace(skipWhitespace(m));

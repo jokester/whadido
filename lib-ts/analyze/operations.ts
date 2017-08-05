@@ -3,137 +3,145 @@ import { detectRefpath, Timestamp, RefLog } from "../git";
 /**
  * Recovered operations and text-ify
  */
-
 const enum OpType {
-    // push a branch to remote repo
-    remotePush = 0,
+    // remote branch
+    push = 0,
+    fetch,
+    rename_remote,
 
-    checkout = 100,
-    localCommitInBranch,
-    localCommitAtBareHead,
-    resetCurrentBranch,
+    // head + local branch
+    merge = 100,
+    commit,
+    create_branch,
+    rebase_i_finished,
+    rebase_i_aborted,
+    rebase_finished,
+    clone,
 
-    createLocalBranch = 200,
+    // HEAD only
+    checkout = 200,
+    reset,
 
-    localBranchFF,
-
-    rebaseLocalBranch = 300,
-    rebaseLocalBranchInteractive,
-
-    renameRemoteBranch = 400,
+    // head + remote + local
+    pull = 300,
 }
 
 export interface Operation {
     type: OpType;
-    end: Timestamp;
+    date: Timestamp;
 }
 
-export class RemotePush implements Operation {
-    readonly type = OpType.remotePush;
-    constructor(readonly refpath: string, readonly reflog: RefLog) { }
+function dumpObj(obj: Object) {
+    const p1 = (obj.constructor as Function || UnknownClass).name;
+    const p2 = JSON.stringify(obj);
+    return `${p1}: ${p2}`;
+}
+
+function UnknownClass() { }
+
+abstract class BasicOp implements Operation {
+    readonly type: OpType;
+    abstract get date(): Timestamp;
     toString() {
-        return `RemotePush: ${JSON.stringify(this.reflog)} at ${this.refpath}}`;
-    }
-    get end() {
-        return this.reflog.at;
+        return dumpObj(this);
     }
 }
 
-export class RemoteFetch implements Operation {
-    readonly type = OpType.remotePush;
-    constructor(readonly refpath: string, readonly reflog: RefLog) { }
-    toString() {
-        return `RemoteFetch: ${JSON.stringify(this.reflog)} at ${this.refpath}}`;
+export class Merge extends BasicOp {
+    type = OpType.merge;
+    constructor(private headLog: RefLog,
+        private refpath?: string, private branchLog?: RefLog) {
+        super();
     }
-    get end() {
-        return this.reflog.at;
-    }
-}
-
-/**
- * commit in local branch (plain or amend)
- * TODO: recognize amend
- */
-export class LocalCommitInBranch implements Operation {
-    readonly type = OpType.localCommitInBranch;
-
-    constructor(readonly branchPath: string, readonly headRef: RefLog) { }
-
-    get end() {
-        return this.headRef.at;
-    }
-}
-
-export class CreateLocateBranchAndCheckout implements Operation {
-    readonly type = OpType.createLocalBranch;
-
-    constructor(readonly branchPath: string, readonly branchLog: RefLog) { }
-
-    get end() {
-        return this.branchLog.at;
-    }
-}
-
-export class MergeCurrentBranchFF implements Operation {
-    readonly type = OpType.localBranchFF;
-    constructor(readonly branchPath: string, readonly branchLog: RefLog) { }
-    get end() {
-        return this.branchLog.at;
-    }
-}
-
-export class MergeCurrentBranch implements Operation {
-    readonly type = OpType.localBranchFF;
-    constructor(readonly branchPath: string, readonly branchLog: RefLog) { }
-    get end() {
-        return this.branchLog.at;
-    }
-}
-
-export class Checkout implements Operation {
-    readonly type = OpType.checkout;
-    constructor(readonly headLog: RefLog) { }
-    get end() {
+    get date() {
         return this.headLog.at;
     }
 }
 
-export class ResetCurrentBranch implements Operation {
-    readonly type = OpType.resetCurrentBranch;
-    constructor(readonly branchPath: string, readonly branchLog: RefLog) { }
-    get end() {
-        return this.branchLog.at;
+export class Commit extends BasicOp {
+    type = OpType.commit;
+    constructor(private headLog: RefLog,
+        private refpath?: string, private branchLog?: RefLog) {
+        super();
+    }
+    get date() {
+        return this.headLog.at;
     }
 }
 
-export class RebaseCurrentBranch implements Operation {
-    readonly type = OpType.rebaseLocalBranch;
-    constructor(readonly branchPath: string,
-        readonly branchLog: RefLog,
-        readonly headFinish: RefLog,
-        readonly headLogs: RefLog[]) { }
-    get end() {
-        return this.branchLog.at;
+export class CreateBranch extends BasicOp {
+    type = OpType.create_branch;
+    constructor(private branchLog: RefLog,
+        private branchPath: string, private headCheckout?: RefLog) {
+        super();
     }
+    get date() { return this.branchLog.at; }
 }
 
-export class RebaseCurrentBranchInteractive implements Operation {
-    readonly type = OpType.rebaseLocalBranchInteractive;
-    constructor(readonly branchPath: string,
-        readonly branchLog: RefLog,
-        readonly headFinish: RefLog,
-        readonly headLogs: RefLog[]) { }
-    get end() {
-        return this.branchLog.at;
-    }
+export class Clone extends BasicOp {
+    type = OpType.clone;
+    constructor(private headLog: RefLog, private branchpath?: string, private branchLog?: RefLog) { super(); }
+    get date() { return this.headLog.at; }
 }
 
-export class RenameRemoteBranch implements Operation {
-    readonly type = OpType.renameRemoteBranch;
-    constructor(readonly branchPath: string,
-        readonly branchLog: RefLog) { }
+export class Fetch extends BasicOp {
+    type = OpType.fetch;
+    constructor(private refpath: string, private branchLog: RefLog) { super(); }
 
-    get end() {
-        return this.branchLog.at;
+    get date() { return this.branchLog.at; }
+}
+
+export class Push extends BasicOp {
+    type = OpType.push;
+    constructor(private refpath: string, private branchLog: RefLog) { super(); }
+
+    get date() { return this.branchLog.at; }
+}
+
+export class Pull extends BasicOp {
+    type = OpType.pull;
+    constructor(private headLog: RefLog) { super(); }
+    get date() { return this.headLog.at; }
+}
+
+export class RenameRemote extends BasicOp {
+    type = OpType.rename_remote;
+    constructor(private refpath: string, private branchLog: RefLog) { super(); }
+    get date() { return this.branchLog.at; }
+}
+
+export class Checkout extends BasicOp {
+    type = OpType.checkout;
+    constructor(private headLog: RefLog) { super(); }
+    get date() { return this.headLog.at; }
+}
+
+export class Reset extends BasicOp {
+    type = OpType.reset;
+    constructor(private headLog: RefLog, private branchpath?: string, private branchLog?: RefLog) { super(); }
+    get date() { return this.headLog.at; }
+}
+
+export class RebaseInteractiveFinished extends BasicOp {
+    type = OpType.rebase_i_finished;
+    constructor(private headLogs: RefLog[], private branchpath?: string, private branchLog?: RefLog) {
+        super();
     }
+    get date() { return this.headLogs[0].at; }
+}
+
+export class RebaseInteractiveAborted extends BasicOp {
+    type = OpType.rebase_i_aborted;
+    constructor(private headLogs: RefLog[]) {
+        super();
+    }
+    get date() { return this.headLogs[0].at; }
+}
+
+export class RebaseFinished extends BasicOp {
+    type = OpType.rebase_finished;
+    constructor(private headLogs: RefLog[], private branchpath?: string, private branchLog?: RefLog) {
+        super();
+    }
+    get date() { return this.headLogs[0].at; }
 }

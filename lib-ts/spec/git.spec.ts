@@ -4,7 +4,7 @@ import * as parser from "../git/parser";
 import * as util from "../util";
 
 import * as path from "path";
-import { getSubprocessOutput } from "../util/subprocess";
+import { getSubprocessOutput } from "../common/util/subprocess";
 
 import { logAsJSON, logError, getMatchedIndex } from "./helper";
 
