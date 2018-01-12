@@ -10,16 +10,16 @@ export function createParser() {
     const parser = new ArgumentParser({
         version: require("../package.json").version,
         addHelp: true,
-        description: "whadido: Analyze recent operations in local git repository"
+        description: require("../package.json").description,
     });
 
     parser.addArgument(
-        ["path"],
+        ["-r", "--repo"],
         {
-            metavar: "PATH",
+            metavar: "REPO_PATH",
             defaultValue: process.cwd(),
             help: "Root of repository or somewhere inside it. Defaults to $PWD",
-            required: false,
+            dest: "path",
         }
     );
 

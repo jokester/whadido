@@ -1,18 +1,18 @@
 {
   "name": "whadido",
   "version": "0.1.1",
-  "description": "Analyze and visualize recent operations in local git repository.",
+  "description": "Analyze and show history of local git repo.",
   "main": "index.js",
   "scripts": {
-    "start": "node lib/index.js",
-    "start:ts": "ts-node lib-ts/index.ts",
+    "start": "npm run build && node bin/whadido",
     "build": "      rm -rf lib/* && tsc",
     "build:watch": "rm -rf lib/* && tsc --watch",
     "test": "         npm run build && jest --forceExit",
     "test:coverage": "npm run build && jest --forceExit --coverage",
+    "test:codecov-upload": "codecov -f coverage/*.json",
     "test:watch": "   npm run build && jest --forceExit --watch",
-    "tslint": "    tslint -c tslint.json       'lib-ts/**/*.ts?(x)'",
-    "tslint:fix": "tslint -c tslint.json --fix 'lib-ts/**/*.ts?(x)'",
+    "tslint": "    tslint -c tslint.json       -e 'node_modules/**/*' '**/*.ts?(x)'",
+    "tslint:fix": "tslint -c tslint.json --fix -e 'node_modules/**/*' '**/*.ts?(x)'",
     "webpack": "       webpack            --config webpack/dev.js        ",
     "webpack:watch": " webpack  --watch   --config webpack/dev.js        ",
     "webpack:prod": "  webpack            --config webpack/prod.js       "
@@ -23,11 +23,12 @@
   },
   "keywords": [
     "visualization",
-    "git"
+    "git",
+    "reflog"
   ],
   "author": "Wang Guan <momocraft@gmail.com>",
   "license": "MIT",
-  "private": true,
+  "private": false,
   "bugs": {
     "url": "https://github.com/jokester/whadido/issues"
   },
@@ -36,29 +37,33 @@
   },
   "homepage": "https://github.com/jokester/whadido#readme",
   "dependencies": {
-    "@types/lodash": "^4.14.64",
     "argparse": "^1.0.9",
-    "immutable": "4.0.0-rc.2",
+    "chalk": "^1.1.3",
+    "immutable": "^4.0.0-rc.9",
     "lodash": "^4.17.4",
+    "moment": "^2.18.1",
     "recursive-readdir": "^2.2.1",
-    "tslib": "^1.7.1"
+    "tslib": "^1.8.0"
   },
   "devDependencies": {
     "@types/argparse": "^1.0.30",
-    "@types/chai": "^3.5.2",
-    "@types/jest": "^19.2.3",
+    "@types/chai": "^4.0.5",
+    "@types/chalk": "^0.4.31",
+    "@types/jest": "^21.1.6",
+    "@types/lodash": "^4.14.66",
     "@types/node": "^4.0.0",
-    "babili-webpack-plugin": "^0.1.1",
-    "chai": "^3.5.0",
-    "jest": "^20.0.4",
+    "babel-minify-webpack-plugin": "0.2.0",
+    "chai": "^4.1.2",
+    "codecov": "^3.0.0",
+    "jest": "^21.2.1",
     "preact": "^8.1.0",
-    "ts-jest": "^20.0.4",
-    "ts-loader": "^2.1.0",
-    "ts-node": "^3.0.4",
-    "tslint": "^5.3.2",
-    "typescript": "^2.3.3",
-    "webpack": "^2.6.1",
-    "webpack-dev-server": "^2.4.5",
+    "ts-jest": "^21.0.0",
+    "ts-loader": "^3.0.3",
+    "ts-node": "^3.3.0",
+    "tslint": "^5.8.0",
+    "typescript": "^2.6.1",
+    "webpack": "^3.5.6",
+    "webpack-dev-server": "^2.7.1",
     "webpack-merge": "^4.1.0",
     "webpack-visualizer-plugin": "^0.1.11"
   },
@@ -71,7 +76,14 @@
       "lib"
     ],
     "testMatch": [
-      "**/*\\.(spec|test)\\.(ts|js|tsx|jsx)"
+      "/**/__test__/*.(ts|js|tsx|jsx)",
+      "/**/*\\.(spec|test)\\.(ts|js|tsx|jsx)"
+    ],
+    "collectCoverageFrom": [
+      "lib-ts/**/*.(ts|tsx)",
+      "!lib/",
+      "!**/node_modules",
+      "!/coverage"
     ],
     "moduleFileExtensions": [
       "ts",

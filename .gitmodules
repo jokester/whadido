@@ -1,0 +1,3 @@
+[submodule "lib-ts/common"]
+	path = lib-ts/common
+	url = https://github.com/jokester/ts-commonutil/

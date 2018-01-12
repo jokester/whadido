@@ -28,9 +28,13 @@ function genTmpPath(filename: string) {
     return path.join(__dirname, "..", "..", "tmp", filename);
 }
 
+export const fromTmp = genTmpPath;
+
 export function genTestPath(filename: string) {
     return path.join(__dirname, "..", "..", "test", filename);
 }
+
+export const fromTest = genTestPath;
 
 export function logAsJSON(filename: string): (v: any) => Promise<void> {
     return writeLog(filename, prettyJson);

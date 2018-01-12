@@ -4,7 +4,9 @@
 import {
     Obj, Ref, Timestamp, Human, RefLog
 } from "./types";
-import { isTruthy, deepFreeze, freeze, ArrayM } from "../util";
+import { deepFreeze, freeze } from "../common/type";
+
+function isTruthy(v: any) { return !!v; }
 
 export const ObjTypeMappings = freeze({
     commit: Obj.Type.COMMIT,
@@ -192,6 +194,11 @@ export function parseReflog(line: string): RefLog {
         at: parseDate(matches[4]),
         desc: matches[5]
     };
+}
+
+export function extractLocalBranch(refpath: string) {
+    const matched = PATTERNS.refpath.local_branch.exec(refpath);
+    return matched && matched[1];
 }
 
 /**

@@ -2,11 +2,14 @@ import * as path from "path";
 
 import { createParser, ParsedOptions } from "./options";
 import { openRepo, findRepo, GitRepo } from "./git";
-import { writeFile } from "./util/io";
-import * as log from "./util/logger";
-import { dumpRefs, analyzeDump } from "./analyze";
+import { FS } from "./common/io";
 
-let logger = log.logger_silent;
+const { writeFile } = FS;
+
+import * as log from "./common/util/logger";
+import { buildState, unbuildState, dumpRefs, countReflog, topParser, } from "./analyze";
+
+const logger = log.createLogger(3);
 
 /**
  * captures top-level exception and show friendly message
@@ -25,12 +28,12 @@ function showError(error: Error) {
 export async function main() {
     const options = createParser().parseArgs();
     if (options.verbose)
-        logger = log.logger_normal;
+        logger.setVerbosity(3);
 
     try {
-        logger.i(`Trying to locate repository from ${options.path}`);
+        logger.info(`Trying to locate repository from ${options.path}`);
         const repo = await openRepo(options.path);
-        logger.i(`Found repository at ${repo.repoRoot}`);
+        logger.info(`Found repository at ${repo.repoRoot}`);
 
         if (options.dump)
             await dump(options, repo);
@@ -39,7 +42,7 @@ export async function main() {
 
         process.exit(0);
     } catch (e) {
-        console.error(showError(e));
+        console.error(showError(e), e);
         process.exit(1);
     }
 }
@@ -54,12 +57,6 @@ async function dump(options: ParsedOptions, repo: GitRepo) {
 
     const timeSegments = [
         now.getTime(),
-        now.getUTCFullYear(),
-        now.getUTCMonth(),
-        now.getUTCDate(),
-        now.getUTCHours(),
-        now.getUTCMinutes(),
-        now.getUTCSeconds()
     ];
 
     const dumpFilename = path.join(process.cwd(), `whadido-dump-${timeSegments.join("-")}.json`);
@@ -74,26 +71,34 @@ async function dump(options: ParsedOptions, repo: GitRepo) {
 }
 
 async function showReflog(repo: GitRepo) {
-    logger.v(JSON.stringify(await repo.listRefs()));
+    // logger.v(JSON.stringify(await repo.listRefs()));
 
     const refDump = await dumpRefs(repo);
-    logger.v(JSON.stringify(refDump));
+    const initState = buildState(refDump);
+    const numReflogs = countReflog(initState);
+    logger.debug(JSON.stringify(refDump));
 
-    const analyzed = analyzeDump(refDump)[0];
+    const results = topParser(initState);
+    const result0 = results[0];
 
-    if (!analyzed) {
+    if (!result0) {
         throw new Error("Failed to parse reflogs");
+    } else if (results.length > 1) {
+        logger.warn("ambiguities in parsing");
     }
 
-    console.log(analyzed);
-
-    const sortedOperations = analyzed.output.sort((op1, op2) => op1.end.utc_sec - op2.end.utc_sec);
-
-    for (const op of sortedOperations) {
-        console.info(op.toString());
+    for (const op of result0.output) {
+        // TODO: custom renderer
+        logger.info(op.toString());
     }
 
-    logger.i("sorted operations", JSON.stringify(sortedOperations));
+    const remained = countReflog(result0.rest);
+
+    if (remained) {
+        logger.warn(`Could not analyze ${remained} / ${numReflogs} reflog items.`);
+    }
+
+    // logger.i("sorted operations", JSON.stringify(sortedOperations));
 }
 
 if (require.main === module) {

@@ -1,3 +1,2 @@
 #!/usr/bin/env node
-const lib = require("../lib/cli");
-lib.main();
+require("../lib/cli").main();

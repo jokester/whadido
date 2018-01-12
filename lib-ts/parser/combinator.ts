@@ -19,9 +19,12 @@ export const unit: <S, A>(a: A) => Parser<S, A> = <S, A>(a: A) => {
     return (input: S) => ([{ output: a, rest: input }] as ParserReturn<S, A>);
 };
 
-interface IZero {
-    <S, A>(input: S): ParserReturn<S, A>;
-}
+// unitM :: [a] -> M a
+export const unitM = <S, A>(as: A[]) => {
+    return <Parser<S, A>>(s => as.map(a => ({ output: a, rest: s })));
+};
+
+export type IZero<S = any, A = any> = (input: S) => ParserReturn<S, A>;
 
 // zero :: M a
 export const zero: IZero = (input) => [];
@@ -39,7 +42,7 @@ export const orMulti = <S, A>(...ms: Parser<S, A>[]) => {
 export const or = orMulti;
 
 // filter :: M a -> (a -> Bool) -> M a
-export const filter = <S, A>(m: Parser<S, A>, predicate: (a: A) => boolean) => {
+export const filter = <S, A>(m: Parser<S, A>, predicate: (a: A) => any) => {
     return <Parser<S, A>>((input: S) => m(input).filter(mRet => predicate(mRet.output)));
 };
 
@@ -93,11 +96,11 @@ namespace Iterate {
     // reiterate :: M a -> M [a]
     // like iterate, but stop at first match
     export const reiterate: IterateType = <S, A>(m: Parser<S, A>) => {
-        return biased(
-            bind(m,
-                (a: A) => bind((reiterate(m) as Parser<S, A[]>),
-                    (bs: A[]) => unit([a].concat(bs)))),
-            unit([]));
+        return biased<S, A[]>(
+            bind<S, A, A[]>(m,
+                (a: A) => bind<S, A[], A[]>(reiterate(m),
+                    (bs: A[]) => unit<S, A[]>([a].concat(bs)))),
+            unit<S, A[]>([]));
     };
 }
 
@@ -119,6 +122,12 @@ export const biased = <S, A>(...ms: Parser<S, A>[]) => {
         return [];
     });
 };
+
+export const maybeDefault = <S, A>(absent: A, m: Parser<S, A>) => {
+    return biased(m, unit<S, A>(absent));
+};
+
+export const maybe = <S, A>(m: Parser<S, A>) => maybeDefault(null, m);
 
 export const seq2 = <S, A, B, C>(p1: Parser<S, A>, p2: Parser<S, B>, then: (a: A, b: B) => Parser<S, C>) => {
     return bind<S, A, C>(p1,

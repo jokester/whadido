@@ -7,21 +7,7 @@
             "dest": "refs/heads/text-parser",
             "destBranch": "refs/heads/text-parser"
         },
-        "reflog": [
-            {
-                "from": "0000000000000000000000000000000000000000",
-                "to": "7ddcd4664ae12e2e0c6ecefba93140703d7070e8",
-                "by": {
-                    "name": "Wang Guan",
-                    "email": "momocraft@gmail.com"
-                },
-                "at": {
-                    "utc_sec": 1482571348,
-                    "tz": "+0900"
-                },
-                "desc": "clone: from caroline:/git/node-typescript-boilerplate"
-            }
-        ]
+        "reflog": []
     },
     {
         "path": "refs/remotes/GLaDOS/webpack-preact",
@@ -101,21 +87,7 @@
             "dest": "0fcf719d93b45deaeba0f0a22b64aab70ab0b25f",
             "destCommit": "0fcf719d93b45deaeba0f0a22b64aab70ab0b25f"
         },
-        "reflog": [
-            {
-                "from": "0000000000000000000000000000000000000000",
-                "to": "7ddcd4664ae12e2e0c6ecefba93140703d7070e8",
-                "by": {
-                    "name": "Wang Guan",
-                    "email": "momocraft@gmail.com"
-                },
-                "at": {
-                    "utc_sec": 1482571348,
-                    "tz": "+0900"
-                },
-                "desc": "clone: from caroline:/git/node-typescript-boilerplate"
-            }
-        ]
+        "reflog": []
     },
     {
         "path": "refs/remotes/GLaDOS/webpack-react",
