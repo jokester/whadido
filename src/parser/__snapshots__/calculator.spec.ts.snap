@@ -1,0 +1,54 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`calculator parses atom value with parenthesis: cal.ExpParser(" ( 111 ) ") 1`] = `Array []`;
+
+exports[`calculator parses atom value: cal.AtomParser("  11   ") 1`] = `Array []`;
+
+exports[`calculator parses atom value: cal.AtomParser("11 ") 1`] = `
+Array [
+  Object {
+    "output": Object {
+      "type": "atom",
+      "val": 11,
+    },
+    "rest": " ",
+  },
+]
+`;
+
+exports[`calculator parses atom value: cal.AtomParser("11n") 1`] = `
+Array [
+  Object {
+    "output": Object {
+      "type": "atom",
+      "val": 11,
+    },
+    "rest": "n",
+  },
+]
+`;
+
+exports[`calculator parses div expression: cal.DivParser("/222 ") 1`] = `Array []`;
+
+exports[`calculator parses div expression: cal.DivParser("111   /222") 1`] = `Array []`;
+
+exports[`calculator parses div expression: cal.DivParser("111/") 1`] = `Array []`;
+
+exports[`calculator parses div expression: cal.DivParser("111/222") 1`] = `
+Array [
+  Object {
+    "output": Object {
+      "deno": Object {
+        "type": "atom",
+        "val": 222,
+      },
+      "nom": Object {
+        "type": "atom",
+        "val": 111,
+      },
+      "type": "div",
+    },
+    "rest": "",
+  },
+]
+`;
