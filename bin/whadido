@@ -1,2 +1,5 @@
 #!/usr/bin/env node
-require("../lib/cli").main();
+
+// a dummy entrypoint to run real built js
+//
+require('../build/bin/whadido');
