@@ -16,7 +16,7 @@
                     "email": "momocraft@gmail.com"
                 },
                 "at": {
-                    "utc_sec": 1477312215,
+                    "utcSec": 1477312215,
                     "tz": "+0900"
                 },
                 "desc": "clone: from git@gitlab.com:jokester/Bangumi.git"
@@ -29,7 +29,7 @@
                     "email": "momocraft@gmail.com"
                 },
                 "at": {
-                    "utc_sec": 1482592119,
+                    "utcSec": 1482592119,
                     "tz": "+0900"
                 },
                 "desc": "checkout: moving from master to revive"
@@ -42,7 +42,7 @@
                     "email": "momocraft@gmail.com"
                 },
                 "at": {
-                    "utc_sec": 1482596584,
+                    "utcSec": 1482596584,
                     "tz": "+0900"
                 },
                 "desc": "commit: wip"
@@ -55,7 +55,7 @@
                     "email": "momocraft@gmail.com"
                 },
                 "at": {
-                    "utc_sec": 1482644563,
+                    "utcSec": 1482644563,
                     "tz": "+0900"
                 },
                 "desc": "commit: learn rxjava"
@@ -68,7 +68,7 @@
                     "email": "momocraft@gmail.com"
                 },
                 "at": {
-                    "utc_sec": 1483799155,
+                    "utcSec": 1483799155,
                     "tz": "+0900"
                 },
                 "desc": "merge origin/revive: Fast-forward"
@@ -81,7 +81,7 @@
                     "email": "momocraft@gmail.com"
                 },
                 "at": {
-                    "utc_sec": 1483806019,
+                    "utcSec": 1483806019,
                     "tz": "+0900"
                 },
                 "desc": "commit: create bgm39"
@@ -94,7 +94,7 @@
                     "email": "momocraft@gmail.com"
                 },
                 "at": {
-                    "utc_sec": 1483807347,
+                    "utcSec": 1483807347,
                     "tz": "+0900"
                 },
                 "desc": "reset: moving to HEAD"
@@ -107,7 +107,7 @@
                     "email": "momocraft@gmail.com"
                 },
                 "at": {
-                    "utc_sec": 1483807356,
+                    "utcSec": 1483807356,
                     "tz": "+0900"
                 },
                 "desc": "reset: moving to HEAD"
@@ -120,7 +120,7 @@
                     "email": "momocraft@gmail.com"
                 },
                 "at": {
-                    "utc_sec": 1483808302,
+                    "utcSec": 1483808302,
                     "tz": "+0900"
                 },
                 "desc": "reset: moving to HEAD"
@@ -133,7 +133,7 @@
                     "email": "momocraft@gmail.com"
                 },
                 "at": {
-                    "utc_sec": 1483808348,
+                    "utcSec": 1483808348,
                     "tz": "+0900"
                 },
                 "desc": "commit (amend): create bgm39"
@@ -146,7 +146,7 @@
                     "email": "momocraft@gmail.com"
                 },
                 "at": {
-                    "utc_sec": 1483809047,
+                    "utcSec": 1483809047,
                     "tz": "+0900"
                 },
                 "desc": "commit: move res to bgm39"
@@ -159,7 +159,7 @@
                     "email": "momocraft@gmail.com"
                 },
                 "at": {
-                    "utc_sec": 1483809576,
+                    "utcSec": 1483809576,
                     "tz": "+0900"
                 },
                 "desc": "commit: move"
@@ -172,7 +172,7 @@
                     "email": "momocraft@gmail.com"
                 },
                 "at": {
-                    "utc_sec": 1483811394,
+                    "utcSec": 1483811394,
                     "tz": "+0900"
                 },
                 "desc": "commit: revive main activity"
@@ -185,7 +185,7 @@
                     "email": "momocraft@gmail.com"
                 },
                 "at": {
-                    "utc_sec": 1487613289,
+                    "utcSec": 1487613289,
                     "tz": "+0900"
                 },
                 "desc": "commit: move http / pojo"
@@ -198,7 +198,7 @@
                     "email": "momocraft@gmail.com"
                 },
                 "at": {
-                    "utc_sec": 1487618909,
+                    "utcSec": 1487618909,
                     "tz": "+0900"
                 },
                 "desc": "commit: bgm39 + feather running"
@@ -211,7 +211,7 @@
                     "email": "momocraft@gmail.com"
                 },
                 "at": {
-                    "utc_sec": 1487777375,
+                    "utcSec": 1487777375,
                     "tz": "+0900"
                 },
                 "desc": "checkout: moving from revive to dev"
@@ -224,7 +224,7 @@
                     "email": "momocraft@gmail.com"
                 },
                 "at": {
-                    "utc_sec": 1487777502,
+                    "utcSec": 1487777502,
                     "tz": "+0900"
                 },
                 "desc": "commit: 用於jsoup壓力測試的學姐樓"
@@ -237,7 +237,7 @@
                     "email": "momocraft@gmail.com"
                 },
                 "at": {
-                    "utc_sec": 1487777523,
+                    "utcSec": 1487777523,
                     "tz": "+0900"
                 },
                 "desc": "commit (amend): 用於jsoup壓力測試的不能看.html"
@@ -250,7 +250,7 @@
                     "email": "momocraft@gmail.com"
                 },
                 "at": {
-                    "utc_sec": 1487784695,
+                    "utcSec": 1487784695,
                     "tz": "+0900"
                 },
                 "desc": "commit: wip"
@@ -263,7 +263,7 @@
                     "email": "momocraft@gmail.com"
                 },
                 "at": {
-                    "utc_sec": 1487784706,
+                    "utcSec": 1487784706,
                     "tz": "+0900"
                 },
                 "desc": "checkout: moving from dev to Bangumi2"
@@ -276,7 +276,7 @@
                     "email": "momocraft@gmail.com"
                 },
                 "at": {
-                    "utc_sec": 1487784709,
+                    "utcSec": 1487784709,
                     "tz": "+0900"
                 },
                 "desc": "checkout: moving from Bangumi2 to dev"
@@ -289,7 +289,7 @@
                     "email": "momocraft@gmail.com"
                 },
                 "at": {
-                    "utc_sec": 1487855308,
+                    "utcSec": 1487855308,
                     "tz": "+0900"
                 },
                 "desc": "merge origin/dev: Fast-forward"
@@ -302,7 +302,7 @@
                     "email": "momocraft@gmail.com"
                 },
                 "at": {
-                    "utc_sec": 1487859091,
+                    "utcSec": 1487859091,
                     "tz": "+0900"
                 },
                 "desc": "commit: wip"
@@ -315,7 +315,7 @@
                     "email": "momocraft@gmail.com"
                 },
                 "at": {
-                    "utc_sec": 1487859616,
+                    "utcSec": 1487859616,
                     "tz": "+0900"
                 },
                 "desc": "commit (amend): wip"
@@ -328,7 +328,7 @@
                     "email": "momocraft@gmail.com"
                 },
                 "at": {
-                    "utc_sec": 1487868292,
+                    "utcSec": 1487868292,
                     "tz": "+0900"
                 },
                 "desc": "reset: moving to HEAD"
@@ -341,7 +341,7 @@
                     "email": "momocraft@gmail.com"
                 },
                 "at": {
-                    "utc_sec": 1487868294,
+                    "utcSec": 1487868294,
                     "tz": "+0900"
                 },
                 "desc": "rebase: checkout origin/dev"
@@ -354,7 +354,7 @@
                     "email": "momocraft@gmail.com"
                 },
                 "at": {
-                    "utc_sec": 1487868371,
+                    "utcSec": 1487868371,
                     "tz": "+0900"
                 },
                 "desc": "rebase: wip"
@@ -367,7 +367,7 @@
                     "email": "momocraft@gmail.com"
                 },
                 "at": {
-                    "utc_sec": 1487868371,
+                    "utcSec": 1487868371,
                     "tz": "+0900"
                 },
                 "desc": "rebase finished: returning to refs/heads/dev"
@@ -380,7 +380,7 @@
                     "email": "momocraft@gmail.com"
                 },
                 "at": {
-                    "utc_sec": 1487868631,
+                    "utcSec": 1487868631,
                     "tz": "+0900"
                 },
                 "desc": "checkout: moving from dev to 0bdc4be57806b514c17cd19206be259207ddfad6"
@@ -393,7 +393,7 @@
                     "email": "momocraft@gmail.com"
                 },
                 "at": {
-                    "utc_sec": 1487868633,
+                    "utcSec": 1487868633,
                     "tz": "+0900"
                 },
                 "desc": "rebase: checkout dev"
@@ -406,7 +406,7 @@
                     "email": "momocraft@gmail.com"
                 },
                 "at": {
-                    "utc_sec": 1487868699,
+                    "utcSec": 1487868699,
                     "tz": "+0900"
                 },
                 "desc": "rebase: wip"
@@ -419,7 +419,7 @@
                     "email": "momocraft@gmail.com"
                 },
                 "at": {
-                    "utc_sec": 1487868699,
+                    "utcSec": 1487868699,
                     "tz": "+0900"
                 },
                 "desc": "rebase: index on dev: 9f15d9 wip"
@@ -453,7 +453,7 @@
                     "email": "momocraft@gmail.com"
                 },
                 "at": {
-                    "utc_sec": 1487777375,
+                    "utcSec": 1487777375,
                     "tz": "+0900"
                 },
                 "desc": "branch: Created from refs/remotes/origin/dev"
@@ -466,7 +466,7 @@
                     "email": "momocraft@gmail.com"
                 },
                 "at": {
-                    "utc_sec": 1487777502,
+                    "utcSec": 1487777502,
                     "tz": "+0900"
                 },
                 "desc": "commit: 用於jsoup壓力測試的學姐樓"
@@ -479,7 +479,7 @@
                     "email": "momocraft@gmail.com"
                 },
                 "at": {
-                    "utc_sec": 1487777523,
+                    "utcSec": 1487777523,
                     "tz": "+0900"
                 },
                 "desc": "commit (amend): 用於jsoup壓力測試的不能看.html"
@@ -492,7 +492,7 @@
                     "email": "momocraft@gmail.com"
                 },
                 "at": {
-                    "utc_sec": 1487784695,
+                    "utcSec": 1487784695,
                     "tz": "+0900"
                 },
                 "desc": "commit: wip"
@@ -505,7 +505,7 @@
                     "email": "momocraft@gmail.com"
                 },
                 "at": {
-                    "utc_sec": 1487855308,
+                    "utcSec": 1487855308,
                     "tz": "+0900"
                 },
                 "desc": "merge origin/dev: Fast-forward"
@@ -518,7 +518,7 @@
                     "email": "momocraft@gmail.com"
                 },
                 "at": {
-                    "utc_sec": 1487859091,
+                    "utcSec": 1487859091,
                     "tz": "+0900"
                 },
                 "desc": "commit: wip"
@@ -531,7 +531,7 @@
                     "email": "momocraft@gmail.com"
                 },
                 "at": {
-                    "utc_sec": 1487859616,
+                    "utcSec": 1487859616,
                     "tz": "+0900"
                 },
                 "desc": "commit (amend): wip"
@@ -544,7 +544,7 @@
                     "email": "momocraft@gmail.com"
                 },
                 "at": {
-                    "utc_sec": 1487868371,
+                    "utcSec": 1487868371,
                     "tz": "+0900"
                 },
                 "desc": "rebase finished: refs/heads/dev onto 5fd3a48a7bdcf0907a9fcb5d030cb3be7d984c62"
@@ -568,7 +568,7 @@
                     "email": "momocraft@gmail.com"
                 },
                 "at": {
-                    "utc_sec": 1477312215,
+                    "utcSec": 1477312215,
                     "tz": "+0900"
                 },
                 "desc": "clone: from git@gitlab.com:jokester/Bangumi.git"
@@ -592,7 +592,7 @@
                     "email": "momocraft@gmail.com"
                 },
                 "at": {
-                    "utc_sec": 1482592119,
+                    "utcSec": 1482592119,
                     "tz": "+0900"
                 },
                 "desc": "branch: Created from HEAD"
@@ -605,7 +605,7 @@
                     "email": "momocraft@gmail.com"
                 },
                 "at": {
-                    "utc_sec": 1482596584,
+                    "utcSec": 1482596584,
                     "tz": "+0900"
                 },
                 "desc": "commit: wip"
@@ -618,7 +618,7 @@
                     "email": "momocraft@gmail.com"
                 },
                 "at": {
-                    "utc_sec": 1482644563,
+                    "utcSec": 1482644563,
                     "tz": "+0900"
                 },
                 "desc": "commit: learn rxjava"
@@ -631,7 +631,7 @@
                     "email": "momocraft@gmail.com"
                 },
                 "at": {
-                    "utc_sec": 1483799155,
+                    "utcSec": 1483799155,
                     "tz": "+0900"
                 },
                 "desc": "merge origin/revive: Fast-forward"
@@ -644,7 +644,7 @@
                     "email": "momocraft@gmail.com"
                 },
                 "at": {
-                    "utc_sec": 1483806019,
+                    "utcSec": 1483806019,
                     "tz": "+0900"
                 },
                 "desc": "commit: create bgm39"
@@ -657,7 +657,7 @@
                     "email": "momocraft@gmail.com"
                 },
                 "at": {
-                    "utc_sec": 1483808348,
+                    "utcSec": 1483808348,
                     "tz": "+0900"
                 },
                 "desc": "commit (amend): create bgm39"
@@ -670,7 +670,7 @@
                     "email": "momocraft@gmail.com"
                 },
                 "at": {
-                    "utc_sec": 1483809047,
+                    "utcSec": 1483809047,
                     "tz": "+0900"
                 },
                 "desc": "commit: move res to bgm39"
@@ -683,7 +683,7 @@
                     "email": "momocraft@gmail.com"
                 },
                 "at": {
-                    "utc_sec": 1483809576,
+                    "utcSec": 1483809576,
                     "tz": "+0900"
                 },
                 "desc": "commit: move"
@@ -696,7 +696,7 @@
                     "email": "momocraft@gmail.com"
                 },
                 "at": {
-                    "utc_sec": 1483811394,
+                    "utcSec": 1483811394,
                     "tz": "+0900"
                 },
                 "desc": "commit: revive main activity"
@@ -709,7 +709,7 @@
                     "email": "momocraft@gmail.com"
                 },
                 "at": {
-                    "utc_sec": 1487613289,
+                    "utcSec": 1487613289,
                     "tz": "+0900"
                 },
                 "desc": "commit: move http / pojo"
@@ -722,7 +722,7 @@
                     "email": "momocraft@gmail.com"
                 },
                 "at": {
-                    "utc_sec": 1487618909,
+                    "utcSec": 1487618909,
                     "tz": "+0900"
                 },
                 "desc": "commit: bgm39 + feather running"
@@ -746,7 +746,7 @@
                     "email": "momocraft@gmail.com"
                 },
                 "at": {
-                    "utc_sec": 1477312215,
+                    "utcSec": 1477312215,
                     "tz": "+0900"
                 },
                 "desc": "clone: from git@gitlab.com:jokester/Bangumi.git"

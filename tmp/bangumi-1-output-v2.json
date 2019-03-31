@@ -10,12 +10,11 @@
                 "email": "momocraft@gmail.com"
             },
             "at": {
-                "utc_sec": 1498492511,
+                "utcSec": 1498492511,
                 "tz": "+0900"
             },
             "desc": "update by push"
-        },
-        "type": 0
+        }
     },
     {
         "className": "Push",
@@ -28,12 +27,11 @@
                 "email": "momocraft@gmail.com"
             },
             "at": {
-                "utc_sec": 1497523792,
+                "utcSec": 1497523792,
                 "tz": "+0900"
             },
             "desc": "update by push"
-        },
-        "type": 0
+        }
     },
     {
         "className": "Push",
@@ -46,12 +44,11 @@
                 "email": "momocraft@gmail.com"
             },
             "at": {
-                "utc_sec": 1487622675,
+                "utcSec": 1487622675,
                 "tz": "+0900"
             },
             "desc": "update by push"
-        },
-        "type": 0
+        }
     },
     {
         "className": "Push",
@@ -64,12 +61,11 @@
                 "email": "momocraft@gmail.com"
             },
             "at": {
-                "utc_sec": 1484148350,
+                "utcSec": 1484148350,
                 "tz": "+0900"
             },
             "desc": "update by push"
-        },
-        "type": 0
+        }
     },
     {
         "className": "Fetch",
@@ -82,12 +78,11 @@
                 "email": "momocraft@gmail.com"
             },
             "at": {
-                "utc_sec": 1483799064,
+                "utcSec": 1483799064,
                 "tz": "+0900"
             },
             "desc": "fetch --append origin: fast-forward"
-        },
-        "type": 1
+        }
     },
     {
         "className": "Push",
@@ -100,12 +95,11 @@
                 "email": "momocraft@gmail.com"
             },
             "at": {
-                "utc_sec": 1482644574,
+                "utcSec": 1482644574,
                 "tz": "+0900"
             },
             "desc": "update by push"
-        },
-        "type": 0
+        }
     },
     {
         "className": "Push",
@@ -118,12 +112,11 @@
                 "email": "momocraft@gmail.com"
             },
             "at": {
-                "utc_sec": 1482596592,
+                "utcSec": 1482596592,
                 "tz": "+0900"
             },
             "desc": "update by push"
-        },
-        "type": 0
+        }
     },
     {
         "className": "Commit",
@@ -135,7 +128,7 @@
                 "email": "momocraft@gmail.com"
             },
             "at": {
-                "utc_sec": 1497625930,
+                "utcSec": 1497625930,
                 "tz": "+0900"
             },
             "desc": "commit: wip"
@@ -149,12 +142,11 @@
                 "email": "momocraft@gmail.com"
             },
             "at": {
-                "utc_sec": 1497625930,
+                "utcSec": 1497625930,
                 "tz": "+0900"
             },
             "desc": "commit: wip"
-        },
-        "type": 101
+        }
     },
     {
         "className": "Commit",
@@ -166,7 +158,7 @@
                 "email": "momocraft@gmail.com"
             },
             "at": {
-                "utc_sec": 1497523780,
+                "utcSec": 1497523780,
                 "tz": "+0900"
             },
             "desc": "commit: wip"
@@ -180,12 +172,11 @@
                 "email": "momocraft@gmail.com"
             },
             "at": {
-                "utc_sec": 1497523780,
+                "utcSec": 1497523780,
                 "tz": "+0900"
             },
             "desc": "commit: wip"
-        },
-        "type": 101
+        }
     },
     {
         "className": "CreateBranch",
@@ -197,14 +188,12 @@
                 "email": "momocraft@gmail.com"
             },
             "at": {
-                "utc_sec": 1487778183,
+                "utcSec": 1487778183,
                 "tz": "+0900"
             },
             "desc": "branch: Created from HEAD"
         },
-        "branchPath": "refs/heads/Bangumi2",
-        "headCheckout": null,
-        "type": 102
+        "branchPath": "refs/heads/Bangumi2"
     },
     {
         "className": "Pull",
@@ -216,12 +205,11 @@
                 "email": "momocraft@gmail.com"
             },
             "at": {
-                "utc_sec": 1497269034,
+                "utcSec": 1497269034,
                 "tz": "+0900"
             },
             "desc": "pull: Fast-forward"
-        },
-        "type": 300
+        }
     },
     {
         "className": "Fetch",
@@ -234,12 +222,11 @@
                 "email": "momocraft@gmail.com"
             },
             "at": {
-                "utc_sec": 1497248856,
+                "utcSec": 1497248856,
                 "tz": "+0900"
             },
             "desc": "fetch --append origin: fast-forward"
-        },
-        "type": 1
+        }
     },
     {
         "className": "Push",
@@ -252,12 +239,11 @@
                 "email": "momocraft@gmail.com"
             },
             "at": {
-                "utc_sec": 1492773411,
+                "utcSec": 1492773411,
                 "tz": "+0900"
             },
             "desc": "update by push"
-        },
-        "type": 0
+        }
     },
     {
         "className": "Fetch",
@@ -270,12 +256,11 @@
                 "email": "momocraft@gmail.com"
             },
             "at": {
-                "utc_sec": 1489985771,
+                "utcSec": 1489985771,
                 "tz": "+0900"
             },
             "desc": "fetch: fast-forward"
-        },
-        "type": 1
+        }
     },
     {
         "className": "Push",
@@ -288,12 +273,11 @@
                 "email": "momocraft@gmail.com"
             },
             "at": {
-                "utc_sec": 1487868382,
+                "utcSec": 1487868382,
                 "tz": "+0900"
             },
             "desc": "update by push"
-        },
-        "type": 0
+        }
     },
     {
         "className": "Push",
@@ -306,12 +290,11 @@
                 "email": "momocraft@gmail.com"
             },
             "at": {
-                "utc_sec": 1487859103,
+                "utcSec": 1487859103,
                 "tz": "+0900"
             },
             "desc": "update by push"
-        },
-        "type": 0
+        }
     },
     {
         "className": "Fetch",
@@ -324,12 +307,11 @@
                 "email": "momocraft@gmail.com"
             },
             "at": {
-                "utc_sec": 1487854962,
+                "utcSec": 1487854962,
                 "tz": "+0900"
             },
             "desc": "fetch: fast-forward"
-        },
-        "type": 1
+        }
     },
     {
         "className": "Push",
@@ -342,12 +324,11 @@
                 "email": "momocraft@gmail.com"
             },
             "at": {
-                "utc_sec": 1487784716,
+                "utcSec": 1487784716,
                 "tz": "+0900"
             },
             "desc": "update by push"
-        },
-        "type": 0
+        }
     },
     {
         "className": "Fetch",
@@ -360,12 +341,11 @@
                 "email": "momocraft@gmail.com"
             },
             "at": {
-                "utc_sec": 1487777193,
+                "utcSec": 1487777193,
                 "tz": "+0900"
             },
             "desc": "fetch --append origin: storing head"
-        },
-        "type": 1
+        }
     },
     {
         "className": "Merge",
@@ -377,7 +357,7 @@
                 "email": "momocraft@gmail.com"
             },
             "at": {
-                "utc_sec": 1497248863,
+                "utcSec": 1497248863,
                 "tz": "+0900"
             },
             "desc": "merge origin/dev: Fast-forward"
@@ -391,12 +371,11 @@
                 "email": "momocraft@gmail.com"
             },
             "at": {
-                "utc_sec": 1497248863,
+                "utcSec": 1497248863,
                 "tz": "+0900"
             },
             "desc": "merge origin/dev: Fast-forward"
-        },
-        "type": 100
+        }
     },
     {
         "className": "Reset",
@@ -408,12 +387,11 @@
                 "email": "momocraft@gmail.com"
             },
             "at": {
-                "utc_sec": 1490098666,
+                "utcSec": 1490098666,
                 "tz": "+0900"
             },
             "desc": "reset: moving to HEAD"
-        },
-        "type": 201
+        }
     },
     {
         "className": "Commit",
@@ -425,7 +403,7 @@
                 "email": "momocraft@gmail.com"
             },
             "at": {
-                "utc_sec": 1490028151,
+                "utcSec": 1490028151,
                 "tz": "+0900"
             },
             "desc": "commit: clean bunengkan with tidy-html"
@@ -439,12 +417,11 @@
                 "email": "momocraft@gmail.com"
             },
             "at": {
-                "utc_sec": 1490028151,
+                "utcSec": 1490028151,
                 "tz": "+0900"
             },
             "desc": "commit: clean bunengkan with tidy-html"
-        },
-        "type": 101
+        }
     },
     {
         "className": "Commit",
@@ -456,7 +433,7 @@
                 "email": "momocraft@gmail.com"
             },
             "at": {
-                "utc_sec": 1490027682,
+                "utcSec": 1490027682,
                 "tz": "+0900"
             },
             "desc": "commit: fix"
@@ -470,15 +447,14 @@
                 "email": "momocraft@gmail.com"
             },
             "at": {
-                "utc_sec": 1490027682,
+                "utcSec": 1490027682,
                 "tz": "+0900"
             },
             "desc": "commit: fix"
-        },
-        "type": 101
+        }
     },
     {
-        "className": "RebaseInteractiveFinished",
+        "className": "RebaseInteractivelyFinished",
         "headLogs": [
             {
                 "from": "4f10bf501d658ef0eabb606f4179b8e19198e8de",
@@ -488,7 +464,7 @@
                     "email": "momocraft@gmail.com"
                 },
                 "at": {
-                    "utc_sec": 1490024709,
+                    "utcSec": 1490024709,
                     "tz": "+0900"
                 },
                 "desc": "rebase -i (start): checkout origin/dev"
@@ -501,7 +477,7 @@
                     "email": "momocraft@gmail.com"
                 },
                 "at": {
-                    "utc_sec": 1490024709,
+                    "utcSec": 1490024709,
                     "tz": "+0900"
                 },
                 "desc": "rebase -i (squash): # This is a combination of 2 commits."
@@ -514,7 +490,7 @@
                     "email": "momocraft@gmail.com"
                 },
                 "at": {
-                    "utc_sec": 1490024709,
+                    "utcSec": 1490024709,
                     "tz": "+0900"
                 },
                 "desc": "rebase -i (squash): # This is a combination of 3 commits."
@@ -527,7 +503,7 @@
                     "email": "momocraft@gmail.com"
                 },
                 "at": {
-                    "utc_sec": 1490024709,
+                    "utcSec": 1490024709,
                     "tz": "+0900"
                 },
                 "desc": "rebase -i (squash): # This is a combination of 4 commits."
@@ -540,7 +516,7 @@
                     "email": "momocraft@gmail.com"
                 },
                 "at": {
-                    "utc_sec": 1490024709,
+                    "utcSec": 1490024709,
                     "tz": "+0900"
                 },
                 "desc": "rebase -i (squash): # This is a combination of 5 commits."
@@ -553,7 +529,7 @@
                     "email": "momocraft@gmail.com"
                 },
                 "at": {
-                    "utc_sec": 1490024709,
+                    "utcSec": 1490024709,
                     "tz": "+0900"
                 },
                 "desc": "rebase -i (squash): adapt SaxParser"
@@ -566,7 +542,7 @@
                     "email": "momocraft@gmail.com"
                 },
                 "at": {
-                    "utc_sec": 1490024718,
+                    "utcSec": 1490024718,
                     "tz": "+0900"
                 },
                 "desc": "rebase -i (finish): returning to refs/heads/dev"
@@ -581,12 +557,11 @@
                 "email": "momocraft@gmail.com"
             },
             "at": {
-                "utc_sec": 1490024718,
+                "utcSec": 1490024718,
                 "tz": "+0900"
             },
             "desc": "rebase -i (finish): refs/heads/dev onto ae790e8382b3df405eff179824cf19db3ad223e7"
-        },
-        "type": 103
+        }
     },
     {
         "className": "Reset",
@@ -598,12 +573,11 @@
                 "email": "momocraft@gmail.com"
             },
             "at": {
-                "utc_sec": 1490024676,
+                "utcSec": 1490024676,
                 "tz": "+0900"
             },
             "desc": "reset: moving to HEAD"
-        },
-        "type": 201
+        }
     },
     {
         "className": "Commit",
@@ -615,7 +589,7 @@
                 "email": "momocraft@gmail.com"
             },
             "at": {
-                "utc_sec": 1490024658,
+                "utcSec": 1490024658,
                 "tz": "+0900"
             },
             "desc": "commit: parse response lv2"
@@ -629,12 +603,11 @@
                 "email": "momocraft@gmail.com"
             },
             "at": {
-                "utc_sec": 1490024658,
+                "utcSec": 1490024658,
                 "tz": "+0900"
             },
             "desc": "commit: parse response lv2"
-        },
-        "type": 101
+        }
     },
     {
         "className": "Commit",
@@ -646,7 +619,7 @@
                 "email": "momocraft@gmail.com"
             },
             "at": {
-                "utc_sec": 1490023497,
+                "utcSec": 1490023497,
                 "tz": "+0900"
             },
             "desc": "commit: parse resp - lv1"
@@ -660,12 +633,11 @@
                 "email": "momocraft@gmail.com"
             },
             "at": {
-                "utc_sec": 1490023497,
+                "utcSec": 1490023497,
                 "tz": "+0900"
             },
             "desc": "commit: parse resp - lv1"
-        },
-        "type": 101
+        }
     },
     {
         "className": "Commit",
@@ -677,7 +649,7 @@
                 "email": "momocraft@gmail.com"
             },
             "at": {
-                "utc_sec": 1490022998,
+                "utcSec": 1490022998,
                 "tz": "+0900"
             },
             "desc": "commit: wip"
@@ -691,12 +663,11 @@
                 "email": "momocraft@gmail.com"
             },
             "at": {
-                "utc_sec": 1490022998,
+                "utcSec": 1490022998,
                 "tz": "+0900"
             },
             "desc": "commit: wip"
-        },
-        "type": 101
+        }
     },
     {
         "className": "Commit",
@@ -708,7 +679,7 @@
                 "email": "momocraft@gmail.com"
             },
             "at": {
-                "utc_sec": 1490020820,
+                "utcSec": 1490020820,
                 "tz": "+0900"
             },
             "desc": "commit: wip"
@@ -722,12 +693,11 @@
                 "email": "momocraft@gmail.com"
             },
             "at": {
-                "utc_sec": 1490020820,
+                "utcSec": 1490020820,
                 "tz": "+0900"
             },
             "desc": "commit: wip"
-        },
-        "type": 101
+        }
     },
     {
         "className": "Commit",
@@ -739,7 +709,7 @@
                 "email": "momocraft@gmail.com"
             },
             "at": {
-                "utc_sec": 1490019670,
+                "utcSec": 1490019670,
                 "tz": "+0900"
             },
             "desc": "commit: wip"
@@ -753,12 +723,11 @@
                 "email": "momocraft@gmail.com"
             },
             "at": {
-                "utc_sec": 1490019670,
+                "utcSec": 1490019670,
                 "tz": "+0900"
             },
             "desc": "commit: wip"
-        },
-        "type": 101
+        }
     },
     {
         "className": "Commit",
@@ -770,7 +739,7 @@
                 "email": "momocraft@gmail.com"
             },
             "at": {
-                "utc_sec": 1490015850,
+                "utcSec": 1490015850,
                 "tz": "+0900"
             },
             "desc": "commit (amend): adapt SaxParser"
@@ -784,12 +753,11 @@
                 "email": "momocraft@gmail.com"
             },
             "at": {
-                "utc_sec": 1490015850,
+                "utcSec": 1490015850,
                 "tz": "+0900"
             },
             "desc": "commit (amend): adapt SaxParser"
-        },
-        "type": 101
+        }
     },
     {
         "className": "Commit",
@@ -801,7 +769,7 @@
                 "email": "momocraft@gmail.com"
             },
             "at": {
-                "utc_sec": 1490015057,
+                "utcSec": 1490015057,
                 "tz": "+0900"
             },
             "desc": "commit: adapt SaxParser"
@@ -815,12 +783,11 @@
                 "email": "momocraft@gmail.com"
             },
             "at": {
-                "utc_sec": 1490015057,
+                "utcSec": 1490015057,
                 "tz": "+0900"
             },
             "desc": "commit: adapt SaxParser"
-        },
-        "type": 101
+        }
     },
     {
         "className": "Commit",
@@ -832,7 +799,7 @@
                 "email": "momocraft@gmail.com"
             },
             "at": {
-                "utc_sec": 1490013337,
+                "utcSec": 1490013337,
                 "tz": "+0900"
             },
             "desc": "commit: link my jsoup fork"
@@ -846,12 +813,11 @@
                 "email": "momocraft@gmail.com"
             },
             "at": {
-                "utc_sec": 1490013337,
+                "utcSec": 1490013337,
                 "tz": "+0900"
             },
             "desc": "commit: link my jsoup fork"
-        },
-        "type": 101
+        }
     },
     {
         "className": "Commit",
@@ -863,7 +829,7 @@
                 "email": "momocraft@gmail.com"
             },
             "at": {
-                "utc_sec": 1489988866,
+                "utcSec": 1489988866,
                 "tz": "+0900"
             },
             "desc": "commit: upgrade gradle plugin"
@@ -877,12 +843,11 @@
                 "email": "momocraft@gmail.com"
             },
             "at": {
-                "utc_sec": 1489988866,
+                "utcSec": 1489988866,
                 "tz": "+0900"
             },
             "desc": "commit: upgrade gradle plugin"
-        },
-        "type": 101
+        }
     },
     {
         "className": "Reset",
@@ -894,12 +859,11 @@
                 "email": "momocraft@gmail.com"
             },
             "at": {
-                "utc_sec": 1489985811,
+                "utcSec": 1489985811,
                 "tz": "+0900"
             },
             "desc": "reset: moving to HEAD"
-        },
-        "type": 201
+        }
     },
     {
         "className": "RebaseFinished",
@@ -912,7 +876,7 @@
                     "email": "momocraft@gmail.com"
                 },
                 "at": {
-                    "utc_sec": 1489985789,
+                    "utcSec": 1489985789,
                     "tz": "+0900"
                 },
                 "desc": "rebase: checkout origin/dev"
@@ -925,7 +889,7 @@
                     "email": "momocraft@gmail.com"
                 },
                 "at": {
-                    "utc_sec": 1489985789,
+                    "utcSec": 1489985789,
                     "tz": "+0900"
                 },
                 "desc": "rebase: wip"
@@ -938,7 +902,7 @@
                     "email": "momocraft@gmail.com"
                 },
                 "at": {
-                    "utc_sec": 1489985789,
+                    "utcSec": 1489985789,
                     "tz": "+0900"
                 },
                 "desc": "rebase: index on dev: 9f15d9 wip"
@@ -951,7 +915,7 @@
                     "email": "momocraft@gmail.com"
                 },
                 "at": {
-                    "utc_sec": 1489985789,
+                    "utcSec": 1489985789,
                     "tz": "+0900"
                 },
                 "desc": "rebase: wip"
@@ -964,7 +928,7 @@
                     "email": "momocraft@gmail.com"
                 },
                 "at": {
-                    "utc_sec": 1489985789,
+                    "utcSec": 1489985789,
                     "tz": "+0900"
                 },
                 "desc": "rebase finished: returning to refs/heads/dev"
@@ -979,12 +943,11 @@
                 "email": "momocraft@gmail.com"
             },
             "at": {
-                "utc_sec": 1489985789,
+                "utcSec": 1489985789,
                 "tz": "+0900"
             },
             "desc": "rebase finished: refs/heads/dev onto fd0e2bf67f42aa924af964ee0787b3a200179313"
-        },
-        "type": 105
+        }
     },
     {
         "className": "Reset",
@@ -996,12 +959,11 @@
                 "email": "momocraft@gmail.com"
             },
             "at": {
-                "utc_sec": 1489985776,
+                "utcSec": 1489985776,
                 "tz": "+0900"
             },
             "desc": "reset: moving to HEAD"
-        },
-        "type": 201
+        }
     },
     {
         "className": "Commit",
@@ -1013,7 +975,7 @@
                 "email": "momocraft@gmail.com"
             },
             "at": {
-                "utc_sec": 1487871718,
+                "utcSec": 1487871718,
                 "tz": "+0900"
             },
             "desc": "commit: wip"
@@ -1027,12 +989,11 @@
                 "email": "momocraft@gmail.com"
             },
             "at": {
-                "utc_sec": 1487871718,
+                "utcSec": 1487871718,
                 "tz": "+0900"
             },
             "desc": "commit: wip"
-        },
-        "type": 101
+        }
     },
     {
         "className": "Merge",
@@ -1044,7 +1005,7 @@
                 "email": "momocraft@gmail.com"
             },
             "at": {
-                "utc_sec": 1487868726,
+                "utcSec": 1487868726,
                 "tz": "+0900"
             },
             "desc": "merge 957453: Fast-forward"
@@ -1058,12 +1019,11 @@
                 "email": "momocraft@gmail.com"
             },
             "at": {
-                "utc_sec": 1487868726,
+                "utcSec": 1487868726,
                 "tz": "+0900"
             },
             "desc": "merge 957453: Fast-forward"
-        },
-        "type": 100
+        }
     },
     {
         "className": "Checkout",
@@ -1075,11 +1035,10 @@
                 "email": "momocraft@gmail.com"
             },
             "at": {
-                "utc_sec": 1487868714,
+                "utcSec": 1487868714,
                 "tz": "+0900"
             },
             "desc": "checkout: moving from 95745349108520fc387c4f309c9c12fa0b307743 to dev"
-        },
-        "type": 200
+        }
     }
 ]
