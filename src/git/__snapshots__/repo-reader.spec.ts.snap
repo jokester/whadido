@@ -1,0 +1,1163 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`git reader reads all ref: next(HEAD) 1`] = `
+Object {
+  "dest": "414c5870b27970db0fa7762148adb89eb07f1fe0",
+  "path": "refs/heads/master",
+  "type": "RefType.LocalBranch",
+}
+`;
+
+exports[`git reader reads all ref: next(refs/heads/master) 1`] = `
+Object {
+  "author": Object {
+    "email": "Martin.vGagern@gmx.net",
+    "name": "Martin von Gagern",
+  },
+  "authorAt": Object {
+    "tz": "+0100",
+    "utcSec": 1478766514,
+  },
+  "commitAt": Object {
+    "tz": "+0100",
+    "utcSec": 1478766514,
+  },
+  "committer": Object {
+    "email": "Martin.vGagern@gmx.net",
+    "name": "Martin von Gagern",
+  },
+  "message": Array [
+    "Bump to 0.3.2, removed gulp module import",
+    "",
+    "This line got into master by accident, as gulp support isn't ready yet.",
+    "",
+  ],
+  "parentSHA1": Array [
+    "ee70594f8e027174b1d71bf1c58a264ad29a2c3a",
+  ],
+  "sha1": "414c5870b27970db0fa7762148adb89eb07f1fe0",
+  "type": "ObjType.Commit",
+}
+`;
+
+exports[`git reader reads all ref: next(refs/remotes/origin/HEAD) 1`] = `
+Object {
+  "author": Object {
+    "email": "Martin.vGagern@gmx.net",
+    "name": "Martin von Gagern",
+  },
+  "authorAt": Object {
+    "tz": "+0100",
+    "utcSec": 1478766514,
+  },
+  "commitAt": Object {
+    "tz": "+0100",
+    "utcSec": 1478766514,
+  },
+  "committer": Object {
+    "email": "Martin.vGagern@gmx.net",
+    "name": "Martin von Gagern",
+  },
+  "message": Array [
+    "Bump to 0.3.2, removed gulp module import",
+    "",
+    "This line got into master by accident, as gulp support isn't ready yet.",
+    "",
+  ],
+  "parentSHA1": Array [
+    "ee70594f8e027174b1d71bf1c58a264ad29a2c3a",
+  ],
+  "sha1": "414c5870b27970db0fa7762148adb89eb07f1fe0",
+  "type": "ObjType.Commit",
+}
+`;
+
+exports[`git reader reads all ref: next(refs/remotes/origin/master) 1`] = `
+Object {
+  "author": Object {
+    "email": "Martin.vGagern@gmx.net",
+    "name": "Martin von Gagern",
+  },
+  "authorAt": Object {
+    "tz": "+0100",
+    "utcSec": 1478766514,
+  },
+  "commitAt": Object {
+    "tz": "+0100",
+    "utcSec": 1478766514,
+  },
+  "committer": Object {
+    "email": "Martin.vGagern@gmx.net",
+    "name": "Martin von Gagern",
+  },
+  "message": Array [
+    "Bump to 0.3.2, removed gulp module import",
+    "",
+    "This line got into master by accident, as gulp support isn't ready yet.",
+    "",
+  ],
+  "parentSHA1": Array [
+    "ee70594f8e027174b1d71bf1c58a264ad29a2c3a",
+  ],
+  "sha1": "414c5870b27970db0fa7762148adb89eb07f1fe0",
+  "type": "ObjType.Commit",
+}
+`;
+
+exports[`git reader reads all ref: next(refs/tags/atag-to-blob) 1`] = `
+Object {
+  "dest": "0e25bed4707ad850bde6b7dc6ea94c30714c087b",
+  "destType": "ObjType.Blob",
+  "message": Array [
+    "hhh",
+    "",
+  ],
+  "name": "atag-to-blob",
+  "sha1": "c12666ed52bcc733c9fec0316b71f5db847a404d",
+  "taggedAt": Object {
+    "tz": "+0900",
+    "utcSec": 1495960069,
+  },
+  "tagger": Object {
+    "email": "momocraft@gmail.com",
+    "name": "Wang Guan",
+  },
+  "type": "ObjType.AnnotatedTag",
+}
+`;
+
+exports[`git reader reads all ref: next(refs/tags/nested-atag) 1`] = `
+Object {
+  "dest": "1fa95ee88a69f541f8c6b50bffe8bd4b131886c0",
+  "destType": "ObjType.AnnotatedTag",
+  "message": Array [
+    "nested-atag-message",
+    "",
+  ],
+  "name": "nested-atag",
+  "sha1": "a6b2f7c5e7c57f8958954a910d83658bd06ce121",
+  "taggedAt": Object {
+    "tz": "+0900",
+    "utcSec": 1495971081,
+  },
+  "tagger": Object {
+    "email": "momocraft@gmail.com",
+    "name": "Wang Guan",
+  },
+  "type": "ObjType.AnnotatedTag",
+}
+`;
+
+exports[`git reader reads all ref: next(refs/tags/shallow-tag) 1`] = `
+Object {
+  "author": Object {
+    "email": "Martin.vGagern@gmx.net",
+    "name": "Martin von Gagern",
+  },
+  "authorAt": Object {
+    "tz": "+0200",
+    "utcSec": 1463522120,
+  },
+  "commitAt": Object {
+    "tz": "+0200",
+    "utcSec": 1463522728,
+  },
+  "committer": Object {
+    "email": "Martin.vGagern@gmx.net",
+    "name": "Martin von Gagern",
+  },
+  "message": Array [
+    "Bump version to 0.3.0",
+    "",
+  ],
+  "parentSHA1": Array [
+    "931bbc96dc534e907479c0b82f0bf48598ad6b7c",
+  ],
+  "sha1": "12332089f2cda3c00311710af2b84d70d6d0f46c",
+  "type": "ObjType.Commit",
+}
+`;
+
+exports[`git reader reads all ref: next(refs/tags/t2) 1`] = `
+Object {
+  "dest": "3f8a54c3780f7c6db91dabd97b67fa77e75822b6",
+  "destType": "ObjType.AnnotatedTag",
+  "message": Array [
+    "hey",
+    "",
+  ],
+  "name": "t2",
+  "sha1": "1fa95ee88a69f541f8c6b50bffe8bd4b131886c0",
+  "taggedAt": Object {
+    "tz": "+0900",
+    "utcSec": 1486220935,
+  },
+  "tagger": Object {
+    "email": "momocraft@gmail.com",
+    "name": "Wang Guan",
+  },
+  "type": "ObjType.AnnotatedTag",
+}
+`;
+
+exports[`git reader reads all ref: next(refs/tags/v0.1.0) 1`] = `
+Object {
+  "dest": "55c861a57ebd72e4d3fb1c4764921b9bc30aa928",
+  "destType": "ObjType.Commit",
+  "message": Array [
+    "Version 0.1.0",
+    "",
+    "* Initial release",
+    "* Drop-in replacement for htmltidy.tidy",
+    "* Access to TidyDoc processing steps and configuration",
+    "* Synchroneous and asynchroneous operation",
+    "* No parse tree interrogation yet",
+    "",
+  ],
+  "name": "v0.1.0",
+  "sha1": "49e49799d6625785708fc64b365ea0fae1c48ece",
+  "taggedAt": Object {
+    "tz": "+0100",
+    "utcSec": 1450119822,
+  },
+  "tagger": Object {
+    "email": "Martin.vGagern@gmx.net",
+    "name": "Martin von Gagern",
+  },
+  "type": "ObjType.AnnotatedTag",
+}
+`;
+
+exports[`git reader reads all ref: next(refs/tags/v0.1.1) 1`] = `
+Object {
+  "dest": "e173a902f1749342bc387523085f5fecdb194ebf",
+  "destType": "ObjType.Commit",
+  "message": Array [
+    "Version 0.1.1",
+    "",
+    "* Improved operations on Windows thanks to AppVeyor",
+    "",
+  ],
+  "name": "v0.1.1",
+  "sha1": "915849a5d77a57ed389d93a638d5e329c6c565ae",
+  "taggedAt": Object {
+    "tz": "+0100",
+    "utcSec": 1450221225,
+  },
+  "tagger": Object {
+    "email": "Martin.vGagern@gmx.net",
+    "name": "Martin von Gagern",
+  },
+  "type": "ObjType.AnnotatedTag",
+}
+`;
+
+exports[`git reader reads all ref: next(refs/tags/v0.2.0) 1`] = `
+Object {
+  "dest": "75d6a09f44bffbe9691e26f570c48697485dd8a4",
+  "destType": "ObjType.Commit",
+  "message": Array [
+    "Version 0.2.0",
+    "",
+    "* Changed option handling methods to handle strings in a better way,",
+    "  removing the opt{G,S}etValue methods and thus breaking compatibility",
+    "* Added some API around options, to get current pick, category, documentation",
+    "* tidyBuffer now uses newline=LF by default, even on Windows",
+    "* Fixed conversion of tidyBuffer argument to buffer,",
+    "  thanks to Raphael Ackermann",
+    "",
+  ],
+  "name": "v0.2.0",
+  "sha1": "78c872a7676487dc430339031cf1a6d179ed4946",
+  "taggedAt": Object {
+    "tz": "+0200",
+    "utcSec": 1459760088,
+  },
+  "tagger": Object {
+    "email": "Martin.vGagern@gmx.net",
+    "name": "Martin von Gagern",
+  },
+  "type": "ObjType.AnnotatedTag",
+}
+`;
+
+exports[`git reader reads all ref: next(refs/tags/v0.3.0) 1`] = `
+Object {
+  "dest": "12332089f2cda3c00311710af2b84d70d6d0f46c",
+  "destType": "ObjType.Commit",
+  "message": Array [
+    "Version 0.3.0",
+    "",
+    "* Bumped libtidy from 5.1.25 to 5.2.0",
+    "* Moved compatibility implementation to compat namespace",
+    "* Various documentation improvements",
+    "",
+  ],
+  "name": "v0.3.0",
+  "sha1": "3f8a54c3780f7c6db91dabd97b67fa77e75822b6",
+  "taggedAt": Object {
+    "tz": "+0200",
+    "utcSec": 1463522778,
+  },
+  "tagger": Object {
+    "email": "Martin.vGagern@gmx.net",
+    "name": "Martin von Gagern",
+  },
+  "type": "ObjType.AnnotatedTag",
+}
+`;
+
+exports[`git reader reads all ref: next(refs/tags/v0.3.1) 1`] = `
+Object {
+  "dest": "ee70594f8e027174b1d71bf1c58a264ad29a2c3a",
+  "destType": "ObjType.Commit",
+  "message": Array [
+    "Version 0.3.1",
+    "",
+    "* Fixed some dependencies (#12)",
+    "-----BEGIN PGP SIGNATURE-----",
+    "",
+    "iF4EABECAB4FAlgkLt4XHG1hcnRpbi52Z2FnZXJuQGdteC5uZXQACgkQRhp6o4m9",
+    "dFvWnACgmNOb2WAE12Nto4/Rrk0N+ncIkqQAn26QASb9Cb6vDlzX2wfZiUl30QJi",
+    "=4ZNs",
+    "-----END PGP SIGNATURE-----",
+    "",
+  ],
+  "name": "v0.3.1",
+  "sha1": "aec08967c642f58651a414996c1e9368ff42baa9",
+  "taggedAt": Object {
+    "tz": "+0100",
+    "utcSec": 1478766184,
+  },
+  "tagger": Object {
+    "email": "Martin.vGagern@gmx.net",
+    "name": "Martin von Gagern",
+  },
+  "type": "ObjType.AnnotatedTag",
+}
+`;
+
+exports[`git reader reads all ref: next(refs/tags/v0.3.2) 1`] = `
+Object {
+  "dest": "414c5870b27970db0fa7762148adb89eb07f1fe0",
+  "destType": "ObjType.Commit",
+  "message": Array [
+    "Version 0.3.2",
+    "",
+    "* Fixed gulp import introduced in 0.3.1 by accident",
+    "-----BEGIN PGP SIGNATURE-----",
+    "",
+    "iF4EABECAB4FAlgkMDsXHG1hcnRpbi52Z2FnZXJuQGdteC5uZXQACgkQRhp6o4m9",
+    "dFuDzQCeKXpBXRfcDBf9nKhPcVBoMoZgx1oAnRoeTCxkIsPhwSqiYgh3PpRYLpn1",
+    "=8eq9",
+    "-----END PGP SIGNATURE-----",
+    "",
+  ],
+  "name": "v0.3.2",
+  "sha1": "07fc5636f0359a857a5f9ecd583fcd56d6edb83b",
+  "taggedAt": Object {
+    "tz": "+0100",
+    "utcSec": 1478766625,
+  },
+  "tagger": Object {
+    "email": "Martin.vGagern@gmx.net",
+    "name": "Martin von Gagern",
+  },
+  "type": "ObjType.AnnotatedTag",
+}
+`;
+
+exports[`git reader reads all ref: resolved(HEAD) 1`] = `
+Array [
+  Object {
+    "dest": "refs/heads/master",
+    "path": "HEAD",
+    "type": "RefType.LocalHEAD",
+  },
+  Object {
+    "dest": "414c5870b27970db0fa7762148adb89eb07f1fe0",
+    "path": "refs/heads/master",
+    "type": "RefType.LocalBranch",
+  },
+  Object {
+    "author": Object {
+      "email": "Martin.vGagern@gmx.net",
+      "name": "Martin von Gagern",
+    },
+    "authorAt": Object {
+      "tz": "+0100",
+      "utcSec": 1478766514,
+    },
+    "commitAt": Object {
+      "tz": "+0100",
+      "utcSec": 1478766514,
+    },
+    "committer": Object {
+      "email": "Martin.vGagern@gmx.net",
+      "name": "Martin von Gagern",
+    },
+    "message": Array [
+      "Bump to 0.3.2, removed gulp module import",
+      "",
+      "This line got into master by accident, as gulp support isn't ready yet.",
+      "",
+    ],
+    "parentSHA1": Array [
+      "ee70594f8e027174b1d71bf1c58a264ad29a2c3a",
+    ],
+    "sha1": "414c5870b27970db0fa7762148adb89eb07f1fe0",
+    "type": "ObjType.Commit",
+  },
+]
+`;
+
+exports[`git reader reads all ref: resolved(refs/heads/master) 1`] = `
+Array [
+  Object {
+    "dest": "414c5870b27970db0fa7762148adb89eb07f1fe0",
+    "path": "refs/heads/master",
+    "type": "RefType.LocalBranch",
+  },
+  Object {
+    "author": Object {
+      "email": "Martin.vGagern@gmx.net",
+      "name": "Martin von Gagern",
+    },
+    "authorAt": Object {
+      "tz": "+0100",
+      "utcSec": 1478766514,
+    },
+    "commitAt": Object {
+      "tz": "+0100",
+      "utcSec": 1478766514,
+    },
+    "committer": Object {
+      "email": "Martin.vGagern@gmx.net",
+      "name": "Martin von Gagern",
+    },
+    "message": Array [
+      "Bump to 0.3.2, removed gulp module import",
+      "",
+      "This line got into master by accident, as gulp support isn't ready yet.",
+      "",
+    ],
+    "parentSHA1": Array [
+      "ee70594f8e027174b1d71bf1c58a264ad29a2c3a",
+    ],
+    "sha1": "414c5870b27970db0fa7762148adb89eb07f1fe0",
+    "type": "ObjType.Commit",
+  },
+]
+`;
+
+exports[`git reader reads all ref: resolved(refs/remotes/origin/HEAD) 1`] = `
+Array [
+  Object {
+    "dest": "414c5870b27970db0fa7762148adb89eb07f1fe0",
+    "path": "refs/remotes/origin/HEAD",
+    "type": "RefType.LocalHEAD",
+  },
+  Object {
+    "author": Object {
+      "email": "Martin.vGagern@gmx.net",
+      "name": "Martin von Gagern",
+    },
+    "authorAt": Object {
+      "tz": "+0100",
+      "utcSec": 1478766514,
+    },
+    "commitAt": Object {
+      "tz": "+0100",
+      "utcSec": 1478766514,
+    },
+    "committer": Object {
+      "email": "Martin.vGagern@gmx.net",
+      "name": "Martin von Gagern",
+    },
+    "message": Array [
+      "Bump to 0.3.2, removed gulp module import",
+      "",
+      "This line got into master by accident, as gulp support isn't ready yet.",
+      "",
+    ],
+    "parentSHA1": Array [
+      "ee70594f8e027174b1d71bf1c58a264ad29a2c3a",
+    ],
+    "sha1": "414c5870b27970db0fa7762148adb89eb07f1fe0",
+    "type": "ObjType.Commit",
+  },
+]
+`;
+
+exports[`git reader reads all ref: resolved(refs/remotes/origin/master) 1`] = `
+Array [
+  Object {
+    "dest": "414c5870b27970db0fa7762148adb89eb07f1fe0",
+    "path": "refs/remotes/origin/master",
+    "type": "RefType.RemoteBranch",
+  },
+  Object {
+    "author": Object {
+      "email": "Martin.vGagern@gmx.net",
+      "name": "Martin von Gagern",
+    },
+    "authorAt": Object {
+      "tz": "+0100",
+      "utcSec": 1478766514,
+    },
+    "commitAt": Object {
+      "tz": "+0100",
+      "utcSec": 1478766514,
+    },
+    "committer": Object {
+      "email": "Martin.vGagern@gmx.net",
+      "name": "Martin von Gagern",
+    },
+    "message": Array [
+      "Bump to 0.3.2, removed gulp module import",
+      "",
+      "This line got into master by accident, as gulp support isn't ready yet.",
+      "",
+    ],
+    "parentSHA1": Array [
+      "ee70594f8e027174b1d71bf1c58a264ad29a2c3a",
+    ],
+    "sha1": "414c5870b27970db0fa7762148adb89eb07f1fe0",
+    "type": "ObjType.Commit",
+  },
+]
+`;
+
+exports[`git reader reads all ref: resolved(refs/tags/atag-to-blob) 1`] = `
+Array [
+  Object {
+    "dest": "c12666ed52bcc733c9fec0316b71f5db847a404d",
+    "path": "refs/tags/atag-to-blob",
+    "type": "RefType.Tag",
+  },
+  Object {
+    "dest": "0e25bed4707ad850bde6b7dc6ea94c30714c087b",
+    "destType": "ObjType.Blob",
+    "message": Array [
+      "hhh",
+      "",
+    ],
+    "name": "atag-to-blob",
+    "sha1": "c12666ed52bcc733c9fec0316b71f5db847a404d",
+    "taggedAt": Object {
+      "tz": "+0900",
+      "utcSec": 1495960069,
+    },
+    "tagger": Object {
+      "email": "momocraft@gmail.com",
+      "name": "Wang Guan",
+    },
+    "type": "ObjType.AnnotatedTag",
+  },
+]
+`;
+
+exports[`git reader reads all ref: resolved(refs/tags/nested-atag) 1`] = `
+Array [
+  Object {
+    "dest": "a6b2f7c5e7c57f8958954a910d83658bd06ce121",
+    "path": "refs/tags/nested-atag",
+    "type": "RefType.Tag",
+  },
+  Object {
+    "dest": "1fa95ee88a69f541f8c6b50bffe8bd4b131886c0",
+    "destType": "ObjType.AnnotatedTag",
+    "message": Array [
+      "nested-atag-message",
+      "",
+    ],
+    "name": "nested-atag",
+    "sha1": "a6b2f7c5e7c57f8958954a910d83658bd06ce121",
+    "taggedAt": Object {
+      "tz": "+0900",
+      "utcSec": 1495971081,
+    },
+    "tagger": Object {
+      "email": "momocraft@gmail.com",
+      "name": "Wang Guan",
+    },
+    "type": "ObjType.AnnotatedTag",
+  },
+  Object {
+    "dest": "3f8a54c3780f7c6db91dabd97b67fa77e75822b6",
+    "destType": "ObjType.AnnotatedTag",
+    "message": Array [
+      "hey",
+      "",
+    ],
+    "name": "t2",
+    "sha1": "1fa95ee88a69f541f8c6b50bffe8bd4b131886c0",
+    "taggedAt": Object {
+      "tz": "+0900",
+      "utcSec": 1486220935,
+    },
+    "tagger": Object {
+      "email": "momocraft@gmail.com",
+      "name": "Wang Guan",
+    },
+    "type": "ObjType.AnnotatedTag",
+  },
+  Object {
+    "dest": "12332089f2cda3c00311710af2b84d70d6d0f46c",
+    "destType": "ObjType.Commit",
+    "message": Array [
+      "Version 0.3.0",
+      "",
+      "* Bumped libtidy from 5.1.25 to 5.2.0",
+      "* Moved compatibility implementation to compat namespace",
+      "* Various documentation improvements",
+      "",
+    ],
+    "name": "v0.3.0",
+    "sha1": "3f8a54c3780f7c6db91dabd97b67fa77e75822b6",
+    "taggedAt": Object {
+      "tz": "+0200",
+      "utcSec": 1463522778,
+    },
+    "tagger": Object {
+      "email": "Martin.vGagern@gmx.net",
+      "name": "Martin von Gagern",
+    },
+    "type": "ObjType.AnnotatedTag",
+  },
+]
+`;
+
+exports[`git reader reads all ref: resolved(refs/tags/shallow-tag) 1`] = `
+Array [
+  Object {
+    "dest": "12332089f2cda3c00311710af2b84d70d6d0f46c",
+    "path": "refs/tags/shallow-tag",
+    "type": "RefType.Tag",
+  },
+  Object {
+    "author": Object {
+      "email": "Martin.vGagern@gmx.net",
+      "name": "Martin von Gagern",
+    },
+    "authorAt": Object {
+      "tz": "+0200",
+      "utcSec": 1463522120,
+    },
+    "commitAt": Object {
+      "tz": "+0200",
+      "utcSec": 1463522728,
+    },
+    "committer": Object {
+      "email": "Martin.vGagern@gmx.net",
+      "name": "Martin von Gagern",
+    },
+    "message": Array [
+      "Bump version to 0.3.0",
+      "",
+    ],
+    "parentSHA1": Array [
+      "931bbc96dc534e907479c0b82f0bf48598ad6b7c",
+    ],
+    "sha1": "12332089f2cda3c00311710af2b84d70d6d0f46c",
+    "type": "ObjType.Commit",
+  },
+]
+`;
+
+exports[`git reader reads all ref: resolved(refs/tags/t2) 1`] = `
+Array [
+  Object {
+    "dest": "1fa95ee88a69f541f8c6b50bffe8bd4b131886c0",
+    "path": "refs/tags/t2",
+    "type": "RefType.Tag",
+  },
+  Object {
+    "dest": "3f8a54c3780f7c6db91dabd97b67fa77e75822b6",
+    "destType": "ObjType.AnnotatedTag",
+    "message": Array [
+      "hey",
+      "",
+    ],
+    "name": "t2",
+    "sha1": "1fa95ee88a69f541f8c6b50bffe8bd4b131886c0",
+    "taggedAt": Object {
+      "tz": "+0900",
+      "utcSec": 1486220935,
+    },
+    "tagger": Object {
+      "email": "momocraft@gmail.com",
+      "name": "Wang Guan",
+    },
+    "type": "ObjType.AnnotatedTag",
+  },
+  Object {
+    "dest": "12332089f2cda3c00311710af2b84d70d6d0f46c",
+    "destType": "ObjType.Commit",
+    "message": Array [
+      "Version 0.3.0",
+      "",
+      "* Bumped libtidy from 5.1.25 to 5.2.0",
+      "* Moved compatibility implementation to compat namespace",
+      "* Various documentation improvements",
+      "",
+    ],
+    "name": "v0.3.0",
+    "sha1": "3f8a54c3780f7c6db91dabd97b67fa77e75822b6",
+    "taggedAt": Object {
+      "tz": "+0200",
+      "utcSec": 1463522778,
+    },
+    "tagger": Object {
+      "email": "Martin.vGagern@gmx.net",
+      "name": "Martin von Gagern",
+    },
+    "type": "ObjType.AnnotatedTag",
+  },
+]
+`;
+
+exports[`git reader reads all ref: resolved(refs/tags/v0.1.0) 1`] = `
+Array [
+  Object {
+    "dest": "49e49799d6625785708fc64b365ea0fae1c48ece",
+    "path": "refs/tags/v0.1.0",
+    "type": "RefType.Tag",
+  },
+  Object {
+    "dest": "55c861a57ebd72e4d3fb1c4764921b9bc30aa928",
+    "destType": "ObjType.Commit",
+    "message": Array [
+      "Version 0.1.0",
+      "",
+      "* Initial release",
+      "* Drop-in replacement for htmltidy.tidy",
+      "* Access to TidyDoc processing steps and configuration",
+      "* Synchroneous and asynchroneous operation",
+      "* No parse tree interrogation yet",
+      "",
+    ],
+    "name": "v0.1.0",
+    "sha1": "49e49799d6625785708fc64b365ea0fae1c48ece",
+    "taggedAt": Object {
+      "tz": "+0100",
+      "utcSec": 1450119822,
+    },
+    "tagger": Object {
+      "email": "Martin.vGagern@gmx.net",
+      "name": "Martin von Gagern",
+    },
+    "type": "ObjType.AnnotatedTag",
+  },
+]
+`;
+
+exports[`git reader reads all ref: resolved(refs/tags/v0.1.1) 1`] = `
+Array [
+  Object {
+    "dest": "915849a5d77a57ed389d93a638d5e329c6c565ae",
+    "path": "refs/tags/v0.1.1",
+    "type": "RefType.Tag",
+  },
+  Object {
+    "dest": "e173a902f1749342bc387523085f5fecdb194ebf",
+    "destType": "ObjType.Commit",
+    "message": Array [
+      "Version 0.1.1",
+      "",
+      "* Improved operations on Windows thanks to AppVeyor",
+      "",
+    ],
+    "name": "v0.1.1",
+    "sha1": "915849a5d77a57ed389d93a638d5e329c6c565ae",
+    "taggedAt": Object {
+      "tz": "+0100",
+      "utcSec": 1450221225,
+    },
+    "tagger": Object {
+      "email": "Martin.vGagern@gmx.net",
+      "name": "Martin von Gagern",
+    },
+    "type": "ObjType.AnnotatedTag",
+  },
+]
+`;
+
+exports[`git reader reads all ref: resolved(refs/tags/v0.2.0) 1`] = `
+Array [
+  Object {
+    "dest": "78c872a7676487dc430339031cf1a6d179ed4946",
+    "path": "refs/tags/v0.2.0",
+    "type": "RefType.Tag",
+  },
+  Object {
+    "dest": "75d6a09f44bffbe9691e26f570c48697485dd8a4",
+    "destType": "ObjType.Commit",
+    "message": Array [
+      "Version 0.2.0",
+      "",
+      "* Changed option handling methods to handle strings in a better way,",
+      "  removing the opt{G,S}etValue methods and thus breaking compatibility",
+      "* Added some API around options, to get current pick, category, documentation",
+      "* tidyBuffer now uses newline=LF by default, even on Windows",
+      "* Fixed conversion of tidyBuffer argument to buffer,",
+      "  thanks to Raphael Ackermann",
+      "",
+    ],
+    "name": "v0.2.0",
+    "sha1": "78c872a7676487dc430339031cf1a6d179ed4946",
+    "taggedAt": Object {
+      "tz": "+0200",
+      "utcSec": 1459760088,
+    },
+    "tagger": Object {
+      "email": "Martin.vGagern@gmx.net",
+      "name": "Martin von Gagern",
+    },
+    "type": "ObjType.AnnotatedTag",
+  },
+]
+`;
+
+exports[`git reader reads all ref: resolved(refs/tags/v0.3.0) 1`] = `
+Array [
+  Object {
+    "dest": "3f8a54c3780f7c6db91dabd97b67fa77e75822b6",
+    "path": "refs/tags/v0.3.0",
+    "type": "RefType.Tag",
+  },
+  Object {
+    "dest": "12332089f2cda3c00311710af2b84d70d6d0f46c",
+    "destType": "ObjType.Commit",
+    "message": Array [
+      "Version 0.3.0",
+      "",
+      "* Bumped libtidy from 5.1.25 to 5.2.0",
+      "* Moved compatibility implementation to compat namespace",
+      "* Various documentation improvements",
+      "",
+    ],
+    "name": "v0.3.0",
+    "sha1": "3f8a54c3780f7c6db91dabd97b67fa77e75822b6",
+    "taggedAt": Object {
+      "tz": "+0200",
+      "utcSec": 1463522778,
+    },
+    "tagger": Object {
+      "email": "Martin.vGagern@gmx.net",
+      "name": "Martin von Gagern",
+    },
+    "type": "ObjType.AnnotatedTag",
+  },
+]
+`;
+
+exports[`git reader reads all ref: resolved(refs/tags/v0.3.1) 1`] = `
+Array [
+  Object {
+    "dest": "aec08967c642f58651a414996c1e9368ff42baa9",
+    "path": "refs/tags/v0.3.1",
+    "type": "RefType.Tag",
+  },
+  Object {
+    "dest": "ee70594f8e027174b1d71bf1c58a264ad29a2c3a",
+    "destType": "ObjType.Commit",
+    "message": Array [
+      "Version 0.3.1",
+      "",
+      "* Fixed some dependencies (#12)",
+      "-----BEGIN PGP SIGNATURE-----",
+      "",
+      "iF4EABECAB4FAlgkLt4XHG1hcnRpbi52Z2FnZXJuQGdteC5uZXQACgkQRhp6o4m9",
+      "dFvWnACgmNOb2WAE12Nto4/Rrk0N+ncIkqQAn26QASb9Cb6vDlzX2wfZiUl30QJi",
+      "=4ZNs",
+      "-----END PGP SIGNATURE-----",
+      "",
+    ],
+    "name": "v0.3.1",
+    "sha1": "aec08967c642f58651a414996c1e9368ff42baa9",
+    "taggedAt": Object {
+      "tz": "+0100",
+      "utcSec": 1478766184,
+    },
+    "tagger": Object {
+      "email": "Martin.vGagern@gmx.net",
+      "name": "Martin von Gagern",
+    },
+    "type": "ObjType.AnnotatedTag",
+  },
+]
+`;
+
+exports[`git reader reads all ref: resolved(refs/tags/v0.3.2) 1`] = `
+Array [
+  Object {
+    "dest": "07fc5636f0359a857a5f9ecd583fcd56d6edb83b",
+    "path": "refs/tags/v0.3.2",
+    "type": "RefType.Tag",
+  },
+  Object {
+    "dest": "414c5870b27970db0fa7762148adb89eb07f1fe0",
+    "destType": "ObjType.Commit",
+    "message": Array [
+      "Version 0.3.2",
+      "",
+      "* Fixed gulp import introduced in 0.3.1 by accident",
+      "-----BEGIN PGP SIGNATURE-----",
+      "",
+      "iF4EABECAB4FAlgkMDsXHG1hcnRpbi52Z2FnZXJuQGdteC5uZXQACgkQRhp6o4m9",
+      "dFuDzQCeKXpBXRfcDBf9nKhPcVBoMoZgx1oAnRoeTCxkIsPhwSqiYgh3PpRYLpn1",
+      "=8eq9",
+      "-----END PGP SIGNATURE-----",
+      "",
+    ],
+    "name": "v0.3.2",
+    "sha1": "07fc5636f0359a857a5f9ecd583fcd56d6edb83b",
+    "taggedAt": Object {
+      "tz": "+0100",
+      "utcSec": 1478766625,
+    },
+    "tagger": Object {
+      "email": "Martin.vGagern@gmx.net",
+      "name": "Martin von Gagern",
+    },
+    "type": "ObjType.AnnotatedTag",
+  },
+]
+`;
+
+exports[`git reader reads all refs 1`] = `
+Array [
+  Object {
+    "dest": "refs/heads/master",
+    "path": "HEAD",
+    "type": "RefType.LocalHEAD",
+  },
+  Object {
+    "dest": "414c5870b27970db0fa7762148adb89eb07f1fe0",
+    "path": "refs/remotes/origin/HEAD",
+    "type": "RefType.LocalHEAD",
+  },
+  Object {
+    "dest": "c12666ed52bcc733c9fec0316b71f5db847a404d",
+    "path": "refs/tags/atag-to-blob",
+    "type": "RefType.Tag",
+  },
+  Object {
+    "dest": "a6b2f7c5e7c57f8958954a910d83658bd06ce121",
+    "path": "refs/tags/nested-atag",
+    "type": "RefType.Tag",
+  },
+  Object {
+    "dest": "12332089f2cda3c00311710af2b84d70d6d0f46c",
+    "path": "refs/tags/shallow-tag",
+    "type": "RefType.Tag",
+  },
+  Object {
+    "dest": "1fa95ee88a69f541f8c6b50bffe8bd4b131886c0",
+    "path": "refs/tags/t2",
+    "type": "RefType.Tag",
+  },
+  Object {
+    "dest": "414c5870b27970db0fa7762148adb89eb07f1fe0",
+    "path": "refs/heads/master",
+    "type": "RefType.LocalBranch",
+  },
+  Object {
+    "dest": "414c5870b27970db0fa7762148adb89eb07f1fe0",
+    "path": "refs/remotes/origin/master",
+    "type": "RefType.RemoteBranch",
+  },
+  Object {
+    "dest": "49e49799d6625785708fc64b365ea0fae1c48ece",
+    "path": "refs/tags/v0.1.0",
+    "type": "RefType.Tag",
+  },
+  Object {
+    "dest": "915849a5d77a57ed389d93a638d5e329c6c565ae",
+    "path": "refs/tags/v0.1.1",
+    "type": "RefType.Tag",
+  },
+  Object {
+    "dest": "78c872a7676487dc430339031cf1a6d179ed4946",
+    "path": "refs/tags/v0.2.0",
+    "type": "RefType.Tag",
+  },
+  Object {
+    "dest": "3f8a54c3780f7c6db91dabd97b67fa77e75822b6",
+    "path": "refs/tags/v0.3.0",
+    "type": "RefType.Tag",
+  },
+  Object {
+    "dest": "aec08967c642f58651a414996c1e9368ff42baa9",
+    "path": "refs/tags/v0.3.1",
+    "type": "RefType.Tag",
+  },
+  Object {
+    "dest": "07fc5636f0359a857a5f9ecd583fcd56d6edb83b",
+    "path": "refs/tags/v0.3.2",
+    "type": "RefType.Tag",
+  },
+]
+`;
+
+exports[`git reader reads local HEAD 1`] = `
+Object {
+  "dest": "refs/heads/master",
+  "path": "HEAD",
+  "type": "RefType.LocalHEAD",
+}
+`;
+
+exports[`git reader reads object: annotated tag 1`] = `
+Object {
+  "dest": "414c5870b27970db0fa7762148adb89eb07f1fe0",
+  "destType": "ObjType.Commit",
+  "message": Array [
+    "Version 0.3.2",
+    "",
+    "* Fixed gulp import introduced in 0.3.1 by accident",
+    "-----BEGIN PGP SIGNATURE-----",
+    "",
+    "iF4EABECAB4FAlgkMDsXHG1hcnRpbi52Z2FnZXJuQGdteC5uZXQACgkQRhp6o4m9",
+    "dFuDzQCeKXpBXRfcDBf9nKhPcVBoMoZgx1oAnRoeTCxkIsPhwSqiYgh3PpRYLpn1",
+    "=8eq9",
+    "-----END PGP SIGNATURE-----",
+    "",
+  ],
+  "name": "v0.3.2",
+  "sha1": "07fc5636f0359a857a5f9ecd583fcd56d6edb83b",
+  "taggedAt": Object {
+    "tz": "+0100",
+    "utcSec": 1478766625,
+  },
+  "tagger": Object {
+    "email": "Martin.vGagern@gmx.net",
+    "name": "Martin von Gagern",
+  },
+  "type": "ObjType.AnnotatedTag",
+}
+`;
+
+exports[`git reader reads object: commit 1`] = `
+Object {
+  "author": Object {
+    "email": "Martin.vGagern@gmx.net",
+    "name": "Martin von Gagern",
+  },
+  "authorAt": Object {
+    "tz": "+0200",
+    "utcSec": 1463522581,
+  },
+  "commitAt": Object {
+    "tz": "+0200",
+    "utcSec": 1463522581,
+  },
+  "committer": Object {
+    "email": "Martin.vGagern@gmx.net",
+    "name": "Martin von Gagern",
+  },
+  "message": Array [
+    "fixup! Introduce compat namespace",
+    "",
+  ],
+  "parentSHA1": Array [
+    "0b017e41fc65a3c3193fd410d6d35274d7bb7f71",
+  ],
+  "sha1": "931bbc96dc534e907479c0b82f0bf48598ad6b7c",
+  "type": "ObjType.Commit",
+}
+`;
+
+exports[`git reader reads packed refs 1`] = `
+Array [
+  Object {
+    "dest": "414c5870b27970db0fa7762148adb89eb07f1fe0",
+    "path": "refs/heads/master",
+    "type": "RefType.LocalBranch",
+  },
+  Object {
+    "dest": "414c5870b27970db0fa7762148adb89eb07f1fe0",
+    "path": "refs/remotes/origin/master",
+    "type": "RefType.RemoteBranch",
+  },
+  Object {
+    "dest": "49e49799d6625785708fc64b365ea0fae1c48ece",
+    "path": "refs/tags/v0.1.0",
+    "type": "RefType.Tag",
+  },
+  Object {
+    "dest": "915849a5d77a57ed389d93a638d5e329c6c565ae",
+    "path": "refs/tags/v0.1.1",
+    "type": "RefType.Tag",
+  },
+  Object {
+    "dest": "78c872a7676487dc430339031cf1a6d179ed4946",
+    "path": "refs/tags/v0.2.0",
+    "type": "RefType.Tag",
+  },
+  Object {
+    "dest": "3f8a54c3780f7c6db91dabd97b67fa77e75822b6",
+    "path": "refs/tags/v0.3.0",
+    "type": "RefType.Tag",
+  },
+  Object {
+    "dest": "aec08967c642f58651a414996c1e9368ff42baa9",
+    "path": "refs/tags/v0.3.1",
+    "type": "RefType.Tag",
+  },
+  Object {
+    "dest": "07fc5636f0359a857a5f9ecd583fcd56d6edb83b",
+    "path": "refs/tags/v0.3.2",
+    "type": "RefType.Tag",
+  },
+]
+`;
+
+exports[`git reader reads reflog: HEAD 1`] = `
+Array [
+  Object {
+    "at": Object {
+      "tz": "+0900",
+      "utcSec": 1485178383,
+    },
+    "by": Object {
+      "email": "momocraft@gmail.com",
+      "name": "Wang Guan",
+    },
+    "desc": "clone: from https://github.com/gagern/node-libtidy.git",
+    "from": "0000000000000000000000000000000000000000",
+    "to": "414c5870b27970db0fa7762148adb89eb07f1fe0",
+  },
+]
+`;
+
+exports[`git reader reads unpacked refs 1`] = `
+Array [
+  Object {
+    "dest": "414c5870b27970db0fa7762148adb89eb07f1fe0",
+    "path": "refs/remotes/origin/HEAD",
+    "type": "RefType.LocalHEAD",
+  },
+  Object {
+    "dest": "c12666ed52bcc733c9fec0316b71f5db847a404d",
+    "path": "refs/tags/atag-to-blob",
+    "type": "RefType.Tag",
+  },
+  Object {
+    "dest": "a6b2f7c5e7c57f8958954a910d83658bd06ce121",
+    "path": "refs/tags/nested-atag",
+    "type": "RefType.Tag",
+  },
+  Object {
+    "dest": "12332089f2cda3c00311710af2b84d70d6d0f46c",
+    "path": "refs/tags/shallow-tag",
+    "type": "RefType.Tag",
+  },
+  Object {
+    "dest": "1fa95ee88a69f541f8c6b50bffe8bd4b131886c0",
+    "path": "refs/tags/t2",
+    "type": "RefType.Tag",
+  },
+]
+`;
