@@ -1,4 +1,4 @@
-import { GitRepoException } from '../error';
+import { GitRepoException } from './error';
 import { GitRepoReaderImpl } from './repo-reader-impl';
 import { GitRepoReader } from './repo-reader';
 import { getSubprocessOutput } from '../vendor/ts-commonutil/node/subprocess';

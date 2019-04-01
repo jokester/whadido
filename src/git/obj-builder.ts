@@ -1,6 +1,6 @@
 import { Obj } from './types';
 import { ObjTypeMappings, PATTERNS } from './parser';
-import { GitRepoException } from '../error';
+import { GitRepoException } from './error';
 import { chunkToLines } from '../vendor/ts-commonutil/text/chunk-to-lines';
 
 /**
