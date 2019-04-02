@@ -1,21 +1,32 @@
 {
   "name": "whadido",
   "version": "0.1.1",
+  "author": "Wang Guan <momocraft@gmail.com>",
+  "private": false,
   "description": "Analyze and show history of local git repo.",
-  "main": "index.js",
+  "index": "build/lib/index",
+  "bin": {
+    "whadido": "bin/whadido"
+  },
+  "files": [
+    "bin",
+    "build",
+    "!build/__test__/"
+  ],
   "scripts": {
-    "start": "npm run build && node bin/whadido",
-    "build": "      rm -rf lib/* && tsc",
-    "build:watch": "rm -rf lib/* && tsc --watch",
-    "test": "         npm run build && jest --forceExit",
-    "test:coverage": "npm run build && jest --forceExit --coverage",
-    "test:codecov-upload": "codecov -f coverage/*.json",
-    "test:watch": "   npm run build && jest --forceExit --watch",
-    "tslint": "    tslint -c tslint.json       -e 'node_modules/**/*' '**/*.ts?(x)'",
-    "tslint:fix": "tslint -c tslint.json --fix -e 'node_modules/**/*' '**/*.ts?(x)'",
-    "webpack": "       webpack            --config webpack/dev.js        ",
-    "webpack:watch": " webpack  --watch   --config webpack/dev.js        ",
-    "webpack:prod": "  webpack            --config webpack/prod.js       "
+    "start": "node build/bin/whadido",
+    "start:ts": "ts-node src/bin/whadido",
+    "debug-cli": "ts-node src/debug-cli",
+    "build": "rm -rvf build && tsc",
+    "local:install": "yarn build && yarn global add $PWD",
+    "webui-dev": "webpack; open ./webui-dev/index.html || xdg-open ./webui-dev/index.html",
+    "test": "jest",
+    "test:coverage": "jest --coverage",
+    "lint": "    eslint '**/*.@(ts|js|tsx|jsx)' 'bin/*'",
+    "lint:fix": "eslint '**/*.@(ts|js|tsx|jsx)' 'bin/*' --fix"
+  },
+  "engines": {
+    "node": ">=8"
   },
   "repository": {
     "type": "git",
@@ -26,77 +37,55 @@
     "git",
     "reflog"
   ],
-  "author": "Wang Guan <momocraft@gmail.com>",
   "license": "MIT",
-  "private": false,
   "bugs": {
     "url": "https://github.com/jokester/whadido/issues"
   },
   "engines": {
-    "node": ">= 4.0.0"
+    "node": ">= 8"
   },
   "homepage": "https://github.com/jokester/whadido#readme",
   "dependencies": {
     "argparse": "^1.0.9",
-    "chalk": "^1.1.3",
+    "chalk": "^2.4.1",
     "immutable": "^4.0.0-rc.9",
     "lodash": "^4.17.4",
+    "loglevel": "^1.6.1",
     "moment": "^2.18.1",
     "recursive-readdir": "^2.2.1",
-    "tslib": "^1.8.0"
+    "tslib": "^1.9.3"
   },
   "devDependencies": {
     "@types/argparse": "^1.0.30",
-    "@types/chai": "^4.0.5",
-    "@types/chalk": "^0.4.31",
-    "@types/jest": "^21.1.6",
+    "@types/jest": "^24.0.1",
     "@types/lodash": "^4.14.66",
-    "@types/node": "^4.0.0",
-    "babel-minify-webpack-plugin": "0.2.0",
-    "chai": "^4.1.2",
-    "codecov": "^3.0.0",
-    "jest": "^21.2.1",
-    "preact": "^8.1.0",
-    "ts-jest": "^21.0.0",
-    "ts-loader": "^3.0.3",
-    "ts-node": "^3.3.0",
-    "tslint": "^5.8.0",
-    "typescript": "^2.6.1",
-    "webpack": "^3.5.6",
-    "webpack-dev-server": "^2.7.1",
-    "webpack-merge": "^4.1.0",
-    "webpack-visualizer-plugin": "^0.1.11"
-  },
-  "jest": {
-    "transform": {
-      ".(ts|tsx)": "<rootDir>/node_modules/ts-jest/preprocessor.js"
-    },
-    "roots": [
-      "lib-ts",
-      "lib"
-    ],
-    "testMatch": [
-      "/**/__test__/*.(ts|js|tsx|jsx)",
-      "/**/*\\.(spec|test)\\.(ts|js|tsx|jsx)"
-    ],
-    "collectCoverageFrom": [
-      "lib-ts/**/*.(ts|tsx)",
-      "!lib/",
-      "!**/node_modules",
-      "!/coverage"
-    ],
-    "moduleFileExtensions": [
-      "ts",
-      "tsx",
-      "js",
-      "jsx"
-    ],
-    "mapCoverage": true,
-    "coverageReporters": [
-      "json",
-      "lcov",
-      "text",
-      "html"
-    ]
+    "@types/loglevel": "^1.5.3",
+    "@types/node": "^10.12.6",
+    "@types/react": "^16.8.8",
+    "@types/react-dom": "^16.8.3",
+    "@typescript-eslint/eslint-plugin": "^1.4.2",
+    "@typescript-eslint/parser": "^1.4.2",
+    "codecov": "^3.1.0",
+    "css-loader": "^2.1.1",
+    "eslint": "5.12.0",
+    "eslint-config-prettier": "^4.1.0",
+    "eslint-plugin-prettier": "^3.0.1",
+    "html-webpack-plugin": "^3.2.0",
+    "jest": "^24",
+    "node-sass": "^4.11.0",
+    "open-in-browser": "^0.0.3",
+    "preact": "^8.4.2",
+    "prettier": "^1.16.4",
+    "react": "^16.8.5",
+    "react-dom": "^16.8.5",
+    "sass-loader": "^7.1.0",
+    "style-loader": "^0.23.1",
+    "ts-jest": "^24",
+    "ts-loader": "^5.3.3",
+    "ts-node": "^7.0.1",
+    "typescript": "^3.3.3",
+    "webpack": "^4.29.6",
+    "webpack-bundle-analyzer": "^3.1.0",
+    "webpack-cli": "^3.3.0"
   }
 }

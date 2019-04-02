@@ -1,10 +1,12 @@
+/build
+/*.tgz
 !.gitkeep
 node_modules
 tmp
 .DS_Store
 .idea
-npm-*.log
+*.log
 *.map
 .vscode
-coverage/
-webui-dev/
+/coverage
+/webui-dev
