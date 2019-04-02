@@ -13,7 +13,7 @@ import { getSubprocessOutput } from '../vendor/ts-commonutil/node/subprocess';
  */
 export async function findRepo(start: string, gitBinary = 'git') {
   // `git rev-parse --git-dir` prints path of $PWD
-  const status = await getSubprocessOutput(gitBinary, ['rev-parse', '--absolute-git-dir'], { cwd: start });
+  const status = await getSubprocessOutput(gitBinary, ['rev-parse', '--absolute-git-dir', '--git-dir'], { cwd: start });
 
   // find first absolute path
   for (const l of status.stdout) {
