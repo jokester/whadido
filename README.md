@@ -1,31 +1,24 @@
 # whadido
 
-Recover recent operations in a git repository.
+Recover recent operations in a git repository. **still in early development**
 
-Have you been asking yourself *what did i do?* on a shiny Monday morning? If so, whadido is made for you.
+Have you been asking yourself *what did i do?* on a shiny Monday morning? `whadido` may give an [hint](https://www.urbandictionary.com/define.php?term=whadido).
 
-> What did I do?
-> What are you doing?
-> What should I do?
-> What are you going to do?
-> *Hey, buddy, whadido?*
->
-> --- [urbandictionary / whadido](https://www.urbandictionary.com/define.php?term=whadido)
+[![CircleCI](https://circleci.com/gh/jokester/whadido.svg?style=svg)](https://circleci.com/gh/jokester/whadido)
+[![codecov](https://codecov.io/gh/jokester/whadido/branch/master/graph/badge.svg)](https://codecov.io/gh/jokester/whadido)
 
 <!-- TODO Screenshot -->
 
-<!-- TODO -->
-
 ## How does it work?
 
-*whadido* recovers what happened to repository by analyzing reflogs of HEAD / branches / tags / commits.
+*whadido* (tries to) recover your local operation history from mysterious ref-logs (`git reflog`).
 
 ## Requirements
 
 - `git` binary in `$PATH`
-- `node.js` v4 or newer (GYP is not required)
+- `node.js` v8 or newer (GYP is not required)
 
-## Install
+## Install and Use
 
 ```bash
 $ npm install -g whadido
@@ -44,49 +37,13 @@ Optional arguments:
   --dump         dump refs and reflogs of repo. Most for development use.
 ```
 
-<!-- TODO: example
-## Usage
-
-```bash
-$ whadido .
-[2017-01-01 (3 days ago)] push branch <> to <origin>
-[2017-01-01 (3 days ago)] created 3 commits in <branch>
-
-```
--->
-
-## Help `whadido` recognize more patterns
-
-`whadido` uses a hand-crafted heuristics to recover operations from reflogs, which can be incomplete or incorrect.
-
-If it fails to recognize your reflogs, you can make it better by dumping
-your reflogs (`whadido --dump > dump.json`)
-and [create a issue](https://github.com/jokester/whadido/issues)
-or [mail me in private](mailto:me@jokester.io?subject=whadido-dump) in private.
-
-WARNING: this dump may contain sensitive data,
-Please check its content before showing it to anyone else.
-
-A dump *may* include:
-
-- *name* of branches / tags / remote repository
-- *sha1* of commits
-- *timestamp* of commit / checkout / push / fetch / other operations
-- *log message* of commits created by you
-- *name and email* of git commiters
-
-A dump *does not* include:
-
-- *content* of commits, work tree and index
-- *URL* and *path* of repository
-
 ## Development
 
-Issues / PRs are always welcome :) .
+Just file a issue :)
 
 See `FILES.md` for code structure, and `ANALYZER.md` for recover heuristics.
 
-Based on [typescript-boilerplate](https://github.com/jokester/typescript-boilerplate)
+Based on [typescript-boilerplate](https://github.com/jokester/typescript-boilerplate/node-lib)
 
 ## License
 
