@@ -25,6 +25,9 @@
     "lint": "    eslint '**/*.@(ts|js|tsx|jsx)' 'bin/*'",
     "lint:fix": "eslint '**/*.@(ts|js|tsx|jsx)' 'bin/*' --fix"
   },
+  "engines": {
+    "node": ">=8"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/jokester/whadido.git"
