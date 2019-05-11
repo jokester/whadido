@@ -1,10 +1,10 @@
-import { RefLog, Timestamp } from '../git';
+import { RefLog } from '../git';
 import { freeze } from '../vendor/ts-commonutil/type';
 
 /**
  * Recovered operations and text-ify
  */
-const enum OpType {
+export const enum OpType {
   // remote branch only
   push = 'Push',
   fetch = 'Fetch',
@@ -25,10 +25,6 @@ const enum OpType {
 
   // head + remote + local
   pull = 'Pull',
-}
-
-export interface Operation {
-  type: OpType;
 }
 
 namespace Operations {
@@ -118,7 +114,23 @@ namespace Operations {
     branchpath: string | undefined;
     branchLog: RefLog | undefined;
   }
+  export type OperationUnion =
+    | Merge
+    | Commit
+    | CreateBranch
+    | Clone
+    | Fetch
+    | Push
+    | Pull
+    | RenameRemote
+    | Checkout
+    | Reset
+    | RebaseInteractiveAborted
+    | RebaseInteractiveFinished
+    | RebaseFinished;
 }
+
+export type Operation = Operations.OperationUnion;
 
 export const operationFactory = freeze({
   merge(headLog: RefLog, refpath: string | undefined, branchLog: RefLog | undefined): Operations.Merge {

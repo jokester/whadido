@@ -1,4 +1,5 @@
 import { ArgumentParser } from 'argparse';
+import pkgJson from './pkg.json';
 
 export interface ParsedOptions {
   path: string;
@@ -8,15 +9,15 @@ export interface ParsedOptions {
 
 export function createOptionParser() {
   const parser = new ArgumentParser({
-    version: require('../package.json').version,
+    version: pkgJson.version,
     addHelp: true,
-    description: require('../package.json').description,
+    description: pkgJson.description,
   });
 
   parser.addArgument(['-r', '--repo'], {
     metavar: 'REPO_PATH',
     defaultValue: process.cwd(),
-    help: 'Root of repository or somewhere inside it. Defaults to $PWD',
+    help: 'Path in worktree git repository or its worktree. Defaults to $PWD',
     dest: 'path',
   });
 
@@ -24,7 +25,7 @@ export function createOptionParser() {
     defaultValue: false,
     action: 'storeTrue',
     dest: 'dump',
-    help: `Dump refs and reflogs to a timestamp-named JSON file. Most for development use.`,
+    help: `Dump refs and reflogs to a timestamp-named JSON file in PWD. Most for development use.`,
   });
 
   parser.addArgument(['--verbose'], {

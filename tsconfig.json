@@ -29,6 +29,7 @@
     "noUnusedParameters": false,            /* Report errors on unused parameters. */
     "noImplicitThis": false,                /* Raise error on 'this' expressions with an implied 'any' type. */
     "noImplicitReturns": true,             /* Report error when not all code paths in function return a value. */
+    "resolveJsonModule": true,
     // "noFallthroughCasesInSwitch": true,    /* Report errors for fallthrough cases in switch statement. */
     /* Module Resolution Options */
     "moduleResolution": "node", /* Specify module resolution strategy: 'node' (Node.js) or 'classic' (TypeScript pre-1.6). */

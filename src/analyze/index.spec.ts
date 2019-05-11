@@ -1,7 +1,7 @@
 /* eslint-disable */
-import { fromTmp, fromTest } from '../spec/helper';
+import { fromTest, fromTmp } from '../spec/helper';
 import { topParser } from './reflog';
-import { buildState, unbuildState, countReflog, RefDump } from './ref-state';
+import { buildState, countReflog, RefHistory, unbuildState } from './ref-state';
 import { op2obj } from './util';
 import { fsp } from "../util/fsp";
 
@@ -9,8 +9,8 @@ const { readText, writeFile } = fsp;
 /**
  * Test data
  */
-let ex_whadido_2: RefDump[];
-let ex_tsboilerplate_1: RefDump[];
+let ex_whadido_2: RefHistory[];
+let ex_tsboilerplate_1: RefHistory[];
 
 beforeAll(async () => {
   // ex_whadido_2 = JSON.parse(
@@ -20,7 +20,7 @@ beforeAll(async () => {
 
 describe('reflog - parser v2', () => {
   async function commonRoutine(tag: string, filename: string, size: number, parsed: number, remained: number) {
-    const ex: RefDump[] = JSON.parse(await readText(fromTest(filename), 'utf-8' ));
+    const ex: RefHistory[] = JSON.parse(await readText(fromTest(filename), 'utf-8' ));
 
     const initialState = buildState(ex);
 

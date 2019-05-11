@@ -1,32 +1,7 @@
-import * as lodash from 'lodash';
-import { Map as IMap, List as IList } from 'immutable';
-
-import { Timestamp, RefLog, ParserPatterns } from '../git';
-
-import {
-  Parser,
-  unit,
-  zero,
-  bind,
-  lookAhead,
-  filter,
-  or,
-  skip,
-  seq2,
-  seq3,
-  biased,
-  iterate,
-  iterateN,
-  reiterate,
-  maybe,
-  maybeDefault,
-  unitM,
-} from '../parser';
+import { biased, Parser, reiterate } from '../parser';
 import * as Op from './operations';
 
-import { RefState, RefDump } from './ref-state';
-import { RefParser, popReflog, b, u, setRest, allReflog } from './parser-primitives';
-import { CONST } from './util';
+import { RefState } from './ref-state';
 import { createParsers } from './parsers';
 
 export function topParser(state: RefState) {

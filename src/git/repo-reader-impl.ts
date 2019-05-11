@@ -106,6 +106,7 @@ export class GitRepoReaderImpl implements GitRepoReader {
   // branch > commit
   // ref.tag > atag* > (non-atag) object
   async resolveRef(first: Ref.Ref): Promise<Ref.ResolvedRef> {
+    if (first.type === Ref.RefType.Stash) return [first];
     const next = await this.readRef(first);
 
     if (

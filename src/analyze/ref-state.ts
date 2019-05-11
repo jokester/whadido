@@ -1,4 +1,3 @@
-import { Parser } from '../parser';
 import { List as IList, Map as IMap } from 'immutable';
 import { Ref, RefLog } from '../git';
 import { GitRepoReader } from '../git/repo-reader';
@@ -6,7 +5,7 @@ import { GitRepoReader } from '../git/repo-reader';
 /**
  * all reflog items of a ref
  */
-export interface RefDump {
+export interface RefHistory {
   path: string;
   ref: Ref.ResolvedRef;
   reflog: RefLog[];
@@ -15,10 +14,10 @@ export interface RefDump {
 /**
  * create a RefState from dump of refs
  *
- * @param {RefDump[]} dump
+ * @param {RefHistory[]} dump
  * @returns {RefState}
  */
-export function buildState(dump: RefDump[]): RefState {
+export function buildState(dump: RefHistory[]): RefState {
   let s: RefState = IMap<string, IList<RefLog>>();
   for (const d of dump) {
     if (s.has(d.path)) {
@@ -37,11 +36,13 @@ export function buildState(dump: RefDump[]): RefState {
  * only used for dev, to dump unrecognized items
  * @param state
  */
-export function unbuildState(dump: RefDump[], state: RefState): RefDump[] {
+export function unbuildState(dump: RefHistory[], state: RefState): RefHistory[] {
   return dump.map(d => ({ ...d, reflog: state.get(d.path, IList<RefLog>()).toJS() }));
 }
 
-// ref of all dumps
+/**
+ * (refPath: string) => RefLog[]
+ */
 export type RefState = IMap<string, IList<RefLog>>;
 
 /**
@@ -55,7 +56,7 @@ export function countReflog(s: RefState) {
   return s.valueSeq().reduce((a, b) => a + b.size, 0);
 }
 
-export async function dumpRefs(repo: GitRepoReader): Promise<RefDump[]> {
+export async function readRefHistory(repo: GitRepoReader): Promise<RefHistory[]> {
   const refs = await repo.listRefs();
   return Promise.all(
     refs.map(async r => ({

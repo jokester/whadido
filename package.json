@@ -41,9 +41,6 @@
   "bugs": {
     "url": "https://github.com/jokester/whadido/issues"
   },
-  "engines": {
-    "node": ">= 8"
-  },
   "homepage": "https://github.com/jokester/whadido#readme",
   "dependencies": {
     "argparse": "^1.0.9",

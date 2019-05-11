@@ -1,12 +1,12 @@
-import { Map as IMap, List as IList } from 'immutable';
+import { List as IList } from 'immutable';
 import { RefState } from './ref-state';
 import { ParserPatterns, RefLog } from '../git';
 import { allReflog, b, popReflog, setRest, u } from './parser-primitives';
 import { biased, bind, filter, maybeDefault, Parser, unit, zero } from '../parser';
 import * as Op from './operations';
+import { operationFactory } from './operations';
 import { CONST } from './util';
 import * as lodash from 'lodash';
-import { operationFactory } from './operations';
 
 type OperationParser = Parser<RefState, Op.Operation>;
 type OperationParserArray = OperationParser[];

@@ -7,14 +7,9 @@ describe('getSubprocessOutput', () => {
     const result1 = await getSubprocessOutput('true');
     expect(result1.stderr).toEqual(['']);
 
-    let err: any;
-    try {
-      await getSubprocessOutput('false');
-    } catch (e) {
-      err = e;
-    }
+    const thrown = await getSubprocessOutput('false').then(() => false, () => true);
 
-    expect(err).toBeTruthy();
+    expect(thrown).toBeTruthy();
   });
 
   it('captures stdout', async () => {
@@ -32,12 +27,13 @@ describe('findRepo', () => {
   const devRepoStart = path.join(devRepoRoot, 'hooks');
 
   it('find root of repo', async () => {
-    const f = await findRepo(devRepoStart);
-    expect(f).toEqual(devRepoRoot);
+    const repoRoot = await findRepo(devRepoStart);
+    expect(repoRoot).toEqual(devRepoRoot);
   });
 
   it('opens repo', async () => {
-    const r = await openRepo(devRepoStart);
-    expect(r.repoRoot).toEqual(devRepoRoot);
+    const repoRoot = await findRepo(devRepoStart);
+    const repoReader = await openRepo(repoRoot!);
+    expect(repoReader.repoRoot).toEqual(devRepoRoot);
   });
 });

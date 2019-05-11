@@ -3,7 +3,8 @@ import * as ReactDOM from 'react-dom';
 
 import { ReflogPreview } from './reflog-preview/reflog-preview';
 import { FilePicker } from './reflog-preview/file-picker';
-import { RefDump } from '../analyze/ref-state';
+import { RefHistory } from '../analyze/ref-state';
+import { WebAnalyzer } from './reflog-preview/web-analyzer';
 
 type HMRModule = typeof module & {
   hot?: {
@@ -21,10 +22,10 @@ function renderApp() {
  * A viewer to show reflog (json) in browser.
  */
 const App: React.FunctionComponent<{}> = () => {
-  const [refDump, setRefDump] = React.useState<RefDump[]>([]);
+  const [refDump, setRefDump] = React.useState<RefHistory[]>([]);
 
   if (refDump && refDump.length) {
-    return <ReflogPreview refDump={refDump} />;
+    return <WebAnalyzer history={refDump} />;
   }
   return <FilePicker onTextRead={text => setRefDump(JSON.parse(text))} />;
 };

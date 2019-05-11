@@ -1,26 +1,8 @@
 import { RefState } from './ref-state';
-import { Ref, RefLog } from '../git';
-import { List as IList, Map as IMap } from 'immutable';
+import { RefLog } from '../git';
+import { List as IList } from 'immutable';
 
-import {
-  Parser,
-  unit,
-  zero,
-  bind,
-  lookAhead,
-  filter,
-  or,
-  skip,
-  seq2,
-  seq3,
-  biased,
-  iterate,
-  iterateN,
-  reiterate,
-  maybe,
-  maybeDefault,
-  unitM,
-} from '../parser';
+import { bind, Parser, unit } from '../parser';
 import * as Op from './operations';
 
 export type RefParser<T> = Parser<RefState, T>;
