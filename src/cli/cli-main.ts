@@ -5,10 +5,11 @@ import { getLogger } from '../util/logging';
 import { buildState, countReflog, readRefHistory } from '../analyze/ref-state';
 import { GitRepoException } from '../git/error';
 import { ChalkFormatter } from '../formatter/chalk-formatter';
-import { cliFormat } from './cli-format';
+import { cliFormat, cliLegend } from './cli-format';
 import { createDump } from './create-dump';
 import * as util from 'util';
 import { findRepo, openRepo } from '../git/find-repo';
+import { extractOperationTimestamp } from '../analyze/operations';
 
 const logger = getLogger(__filename, 'WARN');
 
@@ -61,7 +62,7 @@ export async function cliMain() {
   }
 }
 
-async function showReflog(repo: GitRepoReader, formatter: ChalkFormatter, option: ParsedOptions): Promise<number> {
+async function showReflog(repo: GitRepoReader, formatter: ChalkFormatter, options: ParsedOptions): Promise<number> {
   const refHistory = await readRefHistory(repo);
   const initState = buildState(refHistory);
   const numReflogs = countReflog(initState);
@@ -73,14 +74,21 @@ async function showReflog(repo: GitRepoReader, formatter: ChalkFormatter, option
     formatter.line(l => l.errorText('Could not recognize reflogs'));
     return 2;
   } else if (result1) {
-    formatter.line(l => l.warnText('Got ambiguous result in parsing. Only reporting first one.'));
+    formatter.line(l => l.warnText('Got ambiguous result when parsing reflogs. Only reporting first one.'));
   }
 
-  cliFormat(result0.output, formatter);
+  // ORDER BY time DESC
+  const sortedOperations = result0.output.sort((a, b) => extractOperationTimestamp(b) - extractOperationTimestamp(a));
+
+  // ORDER BY time ASC
+  const trimmed = sortedOperations.slice(0, options.numOperations).reverse();
+
+  cliFormat(trimmed, formatter);
+  cliLegend(formatter);
 
   const remained = countReflog(result0.rest);
 
-  if (remained && option.verbose) {
+  if (remained && options.verbose) {
     formatter.line(line => line.warnText(`Could not analyze last ${remained} (of ${numReflogs}) reflog items.`));
   }
 

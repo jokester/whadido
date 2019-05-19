@@ -5,6 +5,7 @@ export interface ParsedOptions {
   path: string;
   dump: string;
   verbose: boolean;
+  numOperations: number;
 }
 
 export function createOptionParser() {
@@ -21,11 +22,11 @@ export function createOptionParser() {
     dest: 'path',
   });
 
-  parser.addArgument(['--dump'], {
-    defaultValue: false,
-    action: 'storeTrue',
-    dest: 'dump',
-    help: `Dump refs and reflogs to a timestamp-named JSON file in PWD. Most for development use.`,
+  parser.addArgument(['-n', '--num'], {
+    metavar: 'NUM_OF_OPERATIONS',
+    defaultValue: 20,
+    help: 'The number of (recent) git operations to display. Defaults to 20',
+    dest: 'numOperations',
   });
 
   parser.addArgument(['--verbose'], {
@@ -33,6 +34,13 @@ export function createOptionParser() {
     action: 'storeTrue',
     dest: 'verbose',
     help: `Enable verbose log. Most for development use.`,
+  });
+
+  parser.addArgument(['--dump'], {
+    defaultValue: false,
+    action: 'storeTrue',
+    dest: 'dump',
+    help: `Dump refs and reflogs to a timestamp-named JSON file in PWD. Most for development use.`,
   });
 
   return parser as {
