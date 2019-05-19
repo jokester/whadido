@@ -1,0 +1,5269 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`reflog - parser parses bangumi-1: topParser(bangumi-1.json 1`] = `
+Array [
+  Array [
+    Object {
+      "branchLog": Object {
+        "at": Object {
+          "tz": "+0900",
+          "utcSec": 1498492511,
+        },
+        "by": Object {
+          "email": "momocraft@gmail.com",
+          "name": "Wang Guan",
+        },
+        "desc": "update by push",
+        "from": "fb7291f6a9c3ab8b63d43f78b818ac9effd205b2",
+        "to": "fe61ea260f019828ad38406ee4eb9668569ea986",
+      },
+      "refpath": "refs/remotes/origin/dev",
+      "type": "Push",
+    },
+    Object {
+      "branchLog": Object {
+        "at": Object {
+          "tz": "+0900",
+          "utcSec": 1497523792,
+        },
+        "by": Object {
+          "email": "momocraft@gmail.com",
+          "name": "Wang Guan",
+        },
+        "desc": "update by push",
+        "from": "4316917cb979ace237bf35c82a25139451444136",
+        "to": "fb7291f6a9c3ab8b63d43f78b818ac9effd205b2",
+      },
+      "refpath": "refs/remotes/origin/dev",
+      "type": "Push",
+    },
+    Object {
+      "branchLog": Object {
+        "at": Object {
+          "tz": "+0900",
+          "utcSec": 1487622675,
+        },
+        "by": Object {
+          "email": "momocraft@gmail.com",
+          "name": "Wang Guan",
+        },
+        "desc": "update by push",
+        "from": "acf38f8833a7cd98b36220da8a8f3d75bbc6fe0b",
+        "to": "caee907775d4017dc0a2fde10425b80d8d365d44",
+      },
+      "refpath": "refs/remotes/origin/revive",
+      "type": "Push",
+    },
+    Object {
+      "branchLog": Object {
+        "at": Object {
+          "tz": "+0900",
+          "utcSec": 1484148350,
+        },
+        "by": Object {
+          "email": "momocraft@gmail.com",
+          "name": "Wang Guan",
+        },
+        "desc": "update by push",
+        "from": "97d42d0c1b749daf18c6c0280faf92c6e47be8f1",
+        "to": "acf38f8833a7cd98b36220da8a8f3d75bbc6fe0b",
+      },
+      "refpath": "refs/remotes/origin/revive",
+      "type": "Push",
+    },
+    Object {
+      "branchLog": Object {
+        "at": Object {
+          "tz": "+0900",
+          "utcSec": 1483799064,
+        },
+        "by": Object {
+          "email": "momocraft@gmail.com",
+          "name": "Wang Guan",
+        },
+        "desc": "fetch --append origin: fast-forward",
+        "from": "fa0468b02a71d915d7cb16a9a45557dbc6cb1a1c",
+        "to": "97d42d0c1b749daf18c6c0280faf92c6e47be8f1",
+      },
+      "refpath": "refs/remotes/origin/revive",
+      "type": "Fetch",
+    },
+    Object {
+      "branchLog": Object {
+        "at": Object {
+          "tz": "+0900",
+          "utcSec": 1482644574,
+        },
+        "by": Object {
+          "email": "momocraft@gmail.com",
+          "name": "Wang Guan",
+        },
+        "desc": "update by push",
+        "from": "269a793a13d57de739648ecd193487eafa46e1f8",
+        "to": "fa0468b02a71d915d7cb16a9a45557dbc6cb1a1c",
+      },
+      "refpath": "refs/remotes/origin/revive",
+      "type": "Push",
+    },
+    Object {
+      "branchLog": Object {
+        "at": Object {
+          "tz": "+0900",
+          "utcSec": 1482596592,
+        },
+        "by": Object {
+          "email": "momocraft@gmail.com",
+          "name": "Wang Guan",
+        },
+        "desc": "update by push",
+        "from": "0000000000000000000000000000000000000000",
+        "to": "269a793a13d57de739648ecd193487eafa46e1f8",
+      },
+      "refpath": "refs/remotes/origin/revive",
+      "type": "Push",
+    },
+    Object {
+      "branchLog": Object {
+        "at": Object {
+          "tz": "+0900",
+          "utcSec": 1497625930,
+        },
+        "by": Object {
+          "email": "momocraft@gmail.com",
+          "name": "Wang Guan",
+        },
+        "desc": "commit: wip",
+        "from": "fb7291f6a9c3ab8b63d43f78b818ac9effd205b2",
+        "to": "fe61ea260f019828ad38406ee4eb9668569ea986",
+      },
+      "headLog": Object {
+        "at": Object {
+          "tz": "+0900",
+          "utcSec": 1497625930,
+        },
+        "by": Object {
+          "email": "momocraft@gmail.com",
+          "name": "Wang Guan",
+        },
+        "desc": "commit: wip",
+        "from": "fb7291f6a9c3ab8b63d43f78b818ac9effd205b2",
+        "to": "fe61ea260f019828ad38406ee4eb9668569ea986",
+      },
+      "refpath": "refs/heads/dev",
+      "type": "Commit",
+    },
+    Object {
+      "branchLog": Object {
+        "at": Object {
+          "tz": "+0900",
+          "utcSec": 1497523780,
+        },
+        "by": Object {
+          "email": "momocraft@gmail.com",
+          "name": "Wang Guan",
+        },
+        "desc": "commit: wip",
+        "from": "4316917cb979ace237bf35c82a25139451444136",
+        "to": "fb7291f6a9c3ab8b63d43f78b818ac9effd205b2",
+      },
+      "headLog": Object {
+        "at": Object {
+          "tz": "+0900",
+          "utcSec": 1497523780,
+        },
+        "by": Object {
+          "email": "momocraft@gmail.com",
+          "name": "Wang Guan",
+        },
+        "desc": "commit: wip",
+        "from": "4316917cb979ace237bf35c82a25139451444136",
+        "to": "fb7291f6a9c3ab8b63d43f78b818ac9effd205b2",
+      },
+      "refpath": "refs/heads/dev",
+      "type": "Commit",
+    },
+    Object {
+      "branchLog": Object {
+        "at": Object {
+          "tz": "+0900",
+          "utcSec": 1487778183,
+        },
+        "by": Object {
+          "email": "momocraft@gmail.com",
+          "name": "Wang Guan",
+        },
+        "desc": "branch: Created from HEAD",
+        "from": "0000000000000000000000000000000000000000",
+        "to": "5e9f1da2b38d0ad513ebabdfd7ee00008fe6d3b8",
+      },
+      "branchPath": "refs/heads/Bangumi2",
+      "headCheckout": undefined,
+      "type": "CreateBranch",
+    },
+    Object {
+      "headLog": Object {
+        "at": Object {
+          "tz": "+0900",
+          "utcSec": 1497269034,
+        },
+        "by": Object {
+          "email": "momocraft@gmail.com",
+          "name": "Wang Guan",
+        },
+        "desc": "pull: Fast-forward",
+        "from": "4d86099c998f2bd81f4ae71bf4beefe22fe4d732",
+        "to": "4316917cb979ace237bf35c82a25139451444136",
+      },
+      "localBranchLog": Object {
+        "at": Object {
+          "tz": "+0900",
+          "utcSec": 1497269034,
+        },
+        "by": Object {
+          "email": "momocraft@gmail.com",
+          "name": "Wang Guan",
+        },
+        "desc": "pull: Fast-forward",
+        "from": "4d86099c998f2bd81f4ae71bf4beefe22fe4d732",
+        "to": "4316917cb979ace237bf35c82a25139451444136",
+      },
+      "localBranchPath": "refs/heads/dev",
+      "remoteBranchLog": Object {
+        "at": Object {
+          "tz": "+0900",
+          "utcSec": 1497269034,
+        },
+        "by": Object {
+          "email": "momocraft@gmail.com",
+          "name": "Wang Guan",
+        },
+        "desc": "pull: fast-forward",
+        "from": "4d86099c998f2bd81f4ae71bf4beefe22fe4d732",
+        "to": "4316917cb979ace237bf35c82a25139451444136",
+      },
+      "remoteBranchPath": "refs/remotes/origin/dev",
+      "type": "Pull",
+    },
+    Object {
+      "branchLog": Object {
+        "at": Object {
+          "tz": "+0900",
+          "utcSec": 1497248856,
+        },
+        "by": Object {
+          "email": "momocraft@gmail.com",
+          "name": "Wang Guan",
+        },
+        "desc": "fetch --append origin: fast-forward",
+        "from": "58a75fc37d033eab78f91deb0242df6b77bf6c33",
+        "to": "4d86099c998f2bd81f4ae71bf4beefe22fe4d732",
+      },
+      "refpath": "refs/remotes/origin/dev",
+      "type": "Fetch",
+    },
+    Object {
+      "branchLog": Object {
+        "at": Object {
+          "tz": "+0900",
+          "utcSec": 1492773411,
+        },
+        "by": Object {
+          "email": "momocraft@gmail.com",
+          "name": "Wang Guan",
+        },
+        "desc": "update by push",
+        "from": "fd0e2bf67f42aa924af964ee0787b3a200179313",
+        "to": "58a75fc37d033eab78f91deb0242df6b77bf6c33",
+      },
+      "refpath": "refs/remotes/origin/dev",
+      "type": "Push",
+    },
+    Object {
+      "branchLog": Object {
+        "at": Object {
+          "tz": "+0900",
+          "utcSec": 1489985771,
+        },
+        "by": Object {
+          "email": "momocraft@gmail.com",
+          "name": "Wang Guan",
+        },
+        "desc": "fetch: fast-forward",
+        "from": "d02a4f2f24144f1917648bd67d34c71e20756446",
+        "to": "fd0e2bf67f42aa924af964ee0787b3a200179313",
+      },
+      "refpath": "refs/remotes/origin/dev",
+      "type": "Fetch",
+    },
+    Object {
+      "branchLog": Object {
+        "at": Object {
+          "tz": "+0900",
+          "utcSec": 1487868382,
+        },
+        "by": Object {
+          "email": "momocraft@gmail.com",
+          "name": "Wang Guan",
+        },
+        "desc": "update by push",
+        "from": "5fd3a48a7bdcf0907a9fcb5d030cb3be7d984c62",
+        "to": "d02a4f2f24144f1917648bd67d34c71e20756446",
+      },
+      "refpath": "refs/remotes/origin/dev",
+      "type": "Push",
+    },
+    Object {
+      "branchLog": Object {
+        "at": Object {
+          "tz": "+0900",
+          "utcSec": 1487859103,
+        },
+        "by": Object {
+          "email": "momocraft@gmail.com",
+          "name": "Wang Guan",
+        },
+        "desc": "update by push",
+        "from": "f5218bd58f6f9caee25a3ee5f38e50fd897d0b4f",
+        "to": "5fd3a48a7bdcf0907a9fcb5d030cb3be7d984c62",
+      },
+      "refpath": "refs/remotes/origin/dev",
+      "type": "Push",
+    },
+    Object {
+      "branchLog": Object {
+        "at": Object {
+          "tz": "+0900",
+          "utcSec": 1487854962,
+        },
+        "by": Object {
+          "email": "momocraft@gmail.com",
+          "name": "Wang Guan",
+        },
+        "desc": "fetch: fast-forward",
+        "from": "b92a981db8882a6ec13ae14aa8e073699209d53a",
+        "to": "f5218bd58f6f9caee25a3ee5f38e50fd897d0b4f",
+      },
+      "refpath": "refs/remotes/origin/dev",
+      "type": "Fetch",
+    },
+    Object {
+      "branchLog": Object {
+        "at": Object {
+          "tz": "+0900",
+          "utcSec": 1487784716,
+        },
+        "by": Object {
+          "email": "momocraft@gmail.com",
+          "name": "Wang Guan",
+        },
+        "desc": "update by push",
+        "from": "5a97ba9e121e37b782185c10af4b06cc1cd5d687",
+        "to": "b92a981db8882a6ec13ae14aa8e073699209d53a",
+      },
+      "refpath": "refs/remotes/origin/dev",
+      "type": "Push",
+    },
+    Object {
+      "branchLog": Object {
+        "at": Object {
+          "tz": "+0900",
+          "utcSec": 1487777193,
+        },
+        "by": Object {
+          "email": "momocraft@gmail.com",
+          "name": "Wang Guan",
+        },
+        "desc": "fetch --append origin: storing head",
+        "from": "0000000000000000000000000000000000000000",
+        "to": "5a97ba9e121e37b782185c10af4b06cc1cd5d687",
+      },
+      "refpath": "refs/remotes/origin/dev",
+      "type": "Fetch",
+    },
+    Object {
+      "branchLog": Object {
+        "at": Object {
+          "tz": "+0900",
+          "utcSec": 1497248863,
+        },
+        "by": Object {
+          "email": "momocraft@gmail.com",
+          "name": "Wang Guan",
+        },
+        "desc": "merge origin/dev: Fast-forward",
+        "from": "58a75fc37d033eab78f91deb0242df6b77bf6c33",
+        "to": "4d86099c998f2bd81f4ae71bf4beefe22fe4d732",
+      },
+      "headLog": Object {
+        "at": Object {
+          "tz": "+0900",
+          "utcSec": 1497248863,
+        },
+        "by": Object {
+          "email": "momocraft@gmail.com",
+          "name": "Wang Guan",
+        },
+        "desc": "merge origin/dev: Fast-forward",
+        "from": "58a75fc37d033eab78f91deb0242df6b77bf6c33",
+        "to": "4d86099c998f2bd81f4ae71bf4beefe22fe4d732",
+      },
+      "refpath": "refs/heads/dev",
+      "type": "Merge",
+    },
+    Object {
+      "branchLog": undefined,
+      "branchpath": undefined,
+      "headLog": Object {
+        "at": Object {
+          "tz": "+0900",
+          "utcSec": 1490098666,
+        },
+        "by": Object {
+          "email": "momocraft@gmail.com",
+          "name": "Wang Guan",
+        },
+        "desc": "reset: moving to HEAD",
+        "from": "58a75fc37d033eab78f91deb0242df6b77bf6c33",
+        "to": "58a75fc37d033eab78f91deb0242df6b77bf6c33",
+      },
+      "type": "Reset",
+    },
+    Object {
+      "branchLog": Object {
+        "at": Object {
+          "tz": "+0900",
+          "utcSec": 1490028151,
+        },
+        "by": Object {
+          "email": "momocraft@gmail.com",
+          "name": "Wang Guan",
+        },
+        "desc": "commit: clean bunengkan with tidy-html",
+        "from": "1d3b5870a011690d60c6b1ca3638cea6aad5bd01",
+        "to": "58a75fc37d033eab78f91deb0242df6b77bf6c33",
+      },
+      "headLog": Object {
+        "at": Object {
+          "tz": "+0900",
+          "utcSec": 1490028151,
+        },
+        "by": Object {
+          "email": "momocraft@gmail.com",
+          "name": "Wang Guan",
+        },
+        "desc": "commit: clean bunengkan with tidy-html",
+        "from": "1d3b5870a011690d60c6b1ca3638cea6aad5bd01",
+        "to": "58a75fc37d033eab78f91deb0242df6b77bf6c33",
+      },
+      "refpath": "refs/heads/dev",
+      "type": "Commit",
+    },
+    Object {
+      "branchLog": Object {
+        "at": Object {
+          "tz": "+0900",
+          "utcSec": 1490027682,
+        },
+        "by": Object {
+          "email": "momocraft@gmail.com",
+          "name": "Wang Guan",
+        },
+        "desc": "commit: fix",
+        "from": "dc8d7079cc9a088b3e6d3ea9d455a66484ac0ee3",
+        "to": "1d3b5870a011690d60c6b1ca3638cea6aad5bd01",
+      },
+      "headLog": Object {
+        "at": Object {
+          "tz": "+0900",
+          "utcSec": 1490027682,
+        },
+        "by": Object {
+          "email": "momocraft@gmail.com",
+          "name": "Wang Guan",
+        },
+        "desc": "commit: fix",
+        "from": "dc8d7079cc9a088b3e6d3ea9d455a66484ac0ee3",
+        "to": "1d3b5870a011690d60c6b1ca3638cea6aad5bd01",
+      },
+      "refpath": "refs/heads/dev",
+      "type": "Commit",
+    },
+    Object {
+      "branchLog": Object {
+        "at": Object {
+          "tz": "+0900",
+          "utcSec": 1490024718,
+        },
+        "by": Object {
+          "email": "momocraft@gmail.com",
+          "name": "Wang Guan",
+        },
+        "desc": "rebase -i (finish): refs/heads/dev onto ae790e8382b3df405eff179824cf19db3ad223e7",
+        "from": "4f10bf501d658ef0eabb606f4179b8e19198e8de",
+        "to": "dc8d7079cc9a088b3e6d3ea9d455a66484ac0ee3",
+      },
+      "branchpath": "refs/heads/dev",
+      "headLogs": Array [
+        Object {
+          "at": Object {
+            "tz": "+0900",
+            "utcSec": 1490024709,
+          },
+          "by": Object {
+            "email": "momocraft@gmail.com",
+            "name": "Wang Guan",
+          },
+          "desc": "rebase -i (start): checkout origin/dev",
+          "from": "4f10bf501d658ef0eabb606f4179b8e19198e8de",
+          "to": "ae790e8382b3df405eff179824cf19db3ad223e7",
+        },
+        Object {
+          "at": Object {
+            "tz": "+0900",
+            "utcSec": 1490024709,
+          },
+          "by": Object {
+            "email": "momocraft@gmail.com",
+            "name": "Wang Guan",
+          },
+          "desc": "rebase -i (squash): # This is a combination of 2 commits.",
+          "from": "ae790e8382b3df405eff179824cf19db3ad223e7",
+          "to": "c08f1d09a670d37b9c672c23d5bd566a93938cb6",
+        },
+        Object {
+          "at": Object {
+            "tz": "+0900",
+            "utcSec": 1490024709,
+          },
+          "by": Object {
+            "email": "momocraft@gmail.com",
+            "name": "Wang Guan",
+          },
+          "desc": "rebase -i (squash): # This is a combination of 3 commits.",
+          "from": "c08f1d09a670d37b9c672c23d5bd566a93938cb6",
+          "to": "e58462528f0a8d8c406797463a3b9a4aa72bd03f",
+        },
+        Object {
+          "at": Object {
+            "tz": "+0900",
+            "utcSec": 1490024709,
+          },
+          "by": Object {
+            "email": "momocraft@gmail.com",
+            "name": "Wang Guan",
+          },
+          "desc": "rebase -i (squash): # This is a combination of 4 commits.",
+          "from": "e58462528f0a8d8c406797463a3b9a4aa72bd03f",
+          "to": "78b3845e3205e7365d712f894d91fad4cd63f82b",
+        },
+        Object {
+          "at": Object {
+            "tz": "+0900",
+            "utcSec": 1490024709,
+          },
+          "by": Object {
+            "email": "momocraft@gmail.com",
+            "name": "Wang Guan",
+          },
+          "desc": "rebase -i (squash): # This is a combination of 5 commits.",
+          "from": "78b3845e3205e7365d712f894d91fad4cd63f82b",
+          "to": "cad34783bb7eee04864ecb3d0c351f5d4f1f1d2c",
+        },
+        Object {
+          "at": Object {
+            "tz": "+0900",
+            "utcSec": 1490024709,
+          },
+          "by": Object {
+            "email": "momocraft@gmail.com",
+            "name": "Wang Guan",
+          },
+          "desc": "rebase -i (squash): adapt SaxParser",
+          "from": "cad34783bb7eee04864ecb3d0c351f5d4f1f1d2c",
+          "to": "dc8d7079cc9a088b3e6d3ea9d455a66484ac0ee3",
+        },
+        Object {
+          "at": Object {
+            "tz": "+0900",
+            "utcSec": 1490024718,
+          },
+          "by": Object {
+            "email": "momocraft@gmail.com",
+            "name": "Wang Guan",
+          },
+          "desc": "rebase -i (finish): returning to refs/heads/dev",
+          "from": "dc8d7079cc9a088b3e6d3ea9d455a66484ac0ee3",
+          "to": "dc8d7079cc9a088b3e6d3ea9d455a66484ac0ee3",
+        },
+      ],
+      "type": "RebaseInteractivelyFinished",
+    },
+    Object {
+      "branchLog": undefined,
+      "branchpath": undefined,
+      "headLog": Object {
+        "at": Object {
+          "tz": "+0900",
+          "utcSec": 1490024676,
+        },
+        "by": Object {
+          "email": "momocraft@gmail.com",
+          "name": "Wang Guan",
+        },
+        "desc": "reset: moving to HEAD",
+        "from": "4f10bf501d658ef0eabb606f4179b8e19198e8de",
+        "to": "4f10bf501d658ef0eabb606f4179b8e19198e8de",
+      },
+      "type": "Reset",
+    },
+    Object {
+      "branchLog": Object {
+        "at": Object {
+          "tz": "+0900",
+          "utcSec": 1490024658,
+        },
+        "by": Object {
+          "email": "momocraft@gmail.com",
+          "name": "Wang Guan",
+        },
+        "desc": "commit: parse response lv2",
+        "from": "0b7e82dc78c0c781cd5caf51cc03eff9e19e2cb0",
+        "to": "4f10bf501d658ef0eabb606f4179b8e19198e8de",
+      },
+      "headLog": Object {
+        "at": Object {
+          "tz": "+0900",
+          "utcSec": 1490024658,
+        },
+        "by": Object {
+          "email": "momocraft@gmail.com",
+          "name": "Wang Guan",
+        },
+        "desc": "commit: parse response lv2",
+        "from": "0b7e82dc78c0c781cd5caf51cc03eff9e19e2cb0",
+        "to": "4f10bf501d658ef0eabb606f4179b8e19198e8de",
+      },
+      "refpath": "refs/heads/dev",
+      "type": "Commit",
+    },
+    Object {
+      "branchLog": Object {
+        "at": Object {
+          "tz": "+0900",
+          "utcSec": 1490023497,
+        },
+        "by": Object {
+          "email": "momocraft@gmail.com",
+          "name": "Wang Guan",
+        },
+        "desc": "commit: parse resp - lv1",
+        "from": "bfd23d5bf819773fe480e60dbc3944ee35cb652a",
+        "to": "0b7e82dc78c0c781cd5caf51cc03eff9e19e2cb0",
+      },
+      "headLog": Object {
+        "at": Object {
+          "tz": "+0900",
+          "utcSec": 1490023497,
+        },
+        "by": Object {
+          "email": "momocraft@gmail.com",
+          "name": "Wang Guan",
+        },
+        "desc": "commit: parse resp - lv1",
+        "from": "bfd23d5bf819773fe480e60dbc3944ee35cb652a",
+        "to": "0b7e82dc78c0c781cd5caf51cc03eff9e19e2cb0",
+      },
+      "refpath": "refs/heads/dev",
+      "type": "Commit",
+    },
+    Object {
+      "branchLog": Object {
+        "at": Object {
+          "tz": "+0900",
+          "utcSec": 1490022998,
+        },
+        "by": Object {
+          "email": "momocraft@gmail.com",
+          "name": "Wang Guan",
+        },
+        "desc": "commit: wip",
+        "from": "768881ea99f9692ccd9bd15134f46ed5057c6e3c",
+        "to": "bfd23d5bf819773fe480e60dbc3944ee35cb652a",
+      },
+      "headLog": Object {
+        "at": Object {
+          "tz": "+0900",
+          "utcSec": 1490022998,
+        },
+        "by": Object {
+          "email": "momocraft@gmail.com",
+          "name": "Wang Guan",
+        },
+        "desc": "commit: wip",
+        "from": "768881ea99f9692ccd9bd15134f46ed5057c6e3c",
+        "to": "bfd23d5bf819773fe480e60dbc3944ee35cb652a",
+      },
+      "refpath": "refs/heads/dev",
+      "type": "Commit",
+    },
+    Object {
+      "branchLog": Object {
+        "at": Object {
+          "tz": "+0900",
+          "utcSec": 1490020820,
+        },
+        "by": Object {
+          "email": "momocraft@gmail.com",
+          "name": "Wang Guan",
+        },
+        "desc": "commit: wip",
+        "from": "ee88047b715736c6edf62cb581ef6bd14d66e41e",
+        "to": "768881ea99f9692ccd9bd15134f46ed5057c6e3c",
+      },
+      "headLog": Object {
+        "at": Object {
+          "tz": "+0900",
+          "utcSec": 1490020820,
+        },
+        "by": Object {
+          "email": "momocraft@gmail.com",
+          "name": "Wang Guan",
+        },
+        "desc": "commit: wip",
+        "from": "ee88047b715736c6edf62cb581ef6bd14d66e41e",
+        "to": "768881ea99f9692ccd9bd15134f46ed5057c6e3c",
+      },
+      "refpath": "refs/heads/dev",
+      "type": "Commit",
+    },
+    Object {
+      "branchLog": Object {
+        "at": Object {
+          "tz": "+0900",
+          "utcSec": 1490019670,
+        },
+        "by": Object {
+          "email": "momocraft@gmail.com",
+          "name": "Wang Guan",
+        },
+        "desc": "commit: wip",
+        "from": "ae790e8382b3df405eff179824cf19db3ad223e7",
+        "to": "ee88047b715736c6edf62cb581ef6bd14d66e41e",
+      },
+      "headLog": Object {
+        "at": Object {
+          "tz": "+0900",
+          "utcSec": 1490019670,
+        },
+        "by": Object {
+          "email": "momocraft@gmail.com",
+          "name": "Wang Guan",
+        },
+        "desc": "commit: wip",
+        "from": "ae790e8382b3df405eff179824cf19db3ad223e7",
+        "to": "ee88047b715736c6edf62cb581ef6bd14d66e41e",
+      },
+      "refpath": "refs/heads/dev",
+      "type": "Commit",
+    },
+    Object {
+      "branchLog": Object {
+        "at": Object {
+          "tz": "+0900",
+          "utcSec": 1490015850,
+        },
+        "by": Object {
+          "email": "momocraft@gmail.com",
+          "name": "Wang Guan",
+        },
+        "desc": "commit (amend): adapt SaxParser",
+        "from": "b6736f2f08309a59ef9bf4b0cc9b7a0661cbec99",
+        "to": "ae790e8382b3df405eff179824cf19db3ad223e7",
+      },
+      "headLog": Object {
+        "at": Object {
+          "tz": "+0900",
+          "utcSec": 1490015850,
+        },
+        "by": Object {
+          "email": "momocraft@gmail.com",
+          "name": "Wang Guan",
+        },
+        "desc": "commit (amend): adapt SaxParser",
+        "from": "b6736f2f08309a59ef9bf4b0cc9b7a0661cbec99",
+        "to": "ae790e8382b3df405eff179824cf19db3ad223e7",
+      },
+      "refpath": "refs/heads/dev",
+      "type": "Commit",
+    },
+    Object {
+      "branchLog": Object {
+        "at": Object {
+          "tz": "+0900",
+          "utcSec": 1490015057,
+        },
+        "by": Object {
+          "email": "momocraft@gmail.com",
+          "name": "Wang Guan",
+        },
+        "desc": "commit: adapt SaxParser",
+        "from": "4b6af5bdc65da9335eec8910f649bcfdd1584a8b",
+        "to": "b6736f2f08309a59ef9bf4b0cc9b7a0661cbec99",
+      },
+      "headLog": Object {
+        "at": Object {
+          "tz": "+0900",
+          "utcSec": 1490015057,
+        },
+        "by": Object {
+          "email": "momocraft@gmail.com",
+          "name": "Wang Guan",
+        },
+        "desc": "commit: adapt SaxParser",
+        "from": "4b6af5bdc65da9335eec8910f649bcfdd1584a8b",
+        "to": "b6736f2f08309a59ef9bf4b0cc9b7a0661cbec99",
+      },
+      "refpath": "refs/heads/dev",
+      "type": "Commit",
+    },
+    Object {
+      "branchLog": Object {
+        "at": Object {
+          "tz": "+0900",
+          "utcSec": 1490013337,
+        },
+        "by": Object {
+          "email": "momocraft@gmail.com",
+          "name": "Wang Guan",
+        },
+        "desc": "commit: link my jsoup fork",
+        "from": "b56da872e50d7ea7d12e6513faa793aaca659073",
+        "to": "4b6af5bdc65da9335eec8910f649bcfdd1584a8b",
+      },
+      "headLog": Object {
+        "at": Object {
+          "tz": "+0900",
+          "utcSec": 1490013337,
+        },
+        "by": Object {
+          "email": "momocraft@gmail.com",
+          "name": "Wang Guan",
+        },
+        "desc": "commit: link my jsoup fork",
+        "from": "b56da872e50d7ea7d12e6513faa793aaca659073",
+        "to": "4b6af5bdc65da9335eec8910f649bcfdd1584a8b",
+      },
+      "refpath": "refs/heads/dev",
+      "type": "Commit",
+    },
+    Object {
+      "branchLog": Object {
+        "at": Object {
+          "tz": "+0900",
+          "utcSec": 1489988866,
+        },
+        "by": Object {
+          "email": "momocraft@gmail.com",
+          "name": "Wang Guan",
+        },
+        "desc": "commit: upgrade gradle plugin",
+        "from": "824a380e41935d2a381e6139bb0e95a3388e22b4",
+        "to": "b56da872e50d7ea7d12e6513faa793aaca659073",
+      },
+      "headLog": Object {
+        "at": Object {
+          "tz": "+0900",
+          "utcSec": 1489988866,
+        },
+        "by": Object {
+          "email": "momocraft@gmail.com",
+          "name": "Wang Guan",
+        },
+        "desc": "commit: upgrade gradle plugin",
+        "from": "824a380e41935d2a381e6139bb0e95a3388e22b4",
+        "to": "b56da872e50d7ea7d12e6513faa793aaca659073",
+      },
+      "refpath": "refs/heads/dev",
+      "type": "Commit",
+    },
+    Object {
+      "branchLog": undefined,
+      "branchpath": undefined,
+      "headLog": Object {
+        "at": Object {
+          "tz": "+0900",
+          "utcSec": 1489985811,
+        },
+        "by": Object {
+          "email": "momocraft@gmail.com",
+          "name": "Wang Guan",
+        },
+        "desc": "reset: moving to HEAD",
+        "from": "824a380e41935d2a381e6139bb0e95a3388e22b4",
+        "to": "824a380e41935d2a381e6139bb0e95a3388e22b4",
+      },
+      "type": "Reset",
+    },
+    Object {
+      "branchLog": Object {
+        "at": Object {
+          "tz": "+0900",
+          "utcSec": 1489985789,
+        },
+        "by": Object {
+          "email": "momocraft@gmail.com",
+          "name": "Wang Guan",
+        },
+        "desc": "rebase finished: refs/heads/dev onto fd0e2bf67f42aa924af964ee0787b3a200179313",
+        "from": "4eb131781121ece60016e86bf30ce34be66a3c5a",
+        "to": "824a380e41935d2a381e6139bb0e95a3388e22b4",
+      },
+      "branchpath": "refs/heads/dev",
+      "headLogs": Array [
+        Object {
+          "at": Object {
+            "tz": "+0900",
+            "utcSec": 1489985789,
+          },
+          "by": Object {
+            "email": "momocraft@gmail.com",
+            "name": "Wang Guan",
+          },
+          "desc": "rebase: checkout origin/dev",
+          "from": "4eb131781121ece60016e86bf30ce34be66a3c5a",
+          "to": "fd0e2bf67f42aa924af964ee0787b3a200179313",
+        },
+        Object {
+          "at": Object {
+            "tz": "+0900",
+            "utcSec": 1489985789,
+          },
+          "by": Object {
+            "email": "momocraft@gmail.com",
+            "name": "Wang Guan",
+          },
+          "desc": "rebase: wip",
+          "from": "fd0e2bf67f42aa924af964ee0787b3a200179313",
+          "to": "5aa1e43c4a5ed537229be54ba2ee4ce7112813de",
+        },
+        Object {
+          "at": Object {
+            "tz": "+0900",
+            "utcSec": 1489985789,
+          },
+          "by": Object {
+            "email": "momocraft@gmail.com",
+            "name": "Wang Guan",
+          },
+          "desc": "rebase: index on dev: 9f15d9 wip",
+          "from": "5aa1e43c4a5ed537229be54ba2ee4ce7112813de",
+          "to": "11b4377d57b9e25ed054ab82bfece544ac4ecfb0",
+        },
+        Object {
+          "at": Object {
+            "tz": "+0900",
+            "utcSec": 1489985789,
+          },
+          "by": Object {
+            "email": "momocraft@gmail.com",
+            "name": "Wang Guan",
+          },
+          "desc": "rebase: wip",
+          "from": "11b4377d57b9e25ed054ab82bfece544ac4ecfb0",
+          "to": "824a380e41935d2a381e6139bb0e95a3388e22b4",
+        },
+        Object {
+          "at": Object {
+            "tz": "+0900",
+            "utcSec": 1489985789,
+          },
+          "by": Object {
+            "email": "momocraft@gmail.com",
+            "name": "Wang Guan",
+          },
+          "desc": "rebase finished: returning to refs/heads/dev",
+          "from": "824a380e41935d2a381e6139bb0e95a3388e22b4",
+          "to": "824a380e41935d2a381e6139bb0e95a3388e22b4",
+        },
+      ],
+      "type": "RebaseFinished",
+    },
+    Object {
+      "branchLog": undefined,
+      "branchpath": undefined,
+      "headLog": Object {
+        "at": Object {
+          "tz": "+0900",
+          "utcSec": 1489985776,
+        },
+        "by": Object {
+          "email": "momocraft@gmail.com",
+          "name": "Wang Guan",
+        },
+        "desc": "reset: moving to HEAD",
+        "from": "4eb131781121ece60016e86bf30ce34be66a3c5a",
+        "to": "4eb131781121ece60016e86bf30ce34be66a3c5a",
+      },
+      "type": "Reset",
+    },
+    Object {
+      "branchLog": Object {
+        "at": Object {
+          "tz": "+0900",
+          "utcSec": 1487871718,
+        },
+        "by": Object {
+          "email": "momocraft@gmail.com",
+          "name": "Wang Guan",
+        },
+        "desc": "commit: wip",
+        "from": "95745349108520fc387c4f309c9c12fa0b307743",
+        "to": "4eb131781121ece60016e86bf30ce34be66a3c5a",
+      },
+      "headLog": Object {
+        "at": Object {
+          "tz": "+0900",
+          "utcSec": 1487871718,
+        },
+        "by": Object {
+          "email": "momocraft@gmail.com",
+          "name": "Wang Guan",
+        },
+        "desc": "commit: wip",
+        "from": "95745349108520fc387c4f309c9c12fa0b307743",
+        "to": "4eb131781121ece60016e86bf30ce34be66a3c5a",
+      },
+      "refpath": "refs/heads/dev",
+      "type": "Commit",
+    },
+    Object {
+      "branchLog": Object {
+        "at": Object {
+          "tz": "+0900",
+          "utcSec": 1487868726,
+        },
+        "by": Object {
+          "email": "momocraft@gmail.com",
+          "name": "Wang Guan",
+        },
+        "desc": "merge 957453: Fast-forward",
+        "from": "d02a4f2f24144f1917648bd67d34c71e20756446",
+        "to": "95745349108520fc387c4f309c9c12fa0b307743",
+      },
+      "headLog": Object {
+        "at": Object {
+          "tz": "+0900",
+          "utcSec": 1487868726,
+        },
+        "by": Object {
+          "email": "momocraft@gmail.com",
+          "name": "Wang Guan",
+        },
+        "desc": "merge 957453: Fast-forward",
+        "from": "d02a4f2f24144f1917648bd67d34c71e20756446",
+        "to": "95745349108520fc387c4f309c9c12fa0b307743",
+      },
+      "refpath": "refs/heads/dev",
+      "type": "Merge",
+    },
+    Object {
+      "headLog": Object {
+        "at": Object {
+          "tz": "+0900",
+          "utcSec": 1487868714,
+        },
+        "by": Object {
+          "email": "momocraft@gmail.com",
+          "name": "Wang Guan",
+        },
+        "desc": "checkout: moving from 95745349108520fc387c4f309c9c12fa0b307743 to dev",
+        "from": "95745349108520fc387c4f309c9c12fa0b307743",
+        "to": "d02a4f2f24144f1917648bd67d34c71e20756446",
+      },
+      "type": "Checkout",
+    },
+  ],
+]
+`;
+
+exports[`reflog - parser parses ts-boilerplate-1: topParser(ts-boilerplate-1.json 1`] = `
+Array [
+  Array [
+    Object {
+      "branchLog": Object {
+        "at": Object {
+          "tz": "+0900",
+          "utcSec": 1489682410,
+        },
+        "by": Object {
+          "email": "momocraft@gmail.com",
+          "name": "Wang Guan",
+        },
+        "desc": "update by push",
+        "from": "a7b4d0c41d0ab5b251cb361c7c826f64a37953d1",
+        "to": "017cf40cdd748801520439f797f94d7c9a77e890",
+      },
+      "refpath": "refs/remotes/origin/webpack",
+      "type": "Push",
+    },
+    Object {
+      "branchLog": Object {
+        "at": Object {
+          "tz": "+0900",
+          "utcSec": 1489681735,
+        },
+        "by": Object {
+          "email": "momocraft@gmail.com",
+          "name": "Wang Guan",
+        },
+        "desc": "update by push",
+        "from": "dd6d9874e98ed1afa62f4c9c80f70c70ec8a359b",
+        "to": "a7b4d0c41d0ab5b251cb361c7c826f64a37953d1",
+      },
+      "refpath": "refs/remotes/origin/webpack",
+      "type": "Push",
+    },
+    Object {
+      "branchLog": Object {
+        "at": Object {
+          "tz": "+0900",
+          "utcSec": 1496577888,
+        },
+        "by": Object {
+          "email": "momocraft@gmail.com",
+          "name": "Wang Guan",
+        },
+        "desc": "fetch GLaDOS: storing head",
+        "from": "0000000000000000000000000000000000000000",
+        "to": "45cd3a73cbe4509aff73b0b8af5c42fc5985b764",
+      },
+      "refpath": "refs/remotes/GLaDOS/webpack-preact",
+      "type": "Fetch",
+    },
+    Object {
+      "branchLog": Object {
+        "at": Object {
+          "tz": "+0900",
+          "utcSec": 1496577790,
+        },
+        "by": Object {
+          "email": "momocraft@gmail.com",
+          "name": "Wang Guan",
+        },
+        "desc": "fetch --append origin: fast-forward",
+        "from": "7f6e96223adf1eb9adc9240d7f374b4a43cbc9bf",
+        "to": "45cd3a73cbe4509aff73b0b8af5c42fc5985b764",
+      },
+      "refpath": "refs/remotes/origin/webpack-preact",
+      "type": "Fetch",
+    },
+    Object {
+      "branchLog": Object {
+        "at": Object {
+          "tz": "+0900",
+          "utcSec": 1495894126,
+        },
+        "by": Object {
+          "email": "momocraft@gmail.com",
+          "name": "Wang Guan",
+        },
+        "desc": "fetch --append origin: fast-forward",
+        "from": "7c8ed428be3f15e6377e478386a5cec2cf52bdd7",
+        "to": "7f6e96223adf1eb9adc9240d7f374b4a43cbc9bf",
+      },
+      "refpath": "refs/remotes/origin/webpack-preact",
+      "type": "Fetch",
+    },
+    Object {
+      "branchLog": Object {
+        "at": Object {
+          "tz": "+0900",
+          "utcSec": 1491562327,
+        },
+        "by": Object {
+          "email": "momocraft@gmail.com",
+          "name": "Wang Guan",
+        },
+        "desc": "fetch: forced-update",
+        "from": "a8c3a6f19776f786441134a374bf338c44c55142",
+        "to": "7c8ed428be3f15e6377e478386a5cec2cf52bdd7",
+      },
+      "refpath": "refs/remotes/origin/webpack-preact",
+      "type": "Fetch",
+    },
+    Object {
+      "branchLog": Object {
+        "at": Object {
+          "tz": "+0900",
+          "utcSec": 1489682399,
+        },
+        "by": Object {
+          "email": "momocraft@gmail.com",
+          "name": "Wang Guan",
+        },
+        "desc": "update by push",
+        "from": "4ef126eba3586584600ab5cfdc2e3a0e1a8320b6",
+        "to": "a8c3a6f19776f786441134a374bf338c44c55142",
+      },
+      "refpath": "refs/remotes/origin/webpack-preact",
+      "type": "Push",
+    },
+    Object {
+      "branchLog": Object {
+        "at": Object {
+          "tz": "+0900",
+          "utcSec": 1496577790,
+        },
+        "by": Object {
+          "email": "momocraft@gmail.com",
+          "name": "Wang Guan",
+        },
+        "desc": "fetch --append origin: fast-forward",
+        "from": "d272c2816fbb859408a92dc833e245e07c66d09a",
+        "to": "5b956147c433eb4a7852d62c498066f6aa16142b",
+      },
+      "refpath": "refs/remotes/origin/webpack-react",
+      "type": "Fetch",
+    },
+    Object {
+      "branchLog": Object {
+        "at": Object {
+          "tz": "+0900",
+          "utcSec": 1495894126,
+        },
+        "by": Object {
+          "email": "momocraft@gmail.com",
+          "name": "Wang Guan",
+        },
+        "desc": "fetch --append origin: fast-forward",
+        "from": "306756a526ecc3fb0eebc4be43c22bf0efdd6011",
+        "to": "d272c2816fbb859408a92dc833e245e07c66d09a",
+      },
+      "refpath": "refs/remotes/origin/webpack-react",
+      "type": "Fetch",
+    },
+    Object {
+      "branchLog": Object {
+        "at": Object {
+          "tz": "+0900",
+          "utcSec": 1491562327,
+        },
+        "by": Object {
+          "email": "momocraft@gmail.com",
+          "name": "Wang Guan",
+        },
+        "desc": "fetch: forced-update",
+        "from": "fe76ee1a013d8b0af9b2e5fa2e078c91969cdab4",
+        "to": "306756a526ecc3fb0eebc4be43c22bf0efdd6011",
+      },
+      "refpath": "refs/remotes/origin/webpack-react",
+      "type": "Fetch",
+    },
+    Object {
+      "branchLog": Object {
+        "at": Object {
+          "tz": "+0900",
+          "utcSec": 1489682410,
+        },
+        "by": Object {
+          "email": "momocraft@gmail.com",
+          "name": "Wang Guan",
+        },
+        "desc": "update by push",
+        "from": "0000000000000000000000000000000000000000",
+        "to": "fe76ee1a013d8b0af9b2e5fa2e078c91969cdab4",
+      },
+      "refpath": "refs/remotes/origin/webpack-react",
+      "type": "Push",
+    },
+    Object {
+      "branchLog": Object {
+        "at": Object {
+          "tz": "+0900",
+          "utcSec": 1496577888,
+        },
+        "by": Object {
+          "email": "momocraft@gmail.com",
+          "name": "Wang Guan",
+        },
+        "desc": "fetch GLaDOS: storing head",
+        "from": "0000000000000000000000000000000000000000",
+        "to": "2697eafde7640926c05abb7e8272135dc9e73e66",
+      },
+      "refpath": "refs/remotes/GLaDOS/demo-tsloader",
+      "type": "Fetch",
+    },
+    Object {
+      "branchLog": Object {
+        "at": Object {
+          "tz": "+0900",
+          "utcSec": 1496603427,
+        },
+        "by": Object {
+          "email": "momocraft@gmail.com",
+          "name": "Wang Guan",
+        },
+        "desc": "fetch: fast-forward",
+        "from": "86d6cdefda215668cc4a34b6834e345998fa80ba",
+        "to": "6b5b1df81e7ad9ee69b0049d11f9b45f1ec5320f",
+      },
+      "refpath": "refs/remotes/GLaDOS/text-parser",
+      "type": "Fetch",
+    },
+    Object {
+      "branchLog": Object {
+        "at": Object {
+          "tz": "+0900",
+          "utcSec": 1496600036,
+        },
+        "by": Object {
+          "email": "momocraft@gmail.com",
+          "name": "Wang Guan",
+        },
+        "desc": "update by push",
+        "from": "46308c2f735c39b3a4995d03909d541921972654",
+        "to": "86d6cdefda215668cc4a34b6834e345998fa80ba",
+      },
+      "refpath": "refs/remotes/GLaDOS/text-parser",
+      "type": "Push",
+    },
+    Object {
+      "branchLog": Object {
+        "at": Object {
+          "tz": "+0900",
+          "utcSec": 1496577888,
+        },
+        "by": Object {
+          "email": "momocraft@gmail.com",
+          "name": "Wang Guan",
+        },
+        "desc": "fetch GLaDOS: storing head",
+        "from": "0000000000000000000000000000000000000000",
+        "to": "46308c2f735c39b3a4995d03909d541921972654",
+      },
+      "refpath": "refs/remotes/GLaDOS/text-parser",
+      "type": "Fetch",
+    },
+    Object {
+      "branchLog": Object {
+        "at": Object {
+          "tz": "+0900",
+          "utcSec": 1496577888,
+        },
+        "by": Object {
+          "email": "momocraft@gmail.com",
+          "name": "Wang Guan",
+        },
+        "desc": "fetch GLaDOS: storing head",
+        "from": "0000000000000000000000000000000000000000",
+        "to": "5b956147c433eb4a7852d62c498066f6aa16142b",
+      },
+      "refpath": "refs/remotes/GLaDOS/webpack-react",
+      "type": "Fetch",
+    },
+    Object {
+      "branchLog": Object {
+        "at": Object {
+          "tz": "+0900",
+          "utcSec": 1496577888,
+        },
+        "by": Object {
+          "email": "momocraft@gmail.com",
+          "name": "Wang Guan",
+        },
+        "desc": "fetch GLaDOS: storing head",
+        "from": "0000000000000000000000000000000000000000",
+        "to": "0fcf719d93b45deaeba0f0a22b64aab70ab0b25f",
+      },
+      "refpath": "refs/remotes/GLaDOS/master",
+      "type": "Fetch",
+    },
+    Object {
+      "branchLog": Object {
+        "at": Object {
+          "tz": "+0900",
+          "utcSec": 1496577888,
+        },
+        "by": Object {
+          "email": "momocraft@gmail.com",
+          "name": "Wang Guan",
+        },
+        "desc": "fetch GLaDOS: storing head",
+        "from": "0000000000000000000000000000000000000000",
+        "to": "122871a669e6002c772caec0f00f75582e1ce75d",
+      },
+      "refpath": "refs/remotes/GLaDOS/heroku",
+      "type": "Fetch",
+    },
+    Object {
+      "branchLog": Object {
+        "at": Object {
+          "tz": "+0900",
+          "utcSec": 1496577790,
+        },
+        "by": Object {
+          "email": "momocraft@gmail.com",
+          "name": "Wang Guan",
+        },
+        "desc": "fetch --append origin: fast-forward",
+        "from": "4cfe00e6b46e35bc55b1798faefa82e34240bfb4",
+        "to": "0fcf719d93b45deaeba0f0a22b64aab70ab0b25f",
+      },
+      "refpath": "refs/remotes/origin/master",
+      "type": "Fetch",
+    },
+    Object {
+      "branchLog": Object {
+        "at": Object {
+          "tz": "+0900",
+          "utcSec": 1495895028,
+        },
+        "by": Object {
+          "email": "momocraft@gmail.com",
+          "name": "Wang Guan",
+        },
+        "desc": "update by push",
+        "from": "49671ec20b67314d2ee0b4f144ca82c0fc882ab4",
+        "to": "4cfe00e6b46e35bc55b1798faefa82e34240bfb4",
+      },
+      "refpath": "refs/remotes/origin/master",
+      "type": "Push",
+    },
+    Object {
+      "branchLog": Object {
+        "at": Object {
+          "tz": "+0900",
+          "utcSec": 1495894736,
+        },
+        "by": Object {
+          "email": "momocraft@gmail.com",
+          "name": "Wang Guan",
+        },
+        "desc": "update by push",
+        "from": "941aaa60e4783c060509ccc76e4b3d9d70e2142f",
+        "to": "49671ec20b67314d2ee0b4f144ca82c0fc882ab4",
+      },
+      "refpath": "refs/remotes/origin/master",
+      "type": "Push",
+    },
+    Object {
+      "branchLog": Object {
+        "at": Object {
+          "tz": "+0900",
+          "utcSec": 1495894126,
+        },
+        "by": Object {
+          "email": "momocraft@gmail.com",
+          "name": "Wang Guan",
+        },
+        "desc": "fetch --append origin: fast-forward",
+        "from": "2c4d95e92a78b5ca41d24bb490ddf6f282667338",
+        "to": "941aaa60e4783c060509ccc76e4b3d9d70e2142f",
+      },
+      "refpath": "refs/remotes/origin/master",
+      "type": "Fetch",
+    },
+    Object {
+      "branchLog": Object {
+        "at": Object {
+          "tz": "+0900",
+          "utcSec": 1491562327,
+        },
+        "by": Object {
+          "email": "momocraft@gmail.com",
+          "name": "Wang Guan",
+        },
+        "desc": "fetch: fast-forward",
+        "from": "8aeab751443b1f5e31d65f2c8a7aae7e7d8583f0",
+        "to": "2c4d95e92a78b5ca41d24bb490ddf6f282667338",
+      },
+      "refpath": "refs/remotes/origin/master",
+      "type": "Fetch",
+    },
+    Object {
+      "branchLog": Object {
+        "at": Object {
+          "tz": "+0900",
+          "utcSec": 1489682410,
+        },
+        "by": Object {
+          "email": "momocraft@gmail.com",
+          "name": "Wang Guan",
+        },
+        "desc": "update by push",
+        "from": "f34ab7e293961628bfefd83fd456aa9fe3e7fdcf",
+        "to": "8aeab751443b1f5e31d65f2c8a7aae7e7d8583f0",
+      },
+      "refpath": "refs/remotes/origin/master",
+      "type": "Push",
+    },
+    Object {
+      "branchLog": Object {
+        "at": Object {
+          "tz": "+0900",
+          "utcSec": 1495894126,
+        },
+        "by": Object {
+          "email": "momocraft@gmail.com",
+          "name": "Wang Guan",
+        },
+        "desc": "fetch --append origin: fast-forward",
+        "from": "8839d68ed252cfa381f3b38ffc7ada43b5b03ea5",
+        "to": "122871a669e6002c772caec0f00f75582e1ce75d",
+      },
+      "refpath": "refs/remotes/origin/heroku",
+      "type": "Fetch",
+    },
+    Object {
+      "branchLog": Object {
+        "at": Object {
+          "tz": "+0900",
+          "utcSec": 1491562327,
+        },
+        "by": Object {
+          "email": "momocraft@gmail.com",
+          "name": "Wang Guan",
+        },
+        "desc": "fetch: forced-update",
+        "from": "42145d3f24cfd3f96b0439d7b5fcf2cc00a3b868",
+        "to": "8839d68ed252cfa381f3b38ffc7ada43b5b03ea5",
+      },
+      "refpath": "refs/remotes/origin/heroku",
+      "type": "Fetch",
+    },
+    Object {
+      "branchLog": Object {
+        "at": Object {
+          "tz": "+0900",
+          "utcSec": 1489684616,
+        },
+        "by": Object {
+          "email": "momocraft@gmail.com",
+          "name": "Wang Guan",
+        },
+        "desc": "update by push",
+        "from": "32af089e26eefd7c4bb57ebd1caa5723c1187e08",
+        "to": "42145d3f24cfd3f96b0439d7b5fcf2cc00a3b868",
+      },
+      "refpath": "refs/remotes/origin/heroku",
+      "type": "Push",
+    },
+    Object {
+      "branchLog": Object {
+        "at": Object {
+          "tz": "+0900",
+          "utcSec": 1489680126,
+        },
+        "by": Object {
+          "email": "mono@nadesico.(none)",
+          "name": "mono",
+        },
+        "desc": "remote: renamed refs/remotes/github/demo-mocha-ts-watch to refs/remotes/origin/demo-mocha-ts-watch",
+        "from": "16899fc828f225138213b22354e86413dd0331a5",
+        "to": "16899fc828f225138213b22354e86413dd0331a5",
+      },
+      "refpath": "refs/remotes/origin/demo-mocha-ts-watch",
+      "type": "RenameRemote",
+    },
+    Object {
+      "branchLog": Object {
+        "at": Object {
+          "tz": "+0900",
+          "utcSec": 1487778882,
+        },
+        "by": Object {
+          "email": "momocraft@gmail.com",
+          "name": "Wang Guan",
+        },
+        "desc": "fetch --append github: storing head",
+        "from": "0000000000000000000000000000000000000000",
+        "to": "16899fc828f225138213b22354e86413dd0331a5",
+      },
+      "refpath": "refs/remotes/origin/demo-mocha-ts-watch",
+      "type": "Fetch",
+    },
+    Object {
+      "branchLog": Object {
+        "at": Object {
+          "tz": "+0900",
+          "utcSec": 1489680126,
+        },
+        "by": Object {
+          "email": "mono@nadesico.(none)",
+          "name": "mono",
+        },
+        "desc": "remote: renamed refs/remotes/github/webpack-preact to refs/remotes/origin/webpack-preact",
+        "from": "4ef126eba3586584600ab5cfdc2e3a0e1a8320b6",
+        "to": "4ef126eba3586584600ab5cfdc2e3a0e1a8320b6",
+      },
+      "refpath": "refs/remotes/origin/webpack-preact",
+      "type": "RenameRemote",
+    },
+    Object {
+      "branchLog": Object {
+        "at": Object {
+          "tz": "+0900",
+          "utcSec": 1489203210,
+        },
+        "by": Object {
+          "email": "momocraft@gmail.com",
+          "name": "Wang Guan",
+        },
+        "desc": "fetch: storing head",
+        "from": "0000000000000000000000000000000000000000",
+        "to": "4ef126eba3586584600ab5cfdc2e3a0e1a8320b6",
+      },
+      "refpath": "refs/remotes/origin/webpack-preact",
+      "type": "Fetch",
+    },
+    Object {
+      "branchLog": Object {
+        "at": Object {
+          "tz": "+0900",
+          "utcSec": 1489680126,
+        },
+        "by": Object {
+          "email": "mono@nadesico.(none)",
+          "name": "mono",
+        },
+        "desc": "remote: renamed refs/remotes/github/webpack to refs/remotes/origin/webpack",
+        "from": "dd6d9874e98ed1afa62f4c9c80f70c70ec8a359b",
+        "to": "dd6d9874e98ed1afa62f4c9c80f70c70ec8a359b",
+      },
+      "refpath": "refs/remotes/origin/webpack",
+      "type": "RenameRemote",
+    },
+    Object {
+      "branchLog": Object {
+        "at": Object {
+          "tz": "+0900",
+          "utcSec": 1489203210,
+        },
+        "by": Object {
+          "email": "momocraft@gmail.com",
+          "name": "Wang Guan",
+        },
+        "desc": "fetch: fast-forward",
+        "from": "07b9df80272264c13a3221fb4f5c83b1f38f7e02",
+        "to": "dd6d9874e98ed1afa62f4c9c80f70c70ec8a359b",
+      },
+      "refpath": "refs/remotes/origin/webpack",
+      "type": "Fetch",
+    },
+    Object {
+      "branchLog": Object {
+        "at": Object {
+          "tz": "+0900",
+          "utcSec": 1487778882,
+        },
+        "by": Object {
+          "email": "momocraft@gmail.com",
+          "name": "Wang Guan",
+        },
+        "desc": "fetch --append github: storing head",
+        "from": "0000000000000000000000000000000000000000",
+        "to": "07b9df80272264c13a3221fb4f5c83b1f38f7e02",
+      },
+      "refpath": "refs/remotes/origin/webpack",
+      "type": "Fetch",
+    },
+    Object {
+      "branchLog": Object {
+        "at": Object {
+          "tz": "+0900",
+          "utcSec": 1489680126,
+        },
+        "by": Object {
+          "email": "mono@nadesico.(none)",
+          "name": "mono",
+        },
+        "desc": "remote: renamed refs/remotes/github/master to refs/remotes/origin/master",
+        "from": "f34ab7e293961628bfefd83fd456aa9fe3e7fdcf",
+        "to": "f34ab7e293961628bfefd83fd456aa9fe3e7fdcf",
+      },
+      "refpath": "refs/remotes/origin/master",
+      "type": "RenameRemote",
+    },
+    Object {
+      "branchLog": Object {
+        "at": Object {
+          "tz": "+0900",
+          "utcSec": 1489680090,
+        },
+        "by": Object {
+          "email": "momocraft@gmail.com",
+          "name": "Wang Guan",
+        },
+        "desc": "fetch github: fast-forward",
+        "from": "df5cc6850fa4350774f7b5a9ee29b695805c02b9",
+        "to": "f34ab7e293961628bfefd83fd456aa9fe3e7fdcf",
+      },
+      "refpath": "refs/remotes/origin/master",
+      "type": "Fetch",
+    },
+    Object {
+      "branchLog": Object {
+        "at": Object {
+          "tz": "+0900",
+          "utcSec": 1489203210,
+        },
+        "by": Object {
+          "email": "momocraft@gmail.com",
+          "name": "Wang Guan",
+        },
+        "desc": "fetch: fast-forward",
+        "from": "960c5ea0c196057dca3b6cf328a8f2b852a5be9f",
+        "to": "df5cc6850fa4350774f7b5a9ee29b695805c02b9",
+      },
+      "refpath": "refs/remotes/origin/master",
+      "type": "Fetch",
+    },
+    Object {
+      "branchLog": Object {
+        "at": Object {
+          "tz": "+0900",
+          "utcSec": 1487778882,
+        },
+        "by": Object {
+          "email": "momocraft@gmail.com",
+          "name": "Wang Guan",
+        },
+        "desc": "fetch --append github: fast-forward",
+        "from": "1a306531b4f147f63237d35c2642bcea2a9c0f4e",
+        "to": "960c5ea0c196057dca3b6cf328a8f2b852a5be9f",
+      },
+      "refpath": "refs/remotes/origin/master",
+      "type": "Fetch",
+    },
+    Object {
+      "branchLog": Object {
+        "at": Object {
+          "tz": "+0900",
+          "utcSec": 1482574209,
+        },
+        "by": Object {
+          "email": "momocraft@gmail.com",
+          "name": "Wang Guan",
+        },
+        "desc": "update by push",
+        "from": "0000000000000000000000000000000000000000",
+        "to": "1a306531b4f147f63237d35c2642bcea2a9c0f4e",
+      },
+      "refpath": "refs/remotes/origin/master",
+      "type": "Push",
+    },
+    Object {
+      "branchLog": Object {
+        "at": Object {
+          "tz": "+0900",
+          "utcSec": 1489680126,
+        },
+        "by": Object {
+          "email": "mono@nadesico.(none)",
+          "name": "mono",
+        },
+        "desc": "remote: renamed refs/remotes/github/heroku to refs/remotes/origin/heroku",
+        "from": "32af089e26eefd7c4bb57ebd1caa5723c1187e08",
+        "to": "32af089e26eefd7c4bb57ebd1caa5723c1187e08",
+      },
+      "refpath": "refs/remotes/origin/heroku",
+      "type": "RenameRemote",
+    },
+    Object {
+      "branchLog": Object {
+        "at": Object {
+          "tz": "+0900",
+          "utcSec": 1489203210,
+        },
+        "by": Object {
+          "email": "momocraft@gmail.com",
+          "name": "Wang Guan",
+        },
+        "desc": "fetch: fast-forward",
+        "from": "5a533ddc1b1a6200d1610245f78dcbb09e8498dc",
+        "to": "32af089e26eefd7c4bb57ebd1caa5723c1187e08",
+      },
+      "refpath": "refs/remotes/origin/heroku",
+      "type": "Fetch",
+    },
+    Object {
+      "branchLog": Object {
+        "at": Object {
+          "tz": "+0900",
+          "utcSec": 1487778882,
+        },
+        "by": Object {
+          "email": "momocraft@gmail.com",
+          "name": "Wang Guan",
+        },
+        "desc": "fetch --append github: storing head",
+        "from": "0000000000000000000000000000000000000000",
+        "to": "5a533ddc1b1a6200d1610245f78dcbb09e8498dc",
+      },
+      "refpath": "refs/remotes/origin/heroku",
+      "type": "Fetch",
+    },
+    Object {
+      "branchLog": Object {
+        "at": Object {
+          "tz": "+0900",
+          "utcSec": 1496600030,
+        },
+        "by": Object {
+          "email": "momocraft@gmail.com",
+          "name": "Wang Guan",
+        },
+        "desc": "commit: wip",
+        "from": "5aec97881733aa67f5df709955c0924ef7c0f23a",
+        "to": "86d6cdefda215668cc4a34b6834e345998fa80ba",
+      },
+      "headLog": Object {
+        "at": Object {
+          "tz": "+0900",
+          "utcSec": 1496600030,
+        },
+        "by": Object {
+          "email": "momocraft@gmail.com",
+          "name": "Wang Guan",
+        },
+        "desc": "commit: wip",
+        "from": "5aec97881733aa67f5df709955c0924ef7c0f23a",
+        "to": "86d6cdefda215668cc4a34b6834e345998fa80ba",
+      },
+      "refpath": "refs/heads/text-parser",
+      "type": "Commit",
+    },
+    Object {
+      "branchLog": Object {
+        "at": Object {
+          "tz": "+0900",
+          "utcSec": 1496585516,
+        },
+        "by": Object {
+          "email": "momocraft@gmail.com",
+          "name": "Wang Guan",
+        },
+        "desc": "commit: split parser and text-parser",
+        "from": "53ef48e70ef62596bd390d09d321cb2c4f44aa89",
+        "to": "5aec97881733aa67f5df709955c0924ef7c0f23a",
+      },
+      "headLog": Object {
+        "at": Object {
+          "tz": "+0900",
+          "utcSec": 1496585516,
+        },
+        "by": Object {
+          "email": "momocraft@gmail.com",
+          "name": "Wang Guan",
+        },
+        "desc": "commit: split parser and text-parser",
+        "from": "53ef48e70ef62596bd390d09d321cb2c4f44aa89",
+        "to": "5aec97881733aa67f5df709955c0924ef7c0f23a",
+      },
+      "refpath": "refs/heads/text-parser",
+      "type": "Commit",
+    },
+    Object {
+      "branchLog": Object {
+        "at": Object {
+          "tz": "+0900",
+          "utcSec": 1496584881,
+        },
+        "by": Object {
+          "email": "momocraft@gmail.com",
+          "name": "Wang Guan",
+        },
+        "desc": "commit: reduce code",
+        "from": "175a89f1b3bdbdab28dd7330358fb6d2f943386a",
+        "to": "53ef48e70ef62596bd390d09d321cb2c4f44aa89",
+      },
+      "headLog": Object {
+        "at": Object {
+          "tz": "+0900",
+          "utcSec": 1496584881,
+        },
+        "by": Object {
+          "email": "momocraft@gmail.com",
+          "name": "Wang Guan",
+        },
+        "desc": "commit: reduce code",
+        "from": "175a89f1b3bdbdab28dd7330358fb6d2f943386a",
+        "to": "53ef48e70ef62596bd390d09d321cb2c4f44aa89",
+      },
+      "refpath": "refs/heads/text-parser",
+      "type": "Commit",
+    },
+    Object {
+      "branchLog": Object {
+        "at": Object {
+          "tz": "+0900",
+          "utcSec": 1496584411,
+        },
+        "by": Object {
+          "email": "momocraft@gmail.com",
+          "name": "Wang Guan",
+        },
+        "desc": "commit: rewrite iterate() with combinator",
+        "from": "46308c2f735c39b3a4995d03909d541921972654",
+        "to": "175a89f1b3bdbdab28dd7330358fb6d2f943386a",
+      },
+      "headLog": Object {
+        "at": Object {
+          "tz": "+0900",
+          "utcSec": 1496584411,
+        },
+        "by": Object {
+          "email": "momocraft@gmail.com",
+          "name": "Wang Guan",
+        },
+        "desc": "commit: rewrite iterate() with combinator",
+        "from": "46308c2f735c39b3a4995d03909d541921972654",
+        "to": "175a89f1b3bdbdab28dd7330358fb6d2f943386a",
+      },
+      "refpath": "refs/heads/text-parser",
+      "type": "Commit",
+    },
+    Object {
+      "branchLog": Object {
+        "at": Object {
+          "tz": "+0900",
+          "utcSec": 1488594384,
+        },
+        "by": Object {
+          "email": "momocraft@gmail.com",
+          "name": "Wang Guan",
+        },
+        "desc": "branch: Created from refs/remotes/github/demo-mocha-ts-watch",
+        "from": "0000000000000000000000000000000000000000",
+        "to": "16899fc828f225138213b22354e86413dd0331a5",
+      },
+      "branchPath": "refs/heads/demo-mocha-ts-watch",
+      "headCheckout": undefined,
+      "type": "CreateBranch",
+    },
+    Object {
+      "branchLog": Object {
+        "at": Object {
+          "tz": "+0900",
+          "utcSec": 1496577956,
+        },
+        "by": Object {
+          "email": "momocraft@gmail.com",
+          "name": "Wang Guan",
+        },
+        "desc": "branch: Created from refs/remotes/GLaDOS/text-parser",
+        "from": "0000000000000000000000000000000000000000",
+        "to": "46308c2f735c39b3a4995d03909d541921972654",
+      },
+      "branchPath": "refs/heads/text-parser",
+      "headCheckout": Object {
+        "at": Object {
+          "tz": "+0900",
+          "utcSec": 1496577956,
+        },
+        "by": Object {
+          "email": "momocraft@gmail.com",
+          "name": "Wang Guan",
+        },
+        "desc": "checkout: moving from master to text-parser",
+        "from": "0fcf719d93b45deaeba0f0a22b64aab70ab0b25f",
+        "to": "46308c2f735c39b3a4995d03909d541921972654",
+      },
+      "type": "CreateBranch",
+    },
+    Object {
+      "branchLog": Object {
+        "at": Object {
+          "tz": "+0900",
+          "utcSec": 1496577852,
+        },
+        "by": Object {
+          "email": "momocraft@gmail.com",
+          "name": "Wang Guan",
+        },
+        "desc": "merge origin/master: Fast-forward",
+        "from": "4cfe00e6b46e35bc55b1798faefa82e34240bfb4",
+        "to": "0fcf719d93b45deaeba0f0a22b64aab70ab0b25f",
+      },
+      "headLog": Object {
+        "at": Object {
+          "tz": "+0900",
+          "utcSec": 1496577852,
+        },
+        "by": Object {
+          "email": "momocraft@gmail.com",
+          "name": "Wang Guan",
+        },
+        "desc": "merge origin/master: Fast-forward",
+        "from": "4cfe00e6b46e35bc55b1798faefa82e34240bfb4",
+        "to": "0fcf719d93b45deaeba0f0a22b64aab70ab0b25f",
+      },
+      "refpath": "refs/heads/master",
+      "type": "Merge",
+    },
+    Object {
+      "branchLog": Object {
+        "at": Object {
+          "tz": "+0900",
+          "utcSec": 1495895017,
+        },
+        "by": Object {
+          "email": "momocraft@gmail.com",
+          "name": "Wang Guan",
+        },
+        "desc": "commit (amend): update packages & use yarn",
+        "from": "49671ec20b67314d2ee0b4f144ca82c0fc882ab4",
+        "to": "4cfe00e6b46e35bc55b1798faefa82e34240bfb4",
+      },
+      "headLog": Object {
+        "at": Object {
+          "tz": "+0900",
+          "utcSec": 1495895017,
+        },
+        "by": Object {
+          "email": "momocraft@gmail.com",
+          "name": "Wang Guan",
+        },
+        "desc": "commit (amend): update packages & use yarn",
+        "from": "49671ec20b67314d2ee0b4f144ca82c0fc882ab4",
+        "to": "4cfe00e6b46e35bc55b1798faefa82e34240bfb4",
+      },
+      "refpath": "refs/heads/master",
+      "type": "Commit",
+    },
+    Object {
+      "branchLog": Object {
+        "at": Object {
+          "tz": "+0900",
+          "utcSec": 1495894717,
+        },
+        "by": Object {
+          "email": "momocraft@gmail.com",
+          "name": "Wang Guan",
+        },
+        "desc": "commit: update packages & use yarn",
+        "from": "941aaa60e4783c060509ccc76e4b3d9d70e2142f",
+        "to": "49671ec20b67314d2ee0b4f144ca82c0fc882ab4",
+      },
+      "headLog": Object {
+        "at": Object {
+          "tz": "+0900",
+          "utcSec": 1495894717,
+        },
+        "by": Object {
+          "email": "momocraft@gmail.com",
+          "name": "Wang Guan",
+        },
+        "desc": "commit: update packages & use yarn",
+        "from": "941aaa60e4783c060509ccc76e4b3d9d70e2142f",
+        "to": "49671ec20b67314d2ee0b4f144ca82c0fc882ab4",
+      },
+      "refpath": "refs/heads/master",
+      "type": "Commit",
+    },
+    Object {
+      "branchLog": Object {
+        "at": Object {
+          "tz": "+0900",
+          "utcSec": 1495894152,
+        },
+        "by": Object {
+          "email": "momocraft@gmail.com",
+          "name": "Wang Guan",
+        },
+        "desc": "merge origin/master: Fast-forward",
+        "from": "8aeab751443b1f5e31d65f2c8a7aae7e7d8583f0",
+        "to": "941aaa60e4783c060509ccc76e4b3d9d70e2142f",
+      },
+      "headLog": Object {
+        "at": Object {
+          "tz": "+0900",
+          "utcSec": 1495894152,
+        },
+        "by": Object {
+          "email": "momocraft@gmail.com",
+          "name": "Wang Guan",
+        },
+        "desc": "merge origin/master: Fast-forward",
+        "from": "8aeab751443b1f5e31d65f2c8a7aae7e7d8583f0",
+        "to": "941aaa60e4783c060509ccc76e4b3d9d70e2142f",
+      },
+      "refpath": "refs/heads/master",
+      "type": "Merge",
+    },
+    Object {
+      "headLog": Object {
+        "at": Object {
+          "tz": "+0900",
+          "utcSec": 1495894134,
+        },
+        "by": Object {
+          "email": "momocraft@gmail.com",
+          "name": "Wang Guan",
+        },
+        "desc": "checkout: moving from heroku to master",
+        "from": "122871a669e6002c772caec0f00f75582e1ce75d",
+        "to": "8aeab751443b1f5e31d65f2c8a7aae7e7d8583f0",
+      },
+      "type": "Checkout",
+    },
+    Object {
+      "branchLog": Object {
+        "at": Object {
+          "tz": "+0900",
+          "utcSec": 1495894132,
+        },
+        "by": Object {
+          "email": "momocraft@gmail.com",
+          "name": "Wang Guan",
+        },
+        "desc": "reset: moving to origin/heroku",
+        "from": "42145d3f24cfd3f96b0439d7b5fcf2cc00a3b868",
+        "to": "122871a669e6002c772caec0f00f75582e1ce75d",
+      },
+      "branchpath": "refs/heads/heroku",
+      "headLog": Object {
+        "at": Object {
+          "tz": "+0900",
+          "utcSec": 1495894132,
+        },
+        "by": Object {
+          "email": "momocraft@gmail.com",
+          "name": "Wang Guan",
+        },
+        "desc": "reset: moving to origin/heroku",
+        "from": "42145d3f24cfd3f96b0439d7b5fcf2cc00a3b868",
+        "to": "122871a669e6002c772caec0f00f75582e1ce75d",
+      },
+      "type": "Reset",
+    },
+    Object {
+      "branchLog": Object {
+        "at": Object {
+          "tz": "+0900",
+          "utcSec": 1489684588,
+        },
+        "by": Object {
+          "email": "momocraft@gmail.com",
+          "name": "Wang Guan",
+        },
+        "desc": "commit (merge): Merge branch 'master' into heroku",
+        "from": "32af089e26eefd7c4bb57ebd1caa5723c1187e08",
+        "to": "42145d3f24cfd3f96b0439d7b5fcf2cc00a3b868",
+      },
+      "headLog": Object {
+        "at": Object {
+          "tz": "+0900",
+          "utcSec": 1489684588,
+        },
+        "by": Object {
+          "email": "momocraft@gmail.com",
+          "name": "Wang Guan",
+        },
+        "desc": "commit (merge): Merge branch 'master' into heroku",
+        "from": "32af089e26eefd7c4bb57ebd1caa5723c1187e08",
+        "to": "42145d3f24cfd3f96b0439d7b5fcf2cc00a3b868",
+      },
+      "refpath": "refs/heads/heroku",
+      "type": "Commit",
+    },
+    Object {
+      "branchLog": Object {
+        "at": Object {
+          "tz": "+0900",
+          "utcSec": 1489684542,
+        },
+        "by": Object {
+          "email": "momocraft@gmail.com",
+          "name": "Wang Guan",
+        },
+        "desc": "branch: Created from refs/remotes/origin/heroku",
+        "from": "0000000000000000000000000000000000000000",
+        "to": "32af089e26eefd7c4bb57ebd1caa5723c1187e08",
+      },
+      "branchPath": "refs/heads/heroku",
+      "headCheckout": Object {
+        "at": Object {
+          "tz": "+0900",
+          "utcSec": 1489684542,
+        },
+        "by": Object {
+          "email": "momocraft@gmail.com",
+          "name": "Wang Guan",
+        },
+        "desc": "checkout: moving from webpack-preact to heroku",
+        "from": "a8c3a6f19776f786441134a374bf338c44c55142",
+        "to": "32af089e26eefd7c4bb57ebd1caa5723c1187e08",
+      },
+      "type": "CreateBranch",
+    },
+    Object {
+      "branchLog": Object {
+        "at": Object {
+          "tz": "+0900",
+          "utcSec": 1489682383,
+        },
+        "by": Object {
+          "email": "momocraft@gmail.com",
+          "name": "Wang Guan",
+        },
+        "desc": "rebase finished: refs/heads/webpack-preact onto 017cf40cdd748801520439f797f94d7c9a77e890",
+        "from": "f6a94350c38e18757141c6ad5742fc7b427d5fa6",
+        "to": "a8c3a6f19776f786441134a374bf338c44c55142",
+      },
+      "branchpath": "refs/heads/webpack-preact",
+      "headLogs": Array [
+        Object {
+          "at": Object {
+            "tz": "+0900",
+            "utcSec": 1489682383,
+          },
+          "by": Object {
+            "email": "momocraft@gmail.com",
+            "name": "Wang Guan",
+          },
+          "desc": "rebase: checkout webpack",
+          "from": "f6a94350c38e18757141c6ad5742fc7b427d5fa6",
+          "to": "017cf40cdd748801520439f797f94d7c9a77e890",
+        },
+        Object {
+          "at": Object {
+            "tz": "+0900",
+            "utcSec": 1489682383,
+          },
+          "by": Object {
+            "email": "momocraft@gmail.com",
+            "name": "Wang Guan",
+          },
+          "desc": "rebase: render .tsx with preact",
+          "from": "017cf40cdd748801520439f797f94d7c9a77e890",
+          "to": "a8c3a6f19776f786441134a374bf338c44c55142",
+        },
+        Object {
+          "at": Object {
+            "tz": "+0900",
+            "utcSec": 1489682383,
+          },
+          "by": Object {
+            "email": "momocraft@gmail.com",
+            "name": "Wang Guan",
+          },
+          "desc": "rebase finished: returning to refs/heads/webpack-preact",
+          "from": "a8c3a6f19776f786441134a374bf338c44c55142",
+          "to": "a8c3a6f19776f786441134a374bf338c44c55142",
+        },
+      ],
+      "type": "RebaseFinished",
+    },
+    Object {
+      "headLog": Object {
+        "at": Object {
+          "tz": "+0900",
+          "utcSec": 1489682381,
+        },
+        "by": Object {
+          "email": "momocraft@gmail.com",
+          "name": "Wang Guan",
+        },
+        "desc": "checkout: moving from webpack-react to webpack-preact",
+        "from": "fe76ee1a013d8b0af9b2e5fa2e078c91969cdab4",
+        "to": "f6a94350c38e18757141c6ad5742fc7b427d5fa6",
+      },
+      "type": "Checkout",
+    },
+    Object {
+      "branchLog": Object {
+        "at": Object {
+          "tz": "+0900",
+          "utcSec": 1489682375,
+        },
+        "by": Object {
+          "email": "momocraft@gmail.com",
+          "name": "Wang Guan",
+        },
+        "desc": "rebase finished: refs/heads/webpack-react onto 017cf40cdd748801520439f797f94d7c9a77e890",
+        "from": "be842fe3013293505e1524ec761f11e9a326a09d",
+        "to": "fe76ee1a013d8b0af9b2e5fa2e078c91969cdab4",
+      },
+      "branchpath": "refs/heads/webpack-react",
+      "headLogs": Array [
+        Object {
+          "at": Object {
+            "tz": "+0900",
+            "utcSec": 1489682375,
+          },
+          "by": Object {
+            "email": "momocraft@gmail.com",
+            "name": "Wang Guan",
+          },
+          "desc": "rebase: checkout webpack",
+          "from": "be842fe3013293505e1524ec761f11e9a326a09d",
+          "to": "017cf40cdd748801520439f797f94d7c9a77e890",
+        },
+        Object {
+          "at": Object {
+            "tz": "+0900",
+            "utcSec": 1489682375,
+          },
+          "by": Object {
+            "email": "momocraft@gmail.com",
+            "name": "Wang Guan",
+          },
+          "desc": "rebase: render .tsx with React",
+          "from": "017cf40cdd748801520439f797f94d7c9a77e890",
+          "to": "fe76ee1a013d8b0af9b2e5fa2e078c91969cdab4",
+        },
+        Object {
+          "at": Object {
+            "tz": "+0900",
+            "utcSec": 1489682375,
+          },
+          "by": Object {
+            "email": "momocraft@gmail.com",
+            "name": "Wang Guan",
+          },
+          "desc": "rebase finished: returning to refs/heads/webpack-react",
+          "from": "fe76ee1a013d8b0af9b2e5fa2e078c91969cdab4",
+          "to": "fe76ee1a013d8b0af9b2e5fa2e078c91969cdab4",
+        },
+      ],
+      "type": "RebaseFinished",
+    },
+    Object {
+      "headLog": Object {
+        "at": Object {
+          "tz": "+0900",
+          "utcSec": 1489682373,
+        },
+        "by": Object {
+          "email": "momocraft@gmail.com",
+          "name": "Wang Guan",
+        },
+        "desc": "checkout: moving from webpack to webpack-react",
+        "from": "017cf40cdd748801520439f797f94d7c9a77e890",
+        "to": "be842fe3013293505e1524ec761f11e9a326a09d",
+      },
+      "type": "Checkout",
+    },
+    Object {
+      "branchLog": Object {
+        "at": Object {
+          "tz": "+0900",
+          "utcSec": 1489682365,
+        },
+        "by": Object {
+          "email": "momocraft@gmail.com",
+          "name": "Wang Guan",
+        },
+        "desc": "commit (merge): Merge branch 'master' into webpack",
+        "from": "a7b4d0c41d0ab5b251cb361c7c826f64a37953d1",
+        "to": "017cf40cdd748801520439f797f94d7c9a77e890",
+      },
+      "headLog": Object {
+        "at": Object {
+          "tz": "+0900",
+          "utcSec": 1489682365,
+        },
+        "by": Object {
+          "email": "momocraft@gmail.com",
+          "name": "Wang Guan",
+        },
+        "desc": "commit (merge): Merge branch 'master' into webpack",
+        "from": "a7b4d0c41d0ab5b251cb361c7c826f64a37953d1",
+        "to": "017cf40cdd748801520439f797f94d7c9a77e890",
+      },
+      "refpath": "refs/heads/webpack",
+      "type": "Commit",
+    },
+    Object {
+      "headLog": Object {
+        "at": Object {
+          "tz": "+0900",
+          "utcSec": 1489682309,
+        },
+        "by": Object {
+          "email": "momocraft@gmail.com",
+          "name": "Wang Guan",
+        },
+        "desc": "checkout: moving from master to webpack",
+        "from": "8aeab751443b1f5e31d65f2c8a7aae7e7d8583f0",
+        "to": "a7b4d0c41d0ab5b251cb361c7c826f64a37953d1",
+      },
+      "type": "Checkout",
+    },
+    Object {
+      "branchLog": Object {
+        "at": Object {
+          "tz": "+0900",
+          "utcSec": 1489682294,
+        },
+        "by": Object {
+          "email": "momocraft@gmail.com",
+          "name": "Wang Guan",
+        },
+        "desc": "commit: update readme",
+        "from": "f34ab7e293961628bfefd83fd456aa9fe3e7fdcf",
+        "to": "8aeab751443b1f5e31d65f2c8a7aae7e7d8583f0",
+      },
+      "headLog": Object {
+        "at": Object {
+          "tz": "+0900",
+          "utcSec": 1489682294,
+        },
+        "by": Object {
+          "email": "momocraft@gmail.com",
+          "name": "Wang Guan",
+        },
+        "desc": "commit: update readme",
+        "from": "f34ab7e293961628bfefd83fd456aa9fe3e7fdcf",
+        "to": "8aeab751443b1f5e31d65f2c8a7aae7e7d8583f0",
+      },
+      "refpath": "refs/heads/master",
+      "type": "Commit",
+    },
+    Object {
+      "headLog": Object {
+        "at": Object {
+          "tz": "+0900",
+          "utcSec": 1489682175,
+        },
+        "by": Object {
+          "email": "momocraft@gmail.com",
+          "name": "Wang Guan",
+        },
+        "desc": "checkout: moving from webpack-preact to master",
+        "from": "f6a94350c38e18757141c6ad5742fc7b427d5fa6",
+        "to": "f34ab7e293961628bfefd83fd456aa9fe3e7fdcf",
+      },
+      "type": "Checkout",
+    },
+    Object {
+      "branchLog": Object {
+        "at": Object {
+          "tz": "+0900",
+          "utcSec": 1489682140,
+        },
+        "by": Object {
+          "email": "momocraft@gmail.com",
+          "name": "Wang Guan",
+        },
+        "desc": "commit (amend): render .tsx with preact",
+        "from": "7faeb06f4c8625763fe74ef56b7e53a3326b2bd1",
+        "to": "f6a94350c38e18757141c6ad5742fc7b427d5fa6",
+      },
+      "headLog": Object {
+        "at": Object {
+          "tz": "+0900",
+          "utcSec": 1489682140,
+        },
+        "by": Object {
+          "email": "momocraft@gmail.com",
+          "name": "Wang Guan",
+        },
+        "desc": "commit (amend): render .tsx with preact",
+        "from": "7faeb06f4c8625763fe74ef56b7e53a3326b2bd1",
+        "to": "f6a94350c38e18757141c6ad5742fc7b427d5fa6",
+      },
+      "refpath": "refs/heads/webpack-preact",
+      "type": "Commit",
+    },
+    Object {
+      "headLog": Object {
+        "at": Object {
+          "tz": "+0900",
+          "utcSec": 1489682114,
+        },
+        "by": Object {
+          "email": "momocraft@gmail.com",
+          "name": "Wang Guan",
+        },
+        "desc": "checkout: moving from webpack-react to webpack-preact",
+        "from": "be842fe3013293505e1524ec761f11e9a326a09d",
+        "to": "7faeb06f4c8625763fe74ef56b7e53a3326b2bd1",
+      },
+      "type": "Checkout",
+    },
+    Object {
+      "branchLog": Object {
+        "at": Object {
+          "tz": "+0900",
+          "utcSec": 1489682106,
+        },
+        "by": Object {
+          "email": "momocraft@gmail.com",
+          "name": "Wang Guan",
+        },
+        "desc": "rebase -i (finish): refs/heads/webpack-react onto 1669953a564df6e625d517e608a55a4b7d4e800b",
+        "from": "7a5a0f3601ea9218148ba291075a5d989106f129",
+        "to": "be842fe3013293505e1524ec761f11e9a326a09d",
+      },
+      "branchpath": "refs/heads/webpack-react",
+      "headLogs": Array [
+        Object {
+          "at": Object {
+            "tz": "+0900",
+            "utcSec": 1489682087,
+          },
+          "by": Object {
+            "email": "momocraft@gmail.com",
+            "name": "Wang Guan",
+          },
+          "desc": "rebase -i (start): checkout webpack",
+          "from": "7a5a0f3601ea9218148ba291075a5d989106f129",
+          "to": "1669953a564df6e625d517e608a55a4b7d4e800b",
+        },
+        Object {
+          "at": Object {
+            "tz": "+0900",
+            "utcSec": 1489682087,
+          },
+          "by": Object {
+            "email": "momocraft@gmail.com",
+            "name": "Wang Guan",
+          },
+          "desc": "rebase -i (squash): render .tsx with React",
+          "from": "1669953a564df6e625d517e608a55a4b7d4e800b",
+          "to": "be842fe3013293505e1524ec761f11e9a326a09d",
+        },
+        Object {
+          "at": Object {
+            "tz": "+0900",
+            "utcSec": 1489682106,
+          },
+          "by": Object {
+            "email": "momocraft@gmail.com",
+            "name": "Wang Guan",
+          },
+          "desc": "rebase -i (finish): returning to refs/heads/webpack-react",
+          "from": "be842fe3013293505e1524ec761f11e9a326a09d",
+          "to": "be842fe3013293505e1524ec761f11e9a326a09d",
+        },
+      ],
+      "type": "RebaseInteractivelyFinished",
+    },
+    Object {
+      "branchLog": Object {
+        "at": Object {
+          "tz": "+0900",
+          "utcSec": 1489682078,
+        },
+        "by": Object {
+          "email": "momocraft@gmail.com",
+          "name": "Wang Guan",
+        },
+        "desc": "commit (amend): create",
+        "from": "497a7c05fbda9584254741710a5e3c2a57f6d517",
+        "to": "7a5a0f3601ea9218148ba291075a5d989106f129",
+      },
+      "headLog": Object {
+        "at": Object {
+          "tz": "+0900",
+          "utcSec": 1489682078,
+        },
+        "by": Object {
+          "email": "momocraft@gmail.com",
+          "name": "Wang Guan",
+        },
+        "desc": "commit (amend): create",
+        "from": "497a7c05fbda9584254741710a5e3c2a57f6d517",
+        "to": "7a5a0f3601ea9218148ba291075a5d989106f129",
+      },
+      "refpath": "refs/heads/webpack-react",
+      "type": "Commit",
+    },
+    Object {
+      "headLog": Object {
+        "at": Object {
+          "tz": "+0900",
+          "utcSec": 1489682045,
+        },
+        "by": Object {
+          "email": "momocraft@gmail.com",
+          "name": "Wang Guan",
+        },
+        "desc": "checkout: moving from webpack-preact to webpack-react",
+        "from": "7faeb06f4c8625763fe74ef56b7e53a3326b2bd1",
+        "to": "497a7c05fbda9584254741710a5e3c2a57f6d517",
+      },
+      "type": "Checkout",
+    },
+    Object {
+      "branchLog": Object {
+        "at": Object {
+          "tz": "+0900",
+          "utcSec": 1489682040,
+        },
+        "by": Object {
+          "email": "momocraft@gmail.com",
+          "name": "Wang Guan",
+        },
+        "desc": "commit (amend): render .tsx with preact",
+        "from": "472b59503370bc7c8d6a2cf73cbc990954c37add",
+        "to": "7faeb06f4c8625763fe74ef56b7e53a3326b2bd1",
+      },
+      "headLog": Object {
+        "at": Object {
+          "tz": "+0900",
+          "utcSec": 1489682040,
+        },
+        "by": Object {
+          "email": "momocraft@gmail.com",
+          "name": "Wang Guan",
+        },
+        "desc": "commit (amend): render .tsx with preact",
+        "from": "472b59503370bc7c8d6a2cf73cbc990954c37add",
+        "to": "7faeb06f4c8625763fe74ef56b7e53a3326b2bd1",
+      },
+      "refpath": "refs/heads/webpack-preact",
+      "type": "Commit",
+    },
+    Object {
+      "branchLog": Object {
+        "at": Object {
+          "tz": "+0900",
+          "utcSec": 1489681981,
+        },
+        "by": Object {
+          "email": "momocraft@gmail.com",
+          "name": "Wang Guan",
+        },
+        "desc": "commit (amend): render .tsx with preact",
+        "from": "dc50654440af3b87ad4aaa2a2f537cf93132275a",
+        "to": "472b59503370bc7c8d6a2cf73cbc990954c37add",
+      },
+      "headLog": Object {
+        "at": Object {
+          "tz": "+0900",
+          "utcSec": 1489681981,
+        },
+        "by": Object {
+          "email": "momocraft@gmail.com",
+          "name": "Wang Guan",
+        },
+        "desc": "commit (amend): render .tsx with preact",
+        "from": "dc50654440af3b87ad4aaa2a2f537cf93132275a",
+        "to": "472b59503370bc7c8d6a2cf73cbc990954c37add",
+      },
+      "refpath": "refs/heads/webpack-preact",
+      "type": "Commit",
+    },
+    Object {
+      "headLog": Object {
+        "at": Object {
+          "tz": "+0900",
+          "utcSec": 1489681916,
+        },
+        "by": Object {
+          "email": "momocraft@gmail.com",
+          "name": "Wang Guan",
+        },
+        "desc": "checkout: moving from webpack-react to webpack-preact",
+        "from": "497a7c05fbda9584254741710a5e3c2a57f6d517",
+        "to": "dc50654440af3b87ad4aaa2a2f537cf93132275a",
+      },
+      "type": "Checkout",
+    },
+    Object {
+      "branchLog": Object {
+        "at": Object {
+          "tz": "+0900",
+          "utcSec": 1489681857,
+        },
+        "by": Object {
+          "email": "momocraft@gmail.com",
+          "name": "Wang Guan",
+        },
+        "desc": "rebase finished: refs/heads/webpack-react onto a7b4d0c41d0ab5b251cb361c7c826f64a37953d1",
+        "from": "ec8ea31bc94c85a43ca5ce92a782910a311a0dad",
+        "to": "497a7c05fbda9584254741710a5e3c2a57f6d517",
+      },
+      "branchpath": "refs/heads/webpack-react",
+      "headLogs": Array [
+        Object {
+          "at": Object {
+            "tz": "+0900",
+            "utcSec": 1489681844,
+          },
+          "by": Object {
+            "email": "momocraft@gmail.com",
+            "name": "Wang Guan",
+          },
+          "desc": "rebase: checkout webpack",
+          "from": "ec8ea31bc94c85a43ca5ce92a782910a311a0dad",
+          "to": "a7b4d0c41d0ab5b251cb361c7c826f64a37953d1",
+        },
+        Object {
+          "at": Object {
+            "tz": "+0900",
+            "utcSec": 1489681857,
+          },
+          "by": Object {
+            "email": "momocraft@gmail.com",
+            "name": "Wang Guan",
+          },
+          "desc": "rebase: render .tsx with preact",
+          "from": "a7b4d0c41d0ab5b251cb361c7c826f64a37953d1",
+          "to": "1669953a564df6e625d517e608a55a4b7d4e800b",
+        },
+        Object {
+          "at": Object {
+            "tz": "+0900",
+            "utcSec": 1489681857,
+          },
+          "by": Object {
+            "email": "momocraft@gmail.com",
+            "name": "Wang Guan",
+          },
+          "desc": "rebase: create",
+          "from": "1669953a564df6e625d517e608a55a4b7d4e800b",
+          "to": "497a7c05fbda9584254741710a5e3c2a57f6d517",
+        },
+        Object {
+          "at": Object {
+            "tz": "+0900",
+            "utcSec": 1489681857,
+          },
+          "by": Object {
+            "email": "momocraft@gmail.com",
+            "name": "Wang Guan",
+          },
+          "desc": "rebase finished: returning to refs/heads/webpack-react",
+          "from": "497a7c05fbda9584254741710a5e3c2a57f6d517",
+          "to": "497a7c05fbda9584254741710a5e3c2a57f6d517",
+        },
+      ],
+      "type": "RebaseFinished",
+    },
+    Object {
+      "headLog": Object {
+        "at": Object {
+          "tz": "+0900",
+          "utcSec": 1489681833,
+        },
+        "by": Object {
+          "email": "momocraft@gmail.com",
+          "name": "Wang Guan",
+        },
+        "desc": "checkout: moving from webpack-preact to webpack-react",
+        "from": "dc50654440af3b87ad4aaa2a2f537cf93132275a",
+        "to": "ec8ea31bc94c85a43ca5ce92a782910a311a0dad",
+      },
+      "type": "Checkout",
+    },
+    Object {
+      "branchLog": Object {
+        "at": Object {
+          "tz": "+0900",
+          "utcSec": 1489681824,
+        },
+        "by": Object {
+          "email": "momocraft@gmail.com",
+          "name": "Wang Guan",
+        },
+        "desc": "commit (amend): render .tsx with preact",
+        "from": "066f34e009d3f41c78c5e47eb254535a5fc8068b",
+        "to": "dc50654440af3b87ad4aaa2a2f537cf93132275a",
+      },
+      "headLog": Object {
+        "at": Object {
+          "tz": "+0900",
+          "utcSec": 1489681824,
+        },
+        "by": Object {
+          "email": "momocraft@gmail.com",
+          "name": "Wang Guan",
+        },
+        "desc": "commit (amend): render .tsx with preact",
+        "from": "066f34e009d3f41c78c5e47eb254535a5fc8068b",
+        "to": "dc50654440af3b87ad4aaa2a2f537cf93132275a",
+      },
+      "refpath": "refs/heads/webpack-preact",
+      "type": "Commit",
+    },
+    Object {
+      "branchLog": Object {
+        "at": Object {
+          "tz": "+0900",
+          "utcSec": 1489681783,
+        },
+        "by": Object {
+          "email": "momocraft@gmail.com",
+          "name": "Wang Guan",
+        },
+        "desc": "rebase -i (finish): refs/heads/webpack-preact onto a7b4d0c41d0ab5b251cb361c7c826f64a37953d1",
+        "from": "4ef126eba3586584600ab5cfdc2e3a0e1a8320b6",
+        "to": "066f34e009d3f41c78c5e47eb254535a5fc8068b",
+      },
+      "branchpath": "refs/heads/webpack-preact",
+      "headLogs": Array [
+        Object {
+          "at": Object {
+            "tz": "+0900",
+            "utcSec": 1489681747,
+          },
+          "by": Object {
+            "email": "momocraft@gmail.com",
+            "name": "Wang Guan",
+          },
+          "desc": "rebase -i (start): checkout webpack",
+          "from": "4ef126eba3586584600ab5cfdc2e3a0e1a8320b6",
+          "to": "a7b4d0c41d0ab5b251cb361c7c826f64a37953d1",
+        },
+        Object {
+          "at": Object {
+            "tz": "+0900",
+            "utcSec": 1489681776,
+          },
+          "by": Object {
+            "email": "momocraft@gmail.com",
+            "name": "Wang Guan",
+          },
+          "desc": "rebase -i (continue): render .tsx with preact",
+          "from": "a7b4d0c41d0ab5b251cb361c7c826f64a37953d1",
+          "to": "066f34e009d3f41c78c5e47eb254535a5fc8068b",
+        },
+        Object {
+          "at": Object {
+            "tz": "+0900",
+            "utcSec": 1489681783,
+          },
+          "by": Object {
+            "email": "momocraft@gmail.com",
+            "name": "Wang Guan",
+          },
+          "desc": "rebase -i (finish): returning to refs/heads/webpack-preact",
+          "from": "066f34e009d3f41c78c5e47eb254535a5fc8068b",
+          "to": "066f34e009d3f41c78c5e47eb254535a5fc8068b",
+        },
+      ],
+      "type": "RebaseInteractivelyFinished",
+    },
+    Object {
+      "branchLog": Object {
+        "at": Object {
+          "tz": "+0900",
+          "utcSec": 1489681741,
+        },
+        "by": Object {
+          "email": "momocraft@gmail.com",
+          "name": "Wang Guan",
+        },
+        "desc": "branch: Created from refs/remotes/origin/webpack-preact",
+        "from": "0000000000000000000000000000000000000000",
+        "to": "4ef126eba3586584600ab5cfdc2e3a0e1a8320b6",
+      },
+      "branchPath": "refs/heads/webpack-preact",
+      "headCheckout": Object {
+        "at": Object {
+          "tz": "+0900",
+          "utcSec": 1489681741,
+        },
+        "by": Object {
+          "email": "momocraft@gmail.com",
+          "name": "Wang Guan",
+        },
+        "desc": "checkout: moving from webpack to webpack-preact",
+        "from": "a7b4d0c41d0ab5b251cb361c7c826f64a37953d1",
+        "to": "4ef126eba3586584600ab5cfdc2e3a0e1a8320b6",
+      },
+      "type": "CreateBranch",
+    },
+    Object {
+      "branchLog": Object {
+        "at": Object {
+          "tz": "+0900",
+          "utcSec": 1489681693,
+        },
+        "by": Object {
+          "email": "momocraft@gmail.com",
+          "name": "Wang Guan",
+        },
+        "desc": "commit: add webpack-watch command",
+        "from": "dd6d9874e98ed1afa62f4c9c80f70c70ec8a359b",
+        "to": "a7b4d0c41d0ab5b251cb361c7c826f64a37953d1",
+      },
+      "headLog": Object {
+        "at": Object {
+          "tz": "+0900",
+          "utcSec": 1489681693,
+        },
+        "by": Object {
+          "email": "momocraft@gmail.com",
+          "name": "Wang Guan",
+        },
+        "desc": "commit: add webpack-watch command",
+        "from": "dd6d9874e98ed1afa62f4c9c80f70c70ec8a359b",
+        "to": "a7b4d0c41d0ab5b251cb361c7c826f64a37953d1",
+      },
+      "refpath": "refs/heads/webpack",
+      "type": "Commit",
+    },
+    Object {
+      "branchLog": Object {
+        "at": Object {
+          "tz": "+0900",
+          "utcSec": 1489680141,
+        },
+        "by": Object {
+          "email": "momocraft@gmail.com",
+          "name": "Wang Guan",
+        },
+        "desc": "branch: Created from refs/remotes/origin/webpack",
+        "from": "0000000000000000000000000000000000000000",
+        "to": "dd6d9874e98ed1afa62f4c9c80f70c70ec8a359b",
+      },
+      "branchPath": "refs/heads/webpack",
+      "headCheckout": undefined,
+      "type": "CreateBranch",
+    },
+    Object {
+      "headLog": Object {
+        "at": Object {
+          "tz": "+0900",
+          "utcSec": 1489680992,
+        },
+        "by": Object {
+          "email": "momocraft@gmail.com",
+          "name": "Wang Guan",
+        },
+        "desc": "checkout: moving from webpack-react to webpack",
+        "from": "ec8ea31bc94c85a43ca5ce92a782910a311a0dad",
+        "to": "dd6d9874e98ed1afa62f4c9c80f70c70ec8a359b",
+      },
+      "type": "Checkout",
+    },
+    Object {
+      "branchLog": Object {
+        "at": Object {
+          "tz": "+0900",
+          "utcSec": 1489680936,
+        },
+        "by": Object {
+          "email": "momocraft@gmail.com",
+          "name": "Wang Guan",
+        },
+        "desc": "rebase finished: refs/heads/webpack-react onto 4ef126eba3586584600ab5cfdc2e3a0e1a8320b6",
+        "from": "536fffe74f873a6055bc6f153048b601d30324f3",
+        "to": "ec8ea31bc94c85a43ca5ce92a782910a311a0dad",
+      },
+      "branchpath": "refs/heads/webpack-react",
+      "headLogs": Array [
+        Object {
+          "at": Object {
+            "tz": "+0900",
+            "utcSec": 1489680884,
+          },
+          "by": Object {
+            "email": "momocraft@gmail.com",
+            "name": "Wang Guan",
+          },
+          "desc": "rebase: checkout origin/webpack-preact",
+          "from": "536fffe74f873a6055bc6f153048b601d30324f3",
+          "to": "4ef126eba3586584600ab5cfdc2e3a0e1a8320b6",
+        },
+        Object {
+          "at": Object {
+            "tz": "+0900",
+            "utcSec": 1489680936,
+          },
+          "by": Object {
+            "email": "momocraft@gmail.com",
+            "name": "Wang Guan",
+          },
+          "desc": "rebase: create",
+          "from": "4ef126eba3586584600ab5cfdc2e3a0e1a8320b6",
+          "to": "ec8ea31bc94c85a43ca5ce92a782910a311a0dad",
+        },
+        Object {
+          "at": Object {
+            "tz": "+0900",
+            "utcSec": 1489680936,
+          },
+          "by": Object {
+            "email": "momocraft@gmail.com",
+            "name": "Wang Guan",
+          },
+          "desc": "rebase finished: returning to refs/heads/webpack-react",
+          "from": "ec8ea31bc94c85a43ca5ce92a782910a311a0dad",
+          "to": "ec8ea31bc94c85a43ca5ce92a782910a311a0dad",
+        },
+      ],
+      "type": "RebaseFinished",
+    },
+    Object {
+      "branchLog": Object {
+        "at": Object {
+          "tz": "+0900",
+          "utcSec": 1489680874,
+        },
+        "by": Object {
+          "email": "momocraft@gmail.com",
+          "name": "Wang Guan",
+        },
+        "desc": "commit: create",
+        "from": "dd6d9874e98ed1afa62f4c9c80f70c70ec8a359b",
+        "to": "536fffe74f873a6055bc6f153048b601d30324f3",
+      },
+      "headLog": Object {
+        "at": Object {
+          "tz": "+0900",
+          "utcSec": 1489680874,
+        },
+        "by": Object {
+          "email": "momocraft@gmail.com",
+          "name": "Wang Guan",
+        },
+        "desc": "commit: create",
+        "from": "dd6d9874e98ed1afa62f4c9c80f70c70ec8a359b",
+        "to": "536fffe74f873a6055bc6f153048b601d30324f3",
+      },
+      "refpath": "refs/heads/webpack-react",
+      "type": "Commit",
+    },
+    Object {
+      "branchLog": Object {
+        "at": Object {
+          "tz": "+0900",
+          "utcSec": 1489680145,
+        },
+        "by": Object {
+          "email": "momocraft@gmail.com",
+          "name": "Wang Guan",
+        },
+        "desc": "branch: Created from HEAD",
+        "from": "0000000000000000000000000000000000000000",
+        "to": "dd6d9874e98ed1afa62f4c9c80f70c70ec8a359b",
+      },
+      "branchPath": "refs/heads/webpack-react",
+      "headCheckout": Object {
+        "at": Object {
+          "tz": "+0900",
+          "utcSec": 1489680145,
+        },
+        "by": Object {
+          "email": "momocraft@gmail.com",
+          "name": "Wang Guan",
+        },
+        "desc": "checkout: moving from webpack to webpack-react",
+        "from": "dd6d9874e98ed1afa62f4c9c80f70c70ec8a359b",
+        "to": "dd6d9874e98ed1afa62f4c9c80f70c70ec8a359b",
+      },
+      "type": "CreateBranch",
+    },
+    Object {
+      "headLog": Object {
+        "at": Object {
+          "tz": "+0900",
+          "utcSec": 1489680141,
+        },
+        "by": Object {
+          "email": "momocraft@gmail.com",
+          "name": "Wang Guan",
+        },
+        "desc": "checkout: moving from master to webpack",
+        "from": "f34ab7e293961628bfefd83fd456aa9fe3e7fdcf",
+        "to": "dd6d9874e98ed1afa62f4c9c80f70c70ec8a359b",
+      },
+      "type": "Checkout",
+    },
+    Object {
+      "branchLog": Object {
+        "at": Object {
+          "tz": "+0900",
+          "utcSec": 1489680113,
+        },
+        "by": Object {
+          "email": "momocraft@gmail.com",
+          "name": "Wang Guan",
+        },
+        "desc": "merge github/master: Fast-forward",
+        "from": "960c5ea0c196057dca3b6cf328a8f2b852a5be9f",
+        "to": "f34ab7e293961628bfefd83fd456aa9fe3e7fdcf",
+      },
+      "headLog": Object {
+        "at": Object {
+          "tz": "+0900",
+          "utcSec": 1489680113,
+        },
+        "by": Object {
+          "email": "momocraft@gmail.com",
+          "name": "Wang Guan",
+        },
+        "desc": "merge github/master: Fast-forward",
+        "from": "960c5ea0c196057dca3b6cf328a8f2b852a5be9f",
+        "to": "f34ab7e293961628bfefd83fd456aa9fe3e7fdcf",
+      },
+      "refpath": "refs/heads/master",
+      "type": "Merge",
+    },
+    Object {
+      "headLog": Object {
+        "at": Object {
+          "tz": "+0900",
+          "utcSec": 1489680064,
+        },
+        "by": Object {
+          "email": "momocraft@gmail.com",
+          "name": "Wang Guan",
+        },
+        "desc": "checkout: moving from demo-mocha-ts-watch to master",
+        "from": "16899fc828f225138213b22354e86413dd0331a5",
+        "to": "960c5ea0c196057dca3b6cf328a8f2b852a5be9f",
+      },
+      "type": "Checkout",
+    },
+    Object {
+      "headLog": Object {
+        "at": Object {
+          "tz": "+0900",
+          "utcSec": 1488594384,
+        },
+        "by": Object {
+          "email": "momocraft@gmail.com",
+          "name": "Wang Guan",
+        },
+        "desc": "checkout: moving from master to demo-mocha-ts-watch",
+        "from": "960c5ea0c196057dca3b6cf328a8f2b852a5be9f",
+        "to": "16899fc828f225138213b22354e86413dd0331a5",
+      },
+      "type": "Checkout",
+    },
+    Object {
+      "branchLog": Object {
+        "at": Object {
+          "tz": "+0900",
+          "utcSec": 1487778885,
+        },
+        "by": Object {
+          "email": "momocraft@gmail.com",
+          "name": "Wang Guan",
+        },
+        "desc": "merge origin/master: Fast-forward",
+        "from": "1a306531b4f147f63237d35c2642bcea2a9c0f4e",
+        "to": "960c5ea0c196057dca3b6cf328a8f2b852a5be9f",
+      },
+      "headLog": Object {
+        "at": Object {
+          "tz": "+0900",
+          "utcSec": 1487778885,
+        },
+        "by": Object {
+          "email": "momocraft@gmail.com",
+          "name": "Wang Guan",
+        },
+        "desc": "merge origin/master: Fast-forward",
+        "from": "1a306531b4f147f63237d35c2642bcea2a9c0f4e",
+        "to": "960c5ea0c196057dca3b6cf328a8f2b852a5be9f",
+      },
+      "refpath": "refs/heads/master",
+      "type": "Merge",
+    },
+    Object {
+      "branchLog": Object {
+        "at": Object {
+          "tz": "+0900",
+          "utcSec": 1482573950,
+        },
+        "by": Object {
+          "email": "momocraft@gmail.com",
+          "name": "Wang Guan",
+        },
+        "desc": "commit: fix scripts",
+        "from": "7ddcd4664ae12e2e0c6ecefba93140703d7070e8",
+        "to": "1a306531b4f147f63237d35c2642bcea2a9c0f4e",
+      },
+      "headLog": Object {
+        "at": Object {
+          "tz": "+0900",
+          "utcSec": 1482573950,
+        },
+        "by": Object {
+          "email": "momocraft@gmail.com",
+          "name": "Wang Guan",
+        },
+        "desc": "commit: fix scripts",
+        "from": "7ddcd4664ae12e2e0c6ecefba93140703d7070e8",
+        "to": "1a306531b4f147f63237d35c2642bcea2a9c0f4e",
+      },
+      "refpath": "refs/heads/master",
+      "type": "Commit",
+    },
+    Object {
+      "branchLog": Object {
+        "at": Object {
+          "tz": "+0900",
+          "utcSec": 1482571348,
+        },
+        "by": Object {
+          "email": "momocraft@gmail.com",
+          "name": "Wang Guan",
+        },
+        "desc": "clone: from caroline:/git/node-typescript-boilerplate",
+        "from": "0000000000000000000000000000000000000000",
+        "to": "7ddcd4664ae12e2e0c6ecefba93140703d7070e8",
+      },
+      "branchpath": "refs/heads/master",
+      "headLog": Object {
+        "at": Object {
+          "tz": "+0900",
+          "utcSec": 1482571348,
+        },
+        "by": Object {
+          "email": "momocraft@gmail.com",
+          "name": "Wang Guan",
+        },
+        "desc": "clone: from caroline:/git/node-typescript-boilerplate",
+        "from": "0000000000000000000000000000000000000000",
+        "to": "7ddcd4664ae12e2e0c6ecefba93140703d7070e8",
+      },
+      "type": "Clone",
+    },
+  ],
+]
+`;
+
+exports[`reflog - parser parses whadido-1: topParser(whadido-1.json 1`] = `
+Array [
+  Array [
+    Object {
+      "branchLog": Object {
+        "at": Object {
+          "tz": "+0900",
+          "utcSec": 1496646404,
+        },
+        "by": Object {
+          "email": "momocraft@gmail.com",
+          "name": "Wang Guan",
+        },
+        "desc": "fetch origin: storing head",
+        "from": "0000000000000000000000000000000000000000",
+        "to": "fb7b41bd326bf5ed970b7c3ccd74b70456bc10cc",
+      },
+      "refpath": "refs/remotes/origin/parse-reflog",
+      "type": "Fetch",
+    },
+    Object {
+      "branchLog": Object {
+        "at": Object {
+          "tz": "+0900",
+          "utcSec": 1496474948,
+        },
+        "by": Object {
+          "email": "momocraft@gmail.com",
+          "name": "Wang Guan",
+        },
+        "desc": "fetch: storing head",
+        "from": "0000000000000000000000000000000000000000",
+        "to": "346fbef348715b9d0aef721a96bb969e33125fbb",
+      },
+      "refpath": "refs/remotes/origin/analyze-reflog",
+      "type": "Fetch",
+    },
+    Object {
+      "branchLog": Object {
+        "at": Object {
+          "tz": "+0900",
+          "utcSec": 1496646364,
+        },
+        "by": Object {
+          "email": "momocraft@gmail.com",
+          "name": "Wang Guan",
+        },
+        "desc": "fetch --append github: storing head",
+        "from": "0000000000000000000000000000000000000000",
+        "to": "346fbef348715b9d0aef721a96bb969e33125fbb",
+      },
+      "refpath": "refs/remotes/github/analyze-reflog",
+      "type": "Fetch",
+    },
+    Object {
+      "branchLog": Object {
+        "at": Object {
+          "tz": "+0900",
+          "utcSec": 1496474948,
+        },
+        "by": Object {
+          "email": "momocraft@gmail.com",
+          "name": "Wang Guan",
+        },
+        "desc": "fetch: storing head",
+        "from": "0000000000000000000000000000000000000000",
+        "to": "23b605e8bacc6e0b59947cbfc4ce4e158bc325be",
+      },
+      "refpath": "refs/remotes/origin/vis-reflog",
+      "type": "Fetch",
+    },
+    Object {
+      "branchLog": Object {
+        "at": Object {
+          "tz": "+0900",
+          "utcSec": 1496646404,
+        },
+        "by": Object {
+          "email": "momocraft@gmail.com",
+          "name": "Wang Guan",
+        },
+        "desc": "fetch origin: fast-forward",
+        "from": "28a66bbb8d31c1c44926c8f7b04d03ecb358ad99",
+        "to": "a0f345a1cea6f8df066082d6112df2f64256531e",
+      },
+      "refpath": "refs/remotes/origin/master",
+      "type": "Fetch",
+    },
+    Object {
+      "branchLog": Object {
+        "at": Object {
+          "tz": "+0900",
+          "utcSec": 1496474948,
+        },
+        "by": Object {
+          "email": "momocraft@gmail.com",
+          "name": "Wang Guan",
+        },
+        "desc": "fetch: fast-forward",
+        "from": "4a46ec94b78460277b0f8e6f5646257dedf4c9a9",
+        "to": "28a66bbb8d31c1c44926c8f7b04d03ecb358ad99",
+      },
+      "refpath": "refs/remotes/origin/master",
+      "type": "Fetch",
+    },
+    Object {
+      "branchLog": Object {
+        "at": Object {
+          "tz": "+0900",
+          "utcSec": 1488642657,
+        },
+        "by": Object {
+          "email": "momocraft@gmail.com",
+          "name": "Wang Guan",
+        },
+        "desc": "update by push",
+        "from": "fa4594b9c25ab8427a0b19ca0e182beb50c01817",
+        "to": "4a46ec94b78460277b0f8e6f5646257dedf4c9a9",
+      },
+      "refpath": "refs/remotes/origin/master",
+      "type": "Push",
+    },
+    Object {
+      "branchLog": Object {
+        "at": Object {
+          "tz": "+0900",
+          "utcSec": 1488120403,
+        },
+        "by": Object {
+          "email": "momocraft@gmail.com",
+          "name": "Wang Guan",
+        },
+        "desc": "update by push",
+        "from": "a14ff26b3a1da1b7ef951b646496b146fffb8970",
+        "to": "fa4594b9c25ab8427a0b19ca0e182beb50c01817",
+      },
+      "refpath": "refs/remotes/origin/master",
+      "type": "Push",
+    },
+    Object {
+      "branchLog": Object {
+        "at": Object {
+          "tz": "+0900",
+          "utcSec": 1491710185,
+        },
+        "by": Object {
+          "email": "momocraft@gmail.com",
+          "name": "Wang Guan",
+        },
+        "desc": "fetch --append --prune origin: fast-forward",
+        "from": "5b28685009c7148f848803c1eb0aef3c159929a1",
+        "to": "a14ff26b3a1da1b7ef951b646496b146fffb8970",
+      },
+      "refpath": "refs/remotes/origin/master",
+      "type": "Fetch",
+    },
+    Object {
+      "branchLog": Object {
+        "at": Object {
+          "tz": "+0900",
+          "utcSec": 1486465873,
+        },
+        "by": Object {
+          "email": "momocraft@gmail.com",
+          "name": "Wang Guan",
+        },
+        "desc": "fetch: fast-forward",
+        "from": "f15bfd86a61ae0b04a41060482ec66e608bbb845",
+        "to": "5b28685009c7148f848803c1eb0aef3c159929a1",
+      },
+      "refpath": "refs/remotes/origin/master",
+      "type": "Fetch",
+    },
+    Object {
+      "branchLog": Object {
+        "at": Object {
+          "tz": "+0900",
+          "utcSec": 1486315053,
+        },
+        "by": Object {
+          "email": "momocraft@gmail.com",
+          "name": "Wang Guan",
+        },
+        "desc": "fetch --append origin: fast-forward",
+        "from": "298ca5248eda588e2e18ccdbe9b4d8e8b7ceaeea",
+        "to": "f15bfd86a61ae0b04a41060482ec66e608bbb845",
+      },
+      "refpath": "refs/remotes/origin/master",
+      "type": "Fetch",
+    },
+    Object {
+      "branchLog": Object {
+        "at": Object {
+          "tz": "+0900",
+          "utcSec": 1485429481,
+        },
+        "by": Object {
+          "email": "momocraft@gmail.com",
+          "name": "Wang Guan",
+        },
+        "desc": "fetch --append origin: fast-forward",
+        "from": "4982a8e5c7eef86be6b53c3a3ba36b42ac7321f6",
+        "to": "298ca5248eda588e2e18ccdbe9b4d8e8b7ceaeea",
+      },
+      "refpath": "refs/remotes/origin/master",
+      "type": "Fetch",
+    },
+    Object {
+      "branchLog": Object {
+        "at": Object {
+          "tz": "+0900",
+          "utcSec": 1485320720,
+        },
+        "by": Object {
+          "email": "momocraft@gmail.com",
+          "name": "Wang Guan",
+        },
+        "desc": "fetch --append origin: fast-forward",
+        "from": "7a28b4d55f61082e6bd0f421006aa37406ace474",
+        "to": "4982a8e5c7eef86be6b53c3a3ba36b42ac7321f6",
+      },
+      "refpath": "refs/remotes/origin/master",
+      "type": "Fetch",
+    },
+    Object {
+      "branchLog": Object {
+        "at": Object {
+          "tz": "+0900",
+          "utcSec": 1485267882,
+        },
+        "by": Object {
+          "email": "momocraft@gmail.com",
+          "name": "Wang Guan",
+        },
+        "desc": "update by push",
+        "from": "fa7915e3c3fc829a8632bd8cd7c0f05a56b71cc7",
+        "to": "7a28b4d55f61082e6bd0f421006aa37406ace474",
+      },
+      "refpath": "refs/remotes/origin/master",
+      "type": "Push",
+    },
+    Object {
+      "branchLog": Object {
+        "at": Object {
+          "tz": "+0900",
+          "utcSec": 1485181175,
+        },
+        "by": Object {
+          "email": "momocraft@gmail.com",
+          "name": "Wang Guan",
+        },
+        "desc": "fetch: fast-forward",
+        "from": "1940b1adca8f6633dfe9c4e73bb79b11e820af35",
+        "to": "fa7915e3c3fc829a8632bd8cd7c0f05a56b71cc7",
+      },
+      "refpath": "refs/remotes/origin/master",
+      "type": "Fetch",
+    },
+    Object {
+      "branchLog": Object {
+        "at": Object {
+          "tz": "+0900",
+          "utcSec": 1485077533,
+        },
+        "by": Object {
+          "email": "momocraft@gmail.com",
+          "name": "Wang Guan",
+        },
+        "desc": "fetch --append origin: storing head",
+        "from": "0000000000000000000000000000000000000000",
+        "to": "1940b1adca8f6633dfe9c4e73bb79b11e820af35",
+      },
+      "refpath": "refs/remotes/origin/master",
+      "type": "Fetch",
+    },
+    Object {
+      "branchLog": Object {
+        "at": Object {
+          "tz": "+0900",
+          "utcSec": 1496646364,
+        },
+        "by": Object {
+          "email": "momocraft@gmail.com",
+          "name": "Wang Guan",
+        },
+        "desc": "fetch --append github: fast-forward",
+        "from": "4a46ec94b78460277b0f8e6f5646257dedf4c9a9",
+        "to": "28a66bbb8d31c1c44926c8f7b04d03ecb358ad99",
+      },
+      "refpath": "refs/remotes/github/master",
+      "type": "Fetch",
+    },
+    Object {
+      "branchLog": Object {
+        "at": Object {
+          "tz": "+0900",
+          "utcSec": 1495987817,
+        },
+        "by": Object {
+          "email": "momocraft@gmail.com",
+          "name": "Wang Guan",
+        },
+        "desc": "update by push",
+        "from": "fa4594b9c25ab8427a0b19ca0e182beb50c01817",
+        "to": "4a46ec94b78460277b0f8e6f5646257dedf4c9a9",
+      },
+      "refpath": "refs/remotes/github/master",
+      "type": "Push",
+    },
+    Object {
+      "branchLog": Object {
+        "at": Object {
+          "tz": "+0900",
+          "utcSec": 1488120403,
+        },
+        "by": Object {
+          "email": "momocraft@gmail.com",
+          "name": "Wang Guan",
+        },
+        "desc": "update by push",
+        "from": "0000000000000000000000000000000000000000",
+        "to": "fa4594b9c25ab8427a0b19ca0e182beb50c01817",
+      },
+      "refpath": "refs/remotes/github/master",
+      "type": "Push",
+    },
+    Object {
+      "branchLog": Object {
+        "at": Object {
+          "tz": "+0900",
+          "utcSec": 1486315053,
+        },
+        "by": Object {
+          "email": "momocraft@gmail.com",
+          "name": "Wang Guan",
+        },
+        "desc": "fetch --append origin: storing head",
+        "from": "0000000000000000000000000000000000000000",
+        "to": "2b6d1650dc6e680a82d580d2168b41565ae6b268",
+      },
+      "refpath": "refs/remotes/origin/try/improve-read-performance-1",
+      "type": "Fetch",
+    },
+    Object {
+      "branchLog": Object {
+        "at": Object {
+          "tz": "+0900",
+          "utcSec": 1496646408,
+        },
+        "by": Object {
+          "email": "momocraft@gmail.com",
+          "name": "Wang Guan",
+        },
+        "desc": "merge origin/master: Fast-forward",
+        "from": "4a46ec94b78460277b0f8e6f5646257dedf4c9a9",
+        "to": "a0f345a1cea6f8df066082d6112df2f64256531e",
+      },
+      "headLog": Object {
+        "at": Object {
+          "tz": "+0900",
+          "utcSec": 1496646408,
+        },
+        "by": Object {
+          "email": "momocraft@gmail.com",
+          "name": "Wang Guan",
+        },
+        "desc": "merge origin/master: Fast-forward",
+        "from": "4a46ec94b78460277b0f8e6f5646257dedf4c9a9",
+        "to": "a0f345a1cea6f8df066082d6112df2f64256531e",
+      },
+      "refpath": "refs/heads/master",
+      "type": "Merge",
+    },
+    Object {
+      "branchLog": Object {
+        "at": Object {
+          "tz": "+0900",
+          "utcSec": 1488642657,
+        },
+        "by": Object {
+          "email": "momocraft@gmail.com",
+          "name": "Wang Guan",
+        },
+        "desc": "merge cli-entrypoint: Merge made by the 'recursive' strategy.",
+        "from": "fa4594b9c25ab8427a0b19ca0e182beb50c01817",
+        "to": "4a46ec94b78460277b0f8e6f5646257dedf4c9a9",
+      },
+      "headLog": Object {
+        "at": Object {
+          "tz": "+0900",
+          "utcSec": 1488642657,
+        },
+        "by": Object {
+          "email": "momocraft@gmail.com",
+          "name": "Wang Guan",
+        },
+        "desc": "merge cli-entrypoint: Merge made by the 'recursive' strategy.",
+        "from": "fa4594b9c25ab8427a0b19ca0e182beb50c01817",
+        "to": "4a46ec94b78460277b0f8e6f5646257dedf4c9a9",
+      },
+      "refpath": "refs/heads/master",
+      "type": "Merge",
+    },
+    Object {
+      "headLog": Object {
+        "at": Object {
+          "tz": "+0900",
+          "utcSec": 1495986654,
+        },
+        "by": Object {
+          "email": "momocraft@gmail.com",
+          "name": "Wang Guan",
+        },
+        "desc": "checkout: moving from cli-entrypoint to master",
+        "from": "237f54d8729f9304532d6b2eade43e05a069190e",
+        "to": "fa4594b9c25ab8427a0b19ca0e182beb50c01817",
+      },
+      "type": "Checkout",
+    },
+    Object {
+      "branchLog": Object {
+        "at": Object {
+          "tz": "+0900",
+          "utcSec": 1488634190,
+        },
+        "by": Object {
+          "email": "momocraft@gmail.com",
+          "name": "Wang Guan",
+        },
+        "desc": "commit: comment",
+        "from": "75bf3ff94a85ec600f10bef7fc4f81fcb5300ec5",
+        "to": "237f54d8729f9304532d6b2eade43e05a069190e",
+      },
+      "headLog": Object {
+        "at": Object {
+          "tz": "+0900",
+          "utcSec": 1488634190,
+        },
+        "by": Object {
+          "email": "momocraft@gmail.com",
+          "name": "Wang Guan",
+        },
+        "desc": "commit: comment",
+        "from": "75bf3ff94a85ec600f10bef7fc4f81fcb5300ec5",
+        "to": "237f54d8729f9304532d6b2eade43e05a069190e",
+      },
+      "refpath": "refs/heads/cli-entrypoint",
+      "type": "Commit",
+    },
+    Object {
+      "branchLog": Object {
+        "at": Object {
+          "tz": "+0900",
+          "utcSec": 1488633455,
+        },
+        "by": Object {
+          "email": "momocraft@gmail.com",
+          "name": "Wang Guan",
+        },
+        "desc": "commit: A cli entrypoint",
+        "from": "a68236c488b2db52625fe6410a61efa7d7cd0f68",
+        "to": "75bf3ff94a85ec600f10bef7fc4f81fcb5300ec5",
+      },
+      "headLog": Object {
+        "at": Object {
+          "tz": "+0900",
+          "utcSec": 1488633455,
+        },
+        "by": Object {
+          "email": "momocraft@gmail.com",
+          "name": "Wang Guan",
+        },
+        "desc": "commit: A cli entrypoint",
+        "from": "a68236c488b2db52625fe6410a61efa7d7cd0f68",
+        "to": "75bf3ff94a85ec600f10bef7fc4f81fcb5300ec5",
+      },
+      "refpath": "refs/heads/cli-entrypoint",
+      "type": "Commit",
+    },
+    Object {
+      "branchLog": Object {
+        "at": Object {
+          "tz": "+0900",
+          "utcSec": 1488628216,
+        },
+        "by": Object {
+          "email": "momocraft@gmail.com",
+          "name": "Wang Guan",
+        },
+        "desc": "commit: install argparse",
+        "from": "fa4594b9c25ab8427a0b19ca0e182beb50c01817",
+        "to": "a68236c488b2db52625fe6410a61efa7d7cd0f68",
+      },
+      "headLog": Object {
+        "at": Object {
+          "tz": "+0900",
+          "utcSec": 1488628216,
+        },
+        "by": Object {
+          "email": "momocraft@gmail.com",
+          "name": "Wang Guan",
+        },
+        "desc": "commit: install argparse",
+        "from": "fa4594b9c25ab8427a0b19ca0e182beb50c01817",
+        "to": "a68236c488b2db52625fe6410a61efa7d7cd0f68",
+      },
+      "refpath": "refs/heads/cli-entrypoint",
+      "type": "Commit",
+    },
+    Object {
+      "branchLog": Object {
+        "at": Object {
+          "tz": "+0900",
+          "utcSec": 1488120403,
+        },
+        "by": Object {
+          "email": "momocraft@gmail.com",
+          "name": "Wang Guan",
+        },
+        "desc": "branch: Created from HEAD",
+        "from": "0000000000000000000000000000000000000000",
+        "to": "fa4594b9c25ab8427a0b19ca0e182beb50c01817",
+      },
+      "branchPath": "refs/heads/cli-entrypoint",
+      "headCheckout": Object {
+        "at": Object {
+          "tz": "+0900",
+          "utcSec": 1488120403,
+        },
+        "by": Object {
+          "email": "momocraft@gmail.com",
+          "name": "Wang Guan",
+        },
+        "desc": "checkout: moving from master to cli-entrypoint",
+        "from": "fa4594b9c25ab8427a0b19ca0e182beb50c01817",
+        "to": "fa4594b9c25ab8427a0b19ca0e182beb50c01817",
+      },
+      "type": "CreateBranch",
+    },
+    Object {
+      "branchLog": Object {
+        "at": Object {
+          "tz": "+0900",
+          "utcSec": 1488627417,
+        },
+        "by": Object {
+          "email": "momocraft@gmail.com",
+          "name": "Wang Guan",
+        },
+        "desc": "merge read-ref: Merge made by the 'recursive' strategy.",
+        "from": "a14ff26b3a1da1b7ef951b646496b146fffb8970",
+        "to": "fa4594b9c25ab8427a0b19ca0e182beb50c01817",
+      },
+      "headLog": Object {
+        "at": Object {
+          "tz": "+0900",
+          "utcSec": 1488627417,
+        },
+        "by": Object {
+          "email": "momocraft@gmail.com",
+          "name": "Wang Guan",
+        },
+        "desc": "merge read-ref: Merge made by the 'recursive' strategy.",
+        "from": "a14ff26b3a1da1b7ef951b646496b146fffb8970",
+        "to": "fa4594b9c25ab8427a0b19ca0e182beb50c01817",
+      },
+      "refpath": "refs/heads/master",
+      "type": "Merge",
+    },
+    Object {
+      "headLog": Object {
+        "at": Object {
+          "tz": "+0900",
+          "utcSec": 1488627417,
+        },
+        "by": Object {
+          "email": "momocraft@gmail.com",
+          "name": "Wang Guan",
+        },
+        "desc": "checkout: moving from moyu to master",
+        "from": "c569c689b3954bd9137803b98e62009c2b8b1a5e",
+        "to": "a14ff26b3a1da1b7ef951b646496b146fffb8970",
+      },
+      "type": "Checkout",
+    },
+    Object {
+      "headLog": Object {
+        "at": Object {
+          "tz": "+0900",
+          "utcSec": 1488627417,
+        },
+        "by": Object {
+          "email": "momocraft@gmail.com",
+          "name": "Wang Guan",
+        },
+        "desc": "checkout: moving from read-ref to moyu",
+        "from": "c569c689b3954bd9137803b98e62009c2b8b1a5e",
+        "to": "c569c689b3954bd9137803b98e62009c2b8b1a5e",
+      },
+      "type": "Checkout",
+    },
+    Object {
+      "branchLog": undefined,
+      "headLog": Object {
+        "at": Object {
+          "tz": "+0900",
+          "utcSec": 1488627417,
+        },
+        "by": Object {
+          "email": "momocraft@gmail.com",
+          "name": "Wang Guan",
+        },
+        "desc": "merge moyu: Fast-forward",
+        "from": "93a42f34ea85089264b56b0ee132ac3e1d9df59f",
+        "to": "c569c689b3954bd9137803b98e62009c2b8b1a5e",
+      },
+      "refpath": undefined,
+      "type": "Merge",
+    },
+    Object {
+      "headLog": Object {
+        "at": Object {
+          "tz": "+0900",
+          "utcSec": 1488627417,
+        },
+        "by": Object {
+          "email": "momocraft@gmail.com",
+          "name": "Wang Guan",
+        },
+        "desc": "checkout: moving from moyu to read-ref",
+        "from": "c569c689b3954bd9137803b98e62009c2b8b1a5e",
+        "to": "93a42f34ea85089264b56b0ee132ac3e1d9df59f",
+      },
+      "type": "Checkout",
+    },
+    Object {
+      "branchLog": undefined,
+      "headLog": Object {
+        "at": Object {
+          "tz": "+0900",
+          "utcSec": 1488627417,
+        },
+        "by": Object {
+          "email": "momocraft@gmail.com",
+          "name": "Wang Guan",
+        },
+        "desc": "commit: clean files",
+        "from": "fd3d01ce5bb3a5df4801c235ea66d93d849d7d75",
+        "to": "c569c689b3954bd9137803b98e62009c2b8b1a5e",
+      },
+      "refpath": undefined,
+      "type": "Commit",
+    },
+    Object {
+      "branchLog": undefined,
+      "headLog": Object {
+        "at": Object {
+          "tz": "+0900",
+          "utcSec": 1488627274,
+        },
+        "by": Object {
+          "email": "momocraft@gmail.com",
+          "name": "Wang Guan",
+        },
+        "desc": "commit: read & resolve tags",
+        "from": "ca2f603520f7b322497ffdbc03b9441a27bfc2e1",
+        "to": "fd3d01ce5bb3a5df4801c235ea66d93d849d7d75",
+      },
+      "refpath": undefined,
+      "type": "Commit",
+    },
+    Object {
+      "branchLog": undefined,
+      "headLog": Object {
+        "at": Object {
+          "tz": "+0900",
+          "utcSec": 1488622204,
+        },
+        "by": Object {
+          "email": "momocraft@gmail.com",
+          "name": "Wang Guan",
+        },
+        "desc": "commit: wip",
+        "from": "93a42f34ea85089264b56b0ee132ac3e1d9df59f",
+        "to": "ca2f603520f7b322497ffdbc03b9441a27bfc2e1",
+      },
+      "refpath": undefined,
+      "type": "Commit",
+    },
+    Object {
+      "branchLog": undefined,
+      "branchpath": undefined,
+      "headLog": Object {
+        "at": Object {
+          "tz": "+0900",
+          "utcSec": 1488120403,
+        },
+        "by": Object {
+          "email": "momocraft@gmail.com",
+          "name": "Wang Guan",
+        },
+        "desc": "reset: moving to read-ref",
+        "from": "3c7baffd19988d457711f31b5886a8bf4bbb884f",
+        "to": "93a42f34ea85089264b56b0ee132ac3e1d9df59f",
+      },
+      "type": "Reset",
+    },
+    Object {
+      "headLog": Object {
+        "at": Object {
+          "tz": "+0900",
+          "utcSec": 1488120403,
+        },
+        "by": Object {
+          "email": "momocraft@gmail.com",
+          "name": "Wang Guan",
+        },
+        "desc": "checkout: moving from read-ref to moyu",
+        "from": "93a42f34ea85089264b56b0ee132ac3e1d9df59f",
+        "to": "3c7baffd19988d457711f31b5886a8bf4bbb884f",
+      },
+      "type": "Checkout",
+    },
+    Object {
+      "branchLog": undefined,
+      "headLog": Object {
+        "at": Object {
+          "tz": "+0900",
+          "utcSec": 1488120403,
+        },
+        "by": Object {
+          "email": "momocraft@gmail.com",
+          "name": "Wang Guan",
+        },
+        "desc": "commit: update",
+        "from": "f997c3a6137e800399de7423bd5ff6c7da4acdb1",
+        "to": "93a42f34ea85089264b56b0ee132ac3e1d9df59f",
+      },
+      "refpath": undefined,
+      "type": "Commit",
+    },
+    Object {
+      "headLog": Object {
+        "at": Object {
+          "tz": "+0900",
+          "utcSec": 1488120295,
+        },
+        "by": Object {
+          "email": "momocraft@gmail.com",
+          "name": "Wang Guan",
+        },
+        "desc": "checkout: moving from moyu to read-ref",
+        "from": "3c7baffd19988d457711f31b5886a8bf4bbb884f",
+        "to": "f997c3a6137e800399de7423bd5ff6c7da4acdb1",
+      },
+      "type": "Checkout",
+    },
+    Object {
+      "headLog": Object {
+        "at": Object {
+          "tz": "+0900",
+          "utcSec": 1488120295,
+        },
+        "by": Object {
+          "email": "momocraft@gmail.com",
+          "name": "Wang Guan",
+        },
+        "desc": "checkout: moving from read-ref to moyu",
+        "from": "f997c3a6137e800399de7423bd5ff6c7da4acdb1",
+        "to": "3c7baffd19988d457711f31b5886a8bf4bbb884f",
+      },
+      "type": "Checkout",
+    },
+    Object {
+      "branchLog": undefined,
+      "branchpath": undefined,
+      "headLog": Object {
+        "at": Object {
+          "tz": "+0900",
+          "utcSec": 1488120295,
+        },
+        "by": Object {
+          "email": "momocraft@gmail.com",
+          "name": "Wang Guan",
+        },
+        "desc": "reset: moving to HEAD",
+        "from": "f997c3a6137e800399de7423bd5ff6c7da4acdb1",
+        "to": "f997c3a6137e800399de7423bd5ff6c7da4acdb1",
+      },
+      "type": "Reset",
+    },
+    Object {
+      "headLog": Object {
+        "at": Object {
+          "tz": "+0900",
+          "utcSec": 1488120295,
+        },
+        "by": Object {
+          "email": "momocraft@gmail.com",
+          "name": "Wang Guan",
+        },
+        "desc": "checkout: moving from moyu to read-ref",
+        "from": "3c7baffd19988d457711f31b5886a8bf4bbb884f",
+        "to": "f997c3a6137e800399de7423bd5ff6c7da4acdb1",
+      },
+      "type": "Checkout",
+    },
+    Object {
+      "branchLog": undefined,
+      "headLog": Object {
+        "at": Object {
+          "tz": "+0900",
+          "utcSec": 1488120295,
+        },
+        "by": Object {
+          "email": "momocraft@gmail.com",
+          "name": "Wang Guan",
+        },
+        "desc": "commit (amend): update",
+        "from": "af0392446840d15f9b090d9189703a1a3dfb01a9",
+        "to": "3c7baffd19988d457711f31b5886a8bf4bbb884f",
+      },
+      "refpath": undefined,
+      "type": "Commit",
+    },
+    Object {
+      "branchLog": undefined,
+      "headLog": Object {
+        "at": Object {
+          "tz": "+0900",
+          "utcSec": 1488120284,
+        },
+        "by": Object {
+          "email": "momocraft@gmail.com",
+          "name": "Wang Guan",
+        },
+        "desc": "commit (amend): update",
+        "from": "22ee3e97f577fb31e131ae2386964b7301ee8a69",
+        "to": "af0392446840d15f9b090d9189703a1a3dfb01a9",
+      },
+      "refpath": undefined,
+      "type": "Commit",
+    },
+    Object {
+      "branchLog": undefined,
+      "headLog": Object {
+        "at": Object {
+          "tz": "+0900",
+          "utcSec": 1488120254,
+        },
+        "by": Object {
+          "email": "momocraft@gmail.com",
+          "name": "Wang Guan",
+        },
+        "desc": "commit (amend): update",
+        "from": "229d70400d458de37bf9258134597d89960209aa",
+        "to": "22ee3e97f577fb31e131ae2386964b7301ee8a69",
+      },
+      "refpath": undefined,
+      "type": "Commit",
+    },
+    Object {
+      "branchLog": undefined,
+      "headLog": Object {
+        "at": Object {
+          "tz": "+0900",
+          "utcSec": 1488120254,
+        },
+        "by": Object {
+          "email": "momocraft@gmail.com",
+          "name": "Wang Guan",
+        },
+        "desc": "commit (amend): update",
+        "from": "b415b31d9875a07f8092cc4dbd96434bcb67dca4",
+        "to": "229d70400d458de37bf9258134597d89960209aa",
+      },
+      "refpath": undefined,
+      "type": "Commit",
+    },
+    Object {
+      "headLog": Object {
+        "at": Object {
+          "tz": "+0900",
+          "utcSec": 1495896241,
+        },
+        "by": Object {
+          "email": "momocraft@gmail.com",
+          "name": "Wang Guan",
+        },
+        "desc": "checkout: moving from read-ref to moyu",
+        "from": "f997c3a6137e800399de7423bd5ff6c7da4acdb1",
+        "to": "b415b31d9875a07f8092cc4dbd96434bcb67dca4",
+      },
+      "type": "Checkout",
+    },
+    Object {
+      "headLog": Object {
+        "at": Object {
+          "tz": "+0900",
+          "utcSec": 1495896233,
+        },
+        "by": Object {
+          "email": "momocraft@gmail.com",
+          "name": "Wang Guan",
+        },
+        "desc": "checkout: moving from moyu to read-ref",
+        "from": "b415b31d9875a07f8092cc4dbd96434bcb67dca4",
+        "to": "f997c3a6137e800399de7423bd5ff6c7da4acdb1",
+      },
+      "type": "Checkout",
+    },
+    Object {
+      "branchLog": undefined,
+      "headLog": Object {
+        "at": Object {
+          "tz": "+0900",
+          "utcSec": 1495896224,
+        },
+        "by": Object {
+          "email": "momocraft@gmail.com",
+          "name": "Wang Guan",
+        },
+        "desc": "commit (amend): update",
+        "from": "3cc60282dfd12f9588c4add15703aa66a574c88e",
+        "to": "b415b31d9875a07f8092cc4dbd96434bcb67dca4",
+      },
+      "refpath": undefined,
+      "type": "Commit",
+    },
+    Object {
+      "branchLog": undefined,
+      "branchpath": undefined,
+      "headLogs": Array [
+        Object {
+          "at": Object {
+            "tz": "+0900",
+            "utcSec": 1495896204,
+          },
+          "by": Object {
+            "email": "momocraft@gmail.com",
+            "name": "Wang Guan",
+          },
+          "desc": "rebase -i (start): checkout origin/read-ref",
+          "from": "e4b1f89fa88f21d6be897b7cbe82da9e5e8afb25",
+          "to": "f997c3a6137e800399de7423bd5ff6c7da4acdb1",
+        },
+        Object {
+          "at": Object {
+            "tz": "+0900",
+            "utcSec": 1495896204,
+          },
+          "by": Object {
+            "email": "momocraft@gmail.com",
+            "name": "Wang Guan",
+          },
+          "desc": "rebase -i (squash): # This is a combination of 2 commits.",
+          "from": "f997c3a6137e800399de7423bd5ff6c7da4acdb1",
+          "to": "893270922d78d2e866a4b265053412caa46ffffc",
+        },
+        Object {
+          "at": Object {
+            "tz": "+0900",
+            "utcSec": 1495896204,
+          },
+          "by": Object {
+            "email": "momocraft@gmail.com",
+            "name": "Wang Guan",
+          },
+          "desc": "rebase -i (squash): # This is a combination of 3 commits.",
+          "from": "893270922d78d2e866a4b265053412caa46ffffc",
+          "to": "4cd1b66d8b80751dc1c00256c52bb6e067688ca2",
+        },
+        Object {
+          "at": Object {
+            "tz": "+0900",
+            "utcSec": 1495896204,
+          },
+          "by": Object {
+            "email": "momocraft@gmail.com",
+            "name": "Wang Guan",
+          },
+          "desc": "rebase -i (squash): # This is a combination of 4 commits.",
+          "from": "4cd1b66d8b80751dc1c00256c52bb6e067688ca2",
+          "to": "a5e1b823ae6a549135e9af67f58c6a6ffa47c9cf",
+        },
+        Object {
+          "at": Object {
+            "tz": "+0900",
+            "utcSec": 1495896204,
+          },
+          "by": Object {
+            "email": "momocraft@gmail.com",
+            "name": "Wang Guan",
+          },
+          "desc": "rebase -i (squash): # This is a combination of 5 commits.",
+          "from": "a5e1b823ae6a549135e9af67f58c6a6ffa47c9cf",
+          "to": "be453d9c26b63499198cdb28be475e040a6700d7",
+        },
+        Object {
+          "at": Object {
+            "tz": "+0900",
+            "utcSec": 1495896204,
+          },
+          "by": Object {
+            "email": "momocraft@gmail.com",
+            "name": "Wang Guan",
+          },
+          "desc": "rebase -i (squash): # This is a combination of 6 commits.",
+          "from": "be453d9c26b63499198cdb28be475e040a6700d7",
+          "to": "08467d72bfd935b6741ac5e6fcc968d656c26a5a",
+        },
+        Object {
+          "at": Object {
+            "tz": "+0900",
+            "utcSec": 1495896204,
+          },
+          "by": Object {
+            "email": "momocraft@gmail.com",
+            "name": "Wang Guan",
+          },
+          "desc": "rebase -i (squash): # This is a combination of 7 commits.",
+          "from": "08467d72bfd935b6741ac5e6fcc968d656c26a5a",
+          "to": "8bc65526e0ff576a59c682322391421f04a7c6c6",
+        },
+        Object {
+          "at": Object {
+            "tz": "+0900",
+            "utcSec": 1495896204,
+          },
+          "by": Object {
+            "email": "momocraft@gmail.com",
+            "name": "Wang Guan",
+          },
+          "desc": "rebase -i (squash): # This is a combination of 8 commits.",
+          "from": "8bc65526e0ff576a59c682322391421f04a7c6c6",
+          "to": "a4a8460046756f0d67a010acfc4ace30761d446d",
+        },
+        Object {
+          "at": Object {
+            "tz": "+0900",
+            "utcSec": 1495896204,
+          },
+          "by": Object {
+            "email": "momocraft@gmail.com",
+            "name": "Wang Guan",
+          },
+          "desc": "rebase -i (squash): test: remote HEAD / branch",
+          "from": "a4a8460046756f0d67a010acfc4ace30761d446d",
+          "to": "c52ed4738a1e03c5ba8e717cbfe99e4e011e75b7",
+        },
+        Object {
+          "at": Object {
+            "tz": "+0900",
+            "utcSec": 1495896213,
+          },
+          "by": Object {
+            "email": "momocraft@gmail.com",
+            "name": "Wang Guan",
+          },
+          "desc": "rebase -i (pick): update",
+          "from": "c52ed4738a1e03c5ba8e717cbfe99e4e011e75b7",
+          "to": "3cc60282dfd12f9588c4add15703aa66a574c88e",
+        },
+        Object {
+          "at": Object {
+            "tz": "+0900",
+            "utcSec": 1495896213,
+          },
+          "by": Object {
+            "email": "momocraft@gmail.com",
+            "name": "Wang Guan",
+          },
+          "desc": "rebase -i (finish): returning to refs/heads/moyu",
+          "from": "3cc60282dfd12f9588c4add15703aa66a574c88e",
+          "to": "3cc60282dfd12f9588c4add15703aa66a574c88e",
+        },
+      ],
+      "type": "RebaseInteractivelyFinished",
+    },
+    Object {
+      "headLogs": Array [
+        Object {
+          "at": Object {
+            "tz": "+0900",
+            "utcSec": 1495896197,
+          },
+          "by": Object {
+            "email": "momocraft@gmail.com",
+            "name": "Wang Guan",
+          },
+          "desc": "rebase -i (start): checkout origin/read-ref",
+          "from": "e4b1f89fa88f21d6be897b7cbe82da9e5e8afb25",
+          "to": "f997c3a6137e800399de7423bd5ff6c7da4acdb1",
+        },
+        Object {
+          "at": Object {
+            "tz": "+0900",
+            "utcSec": 1495896200,
+          },
+          "by": Object {
+            "email": "momocraft@gmail.com",
+            "name": "Wang Guan",
+          },
+          "desc": "rebase: aborting",
+          "from": "f997c3a6137e800399de7423bd5ff6c7da4acdb1",
+          "to": "e4b1f89fa88f21d6be897b7cbe82da9e5e8afb25",
+        },
+        Object {
+          "at": Object {
+            "tz": "+0900",
+            "utcSec": 1495896200,
+          },
+          "by": Object {
+            "email": "momocraft@gmail.com",
+            "name": "Wang Guan",
+          },
+          "desc": "rebase -i (abort): updating HEAD",
+          "from": "e4b1f89fa88f21d6be897b7cbe82da9e5e8afb25",
+          "to": "e4b1f89fa88f21d6be897b7cbe82da9e5e8afb25",
+        },
+      ],
+      "type": "RebaseInteractivelyAborted",
+    },
+    Object {
+      "branchLog": undefined,
+      "headLog": Object {
+        "at": Object {
+          "tz": "+0900",
+          "utcSec": 1495896107,
+        },
+        "by": Object {
+          "email": "momocraft@gmail.com",
+          "name": "Wang Guan",
+        },
+        "desc": "commit: update",
+        "from": "a19886bd2a74c3932dfb706bc21932561ed84997",
+        "to": "e4b1f89fa88f21d6be897b7cbe82da9e5e8afb25",
+      },
+      "refpath": undefined,
+      "type": "Commit",
+    },
+    Object {
+      "branchLog": undefined,
+      "headLog": Object {
+        "at": Object {
+          "tz": "+0900",
+          "utcSec": 1495891601,
+        },
+        "by": Object {
+          "email": "momocraft@gmail.com",
+          "name": "Wang Guan",
+        },
+        "desc": "commit: test: remote HEAD / branch",
+        "from": "a5fd801d7d9176848bd19bad4d584b48b3923292",
+        "to": "a19886bd2a74c3932dfb706bc21932561ed84997",
+      },
+      "refpath": undefined,
+      "type": "Commit",
+    },
+    Object {
+      "branchLog": undefined,
+      "headLog": Object {
+        "at": Object {
+          "tz": "+0900",
+          "utcSec": 1495891155,
+        },
+        "by": Object {
+          "email": "momocraft@gmail.com",
+          "name": "Wang Guan",
+        },
+        "desc": "commit (amend): read master",
+        "from": "d1a54dce28a189f8d413113987d3bf354cea9b53",
+        "to": "a5fd801d7d9176848bd19bad4d584b48b3923292",
+      },
+      "refpath": undefined,
+      "type": "Commit",
+    },
+    Object {
+      "branchLog": undefined,
+      "headLog": Object {
+        "at": Object {
+          "tz": "+0900",
+          "utcSec": 1495890898,
+        },
+        "by": Object {
+          "email": "momocraft@gmail.com",
+          "name": "Wang Guan",
+        },
+        "desc": "commit: wip",
+        "from": "b0f7f0eaf6fe167b32543ff34afa6ba1b267ba02",
+        "to": "d1a54dce28a189f8d413113987d3bf354cea9b53",
+      },
+      "refpath": undefined,
+      "type": "Commit",
+    },
+    Object {
+      "branchLog": undefined,
+      "headLog": Object {
+        "at": Object {
+          "tz": "+0900",
+          "utcSec": 1495887971,
+        },
+        "by": Object {
+          "email": "momocraft@gmail.com",
+          "name": "Wang Guan",
+        },
+        "desc": "commit: wip",
+        "from": "98c005c4df40f00211a7b7bf134a8de6fac798b3",
+        "to": "b0f7f0eaf6fe167b32543ff34afa6ba1b267ba02",
+      },
+      "refpath": undefined,
+      "type": "Commit",
+    },
+    Object {
+      "branchLog": undefined,
+      "headLog": Object {
+        "at": Object {
+          "tz": "+0900",
+          "utcSec": 1495885954,
+        },
+        "by": Object {
+          "email": "momocraft@gmail.com",
+          "name": "Wang Guan",
+        },
+        "desc": "commit: install yarn",
+        "from": "469fd0595537533d69fc6a72082eb2e80108102e",
+        "to": "98c005c4df40f00211a7b7bf134a8de6fac798b3",
+      },
+      "refpath": undefined,
+      "type": "Commit",
+    },
+    Object {
+      "branchLog": undefined,
+      "branchpath": undefined,
+      "headLog": Object {
+        "at": Object {
+          "tz": "+0900",
+          "utcSec": 1495883227,
+        },
+        "by": Object {
+          "email": "momocraft@gmail.com",
+          "name": "Wang Guan",
+        },
+        "desc": "reset: moving to origin/moyu",
+        "from": "306e888c2732391b7e521ec25228b48bd119b866",
+        "to": "469fd0595537533d69fc6a72082eb2e80108102e",
+      },
+      "type": "Reset",
+    },
+    Object {
+      "headLog": Object {
+        "at": Object {
+          "tz": "+0900",
+          "utcSec": 1495883194,
+        },
+        "by": Object {
+          "email": "momocraft@gmail.com",
+          "name": "Wang Guan",
+        },
+        "desc": "checkout: moving from master to moyu",
+        "from": "a14ff26b3a1da1b7ef951b646496b146fffb8970",
+        "to": "306e888c2732391b7e521ec25228b48bd119b866",
+      },
+      "type": "Checkout",
+    },
+    Object {
+      "branchLog": Object {
+        "at": Object {
+          "tz": "+0900",
+          "utcSec": 1491710205,
+        },
+        "by": Object {
+          "email": "momocraft@gmail.com",
+          "name": "Wang Guan",
+        },
+        "desc": "merge origin/master: Fast-forward",
+        "from": "d33e7f44c7466d5e35250f4da169d1846ada2d44",
+        "to": "a14ff26b3a1da1b7ef951b646496b146fffb8970",
+      },
+      "headLog": Object {
+        "at": Object {
+          "tz": "+0900",
+          "utcSec": 1491710205,
+        },
+        "by": Object {
+          "email": "momocraft@gmail.com",
+          "name": "Wang Guan",
+        },
+        "desc": "merge origin/master: Fast-forward",
+        "from": "d33e7f44c7466d5e35250f4da169d1846ada2d44",
+        "to": "a14ff26b3a1da1b7ef951b646496b146fffb8970",
+      },
+      "refpath": "refs/heads/master",
+      "type": "Merge",
+    },
+    Object {
+      "headLog": Object {
+        "at": Object {
+          "tz": "+0900",
+          "utcSec": 1491710194,
+        },
+        "by": Object {
+          "email": "momocraft@gmail.com",
+          "name": "Wang Guan",
+        },
+        "desc": "checkout: moving from moyu to master",
+        "from": "306e888c2732391b7e521ec25228b48bd119b866",
+        "to": "d33e7f44c7466d5e35250f4da169d1846ada2d44",
+      },
+      "type": "Checkout",
+    },
+    Object {
+      "branchLog": undefined,
+      "branchpath": undefined,
+      "headLog": Object {
+        "at": Object {
+          "tz": "+0900",
+          "utcSec": 1486469745,
+        },
+        "by": Object {
+          "email": "momocraft@gmail.com",
+          "name": "Wang Guan",
+        },
+        "desc": "reset: moving to origin/moyu",
+        "from": "46a23725ce6e9e25f796318afcbc4fd802638b9d",
+        "to": "306e888c2732391b7e521ec25228b48bd119b866",
+      },
+      "type": "Reset",
+    },
+    Object {
+      "branchLog": undefined,
+      "headLog": Object {
+        "at": Object {
+          "tz": "+0900",
+          "utcSec": 1486427303,
+        },
+        "by": Object {
+          "email": "momocraft@gmail.com",
+          "name": "Wang Guan",
+        },
+        "desc": "merge origin/moyu: Fast-forward",
+        "from": "f15bfd86a61ae0b04a41060482ec66e608bbb845",
+        "to": "46a23725ce6e9e25f796318afcbc4fd802638b9d",
+      },
+      "refpath": undefined,
+      "type": "Merge",
+    },
+    Object {
+      "branchLog": undefined,
+      "headLog": Object {
+        "at": Object {
+          "tz": "+0900",
+          "utcSec": 1486315062,
+        },
+        "by": Object {
+          "email": "momocraft@gmail.com",
+          "name": "Wang Guan",
+        },
+        "desc": "merge origin/moyu: Fast-forward",
+        "from": "d33e7f44c7466d5e35250f4da169d1846ada2d44",
+        "to": "f15bfd86a61ae0b04a41060482ec66e608bbb845",
+      },
+      "refpath": undefined,
+      "type": "Merge",
+    },
+    Object {
+      "headLog": Object {
+        "at": Object {
+          "tz": "+0900",
+          "utcSec": 1486315057,
+        },
+        "by": Object {
+          "email": "momocraft@gmail.com",
+          "name": "Wang Guan",
+        },
+        "desc": "checkout: moving from master to moyu",
+        "from": "d33e7f44c7466d5e35250f4da169d1846ada2d44",
+        "to": "d33e7f44c7466d5e35250f4da169d1846ada2d44",
+      },
+      "type": "Checkout",
+    },
+    Object {
+      "branchLog": Object {
+        "at": Object {
+          "tz": "+0900",
+          "utcSec": 1485429500,
+        },
+        "by": Object {
+          "email": "momocraft@gmail.com",
+          "name": "Wang Guan",
+        },
+        "desc": "merge moyu: Fast-forward",
+        "from": "7a28b4d55f61082e6bd0f421006aa37406ace474",
+        "to": "d33e7f44c7466d5e35250f4da169d1846ada2d44",
+      },
+      "headLog": Object {
+        "at": Object {
+          "tz": "+0900",
+          "utcSec": 1485429500,
+        },
+        "by": Object {
+          "email": "momocraft@gmail.com",
+          "name": "Wang Guan",
+        },
+        "desc": "merge moyu: Fast-forward",
+        "from": "7a28b4d55f61082e6bd0f421006aa37406ace474",
+        "to": "d33e7f44c7466d5e35250f4da169d1846ada2d44",
+      },
+      "refpath": "refs/heads/master",
+      "type": "Merge",
+    },
+    Object {
+      "headLog": Object {
+        "at": Object {
+          "tz": "+0900",
+          "utcSec": 1485429497,
+        },
+        "by": Object {
+          "email": "momocraft@gmail.com",
+          "name": "Wang Guan",
+        },
+        "desc": "checkout: moving from moyu to master",
+        "from": "d33e7f44c7466d5e35250f4da169d1846ada2d44",
+        "to": "7a28b4d55f61082e6bd0f421006aa37406ace474",
+      },
+      "type": "Checkout",
+    },
+    Object {
+      "branchLog": undefined,
+      "headLog": Object {
+        "at": Object {
+          "tz": "+0900",
+          "utcSec": 1485429489,
+        },
+        "by": Object {
+          "email": "momocraft@gmail.com",
+          "name": "Wang Guan",
+        },
+        "desc": "merge origin/moyu: Fast-forward",
+        "from": "4982a8e5c7eef86be6b53c3a3ba36b42ac7321f6",
+        "to": "d33e7f44c7466d5e35250f4da169d1846ada2d44",
+      },
+      "refpath": undefined,
+      "type": "Merge",
+    },
+    Object {
+      "branchLog": undefined,
+      "headLog": Object {
+        "at": Object {
+          "tz": "+0900",
+          "utcSec": 1485320729,
+        },
+        "by": Object {
+          "email": "momocraft@gmail.com",
+          "name": "Wang Guan",
+        },
+        "desc": "merge origin/moyu: Fast-forward",
+        "from": "1ecf03fa505eccb320a7909852f4097f523b4103",
+        "to": "4982a8e5c7eef86be6b53c3a3ba36b42ac7321f6",
+      },
+      "refpath": undefined,
+      "type": "Merge",
+    },
+    Object {
+      "branchLog": undefined,
+      "headLog": Object {
+        "at": Object {
+          "tz": "+0900",
+          "utcSec": 1485269148,
+        },
+        "by": Object {
+          "email": "momocraft@gmail.com",
+          "name": "Wang Guan",
+        },
+        "desc": "commit: wip",
+        "from": "7a28b4d55f61082e6bd0f421006aa37406ace474",
+        "to": "1ecf03fa505eccb320a7909852f4097f523b4103",
+      },
+      "refpath": undefined,
+      "type": "Commit",
+    },
+    Object {
+      "branchLog": undefined,
+      "headLog": Object {
+        "at": Object {
+          "tz": "+0900",
+          "utcSec": 1485267910,
+        },
+        "by": Object {
+          "email": "momocraft@gmail.com",
+          "name": "Wang Guan",
+        },
+        "desc": "merge master: Fast-forward",
+        "from": "62e80932cd3da6b86ac76a81468fe006fcaedf80",
+        "to": "7a28b4d55f61082e6bd0f421006aa37406ace474",
+      },
+      "refpath": undefined,
+      "type": "Merge",
+    },
+    Object {
+      "headLog": Object {
+        "at": Object {
+          "tz": "+0900",
+          "utcSec": 1485267907,
+        },
+        "by": Object {
+          "email": "momocraft@gmail.com",
+          "name": "Wang Guan",
+        },
+        "desc": "checkout: moving from master to moyu",
+        "from": "7a28b4d55f61082e6bd0f421006aa37406ace474",
+        "to": "62e80932cd3da6b86ac76a81468fe006fcaedf80",
+      },
+      "type": "Checkout",
+    },
+    Object {
+      "branchLog": Object {
+        "at": Object {
+          "tz": "+0900",
+          "utcSec": 1485265413,
+        },
+        "by": Object {
+          "email": "momocraft@gmail.com",
+          "name": "Wang Guan",
+        },
+        "desc": "commit: no need for electron-rebuild",
+        "from": "62e80932cd3da6b86ac76a81468fe006fcaedf80",
+        "to": "7a28b4d55f61082e6bd0f421006aa37406ace474",
+      },
+      "headLog": Object {
+        "at": Object {
+          "tz": "+0900",
+          "utcSec": 1485265413,
+        },
+        "by": Object {
+          "email": "momocraft@gmail.com",
+          "name": "Wang Guan",
+        },
+        "desc": "commit: no need for electron-rebuild",
+        "from": "62e80932cd3da6b86ac76a81468fe006fcaedf80",
+        "to": "7a28b4d55f61082e6bd0f421006aa37406ace474",
+      },
+      "refpath": "refs/heads/master",
+      "type": "Commit",
+    },
+    Object {
+      "branchLog": Object {
+        "at": Object {
+          "tz": "+0900",
+          "utcSec": 1485265325,
+        },
+        "by": Object {
+          "email": "momocraft@gmail.com",
+          "name": "Wang Guan",
+        },
+        "desc": "merge moyu: Fast-forward",
+        "from": "1940b1adca8f6633dfe9c4e73bb79b11e820af35",
+        "to": "62e80932cd3da6b86ac76a81468fe006fcaedf80",
+      },
+      "headLog": Object {
+        "at": Object {
+          "tz": "+0900",
+          "utcSec": 1485265325,
+        },
+        "by": Object {
+          "email": "momocraft@gmail.com",
+          "name": "Wang Guan",
+        },
+        "desc": "merge moyu: Fast-forward",
+        "from": "1940b1adca8f6633dfe9c4e73bb79b11e820af35",
+        "to": "62e80932cd3da6b86ac76a81468fe006fcaedf80",
+      },
+      "refpath": "refs/heads/master",
+      "type": "Merge",
+    },
+    Object {
+      "headLog": Object {
+        "at": Object {
+          "tz": "+0900",
+          "utcSec": 1485265323,
+        },
+        "by": Object {
+          "email": "momocraft@gmail.com",
+          "name": "Wang Guan",
+        },
+        "desc": "checkout: moving from moyu to master",
+        "from": "62e80932cd3da6b86ac76a81468fe006fcaedf80",
+        "to": "1940b1adca8f6633dfe9c4e73bb79b11e820af35",
+      },
+      "type": "Checkout",
+    },
+    Object {
+      "branchLog": undefined,
+      "headLog": Object {
+        "at": Object {
+          "tz": "+0900",
+          "utcSec": 1485265314,
+        },
+        "by": Object {
+          "email": "momocraft@gmail.com",
+          "name": "Wang Guan",
+        },
+        "desc": "commit (amend): wip",
+        "from": "85ed2f4f3c00fe4f98d91cfd96b9c8f919d8bd4a",
+        "to": "62e80932cd3da6b86ac76a81468fe006fcaedf80",
+      },
+      "refpath": undefined,
+      "type": "Commit",
+    },
+    Object {
+      "branchLog": undefined,
+      "branchpath": undefined,
+      "headLogs": Array [
+        Object {
+          "at": Object {
+            "tz": "+0900",
+            "utcSec": 1485265298,
+          },
+          "by": Object {
+            "email": "momocraft@gmail.com",
+            "name": "Wang Guan",
+          },
+          "desc": "rebase -i (start): checkout origin/master",
+          "from": "c34c93c919f7ffcc9f3fab3da94e2c4740a279ba",
+          "to": "ba2a1298e02943208f642ae7ce228ccd00c90cc5",
+        },
+        Object {
+          "at": Object {
+            "tz": "+0900",
+            "utcSec": 1485265299,
+          },
+          "by": Object {
+            "email": "momocraft@gmail.com",
+            "name": "Wang Guan",
+          },
+          "desc": "rebase -i (squash): # This is a combination of 2 commits.",
+          "from": "ba2a1298e02943208f642ae7ce228ccd00c90cc5",
+          "to": "2eb19c170e8d26137520724fc3fb0e67388fded1",
+        },
+        Object {
+          "at": Object {
+            "tz": "+0900",
+            "utcSec": 1485265299,
+          },
+          "by": Object {
+            "email": "momocraft@gmail.com",
+            "name": "Wang Guan",
+          },
+          "desc": "rebase -i (squash): # This is a combination of 3 commits.",
+          "from": "2eb19c170e8d26137520724fc3fb0e67388fded1",
+          "to": "bc4a706215169003c3f1f8a85cdab990b7a906be",
+        },
+        Object {
+          "at": Object {
+            "tz": "+0900",
+            "utcSec": 1485265299,
+          },
+          "by": Object {
+            "email": "momocraft@gmail.com",
+            "name": "Wang Guan",
+          },
+          "desc": "rebase -i (squash): # This is a combination of 4 commits.",
+          "from": "bc4a706215169003c3f1f8a85cdab990b7a906be",
+          "to": "c9eeff190a852ca05bbf0bee9b14d4c6fbfe858f",
+        },
+        Object {
+          "at": Object {
+            "tz": "+0900",
+            "utcSec": 1485265299,
+          },
+          "by": Object {
+            "email": "momocraft@gmail.com",
+            "name": "Wang Guan",
+          },
+          "desc": "rebase -i (squash): # This is a combination of 5 commits.",
+          "from": "c9eeff190a852ca05bbf0bee9b14d4c6fbfe858f",
+          "to": "633be3b7030ee2b1d3b192a5267b5c3614bc6295",
+        },
+        Object {
+          "at": Object {
+            "tz": "+0900",
+            "utcSec": 1485265299,
+          },
+          "by": Object {
+            "email": "momocraft@gmail.com",
+            "name": "Wang Guan",
+          },
+          "desc": "rebase -i (squash): # This is a combination of 6 commits.",
+          "from": "633be3b7030ee2b1d3b192a5267b5c3614bc6295",
+          "to": "4105828c85673406d5868d70d77c499e0ac0cae2",
+        },
+        Object {
+          "at": Object {
+            "tz": "+0900",
+            "utcSec": 1485265299,
+          },
+          "by": Object {
+            "email": "momocraft@gmail.com",
+            "name": "Wang Guan",
+          },
+          "desc": "rebase -i (squash): # This is a combination of 7 commits.",
+          "from": "4105828c85673406d5868d70d77c499e0ac0cae2",
+          "to": "8b0d15c316a7999cce080f62bd3cc49b7fedf80e",
+        },
+        Object {
+          "at": Object {
+            "tz": "+0900",
+            "utcSec": 1485265299,
+          },
+          "by": Object {
+            "email": "momocraft@gmail.com",
+            "name": "Wang Guan",
+          },
+          "desc": "rebase -i (squash): wip",
+          "from": "8b0d15c316a7999cce080f62bd3cc49b7fedf80e",
+          "to": "85ed2f4f3c00fe4f98d91cfd96b9c8f919d8bd4a",
+        },
+        Object {
+          "at": Object {
+            "tz": "+0900",
+            "utcSec": 1485265305,
+          },
+          "by": Object {
+            "email": "momocraft@gmail.com",
+            "name": "Wang Guan",
+          },
+          "desc": "rebase -i (finish): returning to refs/heads/moyu",
+          "from": "85ed2f4f3c00fe4f98d91cfd96b9c8f919d8bd4a",
+          "to": "85ed2f4f3c00fe4f98d91cfd96b9c8f919d8bd4a",
+        },
+      ],
+      "type": "RebaseInteractivelyFinished",
+    },
+    Object {
+      "branchLog": undefined,
+      "headLog": Object {
+        "at": Object {
+          "tz": "+0900",
+          "utcSec": 1485265288,
+        },
+        "by": Object {
+          "email": "momocraft@gmail.com",
+          "name": "Wang Guan",
+        },
+        "desc": "merge origin/moyu: Fast-forward",
+        "from": "3c21d7bd62669d9e41068fc8528ff5c8db062a4d",
+        "to": "c34c93c919f7ffcc9f3fab3da94e2c4740a279ba",
+      },
+      "refpath": undefined,
+      "type": "Merge",
+    },
+    Object {
+      "branchLog": undefined,
+      "branchpath": undefined,
+      "headLog": Object {
+        "at": Object {
+          "tz": "+0900",
+          "utcSec": 1485258378,
+        },
+        "by": Object {
+          "email": "momocraft@gmail.com",
+          "name": "Wang Guan",
+        },
+        "desc": "reset: moving to origin/moyu",
+        "from": "e686de3ced84ede8882491884b95d7372e638b1f",
+        "to": "3c21d7bd62669d9e41068fc8528ff5c8db062a4d",
+      },
+      "type": "Reset",
+    },
+    Object {
+      "branchLog": undefined,
+      "headLog": Object {
+        "at": Object {
+          "tz": "+0900",
+          "utcSec": 1485175947,
+        },
+        "by": Object {
+          "email": "momocraft@gmail.com",
+          "name": "Wang Guan",
+        },
+        "desc": "commit: wip",
+        "from": "bc59ed26933374a71d3edc04f04a6d479d23f4c0",
+        "to": "e686de3ced84ede8882491884b95d7372e638b1f",
+      },
+      "refpath": undefined,
+      "type": "Commit",
+    },
+    Object {
+      "branchLog": undefined,
+      "branchpath": undefined,
+      "headLogs": Array [
+        Object {
+          "at": Object {
+            "tz": "+0900",
+            "utcSec": 1485174577,
+          },
+          "by": Object {
+            "email": "momocraft@gmail.com",
+            "name": "Wang Guan",
+          },
+          "desc": "rebase -i (start): checkout origin/master",
+          "from": "2b39b5bce311daa7c7e6b695dd97ad08140d2385",
+          "to": "ccaa6725cdcadf5097334db5a3085483b7ef1941",
+        },
+        Object {
+          "at": Object {
+            "tz": "+0900",
+            "utcSec": 1485174577,
+          },
+          "by": Object {
+            "email": "momocraft@gmail.com",
+            "name": "Wang Guan",
+          },
+          "desc": "rebase -i (squash): # This is a combination of 2 commits.",
+          "from": "ccaa6725cdcadf5097334db5a3085483b7ef1941",
+          "to": "4b5369efe7ab2952ccf71ad472b516a2ee54c538",
+        },
+        Object {
+          "at": Object {
+            "tz": "+0900",
+            "utcSec": 1485174577,
+          },
+          "by": Object {
+            "email": "momocraft@gmail.com",
+            "name": "Wang Guan",
+          },
+          "desc": "rebase -i (squash): # This is a combination of 3 commits.",
+          "from": "4b5369efe7ab2952ccf71ad472b516a2ee54c538",
+          "to": "a2efceca6985307296bc16a0ea50490aee4a346b",
+        },
+        Object {
+          "at": Object {
+            "tz": "+0900",
+            "utcSec": 1485174577,
+          },
+          "by": Object {
+            "email": "momocraft@gmail.com",
+            "name": "Wang Guan",
+          },
+          "desc": "rebase -i (squash): # This is a combination of 4 commits.",
+          "from": "a2efceca6985307296bc16a0ea50490aee4a346b",
+          "to": "5e8f6050e02824f14f49064aa2e580429cbe208d",
+        },
+        Object {
+          "at": Object {
+            "tz": "+0900",
+            "utcSec": 1485174577,
+          },
+          "by": Object {
+            "email": "momocraft@gmail.com",
+            "name": "Wang Guan",
+          },
+          "desc": "rebase -i (squash): # This is a combination of 5 commits.",
+          "from": "5e8f6050e02824f14f49064aa2e580429cbe208d",
+          "to": "ce8ea32deb28d1adbbef760eed8ce1cc671dfe4e",
+        },
+        Object {
+          "at": Object {
+            "tz": "+0900",
+            "utcSec": 1485174577,
+          },
+          "by": Object {
+            "email": "momocraft@gmail.com",
+            "name": "Wang Guan",
+          },
+          "desc": "rebase -i (squash): # This is a combination of 6 commits.",
+          "from": "ce8ea32deb28d1adbbef760eed8ce1cc671dfe4e",
+          "to": "b9c0aa4887b3ef2e2d31939207510bff349fbb24",
+        },
+        Object {
+          "at": Object {
+            "tz": "+0900",
+            "utcSec": 1485174578,
+          },
+          "by": Object {
+            "email": "momocraft@gmail.com",
+            "name": "Wang Guan",
+          },
+          "desc": "rebase -i (squash): wip",
+          "from": "b9c0aa4887b3ef2e2d31939207510bff349fbb24",
+          "to": "bc59ed26933374a71d3edc04f04a6d479d23f4c0",
+        },
+        Object {
+          "at": Object {
+            "tz": "+0900",
+            "utcSec": 1485174583,
+          },
+          "by": Object {
+            "email": "momocraft@gmail.com",
+            "name": "Wang Guan",
+          },
+          "desc": "rebase -i (finish): returning to refs/heads/moyu",
+          "from": "bc59ed26933374a71d3edc04f04a6d479d23f4c0",
+          "to": "bc59ed26933374a71d3edc04f04a6d479d23f4c0",
+        },
+      ],
+      "type": "RebaseInteractivelyFinished",
+    },
+    Object {
+      "headLog": Object {
+        "at": Object {
+          "tz": "+0900",
+          "utcSec": 1485174565,
+        },
+        "by": Object {
+          "email": "momocraft@gmail.com",
+          "name": "Wang Guan",
+        },
+        "desc": "checkout: moving from master to moyu",
+        "from": "1940b1adca8f6633dfe9c4e73bb79b11e820af35",
+        "to": "2b39b5bce311daa7c7e6b695dd97ad08140d2385",
+      },
+      "type": "Checkout",
+    },
+    Object {
+      "branchLog": Object {
+        "at": Object {
+          "tz": "+0900",
+          "utcSec": 1485077541,
+        },
+        "by": Object {
+          "email": "momocraft@gmail.com",
+          "name": "Wang Guan",
+        },
+        "desc": "reset: moving to origin/master",
+        "from": "8ca2c7bf618621fc924e4d5b04f9e56d2f397820",
+        "to": "1940b1adca8f6633dfe9c4e73bb79b11e820af35",
+      },
+      "branchpath": "refs/heads/master",
+      "headLog": Object {
+        "at": Object {
+          "tz": "+0900",
+          "utcSec": 1485077541,
+        },
+        "by": Object {
+          "email": "momocraft@gmail.com",
+          "name": "Wang Guan",
+        },
+        "desc": "reset: moving to origin/master",
+        "from": "8ca2c7bf618621fc924e4d5b04f9e56d2f397820",
+        "to": "1940b1adca8f6633dfe9c4e73bb79b11e820af35",
+      },
+      "type": "Reset",
+    },
+    Object {
+      "headLog": Object {
+        "at": Object {
+          "tz": "+0900",
+          "utcSec": 1482587302,
+        },
+        "by": Object {
+          "email": "momocraft@gmail.com",
+          "name": "Wang Guan",
+        },
+        "desc": "checkout: moving from new-master to master",
+        "from": "1a306531b4f147f63237d35c2642bcea2a9c0f4e",
+        "to": "8ca2c7bf618621fc924e4d5b04f9e56d2f397820",
+      },
+      "type": "Checkout",
+    },
+    Object {
+      "branchLog": undefined,
+      "branchpath": undefined,
+      "headLog": Object {
+        "at": Object {
+          "tz": "+0900",
+          "utcSec": 1482587294,
+        },
+        "by": Object {
+          "email": "momocraft@gmail.com",
+          "name": "Wang Guan",
+        },
+        "desc": "reset: moving to HEAD",
+        "from": "1a306531b4f147f63237d35c2642bcea2a9c0f4e",
+        "to": "1a306531b4f147f63237d35c2642bcea2a9c0f4e",
+      },
+      "type": "Reset",
+    },
+    Object {
+      "branchLog": undefined,
+      "branchpath": undefined,
+      "headLog": Object {
+        "at": Object {
+          "tz": "+0900",
+          "utcSec": 1482582054,
+        },
+        "by": Object {
+          "email": "momocraft@gmail.com",
+          "name": "Wang Guan",
+        },
+        "desc": "reset: moving to HEAD",
+        "from": "1a306531b4f147f63237d35c2642bcea2a9c0f4e",
+        "to": "1a306531b4f147f63237d35c2642bcea2a9c0f4e",
+      },
+      "type": "Reset",
+    },
+    Object {
+      "headLog": Object {
+        "at": Object {
+          "tz": "+0900",
+          "utcSec": 1482581812,
+        },
+        "by": Object {
+          "email": "momocraft@gmail.com",
+          "name": "Wang Guan",
+        },
+        "desc": "checkout: moving from master to new-master",
+        "from": "8ca2c7bf618621fc924e4d5b04f9e56d2f397820",
+        "to": "1a306531b4f147f63237d35c2642bcea2a9c0f4e",
+      },
+      "type": "Checkout",
+    },
+    Object {
+      "branchLog": Object {
+        "at": Object {
+          "tz": "+0900",
+          "utcSec": 1482574603,
+        },
+        "by": Object {
+          "email": "momocraft@gmail.com",
+          "name": "Wang Guan",
+        },
+        "desc": "merge origin/master: Fast-forward",
+        "from": "5dfabb75da7ab798b6f4e445ff0a48fd9a7a51be",
+        "to": "8ca2c7bf618621fc924e4d5b04f9e56d2f397820",
+      },
+      "headLog": Object {
+        "at": Object {
+          "tz": "+0900",
+          "utcSec": 1482574603,
+        },
+        "by": Object {
+          "email": "momocraft@gmail.com",
+          "name": "Wang Guan",
+        },
+        "desc": "merge origin/master: Fast-forward",
+        "from": "5dfabb75da7ab798b6f4e445ff0a48fd9a7a51be",
+        "to": "8ca2c7bf618621fc924e4d5b04f9e56d2f397820",
+      },
+      "refpath": "refs/heads/master",
+      "type": "Merge",
+    },
+  ],
+]
+`;

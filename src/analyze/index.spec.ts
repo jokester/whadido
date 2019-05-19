@@ -2,70 +2,35 @@
 import { fromTest, fromTmp } from '../spec/helper';
 import { topParser } from './reflog';
 import { buildState, countReflog, RefHistory, unbuildState } from './ref-state';
-import { op2obj } from './util';
 import { fsp } from "../util/fsp";
 
 const { readText, writeFile } = fsp;
-/**
- * Test data
- */
-let ex_whadido_2: RefHistory[];
-let ex_tsboilerplate_1: RefHistory[];
 
-beforeAll(async () => {
-  // ex_whadido_2 = JSON.parse(
-  //     await readText(fromTest("whadido-2.json"), { encoding: "utf-8" }));
-  ex_tsboilerplate_1 = JSON.parse(await readText(fromTest('ts-boilerplate-1.json'), 'utf-8' ));
-});
+describe('reflog - parser', () => {
 
-describe('reflog - parser v2', () => {
-  async function commonRoutine(tag: string, filename: string, size: number, parsed: number, remained: number) {
-    const ex: RefHistory[] = JSON.parse(await readText(fromTest(filename), 'utf-8' ));
-
-    const initialState = buildState(ex);
-
-    expect(countReflog(initialState)).toEqual(size);
-
-    // should give a unambigious result
-    const allResults = topParser(initialState);
-
-    // consumes item(s) and got operation(s)
-    const { output, rest } = allResults[0];
-
-    await writeFile(fromTmp(`${tag}-output-v2.json`), JSON.stringify(output.map(op2obj), undefined, 4));
-
-    await writeFile(fromTmp(`${tag}-rest-v2.json`), JSON.stringify(unbuildState(ex, rest), undefined, 4));
-
-    expect(allResults.length).toEqual(1);
-    expect([output.length, countReflog(rest)]).toEqual([parsed, remained]);
+  for(const [tag, jsonFilename] of new Map<string, string>([
+    ['whadido-1', 'whadido-1.json'],
+    ['bangumi-1', 'bangumi-1.json'],
+    ['ts-boilerplate-1', 'ts-boilerplate-1.json'],
+  ])) {
+    it(`parses ${tag}`, () => testWithDump(tag, jsonFilename));
   }
 
-  it('topParser(ex_whadido_1)', async () => {
-    await commonRoutine('whadido-1', 'whadido-1.json', 128, 88, 0);
-  });
+  async function testWithDump(tag: string, jsonFilename: string) {
 
-  it('topParser(bangumi_1)', async () => {
-    await commonRoutine('bangumi-1', 'bangumi-1.json', 123, 40, 53);
-  });
+    const input = JSON.parse(await readText(fromTest(jsonFilename)))
 
-  it('topParser(ex_tsboilerplate_1)', async () => {
-    const initialState = buildState(ex_tsboilerplate_1);
+    const inputState = buildState(input);
 
-    expect(countReflog(initialState)).toEqual(136);
+    const parsed = topParser(inputState);
 
-    // should give a unambigious result
-    const allResults = topParser(initialState);
+    for(let i=0; i < parsed.length; i++) {
+      const {output, rest} = parsed[i];
+      await writeFile(fromTmp(`${tag}-output-alt${i}.json`), JSON.stringify(output, undefined, 4));
+      await writeFile(fromTmp(`${tag}-rest-alt${i}.json`), JSON.stringify(unbuildState(input, rest), undefined, 4));
+    }
 
-    // consumes item(s) and got operation(s)
-    const { output, rest } = allResults[0];
+    expect(parsed.map(p => p.output)).toMatchSnapshot(`topParser(${jsonFilename}`);
+  }
 
-    await writeFile(fromTmp('boilerplate-1-output-v2.json'), JSON.stringify(output.map(op2obj), undefined, 4));
-
-    await writeFile(
-      fromTmp('boilerplate-1-rest-v2.json'),
-      JSON.stringify(unbuildState(ex_tsboilerplate_1, rest), undefined, 4),
-    );
-    expect(allResults.length).toEqual(1);
-    expect([output.length, countReflog(rest)]).toEqual([90, 0]);
-  });
 });

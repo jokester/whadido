@@ -1,5 +1,5 @@
 import { List as IList } from 'immutable';
-import { RefState } from './ref-state';
+import { RefState, BranchTip } from './ref-state';
 import { ParserPatterns, RefLog } from '../git';
 import { allReflog, b, popReflog, setRest, u } from './parser-primitives';
 import { biased, bind, filter, maybeDefault, Parser, unit, zero } from '../parser';
@@ -182,8 +182,8 @@ export function createParsers(state: RefState) {
 
   const pull = b(headDesc(/^pull:/), (headLast: RefLog) =>
     b(
-      maybeDefault<RefState, BranchTip>(
-        [null!, null!],
+      maybeDefault<RefState, BranchTip | null>(
+        null,
         biased<RefState, BranchTip>(
           ...popLocal.map(p =>
             bind<RefState, BranchTip, BranchTip>(p, ([localBranchName, localLast]) => {
@@ -195,10 +195,10 @@ export function createParsers(state: RefState) {
           ),
         ),
       ),
-      ([localBranchName, localLast]) =>
+      maybeLocalBranchTip =>
         b(
-          maybeDefault<RefState, BranchTip>(
-            [null!, null!],
+          maybeDefault<RefState, BranchTip | null>(
+            null,
             biased<RefState, BranchTip>(
               ...popRemote.map(p =>
                 bind<RefState, BranchTip, BranchTip>(p, ([remoteBranchName, remoteLast]) => {
@@ -210,15 +210,25 @@ export function createParsers(state: RefState) {
               ),
             ),
           ),
-          ([remoteBranchName, remoteBranchLast]) => u(operationFactory.pull(headLast)),
+          maybeRemoteBranchTip => u(operationFactory.pull(headLast, maybeRemoteBranchTip, maybeLocalBranchTip)),
         ),
     ),
+  );
+
+  const remoteOnlyPull: OperationParserArray = popRemote.map(p =>
+    b(p, ([branchPath, branchLast]) => {
+      if (/^pull: /.test(branchLast.desc)) {
+        return u(operationFactory.remoteOnlyPull(branchPath, branchLast));
+      }
+      return zero;
+    }),
   );
 
   return {
     remoteBranchUpdatedByPush,
     remoteBranchUpdatedByFetch,
     remoteBranchRenamed,
+    remoteOnlyPull,
     merge,
     nonMergeCommit,
     createBranch,
@@ -231,8 +241,6 @@ export function createParsers(state: RefState) {
     pull,
   };
 }
-
-type BranchTip = [string, RefLog];
 
 function headDesc(regex: RegExp) {
   return filter(popReflog(CONST.HEAD), headLast => regex.test(headLast.desc));
@@ -307,7 +315,7 @@ const headRebaseInteractiveFinished = b(allReflog(CONST.HEAD), headReflogs => {
   let r: RefLog;
   for (let consumed = 1; consumed <= headReflogs.size; consumed++) {
     r = headReflogs.get(headReflogs.size - consumed)!;
-    if (!RebaseDesc.i.exec(r.desc)) {
+    if (!RebaseDesc.i.test(r.desc)) {
       return z;
     }
     if (RebaseDesc.iStart.exec(r.desc)) {

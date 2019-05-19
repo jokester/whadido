@@ -1,4 +1,4 @@
-import { createOptionParser } from './options';
+import { createOptionParser, ParsedOptions } from './options';
 import { topParser } from '../analyze';
 import { GitRepoReader } from '../git/repo-reader';
 import { getLogger } from '../util/logging';
@@ -34,6 +34,7 @@ export async function cliMain() {
   const formatter = new ChalkFormatter({
     printLn: (...s) => console.log(...s),
     gitSha1Length: 8,
+    debug: true,
   });
 
   try {
@@ -44,34 +45,34 @@ export async function cliMain() {
       process.exit(1);
       return;
     }
-    formatter.line(l => l.comment(`Found repository at ${repo.repoRoot}`));
     const repo = await openRepo(repoRoot);
+    formatter.line(l => l.comment(`Found repository at ${repo.repoRoot}`));
 
     if (options.dump) {
       await createDump(options, repo);
       process.exit(0);
     } else {
-      const ret = await showReflog(repo, formatter);
+      const ret = await showReflog(repo, formatter, options);
       process.exit(ret);
     }
   } catch (e) {
     console.error(util.format('%o', e));
-    process.exit(1);
+    process.exit(2);
   }
 }
 
-async function showReflog(repo: GitRepoReader, formatter: ChalkFormatter): Promise<number> {
+async function showReflog(repo: GitRepoReader, formatter: ChalkFormatter, option: ParsedOptions): Promise<number> {
   const refHistory = await readRefHistory(repo);
   const initState = buildState(refHistory);
   const numReflogs = countReflog(initState);
 
   const results = topParser(initState);
-  const result0 = results[0];
+  const [result0, result1] = results;
 
   if (!result0) {
     formatter.line(l => l.errorText('Could not recognize reflogs'));
     return 2;
-  } else if (results.length > 1) {
+  } else if (result1) {
     formatter.line(l => l.warnText('Got ambiguous result in parsing. Only reporting first one.'));
   }
 
@@ -79,7 +80,7 @@ async function showReflog(repo: GitRepoReader, formatter: ChalkFormatter): Promi
 
   const remained = countReflog(result0.rest);
 
-  if (remained) {
+  if (remained && option.verbose) {
     formatter.line(line => line.warnText(`Could not analyze last ${remained} (of ${numReflogs}) reflog items.`));
   }
 

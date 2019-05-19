@@ -22,6 +22,7 @@ export function topParser(state: RefState) {
       subParsers.checkout,
       subParsers.clone,
       subParsers.pull,
+      ...subParsers.remoteOnlyPull,
     ),
   );
 

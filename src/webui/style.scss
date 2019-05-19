@@ -1,3 +1,21 @@
+#app-root {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.history-selector {
+}
+
+.history-selector > * {
+  margin: 4px;
+}
+
+.history-view {
+  overflow: auto;
+  flex-grow: 1;
+}
+
 .reflog-preview {
   display: table;
 }

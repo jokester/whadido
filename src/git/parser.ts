@@ -15,7 +15,10 @@ export const PATTERNS = freeze({
   refpath: freeze({
     localHead: /^HEAD$/,
     localBranch: /^refs\/heads\/(.*)$/,
-    remoteBranch: /^refs\/remotes\/[^\/]+\/(?!HEAD$)/,
+    //                          $1: local branch name
+    remoteBranch: /^refs\/remotes\/([^\/]+\/(?!HEAD$).*$)/,
+    //                             $1: ORIGIN/BRANCH
+    //                             NOTE: there may be '/' in either, whose meaning a regex cannot tell
     remoteHead: /^refs\/remotes\/[^\/]+\/HEAD$/,
     tag: /^refs\/tags\/(.*)$/,
     stash: /^refs\/stash$/,

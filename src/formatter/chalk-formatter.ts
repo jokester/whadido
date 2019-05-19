@@ -4,6 +4,7 @@ import util from 'util';
 
 import { ReflogFormatter, ReflogLineFormatter } from './text-line-formatter';
 import { isTimestamp, Obj, Ref, Timestamp } from '../git';
+import { CONST } from '../analyze/util';
 
 interface ChalkFormatterOption {
   debug?: boolean;
@@ -48,13 +49,44 @@ export class ChalkLineFormatter implements ReflogLineFormatter {
     return this.sha1(c.sha1);
   }
 
-  ref(ref: Ref.Ref): this {
+  remoteRef(refPath: string): this {
+    this.elements.push(chalk.blue(refPath));
+    return this;
+  }
+
+  localRef(refPath: string): this {
+    this.elements.push(chalk.magenta(refPath));
     return this;
   }
 
   sha1(sha1: string): this {
     const short = sha1.slice(0, this.option.gitSha1Length);
-    this.elements.push(chalk.green(short));
+    return this.sha1Color(short);
+  }
+
+  private sha1Color(sha1: string): this {
+    this.elements.push(chalk.green(sha1));
+    return this;
+  }
+
+  pad(num = 1): this {
+    for (let i = 0; i < num; i++) {
+      this.elements.push(' ');
+    }
+    return this;
+  }
+
+  sha1Array(...sha1Array: string[]) {
+    sha1Array.forEach((sha1, index) => {
+      if (sha1 === CONST.voidObject) {
+        this.sha1Color('(absent)');
+      } else {
+        this.sha1(sha1);
+      }
+      if (index < sha1Array.length - 1) {
+        this.comment('=>');
+      }
+    });
     return this;
   }
 
@@ -71,6 +103,9 @@ export class ChalkLineFormatter implements ReflogLineFormatter {
 }
 export class ChalkFormatter implements ReflogFormatter {
   constructor(private readonly option: Readonly<ChalkFormatterOption>) {}
+  get debugEnabled() {
+    return this.option.debug || false;
+  }
   line(contentGenerator?: (formatter: ReflogLineFormatter) => void): this {
     const line = new ChalkLineFormatter(this.option);
     contentGenerator && contentGenerator(line);

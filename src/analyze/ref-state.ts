@@ -45,6 +45,8 @@ export function unbuildState(dump: RefHistory[], state: RefState): RefHistory[] 
  */
 export type RefState = IMap<string, IList<RefLog>>;
 
+export type BranchTip = [string, RefLog];
+
 /**
  * measure size of a RefState, by #reflog
  *

@@ -1,6 +1,6 @@
 [
     {
-        "className": "Push",
+        "type": "Push",
         "refpath": "refs/remotes/origin/dev",
         "branchLog": {
             "from": "fb7291f6a9c3ab8b63d43f78b818ac9effd205b2",
@@ -17,7 +17,7 @@
         }
     },
     {
-        "className": "Push",
+        "type": "Push",
         "refpath": "refs/remotes/origin/dev",
         "branchLog": {
             "from": "4316917cb979ace237bf35c82a25139451444136",
@@ -34,7 +34,7 @@
         }
     },
     {
-        "className": "Push",
+        "type": "Push",
         "refpath": "refs/remotes/origin/revive",
         "branchLog": {
             "from": "acf38f8833a7cd98b36220da8a8f3d75bbc6fe0b",
@@ -51,7 +51,7 @@
         }
     },
     {
-        "className": "Push",
+        "type": "Push",
         "refpath": "refs/remotes/origin/revive",
         "branchLog": {
             "from": "97d42d0c1b749daf18c6c0280faf92c6e47be8f1",
@@ -68,7 +68,7 @@
         }
     },
     {
-        "className": "Fetch",
+        "type": "Fetch",
         "refpath": "refs/remotes/origin/revive",
         "branchLog": {
             "from": "fa0468b02a71d915d7cb16a9a45557dbc6cb1a1c",
@@ -85,7 +85,7 @@
         }
     },
     {
-        "className": "Push",
+        "type": "Push",
         "refpath": "refs/remotes/origin/revive",
         "branchLog": {
             "from": "269a793a13d57de739648ecd193487eafa46e1f8",
@@ -102,7 +102,7 @@
         }
     },
     {
-        "className": "Push",
+        "type": "Push",
         "refpath": "refs/remotes/origin/revive",
         "branchLog": {
             "from": "0000000000000000000000000000000000000000",
@@ -119,7 +119,6 @@
         }
     },
     {
-        "className": "Commit",
         "headLog": {
             "from": "fb7291f6a9c3ab8b63d43f78b818ac9effd205b2",
             "to": "fe61ea260f019828ad38406ee4eb9668569ea986",
@@ -146,10 +145,10 @@
                 "tz": "+0900"
             },
             "desc": "commit: wip"
-        }
+        },
+        "type": "Commit"
     },
     {
-        "className": "Commit",
         "headLog": {
             "from": "4316917cb979ace237bf35c82a25139451444136",
             "to": "fb7291f6a9c3ab8b63d43f78b818ac9effd205b2",
@@ -176,10 +175,11 @@
                 "tz": "+0900"
             },
             "desc": "commit: wip"
-        }
+        },
+        "type": "Commit"
     },
     {
-        "className": "CreateBranch",
+        "type": "CreateBranch",
         "branchLog": {
             "from": "0000000000000000000000000000000000000000",
             "to": "5e9f1da2b38d0ad513ebabdfd7ee00008fe6d3b8",
@@ -196,8 +196,36 @@
         "branchPath": "refs/heads/Bangumi2"
     },
     {
-        "className": "Pull",
+        "type": "Pull",
         "headLog": {
+            "from": "4d86099c998f2bd81f4ae71bf4beefe22fe4d732",
+            "to": "4316917cb979ace237bf35c82a25139451444136",
+            "by": {
+                "name": "Wang Guan",
+                "email": "momocraft@gmail.com"
+            },
+            "at": {
+                "utcSec": 1497269034,
+                "tz": "+0900"
+            },
+            "desc": "pull: Fast-forward"
+        },
+        "remoteBranchPath": "refs/remotes/origin/dev",
+        "remoteBranchLog": {
+            "from": "4d86099c998f2bd81f4ae71bf4beefe22fe4d732",
+            "to": "4316917cb979ace237bf35c82a25139451444136",
+            "by": {
+                "name": "Wang Guan",
+                "email": "momocraft@gmail.com"
+            },
+            "at": {
+                "utcSec": 1497269034,
+                "tz": "+0900"
+            },
+            "desc": "pull: fast-forward"
+        },
+        "localBranchPath": "refs/heads/dev",
+        "localBranchLog": {
             "from": "4d86099c998f2bd81f4ae71bf4beefe22fe4d732",
             "to": "4316917cb979ace237bf35c82a25139451444136",
             "by": {
@@ -212,7 +240,7 @@
         }
     },
     {
-        "className": "Fetch",
+        "type": "Fetch",
         "refpath": "refs/remotes/origin/dev",
         "branchLog": {
             "from": "58a75fc37d033eab78f91deb0242df6b77bf6c33",
@@ -229,7 +257,7 @@
         }
     },
     {
-        "className": "Push",
+        "type": "Push",
         "refpath": "refs/remotes/origin/dev",
         "branchLog": {
             "from": "fd0e2bf67f42aa924af964ee0787b3a200179313",
@@ -246,7 +274,7 @@
         }
     },
     {
-        "className": "Fetch",
+        "type": "Fetch",
         "refpath": "refs/remotes/origin/dev",
         "branchLog": {
             "from": "d02a4f2f24144f1917648bd67d34c71e20756446",
@@ -263,7 +291,7 @@
         }
     },
     {
-        "className": "Push",
+        "type": "Push",
         "refpath": "refs/remotes/origin/dev",
         "branchLog": {
             "from": "5fd3a48a7bdcf0907a9fcb5d030cb3be7d984c62",
@@ -280,7 +308,7 @@
         }
     },
     {
-        "className": "Push",
+        "type": "Push",
         "refpath": "refs/remotes/origin/dev",
         "branchLog": {
             "from": "f5218bd58f6f9caee25a3ee5f38e50fd897d0b4f",
@@ -297,7 +325,7 @@
         }
     },
     {
-        "className": "Fetch",
+        "type": "Fetch",
         "refpath": "refs/remotes/origin/dev",
         "branchLog": {
             "from": "b92a981db8882a6ec13ae14aa8e073699209d53a",
@@ -314,7 +342,7 @@
         }
     },
     {
-        "className": "Push",
+        "type": "Push",
         "refpath": "refs/remotes/origin/dev",
         "branchLog": {
             "from": "5a97ba9e121e37b782185c10af4b06cc1cd5d687",
@@ -331,7 +359,7 @@
         }
     },
     {
-        "className": "Fetch",
+        "type": "Fetch",
         "refpath": "refs/remotes/origin/dev",
         "branchLog": {
             "from": "0000000000000000000000000000000000000000",
@@ -348,7 +376,7 @@
         }
     },
     {
-        "className": "Merge",
+        "type": "Merge",
         "headLog": {
             "from": "58a75fc37d033eab78f91deb0242df6b77bf6c33",
             "to": "4d86099c998f2bd81f4ae71bf4beefe22fe4d732",
@@ -378,7 +406,7 @@
         }
     },
     {
-        "className": "Reset",
+        "type": "Reset",
         "headLog": {
             "from": "58a75fc37d033eab78f91deb0242df6b77bf6c33",
             "to": "58a75fc37d033eab78f91deb0242df6b77bf6c33",
@@ -394,7 +422,6 @@
         }
     },
     {
-        "className": "Commit",
         "headLog": {
             "from": "1d3b5870a011690d60c6b1ca3638cea6aad5bd01",
             "to": "58a75fc37d033eab78f91deb0242df6b77bf6c33",
@@ -421,10 +448,10 @@
                 "tz": "+0900"
             },
             "desc": "commit: clean bunengkan with tidy-html"
-        }
+        },
+        "type": "Commit"
     },
     {
-        "className": "Commit",
         "headLog": {
             "from": "dc8d7079cc9a088b3e6d3ea9d455a66484ac0ee3",
             "to": "1d3b5870a011690d60c6b1ca3638cea6aad5bd01",
@@ -451,10 +478,11 @@
                 "tz": "+0900"
             },
             "desc": "commit: fix"
-        }
+        },
+        "type": "Commit"
     },
     {
-        "className": "RebaseInteractivelyFinished",
+        "type": "RebaseInteractivelyFinished",
         "headLogs": [
             {
                 "from": "4f10bf501d658ef0eabb606f4179b8e19198e8de",
@@ -564,7 +592,7 @@
         }
     },
     {
-        "className": "Reset",
+        "type": "Reset",
         "headLog": {
             "from": "4f10bf501d658ef0eabb606f4179b8e19198e8de",
             "to": "4f10bf501d658ef0eabb606f4179b8e19198e8de",
@@ -580,7 +608,6 @@
         }
     },
     {
-        "className": "Commit",
         "headLog": {
             "from": "0b7e82dc78c0c781cd5caf51cc03eff9e19e2cb0",
             "to": "4f10bf501d658ef0eabb606f4179b8e19198e8de",
@@ -607,10 +634,10 @@
                 "tz": "+0900"
             },
             "desc": "commit: parse response lv2"
-        }
+        },
+        "type": "Commit"
     },
     {
-        "className": "Commit",
         "headLog": {
             "from": "bfd23d5bf819773fe480e60dbc3944ee35cb652a",
             "to": "0b7e82dc78c0c781cd5caf51cc03eff9e19e2cb0",
@@ -637,10 +664,10 @@
                 "tz": "+0900"
             },
             "desc": "commit: parse resp - lv1"
-        }
+        },
+        "type": "Commit"
     },
     {
-        "className": "Commit",
         "headLog": {
             "from": "768881ea99f9692ccd9bd15134f46ed5057c6e3c",
             "to": "bfd23d5bf819773fe480e60dbc3944ee35cb652a",
@@ -667,10 +694,10 @@
                 "tz": "+0900"
             },
             "desc": "commit: wip"
-        }
+        },
+        "type": "Commit"
     },
     {
-        "className": "Commit",
         "headLog": {
             "from": "ee88047b715736c6edf62cb581ef6bd14d66e41e",
             "to": "768881ea99f9692ccd9bd15134f46ed5057c6e3c",
@@ -697,10 +724,10 @@
                 "tz": "+0900"
             },
             "desc": "commit: wip"
-        }
+        },
+        "type": "Commit"
     },
     {
-        "className": "Commit",
         "headLog": {
             "from": "ae790e8382b3df405eff179824cf19db3ad223e7",
             "to": "ee88047b715736c6edf62cb581ef6bd14d66e41e",
@@ -727,10 +754,10 @@
                 "tz": "+0900"
             },
             "desc": "commit: wip"
-        }
+        },
+        "type": "Commit"
     },
     {
-        "className": "Commit",
         "headLog": {
             "from": "b6736f2f08309a59ef9bf4b0cc9b7a0661cbec99",
             "to": "ae790e8382b3df405eff179824cf19db3ad223e7",
@@ -757,10 +784,10 @@
                 "tz": "+0900"
             },
             "desc": "commit (amend): adapt SaxParser"
-        }
+        },
+        "type": "Commit"
     },
     {
-        "className": "Commit",
         "headLog": {
             "from": "4b6af5bdc65da9335eec8910f649bcfdd1584a8b",
             "to": "b6736f2f08309a59ef9bf4b0cc9b7a0661cbec99",
@@ -787,10 +814,10 @@
                 "tz": "+0900"
             },
             "desc": "commit: adapt SaxParser"
-        }
+        },
+        "type": "Commit"
     },
     {
-        "className": "Commit",
         "headLog": {
             "from": "b56da872e50d7ea7d12e6513faa793aaca659073",
             "to": "4b6af5bdc65da9335eec8910f649bcfdd1584a8b",
@@ -817,10 +844,10 @@
                 "tz": "+0900"
             },
             "desc": "commit: link my jsoup fork"
-        }
+        },
+        "type": "Commit"
     },
     {
-        "className": "Commit",
         "headLog": {
             "from": "824a380e41935d2a381e6139bb0e95a3388e22b4",
             "to": "b56da872e50d7ea7d12e6513faa793aaca659073",
@@ -847,10 +874,11 @@
                 "tz": "+0900"
             },
             "desc": "commit: upgrade gradle plugin"
-        }
+        },
+        "type": "Commit"
     },
     {
-        "className": "Reset",
+        "type": "Reset",
         "headLog": {
             "from": "824a380e41935d2a381e6139bb0e95a3388e22b4",
             "to": "824a380e41935d2a381e6139bb0e95a3388e22b4",
@@ -866,7 +894,7 @@
         }
     },
     {
-        "className": "RebaseFinished",
+        "type": "RebaseFinished",
         "headLogs": [
             {
                 "from": "4eb131781121ece60016e86bf30ce34be66a3c5a",
@@ -950,7 +978,7 @@
         }
     },
     {
-        "className": "Reset",
+        "type": "Reset",
         "headLog": {
             "from": "4eb131781121ece60016e86bf30ce34be66a3c5a",
             "to": "4eb131781121ece60016e86bf30ce34be66a3c5a",
@@ -966,7 +994,6 @@
         }
     },
     {
-        "className": "Commit",
         "headLog": {
             "from": "95745349108520fc387c4f309c9c12fa0b307743",
             "to": "4eb131781121ece60016e86bf30ce34be66a3c5a",
@@ -993,10 +1020,11 @@
                 "tz": "+0900"
             },
             "desc": "commit: wip"
-        }
+        },
+        "type": "Commit"
     },
     {
-        "className": "Merge",
+        "type": "Merge",
         "headLog": {
             "from": "d02a4f2f24144f1917648bd67d34c71e20756446",
             "to": "95745349108520fc387c4f309c9c12fa0b307743",
@@ -1026,7 +1054,7 @@
         }
     },
     {
-        "className": "Checkout",
+        "type": "Checkout",
         "headLog": {
             "from": "95745349108520fc387c4f309c9c12fa0b307743",
             "to": "d02a4f2f24144f1917648bd67d34c71e20756446",

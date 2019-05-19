@@ -3,13 +3,11 @@ import * as lodash from 'lodash';
 import { RefLog } from '../../git';
 import { RefHistory } from '../../analyze/ref-state';
 
-import './reflog-preview.scss';
-
 interface PreviewProps {
-  refDump: RefHistory[];
+  refHistory: RefHistory[];
 }
 
-export class ReflogPreview extends React.Component<PreviewProps, {}> {
+export class ReflogHistoryView extends React.Component<PreviewProps, {}> {
   sortedTimestamp(dumps: RefHistory[]) {
     const timestamps = lodash.flatten(dumps.map(d => d.reflog.map(f => f.at.utcSec)));
 
@@ -60,11 +58,11 @@ export class ReflogPreview extends React.Component<PreviewProps, {}> {
 
   render() {
     const { props } = this;
-    const timestamps = this.sortedTimestamp(props.refDump);
+    const timestamps = this.sortedTimestamp(props.refHistory);
 
     return (
       <div className="reflog-preview">
-        {props.refDump.filter(r => r.reflog.length).map(dump => this.reflogRow(dump.path, timestamps, dump.reflog))}
+        {props.refHistory.filter(r => r.reflog.length).map(dump => this.reflogRow(dump.path, timestamps, dump.reflog))}
       </div>
     );
   }
