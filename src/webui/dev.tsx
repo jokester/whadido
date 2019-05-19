@@ -1,5 +1,5 @@
-import * as React from 'react';
-import * as ReactDOM from 'react-dom';
+import React from 'react';
+import ReactDOM from 'react-dom';
 
 import { FilePicker } from './components/file-picker';
 import { RefHistory } from '../analyze/ref-state';
@@ -25,7 +25,7 @@ const App: React.FunctionComponent<{}> = () => {
   const [refDump, setRefDump] = React.useState<RefHistory[]>([]);
 
   console.log('app: refDump', refDump);
-  if (refDump && refDump.length) {
+  if (refDump.length) {
     return <ReflogPreview history={refDump} />;
   }
   return <FilePicker onTextRead={text => setRefDump(JSON.parse(text))} />;

@@ -1,69 +1,90 @@
 import * as React from 'react';
 import * as lodash from 'lodash';
-import { RefLog } from '../../git';
+import { RefLog, Timestamp } from '../../git';
 import { RefHistory } from '../../analyze/ref-state';
+import { TotalOrdered } from '../../util/total-ordered';
+import { mergeOrderedSequence } from '../../util/merge-ordered-sequence';
 
 interface PreviewProps {
   refHistory: RefHistory[];
 }
 
-export class ReflogHistoryView extends React.Component<PreviewProps, {}> {
-  sortedTimestamp(dumps: RefHistory[]) {
-    const timestamps = lodash.flatten(dumps.map(d => d.reflog.map(f => f.at.utcSec)));
-
-    return lodash.uniq(timestamps);
+const chronologicalOrder = new class extends TotalOrdered<Timestamp> {
+  before(a: Timestamp, b: Timestamp): boolean {
+    return a.utcSec < b.utcSec;
   }
 
-  /**
-   * A row shows all reflogs of one ref
-   */
-  reflogRow(refpath: string, timestamps: number[], reflogs: RefLog[]): React.ReactNode {
-    const cells: JSX.Element[] = [];
+  equal(a: Timestamp, b: Timestamp): boolean {
+    return a.utcSec === b.utcSec;
+  }
+}();
 
-    if (!reflogs.length) {
-      return (
-        <div className="reflog-row">
-          <p>refpath = {refpath} (no reflogs)</p>
-        </div>
-      );
+function foldCell(
+  dumps: RefHistory[],
+): { timestamps: Timestamp[]; reflogCells: /* [refIndex][timestampIndex] */ RefLog[][][] } {
+  const refPaths = dumps.map(h => h.path);
+
+  const reflogTimestamps: Timestamp[][] = dumps.map(d => d.reflog.map(reflog => reflog.at));
+
+  const timestamps = mergeOrderedSequence(reflogTimestamps, chronologicalOrder);
+
+  const reflogCells: RefLog[][][] = dumps.map(ref => {
+    let timestampIndex = 0;
+    const cells: RefLog[][] = [];
+    for (const [reflogOrigIndex, reflog] of ref.reflog.entries()) {
+      while (!chronologicalOrder.equal(reflog.at, timestamps[timestampIndex])) {
+        ++timestampIndex;
+      }
+
+      cells[timestampIndex] = (cells[timestampIndex] || []).concat([reflog]);
     }
+    return cells;
+  });
 
-    return (
-      <div className="reflog-row">
-        <p>refpath = {refpath}</p>
-        {timestamps.map(t => this.reflogCell(t, reflogs))}
-        <p>refpath = {refpath}</p>
-      </div>
-    );
-  }
-
-  /**
-   * A cell is identified by (refpath && timestamp), may contain multiple reflog items.
-   */
-  reflogCell(timestamp: number, reflogs: RefLog[]) {
-    const selected = reflogs.filter(r => r.at.utcSec === timestamp);
-    return <div className="reflog-cell">{selected.map(this.reflogItem)}</div>;
-  }
-
-  reflogItem(reflog: RefLog) {
-    return (
-      <div className="reflog-item">
-        <p className="reflog-time">{new Date(reflog.at.utcSec * 1e3).toISOString()}</p>
-        <p className="reflog-time">{JSON.stringify(reflog.at)}</p>
-        <p className="reflog-sha1">{reflog.from.slice(0, 6)}</p>↓<p className="reflog-sha1">{reflog.to.slice(0, 6)}</p>
-        <p className="reflog-message">{reflog.desc}</p>
-      </div>
-    );
-  }
-
-  render() {
-    const { props } = this;
-    const timestamps = this.sortedTimestamp(props.refHistory);
-
-    return (
-      <div className="reflog-preview">
-        {props.refHistory.filter(r => r.reflog.length).map(dump => this.reflogRow(dump.path, timestamps, dump.reflog))}
-      </div>
-    );
-  }
+  return {
+    timestamps,
+    reflogCells,
+  };
 }
+
+export const ReflogHistoryView: React.FC<PreviewProps> = ({ refHistory }) => {
+  const { timestamps, reflogCells } = foldCell(refHistory);
+
+  console.log('ReflogHistoryView', refHistory, timestamps, reflogCells);
+
+  const timestampIndexes = timestamps.map((_, i) => i);
+
+  return (
+    <table className="reflog-preview">
+      <thead className="th-timestamp">
+        <th>{/* empty at (0, 0) */} </th>
+        {timestamps.map((timestamp, timestampIndex) => (
+          <th className="td timestamp" key={timestampIndex}>
+            <div>{new Date(timestamp.utcSec * 1e3).toISOString()}</div>
+            <div>{JSON.stringify(timestamp)}</div>
+          </th>
+        ))}
+      </thead>
+      <tbody>
+        {refHistory.map((ref, refIndex) => (
+          <tr key={refIndex}>
+            <th>{ref.path}</th>
+            {timestampIndexes.map(timestampIndex => (
+              <td className="reflog-cell" key={timestampIndex}>
+                {(reflogCells[refIndex][timestampIndex] || []).map((reflog, reflogIndexInCell) => (
+                  <div key={reflogIndexInCell} className="reflog-item">
+                    <p className="reflog-time">{new Date(reflog.at.utcSec * 1e3).toISOString()}</p>
+                    <p className="reflog-time">{JSON.stringify(reflog.at)}</p>
+                    <p className="reflog-sha1">{reflog.from.slice(0, 6)}</p>↓
+                    <p className="reflog-sha1">{reflog.to.slice(0, 6)}</p>
+                    <p className="reflog-message">{reflog.desc}</p>
+                  </div>
+                ))}
+              </td>
+            ))}
+          </tr>
+        ))}
+      </tbody>
+    </table>
+  );
+};

@@ -39,3 +39,42 @@
 .reflog-sha1, .reflog-message {
   font-family: monospace;
 }
+
+table {
+  position: relative;
+  border-collapse: collapse;
+}
+
+td, th {
+  padding: 0.25em;
+}
+
+thead th {
+  position: -webkit-sticky; /* for Safari */
+  position: sticky;
+  top: 0;
+  background: #000;
+  color: #FFF;
+}
+
+tr {
+  min-height: 2em;
+}
+
+tr th {
+  background-color: aquamarine;
+  border: 1px solid black;
+}
+
+thead th:first-child {
+  left: 0;
+  z-index: 1;
+}
+
+tbody th {
+  position: -webkit-sticky; /* for Safari */
+  position: sticky;
+  left: 0;
+  background: #FFF;
+  border-right: 1px solid #CCC;
+}

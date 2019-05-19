@@ -44,13 +44,13 @@ export const ReflogPreview: React.FunctionComponent<{ history: RefHistory[] }> =
   return (
     <>
       <div className="history-selector">
-        <button key={-1} onClick={() => setHistoryIndex(-1)}>
+        <button key={-1} onClick={() => setHistoryIndex(-1)} disabled={historyIndex === -1}>
           input: {dump.input.reflogCount} reflogs
         </button>
 
         {dump.outputs.map((output, i) => (
-          <button key={i} onClick={() => setHistoryIndex(i)}>
-            output#{i}: {output.remainedReflogCount} reflogs
+          <button key={i} onClick={() => setHistoryIndex(i)} disabled={historyIndex === i}>
+            output#{i}: {output.remainedReflogCount} reflogs remained
           </button>
         ))}
       </div>
