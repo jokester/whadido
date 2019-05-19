@@ -1,7 +1,7 @@
 import { GitRepoException } from './error';
 import { GitRepoReaderImpl } from './repo-reader-impl';
 import { GitRepoReader } from './repo-reader';
-import { getSubprocessOutput } from '../vendor/ts-commonutil/node/subprocess';
+import { getSubprocessOutput } from '../util/subprocess';
 
 /**
  * find git repo (bare or not) from directory `start`
@@ -11,9 +11,12 @@ import { getSubprocessOutput } from '../vendor/ts-commonutil/node/subprocess';
  * @param {string} [gitBinary="git"] binary of git
  * @returns absolute path of the repo
  */
-export async function findRepo(start: string, gitBinary = 'git') {
-  // `git rev-parse --git-dir` prints path of $PWD
-  const status = await getSubprocessOutput(gitBinary, ['rev-parse', '--absolute-git-dir', '--git-dir'], { cwd: start });
+export async function findRepo(start: string, gitBinary = 'git'): Promise<string | null> {
+  const status = await getSubprocessOutput(
+    gitBinary,
+    ['rev-parse', /* requires git 2.3 */ '--absolute-git-dir', '--git-dir'],
+    { cwd: start },
+  );
 
   // find first absolute path
   for (const l of status.stdout) {
@@ -22,9 +25,7 @@ export async function findRepo(start: string, gitBinary = 'git') {
     }
   }
 
-  throw new GitRepoException(
-    `findRepo(): cannot find git repo for ${start}. got ${JSON.stringify(status)} from 'git rev-parse'`,
-  );
+  return null;
 }
 
 /**
@@ -35,7 +36,6 @@ export async function findRepo(start: string, gitBinary = 'git') {
  * @param {string} [gitBinary="git"]
  * @returns {Promise<GitRepoReader>}
  */
-export async function openRepo(start: string, gitBinary = 'git'): Promise<GitRepoReader> {
-  const repoRoot = await findRepo(start, gitBinary);
+export async function openRepo(repoRoot: string, gitBinary = 'git'): Promise<GitRepoReader> {
   return new GitRepoReaderImpl(repoRoot, gitBinary);
 }

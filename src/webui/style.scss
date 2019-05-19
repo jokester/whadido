@@ -1,0 +1,80 @@
+#app-root {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.history-selector {
+}
+
+.history-selector > * {
+  margin: 4px;
+}
+
+.history-view {
+  overflow: auto;
+  flex-grow: 1;
+}
+
+.reflog-preview {
+  display: table;
+}
+
+.reflog-row {
+  display: table-row;
+}
+
+.reflog-cell {
+  outline: 1px pink solid;
+  display: table-cell;
+  width: 160px;
+  height: 5em;
+  overflow-y: scroll;
+}
+
+.reflog-item:nth-child(n+2) {
+  border-top: 0.5px blue solid;
+}
+
+.reflog-sha1, .reflog-message {
+  font-family: monospace;
+}
+
+table {
+  position: relative;
+  border-collapse: collapse;
+}
+
+td, th {
+  padding: 0.25em;
+}
+
+thead th {
+  position: -webkit-sticky; /* for Safari */
+  position: sticky;
+  top: 0;
+  background: #000;
+  color: #FFF;
+}
+
+tr {
+  min-height: 2em;
+}
+
+tr th {
+  background-color: aquamarine;
+  border: 1px solid black;
+}
+
+thead th:first-child {
+  left: 0;
+  z-index: 1;
+}
+
+tbody th {
+  position: -webkit-sticky; /* for Safari */
+  position: sticky;
+  left: 0;
+  background: #FFF;
+  border-right: 1px solid #CCC;
+}

@@ -1,5 +1,4 @@
 #!/usr/bin/env node
 
-// a dummy entrypoint to run real built js
-//
-require('../build/bin/whadido');
+// a dummy entrypoint to run real cliMain()
+require('../build/cli/cli-main').cliMain();

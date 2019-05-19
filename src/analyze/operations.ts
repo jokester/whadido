@@ -1,14 +1,17 @@
-import { RefLog, Timestamp } from '../git';
+import { RefLog } from '../git';
 import { freeze } from '../vendor/ts-commonutil/type';
+import { last } from 'lodash';
+import { BranchTip } from './ref-state';
 
 /**
  * Recovered operations and text-ify
  */
-const enum OpType {
+export const enum OpType {
   // remote branch only
   push = 'Push',
   fetch = 'Fetch',
   renameRemote = 'RenameRemote',
+  remoteOnlyPull = 'RemoteOnlyPull',
 
   // head + possible local branch
   merge = 'Merge',
@@ -27,11 +30,7 @@ const enum OpType {
   pull = 'Pull',
 }
 
-export interface Operation {
-  type: OpType;
-}
-
-namespace Operations {
+export namespace Operations {
   interface BaseOperation {
     type: OpType;
   }
@@ -80,6 +79,12 @@ namespace Operations {
   export interface Pull extends BaseOperation {
     type: OpType.pull;
     headLog: RefLog;
+
+    remoteBranchPath: string | null;
+    remoteBranchLog: RefLog | null;
+
+    localBranchPath: string | null;
+    localBranchLog: RefLog | null;
   }
 
   export interface RenameRemote extends BaseOperation {
@@ -118,6 +123,42 @@ namespace Operations {
     branchpath: string | undefined;
     branchLog: RefLog | undefined;
   }
+
+  export interface RemoteOnlyPull extends BaseOperation {
+    type: OpType.remoteOnlyPull;
+    branchpath: string;
+    branchLog: RefLog;
+  }
+
+  export type OperationUnion =
+    | Merge
+    | Commit
+    | CreateBranch
+    | Clone
+    | Fetch
+    | Push
+    | Pull
+    | RenameRemote
+    | RemoteOnlyPull
+    | Checkout
+    | Reset
+    | RebaseInteractiveAborted
+    | RebaseInteractiveFinished
+    | RebaseFinished;
+}
+
+export type Operation = Operations.OperationUnion;
+
+export function extractOperationTimestamp(o: Operation): number {
+  if ('branchLog' in o && o.branchLog) {
+    return o.branchLog.at.utcSec;
+  } else if ('headLog' in o && o.headLog) {
+    return o.headLog.at.utcSec;
+  } else if ('headLogs' in o && o.headLogs.length) {
+    return last(o.headLogs)!.at.utcSec;
+  }
+
+  throw new Error(`cannot infer operationTimestamp: ${JSON.stringify(o)}`);
 }
 
 export const operationFactory = freeze({
@@ -149,11 +190,16 @@ export const operationFactory = freeze({
   push(refpath: string, branchLog: RefLog): Operations.Push {
     return { type: OpType.push, refpath, branchLog };
   },
-  pull(headLog: RefLog): Operations.Pull {
-    return { type: OpType.pull, headLog };
+  pull(headLog: RefLog, remoteBranch: null | BranchTip, localBranch: null | BranchTip): Operations.Pull {
+    const [remoteBranchPath = null, remoteBranchLog = null] = remoteBranch || [];
+    const [localBranchPath = null, localBranchLog = null] = localBranch || [];
+    return { type: OpType.pull, headLog, remoteBranchPath, remoteBranchLog, localBranchPath, localBranchLog };
   },
   renameRemote(refpath: string, branchLog: RefLog): Operations.RenameRemote {
     return { type: OpType.renameRemote, refpath, branchLog };
+  },
+  remoteOnlyPull(branchpath: string, branchLog: RefLog): Operations.RemoteOnlyPull {
+    return { type: OpType.remoteOnlyPull, branchpath, branchLog };
   },
   checkout(headLog: RefLog): Operations.Checkout {
     return { type: OpType.checkout, headLog };

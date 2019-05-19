@@ -1,7 +1,7 @@
 # Files
 
 ```text
-lib-ts/cli.ts       CLI entrypoint
+lib-ts/cli-main.ts       CLI entrypoint
 lib-ts/options.ts   CLI options parser
 lib-ts/git          git repo reader (in pure JS, no gyp module is required)
 lib-ts/model        analyze

@@ -15,9 +15,13 @@ export const PATTERNS = freeze({
   refpath: freeze({
     localHead: /^HEAD$/,
     localBranch: /^refs\/heads\/(.*)$/,
-    remoteBranch: /^refs\/remotes\/[^\/]+\/(?!HEAD$)/,
+    //                          $1: local branch name
+    remoteBranch: /^refs\/remotes\/([^\/]+\/(?!HEAD$).*$)/,
+    //                             $1: ORIGIN/BRANCH
+    //                             NOTE: there may be '/' in either, whose meaning a regex cannot tell
     remoteHead: /^refs\/remotes\/[^\/]+\/HEAD$/,
     tag: /^refs\/tags\/(.*)$/,
+    stash: /^refs\/stash$/,
     // all: /(head|\/)/i,
   }),
 
@@ -214,14 +218,17 @@ export function parsePackedRef(line: string): Ref.Ref {
     const sha1 = matched[1];
     const refPath = matched[2];
 
-    if (PATTERNS.refpath.tag.exec(refPath)) {
+    if (PATTERNS.refpath.tag.test(refPath)) {
       return { dest: sha1, type: Ref.RefType.Tag, path: refPath };
     }
-    if (PATTERNS.refpath.localBranch.exec(refPath)) {
+    if (PATTERNS.refpath.localBranch.test(refPath)) {
       return { dest: sha1, type: Ref.RefType.LocalBranch, path: refPath };
     }
-    if (PATTERNS.refpath.remoteBranch.exec(refPath)) {
+    if (PATTERNS.refpath.remoteBranch.test(refPath)) {
       return { dest: sha1, type: Ref.RefType.RemoteBranch, path: refPath };
+    }
+    if (PATTERNS.refpath.stash.test(refPath)) {
+      return { dest: sha1, type: Ref.RefType.Stash, path: refPath };
     }
   }
 

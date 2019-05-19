@@ -93,6 +93,7 @@ export namespace Ref {
     LocalHead = 'RefType.LocalHEAD', // points to (commit or branch)
     RemoteBranch = 'RefType.RemoteBranch', // points to commit
     RemoteHead = 'RefType.RemoteHEAD', // points to (commit or branch)
+    Stash = 'RefType.Stash',
   }
 
   export function isRefType(val: unknown): val is RefType {
@@ -109,7 +110,15 @@ export namespace Ref {
   }
 
   export function isBranchRef(val: { type: unknown }): val is LocalBranch | RemoteBranch {
-    return val.type === Ref.RefType.RemoteBranch || val.type === Ref.RefType.LocalBranch;
+    return val.type === RefType.RemoteBranch || val.type === RefType.LocalBranch;
+  }
+
+  export function isLocalBranch(val: { type: unknown }): val is LocalBranch {
+    return val.type === RefType.LocalBranch;
+  }
+
+  export function isRemoteBranch(val: { type: unknown }): val is RemoteBranch {
+    return val.type === RefType.RemoteBranch;
   }
 
   /**
@@ -139,7 +148,7 @@ export namespace Ref {
   }
 
   /** To make things clearer, should try to resolve all refs upon read **/
-  export type Ref = LocalHead | LocalBranch | RemoteHead | RemoteBranch | Tag;
+  export type Ref = LocalHead | LocalBranch | RemoteHead | RemoteBranch | Tag | Stash;
 
   export interface LocalHead extends RefBase {
     readonly type: RefType.LocalHead;
@@ -151,6 +160,10 @@ export namespace Ref {
 
   export interface Tag extends RefBase {
     readonly type: RefType.Tag;
+  }
+
+  export interface Stash extends RefBase {
+    readonly type: RefType.Stash;
   }
 
   //
@@ -202,4 +215,8 @@ export interface RefLog {
 export interface Timestamp {
   readonly utcSec: number;
   readonly tz: string;
+}
+
+export function isTimestamp(value: any): value is Timestamp {
+  return !!(value && typeof value.utcSec === 'number' && value.tz);
 }

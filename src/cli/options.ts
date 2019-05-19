@@ -1,30 +1,32 @@
 import { ArgumentParser } from 'argparse';
+import pkgJson from './pkg.json';
 
 export interface ParsedOptions {
   path: string;
   dump: string;
   verbose: boolean;
+  numOperations: number;
 }
 
 export function createOptionParser() {
   const parser = new ArgumentParser({
-    version: require('../package.json').version,
+    version: pkgJson.version,
     addHelp: true,
-    description: require('../package.json').description,
+    description: pkgJson.description,
   });
 
   parser.addArgument(['-r', '--repo'], {
     metavar: 'REPO_PATH',
     defaultValue: process.cwd(),
-    help: 'Root of repository or somewhere inside it. Defaults to $PWD',
+    help: 'Path in worktree git repository or its worktree. Defaults to $PWD',
     dest: 'path',
   });
 
-  parser.addArgument(['--dump'], {
-    defaultValue: false,
-    action: 'storeTrue',
-    dest: 'dump',
-    help: `Dump refs and reflogs to a timestamp-named JSON file. Most for development use.`,
+  parser.addArgument(['-n', '--num'], {
+    metavar: 'NUM_OF_OPERATIONS',
+    defaultValue: 20,
+    help: 'The number of (recent) git operations to display. Defaults to 20',
+    dest: 'numOperations',
   });
 
   parser.addArgument(['--verbose'], {
@@ -32,6 +34,13 @@ export function createOptionParser() {
     action: 'storeTrue',
     dest: 'verbose',
     help: `Enable verbose log. Most for development use.`,
+  });
+
+  parser.addArgument(['--dump'], {
+    defaultValue: false,
+    action: 'storeTrue',
+    dest: 'dump',
+    help: `Dump refs and reflogs to a timestamp-named JSON file in PWD. Most for development use.`,
   });
 
   return parser as {
