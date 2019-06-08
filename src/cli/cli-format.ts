@@ -17,7 +17,7 @@ export function cliLegend(sink: ReflogFormatter) {
         .localRef('local reference')
         .remoteRef('remote reference')
         .sha1('sha1')
-        .commitish('commitish'),
+        .commitish('commit-ish'),
     )
     .line();
 }
