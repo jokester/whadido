@@ -20,6 +20,7 @@ export const enum OpType {
   rebaseInteractivelyFinished = 'RebaseInteractivelyFinished',
   rebaseInteractivelyAborted = 'RebaseInteractivelyAborted',
   rebaseFinished = 'RebaseFinished',
+  // TODO: rebaseAborted
   clone = 'Clone',
 
   // HEAD only
@@ -60,7 +61,7 @@ export namespace Operations {
   export interface Clone extends BaseOperation {
     type: OpType.clone;
     headLog: RefLog;
-    branchpath: string | undefined;
+    branchPath: string | undefined;
     branchLog: RefLog | undefined;
   }
 
@@ -176,11 +177,11 @@ export const operationFactory = freeze({
       headCheckout,
     };
   },
-  clone(headLog: RefLog, branchpath: string | undefined, branchLog: RefLog | undefined): Operations.Clone {
+  clone(headLog: RefLog, branchPath: string | undefined, branchLog: RefLog | undefined): Operations.Clone {
     return {
       type: OpType.clone,
       headLog,
-      branchpath,
+      branchPath,
       branchLog,
     };
   },
