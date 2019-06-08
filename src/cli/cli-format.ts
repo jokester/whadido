@@ -3,8 +3,9 @@ import { ReflogFormatter } from '../formatter/text-line-formatter';
 import { PATTERNS } from '../git/parser';
 import { getLogger } from '../util/logging';
 import { CONST } from '../analyze/util';
-import { first, last } from 'lodash';
+import { first, last, uniq } from 'lodash';
 import { Arrays } from '../util/arrays';
+import { stripRefPrefix } from '../git/util';
 
 const logger = getLogger(__filename, 'DEBUG');
 
@@ -15,7 +16,8 @@ export function cliLegend(sink: ReflogFormatter) {
         .text('Legends:')
         .localRef('local reference')
         .remoteRef('remote reference')
-        .sha1('sha1'),
+        .sha1('sha1')
+        .commitish('commitish'),
     )
     .line();
 }
@@ -44,6 +46,10 @@ export function cliFormat(sortedOperations: Operation[], sink: ReflogFormatter) 
       OperationFormat.remoteOnlyPull(o, sink);
     } else if (o.type === OpType.pull) {
       OperationFormat.pull(o, sink);
+    } else if (o.type === OpType.rebaseFinished) {
+      OperationFormat.rebaseFinished(o, sink);
+    } else if (o.type === OpType.clone) {
+      OperationFormat.clone(o, sink);
     } else {
       if (sink.debugEnabled) {
         sink.line(l => l.text('======================')).debug(o);
@@ -53,19 +59,6 @@ export function cliFormat(sortedOperations: Operation[], sink: ReflogFormatter) 
 
     sink.line();
   }
-}
-
-function stripRefPrefix(refPath: string): string {
-  let matched: null | RegExpExecArray;
-
-  if ((matched = PATTERNS.refpath.remoteBranch.exec(refPath))) {
-    // remote branch: strip the (^remotes/) part
-    return matched[1];
-  } else if ((matched = PATTERNS.refpath.localBranch.exec(refPath))) {
-    // remote branch: strip the (^heads/) part
-    return matched[1];
-  }
-  throw `cannot find prettyRef: ${refPath}`;
 }
 
 namespace OperationFormat {
@@ -421,6 +414,71 @@ namespace OperationFormat {
     }
   }
 
+  export function clone(o: Operations.Clone, sink: ReflogFormatter): void {
+    sink.line(l => l.timestamp(o.headLog.at));
+
+    const { branchPath, branchLog, headLog } = o;
+
+    if (branchLog && branchPath) {
+      sink.line(l =>
+        l
+          .pad()
+          .text('git clone:')
+          .localRef(CONST.HEAD)
+          .text('and')
+          .localRef(stripRefPrefix(branchPath))
+          .text('created at')
+          .sha1(branchLog.to),
+      );
+    } /* only HEAD */ else {
+      sink.line(l =>
+        l
+          .pad()
+          .text('git clone:')
+          .localRef(CONST.HEAD)
+          .text('created at')
+          .sha1(headLog.to),
+      );
+    }
+  }
+
+  export function rebaseFinished(o: Operations.RebaseFinished, sink: ReflogFormatter) {
+    const { headLogs, branchLog, branchpath } = o;
+
+    const [headLog1] = headLogs;
+    const headLogLast = headLogs[headLogs.length - 1];
+
+    const base = extractRebaseBase(headLog1.desc);
+    const rebasee = extractRebasedBranch(headLogLast.desc);
+    sink
+      .line(l => l.timestamp(headLog1.at))
+      .line(l =>
+        l
+          .pad()
+          .text('git rebase (finished): rebase')
+          .localRef(stripRefPrefix(rebasee))
+          .text('onto')
+          .commitish(base),
+      )
+      .line(l => {
+        l.pad()
+          .localRef(CONST.HEAD)
+          .text(':')
+          .sha1Array(...Arrays.removeConsequecitiveDup([headLog1.from, ...headLogs.map(_ => _.to)]));
+      });
+
+    if (branchpath && branchLog) {
+      sink.line(l => {
+        l.pad()
+          .commitish(branchpath)
+          .text(':')
+          .sha1Array(branchLog.from, branchLog.to);
+      });
+    }
+
+    // TODO: print branchLog
+  }
+
   export function wtf(o: Operations.Fetch, sink: ReflogFormatter) {}
 
   //////// utils
@@ -440,6 +498,25 @@ namespace OperationFormat {
       return matched[1];
     }
     throw `cannot find resetee: ${JSON.stringify(reflogDesc)}`;
+  }
+
+  // extract from """rebase finished: returning to {refs/heads/BRANCH}"""
+  function extractRebasedBranch(reflogDesc: string): string {
+    let matched: null | RegExpMatchArray;
+    if ((matched = /^rebase (finished)?: returning to (.*)$/.exec(reflogDesc))) {
+      return matched[2];
+    }
+    throw `cannot extract rebase branch: ${JSON.stringify(reflogDesc)}`;
+  }
+
+  // extract from """rebase: checkout {origin/master}"""
+  function extractRebaseBase(reflogDesc: string): string {
+    let matched: null | RegExpMatchArray;
+    if ((matched = /^rebase: checkout (.*)$/.exec(reflogDesc))) {
+      return matched[1];
+    }
+
+    throw `cannot extract rebase base: ${JSON.stringify(reflogDesc)}`;
   }
 
   function extractCheckoutPath(reflogDesc: string): [string, string] {

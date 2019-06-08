@@ -19,6 +19,8 @@ export interface ReflogLineFormatter {
   localRef(refPath: string): this;
   // remoteRef: blue
   remoteRef(refPath: string): this;
+  // sha1 OR localRef or remoteRef
+  commitish(refPath: string): this;
 
   // remoteRef: ???
   debug(value: unknown): this;

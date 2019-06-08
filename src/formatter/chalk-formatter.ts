@@ -5,6 +5,8 @@ import util from 'util';
 import { ReflogFormatter, ReflogLineFormatter } from './text-line-formatter';
 import { isTimestamp, Obj, Ref, Timestamp } from '../git';
 import { CONST } from '../analyze/util';
+import { PATTERNS } from '../git/parser';
+import { stripRefPrefix } from '../git/util';
 
 interface ChalkFormatterOption {
   debug?: boolean;
@@ -62,6 +64,27 @@ export class ChalkLineFormatter implements ReflogLineFormatter {
   sha1(sha1: string): this {
     const short = sha1.slice(0, this.option.gitSha1Length);
     return this.sha1Color(short);
+  }
+
+  commitish(refPath: string): this {
+    this.elements.push(chalk.cyan(refPath));
+    return this;
+  }
+
+  commitish2(commitish: string): this {
+    // TODO
+    if (PATTERNS.refpath.localBranch.test(commitish)) {
+      return this.localRef(stripRefPrefix(commitish));
+    } else if (PATTERNS.refpath.remoteBranch.test(commitish)) {
+      return this.remoteRef(stripRefPrefix(commitish));
+    } else if (PATTERNS.refpath.localHead.test(commitish)) {
+      return this.localRef(commitish);
+    } else if (PATTERNS.refpath.remoteHead.test(commitish)) {
+      return this.remoteRef(commitish);
+    } else if (PATTERNS.objectSha1.test(commitish)) {
+      return this.sha1(commitish);
+    }
+    throw new Error(`cannot detect commitish: ${JSON.stringify(commitish)}`);
   }
 
   private sha1Color(sha1: string): this {
