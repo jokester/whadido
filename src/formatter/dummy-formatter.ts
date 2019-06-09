@@ -75,6 +75,6 @@ class DummyLineFormatter implements ReflogLineFormatter {
     } else if (PATTERNS.objectSha1.test(commitish)) {
       return this.sha1(commitish);
     }
-    throw new Error(`cannot detect commitish: ${JSON.stringify(commitish)}`);
+    return this.text(`commitish(${commitish})`);
   }
 }

@@ -2111,7 +2111,7 @@
             },
             "desc": "clone: from caroline:/git/node-typescript-boilerplate"
         },
-        "branchpath": "refs/heads/master",
+        "branchPath": "refs/heads/master",
         "branchLog": {
             "from": "0000000000000000000000000000000000000000",
             "to": "7ddcd4664ae12e2e0c6ecefba93140703d7070e8",
