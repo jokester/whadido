@@ -71,22 +71,6 @@ export class ChalkLineFormatter implements ReflogLineFormatter {
     return this;
   }
 
-  commitish2(commitish: string): this {
-    // TODO
-    if (PATTERNS.refpath.localBranch.test(commitish)) {
-      return this.localRef(stripRefPrefix(commitish));
-    } else if (PATTERNS.refpath.remoteBranch.test(commitish)) {
-      return this.remoteRef(stripRefPrefix(commitish));
-    } else if (PATTERNS.refpath.localHead.test(commitish)) {
-      return this.localRef(commitish);
-    } else if (PATTERNS.refpath.remoteHead.test(commitish)) {
-      return this.remoteRef(commitish);
-    } else if (PATTERNS.objectSha1.test(commitish)) {
-      return this.sha1(commitish);
-    }
-    throw new Error(`cannot detect commitish: ${JSON.stringify(commitish)}`);
-  }
-
   private sha1Color(sha1: string): this {
     this.elements.push(chalk.green(sha1));
     return this;
