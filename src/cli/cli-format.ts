@@ -211,9 +211,7 @@ namespace OperationFormat {
           l.pad()
             .localRef(CONST.HEAD)
             .text(': from')
-            .sha1(headCheckout.from)
-            .text('to')
-            .sha1(headCheckout.to);
+            .sha1Array(headCheckout.from, headCheckout.to);
         });
     } else {
       sink.line(l => {
@@ -362,9 +360,7 @@ namespace OperationFormat {
         l.pad()
           .text('git pull: update')
           .remoteRef(stripRefPrefix(branchpath))
-          .sha1(from)
-          .text('to')
-          .sha1(to);
+          .sha1Array(from, to);
       });
   }
 
