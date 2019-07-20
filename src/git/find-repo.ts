@@ -1,7 +1,7 @@
 import { GitRepoException } from './error';
 import { GitRepoReaderImpl } from './repo-reader-impl';
 import { GitRepoReader } from './repo-reader';
-import { getSubprocessOutput } from "../vendor/ts-commonutil/node/subprocess";
+import { getSubprocessOutput } from '../vendor/ts-commonutil/node/subprocess';
 
 /**
  * find git repo (bare or not) from directory `start`

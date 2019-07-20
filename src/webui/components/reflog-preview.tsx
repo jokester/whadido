@@ -32,7 +32,9 @@ function analyzeForWeb(refHistory: RefHistory[]): WhadidoDump {
   return { input, outputs };
 }
 
-export const ReflogPreview: React.FunctionComponent<{ history: RefHistory[] }> = props => {
+export const ReflogPreview: React.FunctionComponent<{
+  history: RefHistory[];
+}> = props => {
   const [dump] = useState<WhadidoDump>(() => analyzeForWeb(props.history));
 
   console.log('whadido-dump', dump);

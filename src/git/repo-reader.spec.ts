@@ -4,7 +4,7 @@ import { GitRepoReaderImpl } from './repo-reader-impl';
 import { getLogger } from '../util/logging';
 import { ObjReader } from './obj-reader';
 import { Obj } from './types';
-import { fsp } from "../vendor/ts-commonutil/node";
+import { fsp } from '../vendor/ts-commonutil/node';
 
 describe('git reader', () => {
   // a node-libtidy repo included for test

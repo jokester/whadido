@@ -2,7 +2,7 @@ import { readRefHistory, RefHistory } from '../analyze/ref-state';
 import { ParsedOptions } from './options';
 import { GitRepoReader } from '../git/repo-reader';
 import * as path from 'path';
-import { writeFile } from "../vendor/ts-commonutil/node/fsp";
+import { writeFile } from '../vendor/ts-commonutil/node/fsp';
 
 export async function createDump(options: ParsedOptions, repo: GitRepoReader) {
   const input = await readRefHistory(repo);

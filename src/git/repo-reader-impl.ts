@@ -8,7 +8,7 @@ import { GitRepoReader } from './repo-reader';
 import { getLogger } from '../util/logging';
 import { ObjReader } from './obj-reader';
 import { chunkToLines } from '../vendor/ts-commonutil/text/chunk-to-lines';
-import { readLines } from "../vendor/ts-commonutil/node/fsp";
+import { readLines } from '../vendor/ts-commonutil/node/fsp';
 
 const logger = getLogger(__filename, 'DEBUG');
 

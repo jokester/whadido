@@ -37,7 +37,10 @@ export function buildState(dump: RefHistory[]): RefState {
  * @param state
  */
 export function unbuildState(dump: RefHistory[], state: RefState): RefHistory[] {
-  return dump.map(d => ({ ...d, reflog: state.get(d.path, IList<RefLog>()).toJS() }));
+  return dump.map(d => ({
+    ...d,
+    reflog: state.get(d.path, IList<RefLog>()).toJS(),
+  }));
 }
 
 /**
