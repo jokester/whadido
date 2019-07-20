@@ -2,11 +2,9 @@
 import { fromTest, fromTmp } from '../spec/helper';
 import { topParser } from './reflog';
 import { buildState, countReflog, RefHistory, unbuildState } from './ref-state';
-import { fsp } from "../util/fsp";
 import { DummyFormatter } from "../formatter/dummy-formatter";
 import { cliFormat } from "../cli/cli-format";
-
-const { readText, writeFile } = fsp;
+import { readText, writeFile } from '../vendor/ts-commonutil/node/fsp';
 
 describe('reflog - parser', () => {
 

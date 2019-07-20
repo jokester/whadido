@@ -178,8 +178,16 @@ describe('parser.ts', () => {
 
     const parsed = parser.parsePackedRefBlock(lines);
     expect(parsed).toEqual([
-      { dest: '298ca5248eda588e2e18ccdbe9b4d8e8b7ceaeea', path: 'refs/heads/master', type: Ref.RefType.LocalBranch },
-      { dest: '298ca5248eda588e2e18ccdbe9b4d8e8b7ceaeea', path: 'refs/heads/moyu', type: Ref.RefType.LocalBranch },
+      {
+        dest: '298ca5248eda588e2e18ccdbe9b4d8e8b7ceaeea',
+        path: 'refs/heads/master',
+        type: Ref.RefType.LocalBranch,
+      },
+      {
+        dest: '298ca5248eda588e2e18ccdbe9b4d8e8b7ceaeea',
+        path: 'refs/heads/moyu',
+        type: Ref.RefType.LocalBranch,
+      },
       {
         dest: '298ca5248eda588e2e18ccdbe9b4d8e8b7ceaeea',
         path: 'refs/remotes/origin/master',

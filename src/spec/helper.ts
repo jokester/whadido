@@ -1,24 +1,5 @@
-const fs = require('fs');
-const path = require('path');
-
-/**
- *
- *
- * @param {string} absPath
- * @param {string} content
- * @returns {Promise<void>}
- */
-function writeFile(absPath: string, content: string): Promise<void> {
-  return new Promise<void>((fulfill, reject) => {
-    fs.writeFile(absPath, content, (err: any) => {
-      if (err) {
-        reject(err);
-      } else {
-        fulfill();
-      }
-    });
-  });
-}
+import path from 'path';
+import { writeFile } from '../vendor/ts-commonutil/node/fsp';
 
 function prettyJson(val: any) {
   return JSON.stringify(val, null, 4);

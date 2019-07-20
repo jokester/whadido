@@ -194,7 +194,14 @@ export const operationFactory = freeze({
   pull(headLog: RefLog, remoteBranch: null | BranchTip, localBranch: null | BranchTip): Operations.Pull {
     const [remoteBranchPath = null, remoteBranchLog = null] = remoteBranch || [];
     const [localBranchPath = null, localBranchLog = null] = localBranch || [];
-    return { type: OpType.pull, headLog, remoteBranchPath, remoteBranchLog, localBranchPath, localBranchLog };
+    return {
+      type: OpType.pull,
+      headLog,
+      remoteBranchPath,
+      remoteBranchLog,
+      localBranchPath,
+      localBranchLog,
+    };
   },
   renameRemote(refpath: string, branchLog: RefLog): Operations.RenameRemote {
     return { type: OpType.renameRemote, refpath, branchLog };
@@ -216,7 +223,12 @@ export const operationFactory = freeze({
     branchpath: string | undefined,
     branchLog: RefLog | undefined,
   ): Operations.RebaseInteractiveFinished {
-    return { type: OpType.rebaseInteractivelyFinished, headLogs, branchpath, branchLog };
+    return {
+      type: OpType.rebaseInteractivelyFinished,
+      headLogs,
+      branchpath,
+      branchLog,
+    };
   },
   rebaseFinished(
     headLogs: RefLog[],

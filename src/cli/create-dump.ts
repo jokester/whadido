@@ -2,7 +2,7 @@ import { readRefHistory, RefHistory } from '../analyze/ref-state';
 import { ParsedOptions } from './options';
 import { GitRepoReader } from '../git/repo-reader';
 import * as path from 'path';
-import { fsp } from '../util/fsp';
+import { writeFile } from '../vendor/ts-commonutil/node/fsp';
 
 export async function createDump(options: ParsedOptions, repo: GitRepoReader) {
   const input = await readRefHistory(repo);
@@ -16,7 +16,7 @@ export async function createDump(options: ParsedOptions, repo: GitRepoReader) {
   const dumpFilename = path.join(process.cwd(), `whadido-dump-${timeSegments.join('-')}.json`);
 
   try {
-    await fsp.writeFile(dumpFilename, dumpJSON);
+    await writeFile(dumpFilename, dumpJSON);
     console.info(`dumped reflogs to ${dumpFilename}`);
   } catch (e) {
     console.error(`error dumping reflogs to ${dumpFilename}`);

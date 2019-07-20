@@ -1,15 +1,14 @@
-import * as React from 'react';
-import * as lodash from 'lodash';
+import React from 'react';
 import { RefLog, Timestamp } from '../../git';
 import { RefHistory } from '../../analyze/ref-state';
-import { TotalOrdered } from '../../util/total-ordered';
 import { mergeOrderedSequence } from '../../util/merge-ordered-sequence';
+import { TotalOrdered } from '../../vendor/ts-commonutil/algebra/total-ordered';
 
 interface PreviewProps {
   refHistory: RefHistory[];
 }
 
-const chronologicalOrder = new class extends TotalOrdered<Timestamp> {
+const chronologicalOrder = new (class extends TotalOrdered<Timestamp> {
   before(a: Timestamp, b: Timestamp): boolean {
     return a.utcSec < b.utcSec;
   }
@@ -17,11 +16,14 @@ const chronologicalOrder = new class extends TotalOrdered<Timestamp> {
   equal(a: Timestamp, b: Timestamp): boolean {
     return a.utcSec === b.utcSec;
   }
-}();
+})();
 
-function foldCell(
-  dumps: RefHistory[],
-): { timestamps: Timestamp[]; reflogCells: /* [refIndex][timestampIndex] */ RefLog[][][] } {
+interface FoldedCell {
+  timestamps: Timestamp[];
+  reflogCells: /* [refIndex][timestampIndex] */ RefLog[][][];
+}
+
+function foldCell(dumps: RefHistory[]): FoldedCell {
   const refPaths = dumps.map(h => h.path);
 
   const reflogTimestamps: Timestamp[][] = dumps.map(d => d.reflog.map(reflog => reflog.at));
