@@ -1,5 +1,5 @@
 import { mergeOrderedSequence } from './merge-ordered-sequence';
-import { NumberTotalOrdered } from './total-ordered';
+import { NumberTotalOrdered } from "../vendor/ts-commonutil/algebra/total-ordered";
 
 describe('mergeOrderedSequence', () => {
   const numberOrder = new NumberTotalOrdered();

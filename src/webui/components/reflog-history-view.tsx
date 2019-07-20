@@ -1,9 +1,8 @@
-import * as React from 'react';
-import * as lodash from 'lodash';
+import React from 'react';
 import { RefLog, Timestamp } from '../../git';
 import { RefHistory } from '../../analyze/ref-state';
-import { TotalOrdered } from '../../util/total-ordered';
 import { mergeOrderedSequence } from '../../util/merge-ordered-sequence';
+import { TotalOrdered } from "../../vendor/ts-commonutil/algebra/total-ordered";
 
 interface PreviewProps {
   refHistory: RefHistory[];

@@ -1,4 +1,4 @@
-import { TotalOrdered } from './total-ordered';
+import { TotalOrdered } from "../vendor/ts-commonutil/algebra/total-ordered";
 
 export function mergeOrderedSequence<T>(input: T[][], order: TotalOrdered<T>): T[] {
   const lists = input.map(l => l.slice());

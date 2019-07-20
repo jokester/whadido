@@ -13,11 +13,11 @@ export class ObjReader {
   constructor(readonly repoRoot: string, readonly gitBinary = 'git') {
     // use 1 process
     // FIXME we may be able to replace this with a adaptive subprocess pool?
-    this.catRawObj = ResourcePool.from1(spawn(this.gitBinary, ['cat-file', '--batch'], { cwd: this.repoRoot }));
+    this.catRawObj = ResourcePool.single(spawn(this.gitBinary, ['cat-file', '--batch'], { cwd: this.repoRoot }));
   }
 
   async dispose() {
-    await this.catRawObj.queue(async proc => {
+    await this.catRawObj.use(async proc => {
       proc.kill();
     });
   }
@@ -25,7 +25,7 @@ export class ObjReader {
   async readObjRaw(sha1: string): Promise<Obj.ObjectData> {
     const objReader = new ObjBuilder(sha1);
 
-    return this.catRawObj.queue(async child => {
+    return this.catRawObj.use(async child => {
       try {
         await new Promise<void>((fulfill, reject) => {
           child.stdout.on('data', (chunk: Buffer) => {

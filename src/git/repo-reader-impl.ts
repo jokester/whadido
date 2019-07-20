@@ -7,10 +7,9 @@ import { recursiveReadDir } from '../util';
 import { GitRepoReader } from './repo-reader';
 import { getLogger } from '../util/logging';
 import { ObjReader } from './obj-reader';
-import { fsp } from '../util/fsp';
 import { chunkToLines } from '../vendor/ts-commonutil/text/chunk-to-lines';
+import { readLines } from "../vendor/ts-commonutil/node/fsp";
 
-const readLines = fsp.readLines;
 const logger = getLogger(__filename, 'DEBUG');
 
 export class GitRepoReaderImpl implements GitRepoReader {
@@ -200,7 +199,7 @@ export class GitRepoReaderImpl implements GitRepoReader {
   async readReflog(refPath: string): Promise<RefLog[]> {
     const reflogPath = path.join(this.repoRoot, 'logs', refPath);
     try {
-      const lines = await fsp.readLines(reflogPath);
+      const lines = await readLines(reflogPath);
       return lines.filter(line => !!line).map(parser.parseReflog);
     } catch (e) {
       return [];
