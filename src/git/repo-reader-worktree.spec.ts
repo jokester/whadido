@@ -13,6 +13,11 @@ describe('git reader with support', () => {
     done();
   }, 2e3);
 
+  it('finds the bare repo itself', async () => {
+    const found = await findRepo(path.join(dummyRepoBare, 'objects/pack'));
+    expect(found).toEqual(dummyRepoBare);
+  });
+
   it('finds orig git repo from worktree', async () => {
     const found = await findRepo(dummyRepoWorktree1);
     // expect(found).toEqual(dummyRepoBare);
