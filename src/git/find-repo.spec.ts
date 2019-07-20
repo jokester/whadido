@@ -1,4 +1,4 @@
-import * as path from 'path';
+import path from 'path';
 import { findRepo, openRepo } from './find-repo';
 import { getSubprocessOutput } from '../vendor/ts-commonutil/node/subprocess';
 

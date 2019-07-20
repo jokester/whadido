@@ -1,7 +1,8 @@
-import { GitRepoException } from './error';
+import path from 'path';
 import { GitRepoReaderImpl } from './repo-reader-impl';
 import { GitRepoReader } from './repo-reader';
 import { getSubprocessOutput } from '../vendor/ts-commonutil/node/subprocess';
+import { fsp } from '../vendor/ts-commonutil/node';
 
 /**
  * find git repo (bare or not) from directory `start`
@@ -11,7 +12,7 @@ import { getSubprocessOutput } from '../vendor/ts-commonutil/node/subprocess';
  * @param {string} [gitBinary="git"] binary of git
  * @returns absolute path of the repo
  */
-export async function findRepo(start: string, gitBinary = 'git'): Promise<string | null> {
+async function findRepoRaw(start: string, gitBinary = 'git'): Promise<string | null> {
   const status = await getSubprocessOutput(
     gitBinary,
     ['rev-parse', /* requires git 2.3 */ '--absolute-git-dir', '--git-dir'],
@@ -26,6 +27,19 @@ export async function findRepo(start: string, gitBinary = 'git'): Promise<string
   }
 
   return null;
+}
+
+export async function findRepo(start: string, gitBinary = 'git'): Promise<string | null> {
+  const found1 = await findRepoRaw(start, gitBinary);
+  if (!found1) return null;
+
+  try {
+    // if a 'commondir' file exists, find again in parent repo
+    const lstat = await fsp.stat(path.join(found1, 'commondir'));
+    return await findRepoRaw(path.join(found1, '..'), gitBinary);
+  } catch (fNoEnt) {
+    return found1;
+  }
 }
 
 /**
