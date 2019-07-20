@@ -1,4 +1,5 @@
 import path from 'path';
+import tar from 'tar';
 import { writeFile } from '../vendor/ts-commonutil/node/fsp';
 
 function prettyJson(val: any) {
@@ -49,4 +50,9 @@ export function getMatchedIndex(pattern: RegExp, against: string[]): number[] {
 
 export function countEq<T>(array: T[], value: T): number {
   return array.filter(v => v === value).length;
+}
+
+export function unTgz(tgzPath: string, destDir: string): Promise<void> {
+  const extract = tar.x({ file: tgzPath, cwd: destDir });
+  return extract;
 }
