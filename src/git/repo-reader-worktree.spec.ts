@@ -6,7 +6,7 @@ describe('git reader with support', () => {
   const testResourceRoot = path.join(__dirname, '..', '..', 'test');
   const dummyRepoTgzPath = path.join(testResourceRoot, 'dummy-repo.tgz');
   const dummyRepoBare = path.join(testResourceRoot, 'dummy-repo-bare.git');
-  const dummyRepoWorktree1 = path.join(testResourceRoot, 'dummy-repo-worktree1');
+  const dummyRepoWorktree2 = path.join(testResourceRoot, 'dummy-repo-worktree2');
 
   beforeAll(async done => {
     await unTgz(dummyRepoTgzPath, testResourceRoot);
@@ -19,10 +19,7 @@ describe('git reader with support', () => {
   });
 
   it('finds orig git repo from worktree', async () => {
-    const found = await findRepo(dummyRepoWorktree1);
-    // expect(found).toEqual(dummyRepoBare);
-
-    const found2 = await findRepo(found!);
-    expect(found2).toEqual(dummyRepoBare);
+    const found = await findRepo(dummyRepoWorktree2);
+    expect(found).toEqual(dummyRepoBare);
   });
 });
