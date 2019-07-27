@@ -18,7 +18,7 @@ export function createOptionParser() {
   parser.addArgument(['-r', '--repo'], {
     metavar: 'REPO_PATH',
     defaultValue: process.cwd(),
-    help: 'Path in worktree git repository or its worktree. Defaults to $PWD',
+    help: 'Path inside a git repository (`.git`, or its worktree). Defaults to $PWD',
     dest: 'path',
   });
 

@@ -3,7 +3,7 @@
   "version": "0.1.1",
   "author": "Wang Guan <momocraft@gmail.com>",
   "private": false,
-  "description": "Analyze and show history of local git repo.",
+  "description": "Recover and show recent operations in a local git repository. \"what did i do\".",
   "index": "build/lib/index",
   "bin": {
     "whadido": "bin/whadido"
