@@ -29,13 +29,15 @@ $ yarn global add whadido
 
 ## Usage
 
+Running `whadido` with no parameters in a repository prints recent 20 recovered operations:
+
 ```
-# Running `whadido` with no parameters in a repository prints recent 20 recovered operations.
-
 $ whadido
+```
 
-# List of all parameters:
+List of all parameters:
 
+```
 $ whadido --help
 
 usage: whadido [-h] [-v] [-r REPO_PATH] [-n NUM_OF_OPERATIONS] [--verbose]
