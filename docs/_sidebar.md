@@ -1,2 +1,2 @@
 - [Readme](/ "whadido")
-- [Usage](usage.md "whadido - Usage")
+- [Full docs](https://github.com/jokester/whadido/tree/master/docs)
