@@ -13,7 +13,7 @@ Useful when you wonder "what did i do" in a shiny Monday morning.
 
 ## Requirements
 
-- Linux or Mac (may work in other unices too. **not** in Windows or WSL)
+- Linux or Mac (may work in other unices too. **not** tested in Windows or WSL)
 - `git` binary in `$PATH`
 - `node.js` v8.0 or newer (GYP is not required)
 
