@@ -1,6 +1,6 @@
 {
   "name": "whadido",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "author": "Wang Guan <momocraft@gmail.com>",
   "private": false,
   "description": "Recover and show recent operations in a local git repository. \"what did i do\".",
