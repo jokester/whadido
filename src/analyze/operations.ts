@@ -20,7 +20,7 @@ export const enum OpType {
   rebaseInteractivelyFinished = 'RebaseInteractivelyFinished',
   rebaseInteractivelyAborted = 'RebaseInteractivelyAborted',
   rebaseFinished = 'RebaseFinished',
-  // TODO: rebaseAborted
+  rebaseAborted = 'RebaseAborted',
   clone = 'Clone',
 
   // HEAD only

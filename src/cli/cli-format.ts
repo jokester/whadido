@@ -24,32 +24,36 @@ export function cliLegend(sink: ReflogFormatter) {
 
 export function cliFormat(sortedOperations: Operation[], sink: ReflogFormatter) {
   for (const o of sortedOperations) {
-    if (o.type === OpType.checkout) {
-      OperationFormat.checkout(o, sink);
-    } else if (o.type === OpType.push) {
+    if (o.type === OpType.push) {
       OperationFormat.push(o, sink);
     } else if (o.type === OpType.fetch) {
       OperationFormat.fetch(o, sink);
-    } else if (o.type === OpType.commit) {
-      OperationFormat.commit(o, sink);
-    } else if (o.type === OpType.merge) {
-      OperationFormat.merge(o, sink);
-    } else if (o.type === OpType.createBranch) {
-      OperationFormat.createBranch(o, sink);
-    } else if (o.type === OpType.reset) {
-      OperationFormat.reset(o, sink);
     } else if (o.type === OpType.renameRemote) {
       OperationFormat.renameRemote(o, sink);
-    } else if (o.type === OpType.rebaseInteractivelyFinished) {
-      OperationFormat.rebaseInteractivelyFinished(o, sink);
     } else if (o.type === OpType.remoteOnlyPull) {
       OperationFormat.remoteOnlyPull(o, sink);
-    } else if (o.type === OpType.pull) {
-      OperationFormat.pull(o, sink);
+    } else if (o.type === OpType.merge) {
+      OperationFormat.merge(o, sink);
+    } else if (o.type === OpType.commit) {
+      OperationFormat.commit(o, sink);
+    } else if (o.type === OpType.createBranch) {
+      OperationFormat.createBranch(o, sink);
+    } else if (o.type === OpType.rebaseInteractivelyFinished) {
+      OperationFormat.rebaseInteractivelyFinished(o, sink);
+    } else if (o.type === OpType.rebaseInteractivelyAborted) {
+      // TODO
     } else if (o.type === OpType.rebaseFinished) {
       OperationFormat.rebaseFinished(o, sink);
+    } else if ((o.type as unknown) === OpType.rebaseAborted) {
+      // TODO
     } else if (o.type === OpType.clone) {
       OperationFormat.clone(o, sink);
+    } else if (o.type === OpType.checkout) {
+      OperationFormat.checkout(o, sink);
+    } else if (o.type === OpType.reset) {
+      OperationFormat.reset(o, sink);
+    } else if (o.type === OpType.pull) {
+      OperationFormat.pull(o, sink);
     } else {
       if (sink.debugEnabled) {
         sink.line(l => l.text('======================')).debug(o);
