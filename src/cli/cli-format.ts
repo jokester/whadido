@@ -42,10 +42,11 @@ export function cliFormat(sortedOperations: Operation[], sink: ReflogFormatter) 
       OperationFormat.rebaseInteractivelyFinished(o, sink);
     } else if (o.type === OpType.rebaseInteractivelyAborted) {
       // TODO
+      sink.line(line => line.errorText(`TODO: ${o.type}`));
     } else if (o.type === OpType.rebaseFinished) {
       OperationFormat.rebaseFinished(o, sink);
     } else if ((o.type as unknown) === OpType.rebaseAborted) {
-      // TODO
+      sink.line(line => line.errorText(`TODO: ${o.type}`));
     } else if (o.type === OpType.clone) {
       OperationFormat.clone(o, sink);
     } else if (o.type === OpType.checkout) {
@@ -54,13 +55,7 @@ export function cliFormat(sortedOperations: Operation[], sink: ReflogFormatter) 
       OperationFormat.reset(o, sink);
     } else if (o.type === OpType.pull) {
       OperationFormat.pull(o, sink);
-    } else {
-      if (sink.debugEnabled) {
-        sink.line(l => l.text('======================')).debug(o);
-      }
-      sink.line(line => line.errorText(`TODO: ${o.type}`));
     }
-
     sink.line();
   }
 }

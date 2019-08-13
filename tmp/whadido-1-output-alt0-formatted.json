@@ -353,7 +353,6 @@
         "localRef{HEAD}",
         "text{: from}",
         "sha1{fa4594b9c25ab8427a0b19ca0e182beb50c01817}",
-        "text{to}",
         "sha1{fa4594b9c25ab8427a0b19ca0e182beb50c01817}"
     ],
     [],
@@ -759,12 +758,6 @@
         "sha1{3cc60282dfd12f9588c4add15703aa66a574c88e}"
     ],
     [],
-    [
-        "text{======================}"
-    ],
-    [
-        "debug{[object Object]}"
-    ],
     [
         "errorText{TODO: RebaseInteractivelyAborted}"
     ],
