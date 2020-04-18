@@ -17,46 +17,45 @@ export function cliLegend(sink: ReflogFormatter) {
         .localRef('local reference')
         .remoteRef('remote reference')
         .sha1('sha1')
-        .commitish('commitish'),
+        .commitish('commit-ish'),
     )
     .line();
 }
 
 export function cliFormat(sortedOperations: Operation[], sink: ReflogFormatter) {
   for (const o of sortedOperations) {
-    if (o.type === OpType.checkout) {
-      OperationFormat.checkout(o, sink);
-    } else if (o.type === OpType.push) {
+    if (o.type === OpType.push) {
       OperationFormat.push(o, sink);
     } else if (o.type === OpType.fetch) {
       OperationFormat.fetch(o, sink);
-    } else if (o.type === OpType.commit) {
-      OperationFormat.commit(o, sink);
-    } else if (o.type === OpType.merge) {
-      OperationFormat.merge(o, sink);
-    } else if (o.type === OpType.createBranch) {
-      OperationFormat.createBranch(o, sink);
-    } else if (o.type === OpType.reset) {
-      OperationFormat.reset(o, sink);
     } else if (o.type === OpType.renameRemote) {
       OperationFormat.renameRemote(o, sink);
-    } else if (o.type === OpType.rebaseInteractivelyFinished) {
-      OperationFormat.rebaseInteractivelyFinished(o, sink);
     } else if (o.type === OpType.remoteOnlyPull) {
       OperationFormat.remoteOnlyPull(o, sink);
-    } else if (o.type === OpType.pull) {
-      OperationFormat.pull(o, sink);
+    } else if (o.type === OpType.merge) {
+      OperationFormat.merge(o, sink);
+    } else if (o.type === OpType.commit) {
+      OperationFormat.commit(o, sink);
+    } else if (o.type === OpType.createBranch) {
+      OperationFormat.createBranch(o, sink);
+    } else if (o.type === OpType.rebaseInteractivelyFinished) {
+      OperationFormat.rebaseInteractivelyFinished(o, sink);
+    } else if (o.type === OpType.rebaseInteractivelyAborted) {
+      // TODO
+      sink.line(line => line.errorText(`TODO: ${o.type}`));
     } else if (o.type === OpType.rebaseFinished) {
       OperationFormat.rebaseFinished(o, sink);
+    } else if ((o.type as unknown) === OpType.rebaseAborted) {
+      sink.line(line => line.errorText(`TODO: ${o.type}`));
     } else if (o.type === OpType.clone) {
       OperationFormat.clone(o, sink);
-    } else {
-      if (sink.debugEnabled) {
-        sink.line(l => l.text('======================')).debug(o);
-      }
-      sink.line(line => line.errorText(`TODO: ${o.type}`));
+    } else if (o.type === OpType.checkout) {
+      OperationFormat.checkout(o, sink);
+    } else if (o.type === OpType.reset) {
+      OperationFormat.reset(o, sink);
+    } else if (o.type === OpType.pull) {
+      OperationFormat.pull(o, sink);
     }
-
     sink.line();
   }
 }
@@ -211,9 +210,7 @@ namespace OperationFormat {
           l.pad()
             .localRef(CONST.HEAD)
             .text(': from')
-            .sha1(headCheckout.from)
-            .text('to')
-            .sha1(headCheckout.to);
+            .sha1Array(headCheckout.from, headCheckout.to);
         });
     } else {
       sink.line(l => {
@@ -362,9 +359,7 @@ namespace OperationFormat {
         l.pad()
           .text('git pull: update')
           .remoteRef(stripRefPrefix(branchpath))
-          .sha1(from)
-          .text('to')
-          .sha1(to);
+          .sha1Array(from, to);
       });
   }
 

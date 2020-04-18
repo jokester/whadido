@@ -589,7 +589,6 @@
         "localRef{HEAD}",
         "text{: from}",
         "sha1{0fcf719d93b45deaeba0f0a22b64aab70ab0b25f}",
-        "text{to}",
         "sha1{46308c2f735c39b3a4995d03909d541921972654}"
     ],
     [],
@@ -747,7 +746,6 @@
         "localRef{HEAD}",
         "text{: from}",
         "sha1{a8c3a6f19776f786441134a374bf338c44c55142}",
-        "text{to}",
         "sha1{32af089e26eefd7c4bb57ebd1caa5723c1187e08}"
     ],
     [],
@@ -1149,7 +1147,6 @@
         "localRef{HEAD}",
         "text{: from}",
         "sha1{a7b4d0c41d0ab5b251cb361c7c826f64a37953d1}",
-        "text{to}",
         "sha1{4ef126eba3586584600ab5cfdc2e3a0e1a8320b6}"
     ],
     [],
@@ -1258,7 +1255,6 @@
         "localRef{HEAD}",
         "text{: from}",
         "sha1{dd6d9874e98ed1afa62f4c9c80f70c70ec8a359b}",
-        "text{to}",
         "sha1{dd6d9874e98ed1afa62f4c9c80f70c70ec8a359b}"
     ],
     [],
