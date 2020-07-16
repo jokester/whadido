@@ -48,7 +48,7 @@
     "argparse": "^1.0.9",
     "chalk": "^2.4.1",
     "immutable": "^4.0.0-rc.9",
-    "lodash": "^4.17.4",
+    "lodash": "^4.17.19",
     "loglevel": "^1.6.1",
     "moment": "^2.18.1",
     "recursive-readdir": "^2.2.1",
