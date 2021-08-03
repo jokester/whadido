@@ -78,7 +78,7 @@
     "react-dom": "^16.8.5",
     "sass-loader": "^7.1.0",
     "style-loader": "^0.23.1",
-    "tar": "^4.4.10",
+    "tar": "^4.4.15",
     "ts-jest": "^24",
     "ts-loader": "^5.3.3",
     "ts-node": "^8.1.0",
