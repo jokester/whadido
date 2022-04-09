@@ -50,7 +50,7 @@
     "immutable": "^4.0.0-rc.9",
     "lodash": "^4.17.4",
     "loglevel": "^1.6.1",
-    "moment": "^2.18.1",
+    "moment": "^2.29.2",
     "recursive-readdir": "^2.2.1",
     "tslib": "^1.10.0"
   },
